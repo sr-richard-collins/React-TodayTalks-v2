@@ -14,11 +14,11 @@ import vpost03 from "../assets/img/blog/video_post03.jpg";
 import vpost04 from "../assets/img/blog/video_post04.jpg";
 
 const Home = (props) => {
-const [trending, setTrending] = useState([]);
+  const [popularPosts, setPopularPosts] = useState([]);
   const dispatch = useDispatch();
   const spotlight = useSelector((state) => state.posts.todaySpotlight);
   const { categories } = useSelector((state) => state.categories);
-  const trendingCategory = categories.find(category => category.type === 'trending');
+  //   const trendingCategory = categories.find(category => category.type === 'trending');
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -27,18 +27,13 @@ const [trending, setTrending] = useState([]);
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
-        console.log("CC",trendingCategory)
-      if (trendingCategory) {
-        try {
-          const response = await axios.get(`/api/user/posts?category=${trendingCategory.name}`);
-          setTrending(response.data);
-        } catch (error) {
-          console.error('Error fetching trending posts:', error);
-        }
-      }
+      // console.log("CC",trendingCategory)
+
+      const response = await axios.get(`/api/user/popularPosts`);
+      setPopularPosts(response.data);
     };
     fetchTrendingPosts();
-}, [trendingCategory]);
+  }, []);
 
   return (
     <>
@@ -96,12 +91,11 @@ const [trending, setTrending] = useState([]);
                       <div className="col-57">
                         <div className="spotlight-post big-post">
                           <div className="spotlight-post-thumb">
-                            <Link
-                              to={`/blog-details/${spotlight.id}`}
-                            >
+                            <Link to={`/blog-details/${spotlight.id}`}>
                               <img
                                 src={
-                                  "http://localhost:8000/images/" + spotlight.img
+                                  "http://localhost:8000/images/" +
+                                  spotlight.img
                                 }
                                 alt=""
                               />
@@ -121,14 +115,17 @@ const [trending, setTrending] = useState([]);
                             <ul className="list-wrap">
                               <li>
                                 <i className="flaticon-calendar"></i>
-                                {new Date(spotlight.created_at).toLocaleDateString()}
+                                {new Date(
+                                  spotlight.created_at
+                                ).toLocaleDateString()}
                               </li>
                             </ul>
                           </div>
                           <p>{spotlight.subTitle}</p>
                           <div className="view-all-btn">
-                          <Link
-                              to={`/blog-details/${spotlight.id}`} className="link-btn"
+                            <Link
+                              to={`/blog-details/${spotlight.id}`}
+                              className="link-btn"
                             >
                               Read More
                               <span className="svg-icon">
@@ -253,146 +250,89 @@ const [trending, setTrending] = useState([]);
           </div>
           <div className="row">
             <div className="col-lg-6">
-            {trending.length != 0 ?<div className="video-post-item big-post">
-                 <div className="video-post-thumb">
-                  <a href="blog-details.html">
-                    <img src={"http://localhost:8000/images/" + trending[0].img} alt="" />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
-                    className="play-btn popup-video"
-                  >
-                    <FontAwesomeIcon icon="fa-solid fa-play" />
-                  </a>
-                </div>
-                <div className="video-post-content">
-                  <a href="blog.html" className="post-tag post-tag-three">
-                    Fighter
-                  </a>
-                  <h2 className="post-title bold-underline">
+              {popularPosts.length != 0 ? (
+                <div className="video-post-item big-post">
+                  <div className="video-post-thumb">
                     <a href="blog-details.html">
-                      {trending[0].subTitle}
+                      <img
+                        src={
+                          "http://localhost:8000/images/" + popularPosts[0].img
+                        }
+                        alt=""
+                      />
                     </a>
-                  </h2>
-                  <div className="blog-post-meta white-blog-meta">
-                    <ul className="list-wrap">
-                      <li>
-                        <i className="flaticon-user"></i>by
-                        <a href="author.html">{trending[0].user_name}</a>
-                      </li>
-                      <li>
-                        <i className="flaticon-calendar"></i>{new Date(trending[0].created_at).toLocaleDateString()}
-                      </li>
-                    </ul>
+                    <a
+                      href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
+                      className="play-btn popup-video"
+                    >
+                      <FontAwesomeIcon icon="fa-solid fa-play" />
+                    </a>
                   </div>
-              </div>
-                </div> : ''}
+                  <div className="video-post-content">
+                    <a href="blog.html" className="post-tag post-tag-three">
+                      Fighter
+                    </a>
+                    <h2 className="post-title bold-underline">
+                      <a href="blog-details.html">{popularPosts[0].subTitle}</a>
+                    </h2>
+                    <div className="blog-post-meta white-blog-meta">
+                      <ul className="list-wrap">
+                        <li>
+                          <i className="flaticon-user"></i>by
+                          <a href="author.html">{popularPosts[0].user_name}</a>
+                        </li>
+                        <li>
+                          <i className="flaticon-calendar"></i>
+                          {new Date(
+                            popularPosts[0].created_at
+                          ).toLocaleDateString()}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className="col-lg-6">
               <div className="video-small-post-wrap">
-                <div className="video-post-item small-post">
-                  <div className="video-post-thumb">
-                    <a href="blog-details.html">
-                      <img src={vpost02} alt="" />
-                    </a>
-                    <a
-                      href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
-                      className="play-btn popup-video"
-                    >
-                      <FontAwesomeIcon icon="fa-solid fa-play" />
-                    </a>
-                  </div>
-                  <div className="video-post-content">
-                    <a href="blog.html" className="post-tag post-tag-three">
-                      Animation
-                    </a>
-                    <h2 className="post-title">
+                {popularPosts.slice(1).map((post, index) => (
+                  <div className="video-post-item small-post">
+                    <div className="video-post-thumb">
                       <a href="blog-details.html">
-                        A Guide To Getting Data Visualization Right
+                        <img src={"http://localhost:8000/images/" + post.img} alt="" />
                       </a>
-                    </h2>
-                    <div className="blog-post-meta white-blog-meta">
-                      <ul className="list-wrap">
-                        <li>
-                          <i className="flaticon-user"></i>by
-                          <a href="author.html">Admin</a>
-                        </li>
-                        <li>
-                          <i className="flaticon-calendar"></i>27 August, 2024
-                        </li>
-                      </ul>
+                      <a
+                        href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
+                        className="play-btn popup-video"
+                      >
+                        <FontAwesomeIcon icon="fa-solid fa-play" />
+                      </a>
+                    </div>
+                    <div className="video-post-content">
+                      <a href="blog.html" className="post-tag post-tag-three">
+                        {post.category_name}
+                      </a>
+                      <h2 className="post-title">
+                        <a href="blog-details.html">
+                          {post.title}
+                        </a>
+                      </h2>
+                      <div className="blog-post-meta white-blog-meta">
+                        <ul className="list-wrap">
+                          <li>
+                            <i className="flaticon-user"></i>by
+                            <a href="author.html">{post.user_name}</a>
+                          </li>
+                          <li>
+                            <i className="flaticon-calendar"></i>{new Date(post.created_at).toLocaleDateString()}
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="video-post-item small-post">
-                  <div className="video-post-thumb">
-                    <a href="blog-details.html">
-                      <img src={vpost03} alt="" />
-                    </a>
-                    <a
-                      href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
-                      className="play-btn popup-video"
-                    >
-                      <FontAwesomeIcon icon="fa-solid fa-play" />
-                    </a>
-                  </div>
-                  <div className="video-post-content">
-                    <a href="blog.html" className="post-tag post-tag-three">
-                      Action
-                    </a>
-                    <h2 className="post-title">
-                      <a href="blog-details.html">
-                        Fluid Typography: Predicting A Problem With Your User’s
-                        Zoom-In
-                      </a>
-                    </h2>
-                    <div className="blog-post-meta white-blog-meta">
-                      <ul className="list-wrap">
-                        <li>
-                          <i className="flaticon-user"></i>by
-                          <a href="author.html">Admin</a>
-                        </li>
-                        <li>
-                          <i className="flaticon-calendar"></i>27 August, 2024
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="video-post-item small-post">
-                  <div className="video-post-thumb">
-                    <a href="blog-details.html">
-                      <img src={vpost01} alt="" />
-                    </a>
-                    <a
-                      href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
-                      className="play-btn popup-video"
-                    >
-                      <FontAwesomeIcon icon="fa-solid fa-play" />
-                    </a>
-                  </div>
-                  <div className="video-post-content">
-                    <a href="blog.html" className="post-tag post-tag-three">
-                      Racing
-                    </a>
-                    <h2 className="post-title">
-                      <a href="blog-details.html">
-                        Deploying CSS Logical Properties On Web Apps
-                      </a>
-                    </h2>
-                    <div className="blog-post-meta white-blog-meta">
-                      <ul className="list-wrap">
-                        <li>
-                          <i className="flaticon-user"></i>by
-                          <a href="author.html">Admin</a>
-                        </li>
-                        <li>
-                          <i className="flaticon-calendar"></i>27 August, 2024
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
