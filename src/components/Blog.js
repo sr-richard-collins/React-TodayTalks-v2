@@ -4,14 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Link } from "react-router-dom";
 import { fetchPostsByCategory } from "../actions/postAction";
+import axios from "axios";
 
 const Blog = ({ title }) => {
-  const dispatch = useDispatch();
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
-    dispatch(fetchPostsByCategory(title));
-  }, [dispatch, title]);
-
-  const { posts } = useSelector((state) => state.posts);
+    const fetch = async () => {
+      const response = await axios.get(`/api/user/posts?category=${title}`);
+      setPosts(response.data);
+    };
+    fetch();
+  }, [title]);
   return (
     <>
       <section className="blog-area pt-60 pb-60">
@@ -68,7 +71,7 @@ const Blog = ({ title }) => {
                           <ul className="list-wrap">
                             <li>
                               <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
-                              {post.created_at}
+                              {new Date(post.created_at).toLocaleDateString()}
                             </li>
                           </ul>
                         </div>

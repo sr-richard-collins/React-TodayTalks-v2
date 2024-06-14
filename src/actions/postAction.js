@@ -6,6 +6,7 @@ axios.defaults.baseURL = "http://localhost:8000";
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
+export const FETCH_SPOTLIGHT = 'FETCH_SPOTLIGHT';
 
 export const fetchPostsRequest = () => ({
   type: FETCH_POSTS_REQUEST,
@@ -13,6 +14,11 @@ export const fetchPostsRequest = () => ({
 
 export const fetchPostsSuccess = (posts) => ({
   type: FETCH_POSTS_SUCCESS,
+  payload: posts,
+});
+
+export const fetchSpotlight = (posts) => ({
+  type: FETCH_SPOTLIGHT,
   payload: posts,
 });
 
@@ -27,6 +33,18 @@ export const fetchPostsByCategory = (categoryId) => {
     try {
       const response = await axios.get(`/api/user/posts?category=${categoryId}`);
       dispatch(fetchPostsSuccess(response.data));
+    } catch (error) {
+      dispatch(fetchPostsFailure(error.message));
+    }
+  };
+};
+
+export const fetchTodaySpotlight = () => {
+  return async (dispatch) => {
+    //dispatch(fetchPostsRequest());
+    try {
+      const response = await axios.get(`/api/user/spotlight`);
+      dispatch(fetchSpotlight(response.data));
     } catch (error) {
       dispatch(fetchPostsFailure(error.message));
     }

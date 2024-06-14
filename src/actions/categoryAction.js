@@ -28,7 +28,7 @@ export const fetchCategoriesFailure = (error) => ({
 // Async action creator to fetch categories
 export const fetchCategories = () => {
   return async (dispatch) => {
-    dispatch(fetchCategoriesRequest());
+    //dispatch(fetchCategoriesRequest());
     try {
       const response = await axios.get("/api/user/categories"); // Replace with your API endpoint
       dispatch(fetchCategoriesSuccess(response.data));

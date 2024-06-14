@@ -2,12 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import post02 from "../assets/img/blog/2.jpg";
-import post03 from "../assets/img/blog/3.jpg";
-import post06 from "../assets/img/blog/6.jpg";
-
 const BlogDetailComponent = ({post}) => {
-
     return (
         <>
             <section className="blog-details-area pt-60 pb-60">
@@ -24,7 +19,7 @@ const BlogDetailComponent = ({post}) => {
                                                 <div className="blog-post-meta">
                                                     <ul className="list-wrap">
                                                         <li><FontAwesomeIcon icon="fa-regular fa-user" />by<Link to="author.html">Admin</Link></li>
-                                                        <li><FontAwesomeIcon icon="fa-regular fa-calendar" />{post.created_at}</li>
+                                                        <li><FontAwesomeIcon icon="fa-regular fa-calendar" />{new Date(post.created_at).toLocaleDateString()}</li>
                                                         <li><FontAwesomeIcon icon="fa-regular fa-comment" /><Link to="blog-details.html">05 Comments</Link></li>
                                                     </ul>
                                                 </div>

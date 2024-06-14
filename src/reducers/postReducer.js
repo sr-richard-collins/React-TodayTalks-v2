@@ -4,12 +4,14 @@ import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
+  FETCH_SPOTLIGHT,
 } from "../actions/postAction";
 
 const initialState = {
   loading: false,
   error: null,
   posts: [],
+  todaySpotlight: null,
 };
 
 const postReducer = (state = initialState, action) => {
@@ -31,6 +33,12 @@ const postReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: null,
+      };
+    case FETCH_SPOTLIGHT:
+      return {
+        ...state,
+        loading: false,
+        todaySpotlight: action.payload,
       };
     default:
       return state;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '../actions/categoryAction';
 import { fetchSelectCategory } from '../actions/categoryAction';
 
 import logo from "../assets/img/logo/Today_Talks_Logo2.png";
@@ -12,13 +11,11 @@ const Header = () => {
     const {categories} = useSelector((state) => state.categories);
     const [activeLink, setActiveLink] = useState('home');
 
-    useEffect(() => {
-        dispatch(fetchCategories());
-      }, [dispatch]);
+
 
     const handleLinkClick = (link) => {
         setActiveLink(link);
-        dispatch(fetchSelectCategory(link));
+        // dispatch(fetchSelectCategory(link));
     };
 
     return (
@@ -97,7 +94,7 @@ const Header = () => {
                                             </li>
                                             {categories.map((category) => (
                                                 <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
-                                                    <Link  to={`/category/${category.name}`} onClick={() => handleLinkClick(category.name)}>{category.name}</Link>
+                                                    <Link  to={`/category/${category.id}`} onClick={() => handleLinkClick(category.name)}>{category.name}</Link>
                                                 </li>
                                             ))}
                                         </ul>
