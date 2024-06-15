@@ -15,6 +15,9 @@ import vpost04 from "../assets/img/blog/video_post04.jpg";
 
 const Home = (props) => {
   const [popularPosts, setPopularPosts] = useState([]);
+  const [spotIndex, setSpotIndex] = useState(0);
+  const [activePage, setActivePage] = useState(0);
+
   const dispatch = useDispatch();
   const spotlight = useSelector((state) => state.posts.todaySpotlight);
   const { categories } = useSelector((state) => state.categories);
@@ -34,6 +37,11 @@ const Home = (props) => {
     };
     fetchTrendingPosts();
   }, []);
+
+  const handlePageClick = (index) => {
+    setActivePage(index);
+    setSpotIndex(index); // Assuming setSpotIndex is defined elsewhere
+  };
 
   return (
     <>
@@ -91,11 +99,13 @@ const Home = (props) => {
                       <div className="col-57">
                         <div className="spotlight-post big-post">
                           <div className="spotlight-post-thumb">
-                            <Link to={`/blog-details/${spotlight.id}`}>
+                            <Link
+                              to={`/blog-details/${spotlight[spotIndex].id}`}
+                            >
                               <img
                                 src={
                                   "http://localhost:8000/images/" +
-                                  spotlight.img
+                                  spotlight[spotIndex].img
                                 }
                                 alt=""
                               />
@@ -109,22 +119,24 @@ const Home = (props) => {
                             fIGHTER
                           </a>
                           <h2 className="post-title">
-                            <a href="blog-details.html">{spotlight.title}</a>
+                            <a href="blog-details.html">
+                              {spotlight[spotIndex].title}
+                            </a>
                           </h2>
                           <div className="blog-post-meta">
                             <ul className="list-wrap">
                               <li>
                                 <i className="flaticon-calendar"></i>
                                 {new Date(
-                                  spotlight.created_at
+                                  spotlight[spotIndex].created_at
                                 ).toLocaleDateString()}
                               </li>
                             </ul>
                           </div>
-                          <p>{spotlight.subTitle}</p>
+                          <p>{spotlight[spotIndex].subTitle}</p>
                           <div className="view-all-btn">
                             <Link
-                              to={`/blog-details/${spotlight.id}`}
+                              to={`/blog-details/${spotlight[spotIndex].id}`}
                               className="link-btn"
                             >
                               Read More
@@ -151,31 +163,21 @@ const Home = (props) => {
                       <div className="pagination-wrap mt-40">
                         <nav aria-label="Page navigation example">
                           <ul className="pagination list-wrap">
-                            <li className="page-item active">
-                              <a className="page-link" href="#" key="1">
-                                1
-                              </a>
-                            </li>
-                            <li className="page-item">
-                              <a className="page-link" href="#" key="2">
-                                2
-                              </a>
-                            </li>
-                            <li className="page-item">
-                              <a className="page-link" href="#" key="3">
-                                3
-                              </a>
-                            </li>
-                            <li className="page-item">
-                              <a className="page-link" href="#" key="4">
-                                4
-                              </a>
-                            </li>
-                            <li className="page-item">
-                              <a className="page-link" href="#" key="5">
-                                5
-                              </a>
-                            </li>
+                            {[...Array(5)].map((_, index) => (
+                              <li
+                                key={index}
+                                className={`page-item ${
+                                  activePage === index ? "active" : ""
+                                }`}
+                              >
+                                <a
+                                  className="page-link"
+                                  onClick={() => handlePageClick(index)}
+                                >
+                                  {index + 1}
+                                </a>
+                              </li>
+                            ))}
                           </ul>
                         </nav>
                       </div>
@@ -301,7 +303,10 @@ const Home = (props) => {
                   <div className="video-post-item small-post">
                     <div className="video-post-thumb">
                       <a href="blog-details.html">
-                        <img src={"http://localhost:8000/images/" + post.img} alt="" />
+                        <img
+                          src={"http://localhost:8000/images/" + post.img}
+                          alt=""
+                        />
                       </a>
                       <a
                         href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
@@ -315,9 +320,7 @@ const Home = (props) => {
                         {post.category_name}
                       </a>
                       <h2 className="post-title">
-                        <a href="blog-details.html">
-                          {post.title}
-                        </a>
+                        <a href="blog-details.html">{post.title}</a>
                       </h2>
                       <div className="blog-post-meta white-blog-meta">
                         <ul className="list-wrap">
@@ -326,7 +329,8 @@ const Home = (props) => {
                             <a href="author.html">{post.user_name}</a>
                           </li>
                           <li>
-                            <i className="flaticon-calendar"></i>{new Date(post.created_at).toLocaleDateString()}
+                            <i className="flaticon-calendar"></i>
+                            {new Date(post.created_at).toLocaleDateString()}
                           </li>
                         </ul>
                       </div>
