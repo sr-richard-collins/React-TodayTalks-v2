@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { IMAGE_BASE_URL } from "../config/config";
 
 const RelatedPostsComponent = ({ posts }) => {
   return (
@@ -21,7 +22,7 @@ const RelatedPostsComponent = ({ posts }) => {
                     <div className="banner-post-thumb-five">
                       <Link to={`/blog-details/${post.id}`}>
                         <img
-                          src={"http://localhost:8000/images/" + post.img}
+                          src={IMAGE_BASE_URL + post.img}
                           alt={post.title}
                         />
                       </Link>

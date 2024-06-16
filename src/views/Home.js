@@ -8,6 +8,7 @@ import { fetchTodaySpotlight } from "../actions/postAction";
 import { fetchCategories } from "../actions/categoryAction";
 import { Link } from "react-router-dom";
 import axios from "../axiosConfig";
+import { IMAGE_BASE_URL } from "../config/config";
 
 const Home = (props) => {
   const [popularPosts, setPopularPosts] = useState([]);
@@ -253,7 +254,7 @@ const Home = (props) => {
                     <a href="blog-details.html">
                       <img
                         src={
-                          "http://localhost:8000/images/" + popularPosts[0].img
+                          IMAGE_BASE_URL + popularPosts[0].img
                         }
                         alt=""
                       />
@@ -299,7 +300,7 @@ const Home = (props) => {
                     <div className="video-post-thumb">
                       <a href="blog-details.html">
                         <img
-                          src={"http://localhost:8000/images/" + post.img}
+                          src={IMAGE_BASE_URL + post.img}
                           alt=""
                         />
                       </a>

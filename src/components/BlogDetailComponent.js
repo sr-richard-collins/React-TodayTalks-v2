@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IMAGE_BASE_URL } from "../config/config";
 
 const BlogDetailComponent = ({ post }) => {
   return (
@@ -62,7 +63,7 @@ const BlogDetailComponent = ({ post }) => {
                     </div>
                     <div className="blog-details-thumb">
                       <img
-                        src={"http://localhost:8000/images/" + post.img}
+                        src={IMAGE_BASE_URL + post.img}
                         alt=""
                       />
                     </div>

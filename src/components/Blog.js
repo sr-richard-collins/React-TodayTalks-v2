@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import axios from '../axiosConfig';
+import axios from "../axiosConfig";
+import { IMAGE_BASE_URL } from "../config/config";
 
 const Blog = ({ title }) => {
   const [posts, setPosts] = useState([]);
@@ -52,7 +53,7 @@ const Blog = ({ title }) => {
                       <div className="col">
                         <Link to={`/blog-details/${post.id}`}>
                           <img
-                            src={"http://localhost:8000/images/" + post.img}
+                            src={IMAGE_BASE_URL + post.img}
                             alt={post.title}
                           />
                         </Link>
