@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from '../axiosConfig'
 
 const Newsletter = () => {
+    const [setting, setSetting] = useState([]);
+
+    useEffect(() => {
+        const fetchSetting = async () => {
+          const response = await axios.get(`/api/user/setting`);
+          setSetting(response.data);
+        };
+        fetchSetting();
+      }, []);
 
     return (
         <>
@@ -28,10 +38,10 @@ const Newsletter = () => {
                                 <div className="newsletter-social">
                                     <h4 className="title">Follow Us:</h4>
                                     <ul className="list-wrap">
-                                        <li><Link to="/"><FontAwesomeIcon icon="fa-brands fa-facebook-f" /></Link></li>
-                                        <li><Link to="/"><FontAwesomeIcon icon="fa-brands fa-x-twitter" /></Link></li>
-                                        <li><Link to="/"><FontAwesomeIcon icon="fa-brands fa-instagram" /></Link></li>
-                                        <li><Link to="/"><FontAwesomeIcon icon="fa-brands fa-linkedin" /></Link></li>
+                                        <li><Link to={setting.social_fb}><FontAwesomeIcon icon="fa-brands fa-facebook-f" /></Link></li>
+                                        <li><Link to={setting.social_twitter}><FontAwesomeIcon icon="fa-brands fa-x-twitter" /></Link></li>
+                                        <li><Link to={setting.social_insta}><FontAwesomeIcon icon="fa-brands fa-instagram" /></Link></li>
+                                        <li><Link to={setting.social_linkedin}><FontAwesomeIcon icon="fa-brands fa-linkedin" /></Link></li>
                                     </ul>
                                 </div>
                             </div>

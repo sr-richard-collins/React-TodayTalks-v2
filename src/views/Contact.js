@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Newsletter from "../components/Newsletter";
 import LocationIcon from "../assets/img/icon/contact_icon01.svg";
 import MailIcon from "../assets/img/icon/contact_icon02.svg";
 import PhoneIcon from "../assets/img/icon/contact_icon03.svg";
 import ContactImage from "../assets/img/images/contact_img.jpg";
+import axios from '../axiosConfig';
 
 const Contact = () => {
+    const [setting, setSetting] = useState([]);
+
+    useEffect(() => {
+        const fetchSetting = async () => {
+          const response = await axios.get(`/api/user/setting`);
+          setSetting(response.data);
+        };
+        fetchSetting();
+      }, []);
+
     return (
         <>
             <div className="breadcrumb-area">
@@ -37,7 +48,7 @@ const Contact = () => {
                                     </div>
                                     <div className="content">
                                         <h5 className="title">Location</h5>
-                                        <p>2118 Thornridge Cir. Syracuse</p>
+                                        <p>{setting.address}</p>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +59,7 @@ const Contact = () => {
                                     </div>
                                     <div className="content">
                                         <h5 className="title">E-mail</h5>
-                                        <p>Info@ghoradimgmail.com</p>
+                                        <p>{setting.email}</p>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +70,7 @@ const Contact = () => {
                                     </div>
                                     <div className="content">
                                         <h5 className="title">Phone</h5>
-                                        <p>+123 98598 000, +123 8855 2222</p>
+                                        <p>{setting.phone_number}</p>
                                     </div>
                                 </div>
                             </div>
