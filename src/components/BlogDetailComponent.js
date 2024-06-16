@@ -1,9 +1,20 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IMAGE_BASE_URL } from "../config/config";
+import axios from '../axiosConfig';
 
 const BlogDetailComponent = ({ post }) => {
+  const [setting, setSetting] = useState([]);
+
+  useEffect(() => {
+    const fetchSetting = async () => {
+      const response = await axios.get(`/api/user/setting`);
+      setSetting(response.data);
+    };
+    fetchSetting();
+  }, []);
+
   return (
     <>
       <section className="blog-details-area pt-60 pb-60">
@@ -38,22 +49,22 @@ const BlogDetailComponent = ({ post }) => {
                         <div className="blog-details-social">
                           <ul className="list-wrap">
                             <li>
-                              <Link to="/">
+                              <Link to={setting.social_fb}>
                                 <FontAwesomeIcon icon="fa-brands fa-facebook-f" />
                               </Link>
                             </li>
                             <li>
-                              <Link to="/">
+                              <Link to={setting.social_twitter}>
                                 <FontAwesomeIcon icon="fa-brands fa-x-twitter" />
                               </Link>
                             </li>
                             <li>
-                              <Link to="/">
+                              <Link to={setting.social_insta}>
                                 <FontAwesomeIcon icon="fa-brands fa-instagram" />
                               </Link>
                             </li>
                             <li>
-                              <Link to="/">
+                              <Link to={setting.social_linkedin}>
                                 <FontAwesomeIcon icon="fa-brands fa-linkedin" />
                               </Link>
                             </li>
