@@ -99,7 +99,7 @@ const Home = (props) => {
                             >
                               <img
                                 src={
-                                  "http://localhost:8000/images/" +
+                                  IMAGE_BASE_URL +
                                   spotlight[spotIndex].img
                                 }
                                 alt=""
