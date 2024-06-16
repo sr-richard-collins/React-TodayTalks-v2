@@ -1,23 +1,39 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IMAGE_BASE_URL } from "../config/config";
-import axios from '../axiosConfig';
+import { Helmet } from "react-helmet";
+import axios from "../axiosConfig";
 
 const BlogDetailComponent = ({ post }) => {
   const [setting, setSetting] = useState([]);
+  const [seo, setSeo] = useState([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await axios.get(`/api/user/seoPost?id=${post.id}`);
+      setSeo(response.data);
+    };
+    fetch();
+  }, [post]);
 
   useEffect(() => {
     const fetchSetting = async () => {
       const response = await axios.get(`/api/user/setting`);
-      
+
       setSetting(response.data);
     };
     fetchSetting();
-  }, []);
+  }, [post]);
 
   return (
     <>
+      <Helmet>
+        <title>{"title"}</title>
+        <meta property="og:title" content={seo.seo_title} />
+        <meta name="keywords" content={seo.seo_keyword} />
+        <meta name="description" content={seo.seo_description} />
+      </Helmet>
       <section className="blog-details-area pt-60 pb-60">
         <div className="container">
           <div className="author-inner-wrap">
@@ -74,10 +90,7 @@ const BlogDetailComponent = ({ post }) => {
                       </div>
                     </div>
                     <div className="blog-details-thumb">
-                      <img
-                        src={IMAGE_BASE_URL + post.img}
-                        alt=""
-                      />
+                      <img src={IMAGE_BASE_URL + post.img} alt="" />
                     </div>
                     <div
                       dangerouslySetInnerHTML={{ __html: post.description }}

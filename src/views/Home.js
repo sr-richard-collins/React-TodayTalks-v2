@@ -9,6 +9,7 @@ import { fetchCategories } from "../actions/categoryAction";
 import { Link } from "react-router-dom";
 import axios from "../axiosConfig";
 import { IMAGE_BASE_URL } from "../config/config";
+import { Helmet } from "react-helmet";
 
 const Home = (props) => {
   const [popularPosts, setPopularPosts] = useState([]);
@@ -16,12 +17,15 @@ const Home = (props) => {
   const [activePage, setActivePage] = useState(0);
   const [categories, setCategories] = useState([]);
   const [spotlight, setSpotlight] = useState([]);
+  const [seo, setSeo] = useState([]);
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
       const response = await axios.get(`/api/user/popularPosts`);
       const resCategory = await axios.get("/api/user/categories");
       const resSpotlight = await axios.get(`/api/user/spotlight`);
+      const resSeo = await axios.get(`/api/user/seoSetting`);
+      setSeo(resSeo.data);
       setPopularPosts(response.data);
       setCategories(resCategory.data);
       setSpotlight(resSpotlight.data);
@@ -37,6 +41,12 @@ const Home = (props) => {
 
   return (
     <>
+    <Helmet>
+        <title>{"title"}</title>
+        <meta property="og:title" content={seo.seo_title} />
+        <meta name="keywords" content={seo.seo_keyword} />
+        <meta name="description" content={seo.seo_description} />
+      </Helmet>
       <section className="spotlight-post-area pt-70 pb-60">
         <div className="spotlight-post-inner-wrap">
           <div className="container">
