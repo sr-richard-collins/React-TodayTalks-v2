@@ -1,7 +1,6 @@
 // actions.js
 
-import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8000";
+import axios from "../axiosConfig";
 
 export const FETCH_CATEGORIES_REQUEST = "FETCH_CATEGORIES_REQUEST";
 export const FETCH_CATEGORIES_SUCCESS = "FETCH_CATEGORIES_SUCCESS";

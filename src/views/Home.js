@@ -7,11 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTodaySpotlight } from "../actions/postAction";
 import { fetchCategories } from "../actions/categoryAction";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import vpost01 from "../assets/img/blog/video_post01.jpg";
-import vpost02 from "../assets/img/blog/video_post02.jpg";
-import vpost03 from "../assets/img/blog/video_post03.jpg";
-import vpost04 from "../assets/img/blog/video_post04.jpg";
+import axios from "../axiosConfig";
 
 const Home = (props) => {
   const [popularPosts, setPopularPosts] = useState([]);
@@ -30,8 +26,6 @@ const Home = (props) => {
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
-      // console.log("CC",trendingCategory)
-
       const response = await axios.get(`/api/user/popularPosts`);
       setPopularPosts(response.data);
     };
@@ -51,7 +45,7 @@ const Home = (props) => {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-70">
-                {spotlight ? (
+                {spotlight && spotlight.length ? (
                   <div className="spotlight-post-item-wrap">
                     <div className="section-title-wrap-three mb-20">
                       <div className="section-title-three">
@@ -171,6 +165,7 @@ const Home = (props) => {
                                 }`}
                               >
                                 <a
+                                  key={index}
                                   className="page-link"
                                   onClick={() => handlePageClick(index)}
                                 >
@@ -252,7 +247,7 @@ const Home = (props) => {
           </div>
           <div className="row">
             <div className="col-lg-6">
-              {popularPosts.length != 0 ? (
+              {popularPosts.length !== 0 ? (
                 <div className="video-post-item big-post">
                   <div className="video-post-thumb">
                     <a href="blog-details.html">

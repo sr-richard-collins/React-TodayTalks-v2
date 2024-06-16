@@ -1,10 +1,6 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import post05 from "../assets/img/blog/5.jpg";
-import post06 from "../assets/img/blog/6.jpg";
-import post07 from "../assets/img/blog/7.jpg";
+import { Link } from "react-router-dom";
 
 const RelatedPostsComponent = ({ posts }) => {
   return (
@@ -23,21 +19,19 @@ const RelatedPostsComponent = ({ posts }) => {
                 <div className="col-lg-4 col-md-6">
                   <div className="banner-post-five banner-post-seven">
                     <div className="banner-post-thumb-five">
-                      <a href="blog-details.html">
+                      <Link to={`/blog-details/${post.id}`}>
                         <img
                           src={"http://localhost:8000/images/" + post.img}
-                          alt=""
+                          alt={post.title}
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="banner-post-content-five">
                       <a href="blog.html" className="post-tag-four">
                         {post.category_name}
                       </a>
                       <h2 className="post-title">
-                        <a href="blog-details.html">
-                          {post.title}
-                        </a>
+                        <a href="blog-details.html">{post.title}</a>
                       </h2>
                       <div className="blog-post-meta">
                         <ul className="list-wrap">

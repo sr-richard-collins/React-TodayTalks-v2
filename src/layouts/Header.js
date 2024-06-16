@@ -2,19 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSelectCategory } from '../actions/categoryAction';
+import { fetchCategories } from "../actions/categoryAction";
 import { Helmet } from 'react-helmet';
 
 import logo from "../assets/img/logo/Today_Talks_Logo2.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 
 const Header = () => {
     const dispatch = useDispatch();
     const {categories} = useSelector((state) => state.categories);
     const [activeLink, setActiveLink] = useState('home');
 
+    useEffect(() => {
+        dispatch(fetchCategories());
+      }, [dispatch]);
+
     const handleLinkClick = (link) => {
         setActiveLink(link);
+
         // dispatch(fetchSelectCategory(link));
     };
 

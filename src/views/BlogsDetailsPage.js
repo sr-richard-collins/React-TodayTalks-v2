@@ -2,8 +2,7 @@ import React, {useState, useEffect} from "react";
 import BlogDetailComponent from "../components/BlogDetailComponent";
 import RelatedPostsComponent from "../components/RelatedPostsComponent";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import axios from '../axiosConfig';
 
 const BlogsDetails = () => {
   const [post, setPost] = useState([]);
@@ -18,7 +17,7 @@ const BlogsDetails = () => {
       setRelatedPosts(relatedRes.data);
     };
     fetch();
-  }, []);
+  }, [id]);
 
   return (
     <>

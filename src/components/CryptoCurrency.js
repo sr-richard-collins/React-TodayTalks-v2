@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-// import axios from 'axios';
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
 import icon_coin1 from "../assets/img/icon/coin_icon01.svg"
 import icon_coin2 from "../assets/img/icon/coin_icon02.svg"
 import icon_coin3 from "../assets/img/icon/coin_icon03.svg"

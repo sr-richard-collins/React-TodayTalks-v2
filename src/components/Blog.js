@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { Link } from "react-router-dom";
-import { fetchPostsByCategory } from "../actions/postAction";
-import axios from "axios";
+import axios from '../axiosConfig';
 
 const Blog = ({ title }) => {
   const [posts, setPosts] = useState([]);
@@ -69,6 +66,10 @@ const Blog = ({ title }) => {
                         </a>
                         <div className="blog-post-meta">
                           <ul className="list-wrap">
+                            <li>
+                              <FontAwesomeIcon icon="fa-regular fa-user" />
+                              by<Link to="author.html">{post.user_name}</Link>
+                            </li>
                             <li>
                               <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
                               {new Date(post.created_at).toLocaleDateString()}

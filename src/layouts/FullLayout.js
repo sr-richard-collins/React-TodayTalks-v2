@@ -1,32 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 // import { Container } from "reactstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet";
-import axios from 'axios';
+import axios from '../axiosConfig';
 
 const FullLayout = () => {
   const [seoTitles, setSeoTitles] = useState([]);
-    const [seoKeywords, setSeoKeywords] = useState([]);
-    const [seoDescripton, setSeoDescription] = useState([]);
+  const [seoKeywords, setSeoKeywords] = useState([]);
+  const [seoDescripton, setSeoDescription] = useState([]);
 
-  useEffect(()=> {
+  useEffect(() => {
     const fetch = async () => {
-        const title = await axios.get(`/api/user/seoTitle`);
-        const titleArray = title.data.map(item => item.seo_title);
-        const keywords = await axios.get(`/api/user/seoKeywords`);
-        const keywordsArray = keywords.data.map(item => item.seo_keyword);
-        const descriptions = await axios.get(`/api/user/seoDescriptions`);
-        const descriptionsArray = descriptions.data.map(item => item.seo_description);
-        setSeoTitles(titleArray);
-        console.log("DDFD", titleArray)
-        setSeoKeywords(keywordsArray);
-        setSeoDescription(descriptionsArray);
-      };
+      const title = await axios.get(`/api/user/seoTitle`);
+      const titleArray = title.data.map((item) => item.seo_title);
+      const keywords = await axios.get(`/api/user/seoKeywords`);
+      const keywordsArray = keywords.data.map((item) => item.seo_keyword);
+      const descriptions = await axios.get(`/api/user/seoDescriptions`);
+      const descriptionsArray = descriptions.data.map(
+        (item) => item.seo_description
+      );
+      setSeoTitles(titleArray);
+      console.log("DDFD", titleArray);
+      setSeoKeywords(keywordsArray);
+      setSeoDescription(descriptionsArray);
+    };
     fetch();
-}, [])
+  }, []);
   return (
     <>
       {/* <div id="preloader">
@@ -37,18 +39,20 @@ const FullLayout = () => {
                 </div>
             </div>
         </div> */}
-        <Helmet>
+      <Helmet>
         <title>{"title"}</title>
-                <meta property="og:title" content={seoTitles} />
-                <meta name="keywords" content={seoKeywords} />
-                <meta name="description" content={seoDescripton} />
-            </Helmet>
+        <meta property="og:title" content={seoTitles} />
+        <meta name="keywords" content={seoKeywords} />
+        <meta name="description" content={seoDescripton} />
+      </Helmet>
 
       <div className="darkmode-trigger">
-          <label className="modeSwitch">
-              <input type="checkbox" />
-              <span className="icon"><FontAwesomeIcon icon="fa-solid fa-regular fa-sun"/></span>
-          </label>
+        <label className="modeSwitch">
+          <input type="checkbox" />
+          <span className="icon">
+            <FontAwesomeIcon icon="fa-solid fa-regular fa-sun" />
+          </span>
+        </label>
       </div>
 
       <button className="scroll-top scroll-to-target" data-target="html">
@@ -56,12 +60,11 @@ const FullLayout = () => {
       </button>
 
       <Header />
-      
+
       <main className="fix">
         <Outlet />
-        
       </main>
-      
+
       <Footer />
     </>
   );

@@ -1,7 +1,6 @@
 // actions.js
 
-import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8000";
+import axios from '../axiosConfig';
 
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
