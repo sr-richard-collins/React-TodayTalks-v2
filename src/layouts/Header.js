@@ -12,11 +12,13 @@ import axios from "../axiosConfig";
 
 const Header = () => {
   const dispatch = useDispatch();
-    const { categories } = useSelector((state) => state.categories);
+  const { categories } = useSelector((state) => state.categories);
   const [activeLink, setActiveLink] = useState("home");
   const [setting, setSetting] = useState([]);
-  // const [categories, setCategories] = useState([]);
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const moreCategories = categories.filter(
+    (category) => category.position === "more"
+  );
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -24,8 +26,8 @@ const Header = () => {
   useEffect(() => {
     const fetchSetting = async () => {
       const response = await axios.get(`/api/user/setting`);
-      
-    //   const resCategory = await axios.get("/api/user/categories");
+
+      //   const resCategory = await axios.get("/api/user/categories");
       setSetting(response.data);
       // setCategories(resCategory.data);
     };
@@ -34,8 +36,14 @@ const Header = () => {
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+  };
 
-    // dispatch(fetchSelectCategory(link));
+  const handleDropdownHover = () => {
+    setShowDropdown(true);
+  };
+
+  const handleDropdownLeave = () => {
+    setShowDropdown(false);
   };
 
   const getCurrentDate = () => {
@@ -169,21 +177,59 @@ const Header = () => {
                           Home
                         </Link>
                       </li>
-                      {categories.map((category) => (
-                        <li
-                          key={category.id}
-                          className={
-                            activeLink === category.name ? "active" : ""
-                          }
-                        >
-                          <Link
-                            to={`/category/${category.id}`}
-                            onClick={() => handleLinkClick(category.name)}
+                      {categories.map((category) =>
+                        category.position === "main" ? (
+                          <li
+                            key={category.id}
+                            className={
+                              activeLink === category.name ? "active" : ""
+                            }
                           >
-                            {category.name}
-                          </Link>
-                        </li>
-                      ))}
+                            <Link
+                              to={`/category/${category.id}`}
+                              onClick={() => handleLinkClick(category.name)}
+                            >
+                              {category.name}
+                            </Link>
+                          </li>
+                        ) : (
+                          ""
+                        )
+                      )}
+                      <li
+                        className={`nav-item dropdown dropdown-hover ${
+                          showDropdown ? "show" : ""
+                        }`}
+                        onMouseEnter={handleDropdownHover}
+                        onMouseLeave={handleDropdownLeave}
+                      >
+                        <Link
+                          to="#"
+                          className="nav-link dropdown-toggle btn-link"
+                          id="moreCategoriesDropdown"
+                          role="button"
+                          aria-expanded={showDropdown ? "true" : "false"}
+                        >
+                          More Categories
+                        </Link>
+                        <div
+                          className={`dropdown-menu ${
+                            showDropdown ? "show" : ""
+                          }`}
+                          aria-labelledby="moreCategoriesDropdown"
+                        >
+                          {moreCategories.map((category) => (
+                            <Link
+                              key={category.id}
+                              to={`/category/${category.id}`}
+                              className="dropdown-item"
+                              onClick={() => handleLinkClick(category.name)}
+                            >
+                              {category.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </nav>
