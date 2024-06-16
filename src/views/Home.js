@@ -41,7 +41,7 @@ const Home = (props) => {
 
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>{"title"}</title>
         <meta property="og:title" content={seo.seo_title} />
         <meta name="keywords" content={seo.seo_keyword} />
@@ -76,7 +76,7 @@ const Home = (props) => {
                       </div>
                       <div className="view-all-btn">
                         <Link
-                          to={`/category/${spotlight[spotIndex].category_id}`}
+                          to={`/category/${spotlight[spotIndex].category_name}`}
                           className="link-btn"
                         >
                           View All
@@ -104,7 +104,7 @@ const Home = (props) => {
                         <div className="spotlight-post big-post">
                           <div className="spotlight-post-thumb">
                             <Link
-                              to={`/blog-details/${spotlight[spotIndex].id}`}
+                              to={`/blog-details/${spotlight[spotIndex].title}`}
                             >
                               <img
                                 src={IMAGE_BASE_URL + spotlight[spotIndex].img}
@@ -137,7 +137,7 @@ const Home = (props) => {
                           <p>{spotlight[spotIndex].subTitle}</p>
                           <div className="view-all-btn">
                             <Link
-                              to={`/blog-details/${spotlight[spotIndex].id}`}
+                              to={`/blog-details/${spotlight[spotIndex].title}`}
                               className="link-btn"
                             >
                               Read More
@@ -264,9 +264,12 @@ const Home = (props) => {
               {popularPosts.length !== 0 ? (
                 <div className="video-post-item big-post">
                   <div className="video-post-thumb">
-                    <a href="blog-details.html">
+                    <Link
+                      to={`/blog-details/${popularPosts[0].title}`}
+                      className="link-btn"
+                    >
                       <img src={IMAGE_BASE_URL + popularPosts[0].img} alt="" />
-                    </a>
+                    </Link>
                     <a
                       href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
                       className="play-btn popup-video"
@@ -306,9 +309,12 @@ const Home = (props) => {
                 {popularPosts.slice(1).map((post, index) => (
                   <div className="video-post-item small-post" key={index}>
                     <div className="video-post-thumb">
-                      <a href="blog-details.html">
+                      <Link
+                        to={`/blog-details/${post.title}`}
+                        className="link-btn"
+                      >
                         <img src={IMAGE_BASE_URL + post.img} alt="" />
-                      </a>
+                      </Link>
                       <a
                         href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
                         className="play-btn popup-video"
@@ -343,7 +349,7 @@ const Home = (props) => {
           </div>
         </div>
       </section>
-        <Newsletter />
+      <Newsletter />
     </>
   );
 };

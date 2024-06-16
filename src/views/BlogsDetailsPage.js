@@ -7,17 +7,17 @@ import axios from '../axiosConfig';
 const BlogsDetails = () => {
   const [post, setPost] = useState([]);
   const [relatedPosts, setRelatedPosts] = useState([]);
-  const { id } = useParams();
+  const { title } = useParams();
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(`/api/user/findPost?id=${id}`);
-      const relatedRes = await axios.get(`/api/user/relatedPost?id=${id}`);
+      const response = await axios.get(`/api/user/findPost?id=${title}`);
+      const relatedRes = await axios.get(`/api/user/relatedPost?id=${title}`);
       setPost(response.data);
       setRelatedPosts(relatedRes.data);
     };
     fetch();
-  }, [id]);
+  }, [title]);
 
   return (
     <>

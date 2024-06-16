@@ -26,6 +26,29 @@ const BlogDetailComponent = ({ post }) => {
     fetchSetting();
   }, [post]);
 
+  const handleFacebookShare = () => {
+    const currentUrl = window.location.href;
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleTwitterShare = () => {
+    const currentUrl = window.location.href;
+    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleTelegramShare = () => {
+    const currentUrl = window.location.href;
+    const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleLinkedInShare = () => {
+    const currentUrl = window.location.href;
+    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+    window.open(shareUrl, '_blank');
+  };
   return (
     <>
       <Helmet>
@@ -66,22 +89,22 @@ const BlogDetailComponent = ({ post }) => {
                         <div className="blog-details-social">
                           <ul className="list-wrap">
                             <li>
-                              <Link to={setting.social_fb}>
+                              <Link onClick={handleFacebookShare}>
                                 <FontAwesomeIcon icon="fa-brands fa-facebook-f" />
                               </Link>
                             </li>
                             <li>
-                              <Link to={setting.social_twitter}>
+                              <Link onClick={handleTwitterShare}>
                                 <FontAwesomeIcon icon="fa-brands fa-x-twitter" />
                               </Link>
                             </li>
                             <li>
-                              <Link to={setting.social_insta}>
-                                <FontAwesomeIcon icon="fa-brands fa-instagram" />
+                              <Link  onClick={handleTelegramShare}>
+                                <FontAwesomeIcon icon="fa-brands fa-telegram" />
                               </Link>
                             </li>
                             <li>
-                              <Link to={setting.social_linkedin}>
+                              <Link onClick={handleLinkedInShare}>
                                 <FontAwesomeIcon icon="fa-brands fa-linkedin" />
                               </Link>
                             </li>

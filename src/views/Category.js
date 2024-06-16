@@ -7,20 +7,20 @@ import { Helmet } from "react-helmet";
 import axios from "../axiosConfig";
 
 const Category = () => {
-  const { id } = useParams();
+  const { name } = useParams();
   const { categories } = useSelector((state) => state.categories);
   const selectCategory = categories.find(
-    (category) => category.id === parseInt(id)
+    (category) => category.name === name
   );
   const [seo, setSeo] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(`/api/user/seoCategory?id=${id}`);
+      const response = await axios.get(`/api/user/seoCategory?id=${name}`);
       setSeo(response.data);
     };
     fetch();
-  }, [id]);
+  }, [name]);
   return (
     <>
       <Helmet>

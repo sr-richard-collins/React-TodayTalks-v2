@@ -26,10 +26,7 @@ const Header = () => {
   useEffect(() => {
     const fetchSetting = async () => {
       const response = await axios.get(`/api/user/setting`);
-
-      //   const resCategory = await axios.get("/api/user/categories");
       setSetting(response.data);
-      // setCategories(resCategory.data);
     };
     fetchSetting();
   }, []);
@@ -186,7 +183,7 @@ const Header = () => {
                             }
                           >
                             <Link
-                              to={`/category/${category.id}`}
+                              to={`/category/${category.name}`}
                               onClick={() => handleLinkClick(category.name)}
                             >
                               {category.name}
@@ -221,7 +218,7 @@ const Header = () => {
                           {moreCategories.map((category) => (
                             <Link
                               key={category.id}
-                              to={`/category/${category.id}`}
+                              to={`/category/${category.name}`}
                               className="dropdown-item"
                               onClick={() => handleLinkClick(category.name)}
                             >

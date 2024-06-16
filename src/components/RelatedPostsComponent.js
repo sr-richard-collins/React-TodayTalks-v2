@@ -20,7 +20,7 @@ const RelatedPostsComponent = ({ posts }) => {
                 <div className="col-lg-4 col-md-6" key={index}>
                   <div className="banner-post-five banner-post-seven">
                     <div className="banner-post-thumb-five">
-                      <Link to={`/blog-details/${post.id}`}>
+                      <Link to={`/blog-details/${post.title}`}>
                         <img
                           src={IMAGE_BASE_URL + post.img}
                           alt={post.title}

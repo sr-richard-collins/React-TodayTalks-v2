@@ -52,7 +52,7 @@ const Blog = ({ title }) => {
                   {posts.map((post) => (
                     <div key={post.id} className="col-md-4 mb-4">
                       <div className="col">
-                        <Link to={`/blog-details/${post.id}`}>
+                        <Link to={`/blog-details/${post.title}`}>
                           <img
                             src={IMAGE_BASE_URL + post.img}
                             alt={post.title}
