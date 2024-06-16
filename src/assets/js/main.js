@@ -206,7 +206,6 @@ $('.brand-active').slick({
 /*=============================================
 	=    		Featured Active		      =
 =============================================*/
-console.log("1111111111111");
 $('.featured-post-active').slick({
 	dots: false,
 	infinite: true,
@@ -251,7 +250,6 @@ $('.featured-post-active').slick({
 		},
 	]
 });
-console.log("222222222222");
 
 /*=============================================
 	=    		Editor Active		      =

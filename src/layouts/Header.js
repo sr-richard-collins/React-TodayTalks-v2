@@ -8,13 +8,14 @@ import { Helmet } from "react-helmet";
 import logo from "../assets/img/logo/Today_Talks_Logo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IMAGE_BASE_URL } from "../config/config";
-import axios from '../axiosConfig';
+import axios from "../axiosConfig";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state.categories);
+    const { categories } = useSelector((state) => state.categories);
   const [activeLink, setActiveLink] = useState("home");
   const [setting, setSetting] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -23,7 +24,10 @@ const Header = () => {
   useEffect(() => {
     const fetchSetting = async () => {
       const response = await axios.get(`/api/user/setting`);
+      
+    //   const resCategory = await axios.get("/api/user/categories");
       setSetting(response.data);
+      // setCategories(resCategory.data);
     };
     fetchSetting();
   }, []);
@@ -32,6 +36,11 @@ const Header = () => {
     setActiveLink(link);
 
     // dispatch(fetchSelectCategory(link));
+  };
+
+  const getCurrentDate = () => {
+    const options = { month: "long", day: "numeric", year: "numeric" };
+    return new Date().toLocaleDateString("en-US", options);
   };
 
   return (
@@ -142,8 +151,12 @@ const Header = () => {
         <div className="container">
           <div className="row">
             <div className="col-2">
-              <a href="#">
-                <img src={IMAGE_BASE_URL+setting.site_logo} alt="logo" className="logo-style" />
+              <a>
+                <img
+                  src={IMAGE_BASE_URL + setting.site_logo}
+                  alt="logo"
+                  className="logo-style"
+                />
               </a>
             </div>
             <div className="col-8">
@@ -180,7 +193,7 @@ const Header = () => {
             <div className="col-2">
               <span className="date">
                 <FontAwesomeIcon icon="fa-regular fa-calendar" />
-                February 12, 2024
+                {getCurrentDate()}
               </span>
             </div>
           </div>

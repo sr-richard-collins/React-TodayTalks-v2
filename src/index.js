@@ -8,6 +8,7 @@ import { HashRouter } from "react-router-dom";
 import Loader from "./layouts/loader/Loader";
 import { Provider } from "react-redux";
 import store from "./store";
+import { BrowserRouter } from "react-router-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -19,9 +20,9 @@ const root = createRoot(rootElement);
 root.render(
   <Provider store={store}>
     <Suspense fallback={<Loader />}>
-      <HashRouter>
+      <BrowserRouter>
         <App />
-      </HashRouter>
+      </BrowserRouter>
     </Suspense>
   </Provider>
 );

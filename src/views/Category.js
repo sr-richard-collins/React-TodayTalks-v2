@@ -8,7 +8,6 @@ const Category = () => {
   const { id } = useParams();
   const { categories } = useSelector((state) => state.categories);
   const selectCategory = categories.find(category => category.id === parseInt(id));
-  console.log(selectCategory);
   return (
     <>
       <Blog title={selectCategory.name} />

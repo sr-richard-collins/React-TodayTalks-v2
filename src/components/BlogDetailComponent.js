@@ -10,6 +10,7 @@ const BlogDetailComponent = ({ post }) => {
   useEffect(() => {
     const fetchSetting = async () => {
       const response = await axios.get(`/api/user/setting`);
+      
       setSetting(response.data);
     };
     fetchSetting();
@@ -32,18 +33,18 @@ const BlogDetailComponent = ({ post }) => {
                       <div className="bd-content-inner">
                         <div className="blog-post-meta">
                           <ul className="list-wrap">
-                            <li>
+                            {/* <li>
                               <FontAwesomeIcon icon="fa-regular fa-user" />
                               by<Link to="author.html">{post.user_name}</Link>
-                            </li>
+                            </li> */}
                             <li>
                               <FontAwesomeIcon icon="fa-regular fa-calendar" />
                               {new Date(post.created_at).toLocaleDateString()}
                             </li>
-                            <li>
+                            {/* <li>
                               <FontAwesomeIcon icon="fa-regular fa-comment" />
                               <Link to="blog-details.html">05 Comments</Link>
-                            </li>
+                            </li> */}
                           </ul>
                         </div>
                         <div className="blog-details-social">

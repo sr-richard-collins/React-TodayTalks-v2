@@ -14,7 +14,8 @@ const Blog = ({ title }) => {
     fetch();
   }, [title]);
   return (
-    <>
+    <>{
+      posts.length ?
       <section className="blog-area pt-60 pb-60">
         <div className="container">
           <div className="author-inner-wrap blog-inner-wrap">
@@ -24,7 +25,7 @@ const Blog = ({ title }) => {
                   <h2 className="title">{title}</h2>
                 </div>
                 <div className="view-all-btn">
-                  <a href="blog.html" className="link-btn">
+                  {/* <a href="blog.html" className="link-btn">
                     View All
                     <span className="svg-icon">
                       <svg
@@ -42,7 +43,7 @@ const Blog = ({ title }) => {
                         />
                       </svg>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
                 <div className="section-title-line"></div>
               </div>
@@ -67,10 +68,10 @@ const Blog = ({ title }) => {
                         </a>
                         <div className="blog-post-meta">
                           <ul className="list-wrap">
-                            <li>
+                            {/* <li>
                               <FontAwesomeIcon icon="fa-regular fa-user" />
                               by<Link to="author.html">{post.user_name}</Link>
-                            </li>
+                            </li> */}
                             <li>
                               <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
                               {new Date(post.created_at).toLocaleDateString()}
@@ -85,7 +86,9 @@ const Blog = ({ title }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> : ''
+    }
+      
     </>
   );
 };

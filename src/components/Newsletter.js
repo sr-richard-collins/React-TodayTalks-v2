@@ -25,7 +25,7 @@ const Newsletter = () => {
                                     <h2 className="title">Get Our Latest News & Update</h2>
                                 </div>
                                 <div className="newsletter-form">
-                                    <form action="#">
+                                    <form >
                                         <div className="form-grp">
                                             <input type="text" placeholder="Name" />
                                         </div>

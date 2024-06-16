@@ -14,22 +14,19 @@ const Home = (props) => {
   const [popularPosts, setPopularPosts] = useState([]);
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
-
-  const dispatch = useDispatch();
-  const spotlight = useSelector((state) => state.posts.todaySpotlight);
-  const { categories } = useSelector((state) => state.categories);
-  //   const trendingCategory = categories.find(category => category.type === 'trending');
-
-  useEffect(() => {
-    dispatch(fetchCategories());
-    dispatch(fetchTodaySpotlight());
-  }, [dispatch]);
+  const [categories, setCategories] = useState([]);
+  const [spotlight, setSpotlight] = useState([]);
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
       const response = await axios.get(`/api/user/popularPosts`);
+      const resCategory = await axios.get("/api/user/categories");
+      const resSpotlight = await axios.get(`/api/user/spotlight`);
       setPopularPosts(response.data);
+      setCategories(resCategory.data);
+      setSpotlight(resSpotlight.data);
     };
+
     fetchTrendingPosts();
   }, []);
 
@@ -40,7 +37,6 @@ const Home = (props) => {
 
   return (
     <>
-      {/* <!-- spotlight-post-area --> */}
       <section className="spotlight-post-area pt-70 pb-60">
         <div className="spotlight-post-inner-wrap">
           <div className="container">
@@ -69,7 +65,10 @@ const Home = (props) => {
                         <div className="section-title-line-three"></div>
                       </div>
                       <div className="view-all-btn">
-                        <a href="blog.html" className="link-btn">
+                        <Link
+                          to={`/category/${spotlight[spotIndex].category_id}`}
+                          className="link-btn"
+                        >
                           View All
                           <span className="svg-icon">
                             <svg
@@ -87,7 +86,7 @@ const Home = (props) => {
                               />
                             </svg>
                           </span>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     <div className="row">
@@ -98,10 +97,7 @@ const Home = (props) => {
                               to={`/blog-details/${spotlight[spotIndex].id}`}
                             >
                               <img
-                                src={
-                                  IMAGE_BASE_URL +
-                                  spotlight[spotIndex].img
-                                }
+                                src={IMAGE_BASE_URL + spotlight[spotIndex].img}
                                 alt=""
                               />
                             </Link>
@@ -111,7 +107,7 @@ const Home = (props) => {
                       <div className="col-43">
                         <div className="weekly-post-content">
                           <a href="blog.html" className="post-tag">
-                            fIGHTER
+                            {spotlight[spotIndex].category_name}
                           </a>
                           <h2 className="post-title">
                             <a href="blog-details.html">
@@ -158,7 +154,7 @@ const Home = (props) => {
                       <div className="pagination-wrap mt-40">
                         <nav aria-label="Page navigation example">
                           <ul className="pagination list-wrap">
-                            {[...Array(5)].map((_, index) => (
+                            {[...Array(spotlight.length)].map((_, index) => (
                               <li
                                 key={index}
                                 className={`page-item ${
@@ -223,25 +219,32 @@ const Home = (props) => {
                   <div className="section-title-line-three"></div>
                 </div>
                 <div className="view-all-btn">
-                  <a href="blog.html" className="link-btn">
-                    View All
-                    <span className="svg-icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                      >
-                        <path
-                          d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                          fill="currentColor"
-                        />
-                        <path
-                          d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </span>
-                  </a>
+                  {popularPosts.length !== 0 ? (
+                    <Link
+                      to={`/category/${popularPosts[0].category_id}`}
+                      className="link-btn"
+                    >
+                      View All
+                      <span className="svg-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 10 10"
+                          fill="none"
+                        >
+                          <path
+                            d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </span>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
@@ -252,12 +255,7 @@ const Home = (props) => {
                 <div className="video-post-item big-post">
                   <div className="video-post-thumb">
                     <a href="blog-details.html">
-                      <img
-                        src={
-                          IMAGE_BASE_URL + popularPosts[0].img
-                        }
-                        alt=""
-                      />
+                      <img src={IMAGE_BASE_URL + popularPosts[0].img} alt="" />
                     </a>
                     <a
                       href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
@@ -268,17 +266,17 @@ const Home = (props) => {
                   </div>
                   <div className="video-post-content">
                     <a href="blog.html" className="post-tag post-tag-three">
-                      Fighter
+                      {popularPosts[0].category_name}
                     </a>
                     <h2 className="post-title bold-underline">
                       <a href="blog-details.html">{popularPosts[0].subTitle}</a>
                     </h2>
                     <div className="blog-post-meta white-blog-meta">
                       <ul className="list-wrap">
-                        <li>
+                        {/* <li>
                           <i className="flaticon-user"></i>by
                           <a href="author.html">{popularPosts[0].user_name}</a>
-                        </li>
+                        </li> */}
                         <li>
                           <i className="flaticon-calendar"></i>
                           {new Date(
@@ -296,13 +294,10 @@ const Home = (props) => {
             <div className="col-lg-6">
               <div className="video-small-post-wrap">
                 {popularPosts.slice(1).map((post, index) => (
-                  <div className="video-post-item small-post">
+                  <div className="video-post-item small-post" key={index}>
                     <div className="video-post-thumb">
                       <a href="blog-details.html">
-                        <img
-                          src={IMAGE_BASE_URL + post.img}
-                          alt=""
-                        />
+                        <img src={IMAGE_BASE_URL + post.img} alt="" />
                       </a>
                       <a
                         href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
@@ -320,10 +315,10 @@ const Home = (props) => {
                       </h2>
                       <div className="blog-post-meta white-blog-meta">
                         <ul className="list-wrap">
-                          <li>
+                          {/* <li>
                             <i className="flaticon-user"></i>by
                             <a href="author.html">{post.user_name}</a>
-                          </li>
+                          </li> */}
                           <li>
                             <i className="flaticon-calendar"></i>
                             {new Date(post.created_at).toLocaleDateString()}
@@ -338,7 +333,7 @@ const Home = (props) => {
           </div>
         </div>
       </section>
-      <Newsletter />
+        <Newsletter />
     </>
   );
 };

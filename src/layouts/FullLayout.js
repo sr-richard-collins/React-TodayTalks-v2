@@ -23,7 +23,6 @@ const FullLayout = () => {
         (item) => item.seo_description
       );
       setSeoTitles(titleArray);
-      console.log("DDFD", titleArray);
       setSeoKeywords(keywordsArray);
       setSeoDescription(descriptionsArray);
     };

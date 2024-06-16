@@ -16,8 +16,8 @@ const RelatedPostsComponent = ({ posts }) => {
           </div>
           <div className="today-post-wrap">
             <div className="row gutter-40 justify-content-center">
-              {posts.map((post) => (
-                <div className="col-lg-4 col-md-6">
+              {posts.map((post, index) => (
+                <div className="col-lg-4 col-md-6" key={index}>
                   <div className="banner-post-five banner-post-seven">
                     <div className="banner-post-thumb-five">
                       <Link to={`/blog-details/${post.id}`}>
@@ -36,10 +36,10 @@ const RelatedPostsComponent = ({ posts }) => {
                       </h2>
                       <div className="blog-post-meta">
                         <ul className="list-wrap">
-                          <li>
+                          {/* <li>
                             <FontAwesomeIcon icon="fa-regular fa-user" />
                             by<a href="author.html">{post.user_name}</a>
-                          </li>
+                          </li> */}
                           <li>
                             <FontAwesomeIcon icon="fa-regular fa-calendar" />
                             {new Date(post.created_at).toLocaleDateString()}
