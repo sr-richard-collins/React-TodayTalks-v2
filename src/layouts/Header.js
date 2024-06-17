@@ -183,7 +183,7 @@ const Header = () => {
                             }
                           >
                             <Link
-                              to={`/news/${category.name}`}
+                              to={`/news/${category.data_query}`}
                               onClick={() => handleLinkClick(category.name)}
                             >
                               {category.name}
@@ -218,7 +218,7 @@ const Header = () => {
                           {moreCategories.map((category) => (
                             <Link
                               key={category.id}
-                              to={`/news/${category.name}`}
+                              to={`/news/${category.data_query}`}
                               className="dropdown-item"
                               onClick={() => handleLinkClick(category.name)}
                             >

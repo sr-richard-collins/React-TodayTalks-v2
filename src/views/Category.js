@@ -10,7 +10,7 @@ import Loader from "../components/Loader";
 const Category = () => {
   const { name } = useParams();
   const { categories } = useSelector((state) => state.categories);
-  const selectCategory = categories.find((category) => category.name === name);
+  const selectCategory = categories.find((category) => category.data_query === name);
   const [seo, setSeo] = useState([]);
 
   useEffect(() => {

@@ -11,9 +11,11 @@ const Blog = ({ title, isHomepage }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [totalPosts, setTotalPosts] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       let response;
       if (isHomepage === 1) {
         response = await axios.get(`/api/user/homepagePosts?category=${title}`);
@@ -34,6 +36,7 @@ const Blog = ({ title, isHomepage }) => {
           setTotalPosts(response.data.total);
         }
       }
+      setLoading(false);
     };
     fetch();
   }, [title, currentPage, postsPerPage]);
@@ -46,13 +49,13 @@ const Blog = ({ title, isHomepage }) => {
     setPostsPerPage(event.target.value);
     setCurrentPage(1); // Reset to the first page
   };
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
-    {!posts.length ? (
-          <>
-            <Loader />
-          </>
-        ) : (
       <Suspense
         fallback={
           <>
@@ -60,109 +63,124 @@ const Blog = ({ title, isHomepage }) => {
           </>
         }
       >
-      {posts.length ? (
-        <section className="blog-area pt-60 pb-60">
-          <div className="container">
-            <div className="author-inner-wrap blog-inner-wrap">
-              <div className="row justify-content-center">
-                <div className="section-title-wrap mb-30">
-                  <div className="section-title">
-                    <h2 className="title">{title}</h2>
-                  </div>
-                  <div className="view-all-btn">
-                    <div className="view-all-btn">
-                      <Link to={`/news/${posts[0].category_name}`} className="link-btn">
-                        View All
-                        <span className="svg-icon">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 10 10"
-                            fill="none"
-                          >
-                            <path
-                              d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                              fill="currentColor"
-                            />
-                            <path
-                              d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </span>
-                      </Link>
+        {posts.length ? (
+          <section className="blog-area pt-60 pb-60">
+            <div className="container">
+              <div className="author-inner-wrap blog-inner-wrap">
+                <div className="row justify-content-center">
+                  <div className="section-title-wrap mb-30">
+                    <div className="section-title">
+                      <h2 className="title">{title}</h2>
                     </div>
+                    <div className="view-all-btn">
+                      <div className="view-all-btn">
+                        <Link
+                          to={`/news/${posts[0].category_data_query}`}
+                          className="link-btn"
+                        >
+                          View All
+                          <span className="svg-icon">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 10 10"
+                              fill="none"
+                            >
+                              <path
+                                d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                                fill="currentColor"
+                              />
+                              <path
+                                d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="section-title-line"></div>
                   </div>
-                  <div className="section-title-line"></div>
-                </div>
-                <div className="category-content">
-                  <div className="row">
-                    {posts.map((post) => (
-                      <div key={post.id} className="col-md-4 mb-4">
-                        <div className="col">
-                          <Link to={`/blog-details/${post.title}`}>
-                            <img
-                              src={IMAGE_BASE_URL + post.img}
-                              alt={post.title}
-                            />
-                          </Link>
-                        </div>
-                        <div className="horizontal-post-content-four col">
-                          <Link
-                            to={`/blog-details/${post.id}`}
-                            className="post-tag-four text-lines-4"
-                          >
-                            {post.title}
-                          </Link>
-                          <div className="blog-post-meta">
-                            <ul className="list-wrap">
-                              <li>
-                                <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
-                                {new Date(post.created_at).toLocaleDateString()}
-                              </li>
-                            </ul>
+                  <div className="category-content">
+                    <div className="row">
+                      {posts.map((post) => (
+                        <div key={post.id} className="col-md-4 mb-4">
+                          <div className="col">
+                            <Link to={`/${post.seo_slug}`}>
+                              <img
+                                src={IMAGE_BASE_URL + post.img}
+                                alt={post.title}
+                              />
+                            </Link>
+                          </div>
+                          <div className="horizontal-post-content-four col">
+                            <Link
+                              to={`/=${post.id}`}
+                              className="post-tag-four text-lines-4"
+                            >
+                              {post.title}
+                            </Link>
+                            <div className="blog-post-meta">
+                              <ul className="list-wrap">
+                                <li>
+                                  <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
+                                  {new Date(
+                                    post.created_at
+                                  ).toLocaleDateString()}
+                                </li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                    {/* Pagination controls */}
+                    {isHomepage === 0 ? (
+                      <>
+                        <CustomPagination
+                          currentPage={currentPage}
+                          totalPages={totalPages}
+                          onPageChange={handlePageChange}
+                        />
+                        <form className="form-inline ml-3">
+                          <label htmlFor="per_page" className="mr-2">
+                            Show:
+                          </label>
+                          <select
+                            name="per_page"
+                            id="per_page"
+                            className="form-control"
+                            value={postsPerPage}
+                            onChange={handlePerPageChange}
+                          >
+                            <option value="10">10/page</option>
+                            <option value="20">20/page</option>
+                            <option value="all">All</option>
+                          </select>
+                        </form>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </div>
-                  {/* Pagination controls */}
-                  {isHomepage === 0 ? (
-                    <>
-                      <CustomPagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={handlePageChange}
-                      />
-                      <form className="form-inline ml-3">
-                        <label htmlFor="per_page" className="mr-2">
-                          Show:
-                        </label>
-                        <select
-                          name="per_page"
-                          id="per_page"
-                          className="form-control"
-                          value={postsPerPage}
-                          onChange={handlePerPageChange}
-                        >
-                          <option value="10">10/page</option>
-                          <option value="20">20/page</option>
-                          <option value="all">All</option>
-                        </select>
-                      </form>
-                    </>
-                  ) : (
-                    ""
-                  )}
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      ) : (
-        <p style={{display: "flex", justifyContent: "center", fontFamily:"Arial, sans-serif", fontSize: "90px"}}>No Posts</p>
-      )}
-      </Suspense>
+          </section>
+        ) : (
+          isHomepage === 0 && (
+            <p
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                fontFamily: "Arial, sans-serif",
+                fontSize: "90px",
+              }}
+            >
+              No Posts
+            </p>
+          )
         )}
+      </Suspense>
     </>
   );
 };

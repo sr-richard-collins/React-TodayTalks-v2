@@ -126,8 +126,9 @@ const Home = (props) => {
                                   <div className="spotlight-post big-post">
                                     <div className="spotlight-post-thumb">
                                       <Link
-                                        to={`/blog-details/${
-                                          spotlight[spotIndex * 5 + index].title
+                                        to={`/${
+                                          spotlight[spotIndex * 5 + index]
+                                            .seo_slug
                                         }`}
                                       >
                                         <img
@@ -146,7 +147,7 @@ const Home = (props) => {
                                     <Link
                                       to={`/news/${
                                         spotlight[spotIndex * 5 + index]
-                                          .category_name
+                                          .category_data_query
                                       }`}
                                       className="post-tag"
                                     >
@@ -157,8 +158,9 @@ const Home = (props) => {
                                     </Link>
                                     <h2 className="post-title">
                                       <Link
-                                        to={`/blog-details/${
-                                          spotlight[spotIndex * 5 + index].title
+                                        to={`/${
+                                          spotlight[spotIndex * 5 + index]
+                                            .seo_slug
                                         }`}
                                       >
                                         {spotlight[spotIndex * 5 + index].title}
@@ -184,8 +186,9 @@ const Home = (props) => {
                                     </p>
                                     <div className="view-all-btn">
                                       <Link
-                                        to={`/blog-details/${
-                                          spotlight[spotIndex * 5 + index].title
+                                        to={`/${
+                                          spotlight[spotIndex * 5 + index]
+                                            .seo_slug
                                         }`}
                                         className="link-btn"
                                       >
@@ -322,7 +325,7 @@ const Home = (props) => {
                       <div className="video-post-item big-post">
                         <div className="video-post-thumb">
                           <Link
-                            to={`/blog-details/${popularPosts[0].title}`}
+                            to={`/${popularPosts[0].seo_slug}`}
                             className="link-btn"
                           >
                             <img
@@ -339,15 +342,17 @@ const Home = (props) => {
                         </div>
                         <div className="video-post-content">
                           <Link
-                            to={`/news/${popularPosts[0].category_name}`}
+                            to={`/news/${popularPosts[0].category_data_query}`}
                             className="post-tag post-tag-three"
                           >
                             {popularPosts[0].category_name}
                           </Link>
                           <h2 className="post-title bold-underline">
-                            <a href="blog-details.html">
-                              {popularPosts[0].subTitle}
-                            </a>
+                            <Link
+                              to={`/${popularPosts[0].seo_slug}`}
+                            >
+                              {popularPosts[0].title}
+                            </Link>
                           </h2>
                           <div className="blog-post-meta white-blog-meta">
                             <ul className="list-wrap">
@@ -374,10 +379,7 @@ const Home = (props) => {
                       {popularPosts.slice(1).map((post, index) => (
                         <div className="video-post-item small-post" key={index}>
                           <div className="video-post-thumb">
-                            <Link
-                              to={`/blog-details/${post.title}`}
-                              className="link-btn"
-                            >
+                            <Link to={`/${post.seo_slug}`} className="link-btn">
                               <img src={IMAGE_BASE_URL + post.img} alt="" />
                             </Link>
                             <a
@@ -388,14 +390,14 @@ const Home = (props) => {
                             </a>
                           </div>
                           <div className="video-post-content">
-                            <a
-                              href="blog.html"
+                            <Link
+                              to={`/news/${post.category_data_query}`}
                               className="post-tag post-tag-three"
                             >
                               {post.category_name}
-                            </a>
+                            </Link>
                             <h2 className="post-title">
-                              <a href="blog-details.html">{post.title}</a>
+                              <Link to={`/${post.seo_slug}`}>{post.title}</Link>
                             </h2>
                             <div className="blog-post-meta white-blog-meta">
                               <ul className="list-wrap">

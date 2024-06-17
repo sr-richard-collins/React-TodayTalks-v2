@@ -15,10 +15,7 @@ const KRouter = memo(() => {
 });
 
 const App = memo(() => {
-  const routing = useRoutes(Themeroutes);
-  const [loading, setLoading] = useState(true);
   // const [seoKey, setSeoKey] = useState(null);
-  const location = useLocation();
 
   useEffect(() => {
     const getFavicon = async () => {
@@ -37,7 +34,6 @@ const App = memo(() => {
   //   const getSeoKey = async () => {
   //     const key = await axios.get(`/api/user/getSeoKey`);
   //     setSeoKey(key);
-  //     setLoading(false);
   //   };
 
   //   getSeoKey();

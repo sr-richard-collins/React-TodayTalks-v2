@@ -67,7 +67,7 @@ const SpotlightBlog = ({ title }) => {
                       <div key={post.id} className="col-md-4 mb-4">
                         <a className="post-tag">{post.category_name}</a>
                         <div className="col">
-                          <Link to={`/blog-details/${post.title}`}>
+                          <Link to={`/${post.seo_slug}`}>
                             <img
                               src={IMAGE_BASE_URL + post.img}
                               alt={post.title}
@@ -76,7 +76,7 @@ const SpotlightBlog = ({ title }) => {
                         </div>
                         <div className="horizontal-post-content-four col">
                           <Link
-                            to={`/blog-details/${post.id}`}
+                            to={`/${post.id}`}
                             className="post-tag-four text-lines-4"
                           >
                             {post.title}
