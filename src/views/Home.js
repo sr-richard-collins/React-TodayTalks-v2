@@ -76,7 +76,7 @@ const Home = (props) => {
                       </div>
                       <div className="view-all-btn">
                         <Link
-                          to={`/category/${spotlight[spotIndex].category_name}`}
+                          to={`/spotlight/${"spotlight"}`}
                           className="link-btn"
                         >
                           View All
@@ -100,7 +100,13 @@ const Home = (props) => {
                       </div>
                     </div>
                     <div className="row">
-                      {[...Array(((spotIndex+1)*5 < spotlight.length ? 5 : spotlight.length-spotIndex*5))].map((_, index) => (
+                      {[
+                        ...Array(
+                          (spotIndex + 1) * 5 < spotlight.length
+                            ? 5
+                            : spotlight.length - spotIndex * 5
+                        ),
+                      ].map((_, index) => (
                         <div className="row">
                           <div className="col-57">
                             <div className="spotlight-post big-post">
@@ -112,7 +118,8 @@ const Home = (props) => {
                                 >
                                   <img
                                     src={
-                                      IMAGE_BASE_URL + spotlight[spotIndex * 5 + index].img
+                                      IMAGE_BASE_URL +
+                                      spotlight[spotIndex * 5 + index].img
                                     }
                                     alt=""
                                   />
@@ -123,10 +130,7 @@ const Home = (props) => {
                           <div className="col-43">
                             <div className="weekly-post-content">
                               <a href="blog.html" className="post-tag">
-                                {
-                                  spotlight[spotIndex * 5 + index]
-                                    .category_name
-                                }
+                                {spotlight[spotIndex * 5 + index].category_name}
                               </a>
                               <h2 className="post-title">
                                 <a href="blog-details.html">
@@ -145,12 +149,7 @@ const Home = (props) => {
                                   </li>
                                 </ul>
                               </div>
-                              <p>
-                                {
-                                  spotlight[spotIndex * 5 + index]
-                                    .subTitle
-                                }
-                              </p>
+                              <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
                               <div className="view-all-btn">
                                 <Link
                                   to={`/blog-details/${
@@ -184,22 +183,24 @@ const Home = (props) => {
                       <div className="pagination-wrap mt-40">
                         <nav aria-label="Page navigation example">
                           <ul className="pagination list-wrap">
-                            {[...Array(Math.ceil(spotlight.length/5))].map((_, index) => (
-                              <li
-                                key={index}
-                                className={`page-item ${
-                                  activePage === index ? "active" : ""
-                                }`}
-                              >
-                                <a
+                            {[...Array(Math.ceil(spotlight.length / 5))].map(
+                              (_, index) => (
+                                <li
                                   key={index}
-                                  className="page-link"
-                                  onClick={() => handlePageClick(index)}
+                                  className={`page-item ${
+                                    activePage === index ? "active" : ""
+                                  }`}
                                 >
-                                  {index + 1}
-                                </a>
-                              </li>
-                            ))}
+                                  <a
+                                    key={index}
+                                    className="page-link"
+                                    onClick={() => handlePageClick(index)}
+                                  >
+                                    {index + 1}
+                                  </a>
+                                </li>
+                              )
+                            )}
                           </ul>
                         </nav>
                       </div>
@@ -255,9 +256,9 @@ const Home = (props) => {
                 <div className="view-all-btn">
                   {popularPosts.length !== 0 ? (
                     <Link
-                      to={`/category/${popularPosts[0].category_id}`}
-                      className="link-btn"
-                    >
+                    to={`/spotlight/${"trending"}`}
+                    className="link-btn"
+                  >
                       View All
                       <span className="svg-icon">
                         <svg
