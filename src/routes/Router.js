@@ -16,7 +16,7 @@ const About = lazy(() => import("../views/AboutUs.js"));
 
 /*****Routes******/
 
-const ThemeRoutes = [
+const ThemeRoutes =  [
   {
     path: "/",
     element: <FullLayout />,

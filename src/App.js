@@ -8,6 +8,7 @@ import { updateFavicon } from "./utils";
 const App = () => {
   const routing = useRoutes(Themeroutes);
   const [loading, setLoading] = useState(true);
+  // const [seoKey, setSeoKey] = useState(null);
 
   useEffect(() => {
     const getFavicon = async () => {
@@ -28,6 +29,16 @@ const App = () => {
       setLoading(false);
     }, 2000); // Replace with your actual loading logic (fetching data, etc.)
   }, []);
+
+  // useEffect(() => {
+  //   const getSeoKey = async () => {
+  //     const key = await axios.get(`/api/user/getSeoKey`);
+  //     setSeoKey(key);
+  //     setLoading(false);
+  //   };
+
+  //   getSeoKey();
+  // }, []);
 
   return (
     <div>
