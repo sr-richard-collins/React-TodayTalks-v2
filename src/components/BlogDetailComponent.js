@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IMAGE_BASE_URL } from "../config/config";
 import { Helmet } from "react-helmet";
 import axios from "../axiosConfig";
+import Loader from "./Loader";
 
 const BlogDetailComponent = ({ post }) => {
   const [setting, setSetting] = useState([]);
@@ -57,6 +58,18 @@ const BlogDetailComponent = ({ post }) => {
         <meta name="keywords" content={seo.seo_keyword} />
         <meta name="description" content={seo.seo_description} />
       </Helmet>
+      {!post ? (
+          <>
+            <Loader />
+          </>
+        ) : (
+      <Suspense
+        fallback={
+          <>
+            <Loader />
+          </>
+        }
+      >
       <section className="blog-details-area pt-60 pb-60">
         <div className="container">
           <div className="author-inner-wrap">
@@ -65,7 +78,7 @@ const BlogDetailComponent = ({ post }) => {
                 <div className="blog-details-wrap">
                   <div className="blog-details-content">
                     <div className="blog-details-content-top">
-                      <a href="blog.html" className="post-tag">
+                      <a className="post-tag">
                         {post.category_name}
                       </a>
                       <h2 className="title">{post.title}</h2>
@@ -126,6 +139,8 @@ const BlogDetailComponent = ({ post }) => {
           </div>
         </div>
       </section>
+      </Suspense>
+)}
     </>
   );
 };

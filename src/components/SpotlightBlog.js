@@ -65,6 +65,7 @@ const SpotlightBlog = ({ title }) => {
                   <div className="row">
                     {posts.map((post) => (
                       <div key={post.id} className="col-md-4 mb-4">
+                        <a className="post-tag">{post.category_name}</a>
                         <div className="col">
                           <Link to={`/blog-details/${post.title}`}>
                             <img

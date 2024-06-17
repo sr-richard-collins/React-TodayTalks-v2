@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "../axiosConfig";
 import { IMAGE_BASE_URL } from "../config/config";
 import CustomPagination from "./CustomPagination";
+import Loader from "./Loader";
 
 const Blog = ({ title, isHomepage }) => {
   const [posts, setPosts] = useState([]);
@@ -47,6 +48,18 @@ const Blog = ({ title, isHomepage }) => {
   };
   return (
     <>
+    {!posts.length ? (
+          <>
+            <Loader />
+          </>
+        ) : (
+      <Suspense
+        fallback={
+          <>
+            <Loader />
+          </>
+        }
+      >
       {posts.length ? (
         <section className="blog-area pt-60 pb-60">
           <div className="container">
@@ -56,7 +69,29 @@ const Blog = ({ title, isHomepage }) => {
                   <div className="section-title">
                     <h2 className="title">{title}</h2>
                   </div>
-                  <div className="view-all-btn"></div>
+                  <div className="view-all-btn">
+                    <div className="view-all-btn">
+                      <Link to={`/news/${posts[0].category_name}`} className="link-btn">
+                        View All
+                        <span className="svg-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 10 10"
+                            fill="none"
+                          >
+                            <path
+                              d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                              fill="currentColor"
+                            />
+                            <path
+                              d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
                   <div className="section-title-line"></div>
                 </div>
                 <div className="category-content">
@@ -124,8 +159,10 @@ const Blog = ({ title, isHomepage }) => {
           </div>
         </section>
       ) : (
-        ""
+        <p style={{display: "flex", justifyContent: "center", fontFamily:"Arial, sans-serif", fontSize: "90px"}}>No Posts</p>
       )}
+      </Suspense>
+        )}
     </>
   );
 };

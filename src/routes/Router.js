@@ -23,7 +23,7 @@ const ThemeRoutes =  [
     children: [
       { path: "/", element: <Navigate to="/home" /> },
       { path: "/home", exact: true, element: <Home /> },
-      { path: "/category/:name", exact: true, element: <Category /> },
+      { path: "/news/:name", exact: true, element: <Category /> },
       { path: "/spotlight/:name", exact: true, element: <Spotlight /> },
       { path: "/bloglayout3", exact: true, element: <BlogLayout3 /> },
       { path: "/blog-details/:title", exact: true, element: <BlogsDetails /> },

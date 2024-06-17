@@ -1,14 +1,24 @@
-import React, { useEffect, useState, Suspense } from "react";
-import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import React, { useEffect, useState, memo, Suspense } from "react";
+import {
+  BrowserRouter as Router,
+  useRoutes,
+  useLocation,
+} from "react-router-dom";
 import Themeroutes from "./routes/Router";
 import axios from "./axiosConfig";
 import Loader from "./components/Loader";
 import { updateFavicon } from "./utils";
 
-const App = () => {
+const KRouter = memo(() => {
+  const element = useRoutes(Themeroutes);
+  return element;
+});
+
+const App = memo(() => {
   const routing = useRoutes(Themeroutes);
   const [loading, setLoading] = useState(true);
   // const [seoKey, setSeoKey] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     const getFavicon = async () => {
@@ -23,13 +33,6 @@ const App = () => {
     getFavicon();
   }, []);
 
-  useEffect(() => {
-    // Simulate loading delay (e.g., fetching data)
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000); // Replace with your actual loading logic (fetching data, etc.)
-  }, []);
-
   // useEffect(() => {
   //   const getSeoKey = async () => {
   //     const key = await axios.get(`/api/user/getSeoKey`);
@@ -40,17 +43,18 @@ const App = () => {
   //   getSeoKey();
   // }, []);
 
+  //   <Router>
+  //   {loading ? <Loader /> : seoKey && useRoutes(ThemeRoutes(seoKey))}
+  // </Router>
+  // );
+
   return (
     <div>
       <Suspense fallback={<Loader />}>
-        {loading ? (
-          <Loader /> // Show loader while loading is true
-        ) : (
-          <div>{ routing }</div> // Render routing component when loading is false
-        )}
+        <KRouter></KRouter>
       </Suspense>
     </div>
   );
-};
+});
 
 export default App;

@@ -10,17 +10,17 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
       pageNumbers.push(
         <li
           key={i}
-          className={`dm-pagination__item ${currentPage === i ? "active" : ""}`}
+          className={`page-item ${currentPage === i ? "active" : ""}`}
           aria-current={currentPage === i ? "page" : undefined}
         >
           {currentPage === i ? (
-            <span className="dm-pagination__link">
+            <span className="page-link">
               <span className="page-number">{i}</span>
             </span>
           ) : (
             <a
               href="#!"
-              className="dm-pagination__link"
+              className="page-link"
               onClick={() => onPageChange(i)}
             >
               <span className="page-number">{i}</span>
@@ -33,8 +33,9 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <nav className="dm-page">
-      <ul className="dm-pagination d-flex">
+    <div className="pagination-wrap mt-40">
+    <nav className="Page navigation example">
+      <ul className="pagination list-wrap">
         {/* Previous Page Link */}
         {currentPage === 1 ? (
           <li className="dm-pagination__item disabled" aria-disabled="true">
@@ -56,6 +57,7 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
 
         {/* Pagination Elements */}
         {renderPageNumbers()}
+        
 
         {/* Next Page Link */}
         {currentPage === totalPages ? (
@@ -77,6 +79,7 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
         )}
       </ul>
     </nav>
+    </div>
   );
 };
 

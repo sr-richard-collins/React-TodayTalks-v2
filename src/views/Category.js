@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Blog from "../components/Blog";
 import Newsletter from "../components/Newsletter";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "../axiosConfig";
+import Loader from "../components/Loader";
 
 const Category = () => {
   const { name } = useParams();
   const { categories } = useSelector((state) => state.categories);
-  const selectCategory = categories.find(
-    (category) => category.name === name
-  );
+  const selectCategory = categories.find((category) => category.name === name);
   const [seo, setSeo] = useState([]);
 
   useEffect(() => {
@@ -29,7 +28,8 @@ const Category = () => {
         <meta name="keywords" content={seo.seo_keyword} />
         <meta name="description" content={seo.seo_description} />
       </Helmet>
-      <Blog title={selectCategory.name} isHomepage={0}/>
+
+      <Blog title={selectCategory.name} isHomepage={0} />
       <Newsletter />
     </>
   );
