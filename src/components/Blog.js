@@ -3,92 +3,129 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "../axiosConfig";
 import { IMAGE_BASE_URL } from "../config/config";
+import CustomPagination from "./CustomPagination";
 
-const Blog = ({ title }) => {
+const Blog = ({ title, isHomepage }) => {
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [totalPosts, setTotalPosts] = useState(0);
+
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(`/api/user/posts?category=${title}`);
-      setPosts(response.data);
+      let response;
+      if (isHomepage === 1) {
+        response = await axios.get(`/api/user/homepagePosts?category=${title}`);
+        setPosts(response.data);
+      } else {
+        const response = await axios.get(`/api/user/pagenationPosts`, {
+          params: {
+            category: title,
+            currentPage: currentPage,
+            postsPerPage,
+          },
+        });
+        if (postsPerPage === "all") {
+          setPosts(response.data);
+          setTotalPosts(response.data.length);
+        } else {
+          setPosts(response.data.data);
+          setTotalPosts(response.data.total);
+        }
+      }
     };
     fetch();
-  }, [title]);
+  }, [title, currentPage, postsPerPage]);
+
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handlePerPageChange = (event) => {
+    setPostsPerPage(event.target.value);
+    setCurrentPage(1); // Reset to the first page
+  };
   return (
-    <>{
-      posts.length ?
-      <section className="blog-area pt-60 pb-60">
-        <div className="container">
-          <div className="author-inner-wrap blog-inner-wrap">
-            <div className="row justify-content-center">
-              <div className="section-title-wrap mb-30">
-                <div className="section-title">
-                  <h2 className="title">{title}</h2>
+    <>
+      {posts.length ? (
+        <section className="blog-area pt-60 pb-60">
+          <div className="container">
+            <div className="author-inner-wrap blog-inner-wrap">
+              <div className="row justify-content-center">
+                <div className="section-title-wrap mb-30">
+                  <div className="section-title">
+                    <h2 className="title">{title}</h2>
+                  </div>
+                  <div className="view-all-btn"></div>
+                  <div className="section-title-line"></div>
                 </div>
-                <div className="view-all-btn">
-                  {/* <a href="blog.html" className="link-btn">
-                    View All
-                    <span className="svg-icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                      >
-                        <path
-                          d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                          fill="currentColor"
-                        />
-                        <path
-                          d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </span>
-                  </a> */}
-                </div>
-                <div className="section-title-line"></div>
-              </div>
-              <div className="category-content">
-                <div className="row">
-                  {posts.map((post) => (
-                    <div key={post.id} className="col-md-4 mb-4">
-                      <div className="col">
-                        <Link to={`/blog-details/${post.title}`}>
-                          <img
-                            src={IMAGE_BASE_URL + post.img}
-                            alt={post.title}
-                          />
-                        </Link>
-                      </div>
-                      <div className="horizontal-post-content-four col">
-                        <a
-                          href={`blog/${post.id}`}
-                          className="post-tag-four text-lines-4"
-                        >
-                          {post.title}
-                        </a>
-                        <div className="blog-post-meta">
-                          <ul className="list-wrap">
-                            {/* <li>
-                              <FontAwesomeIcon icon="fa-regular fa-user" />
-                              by<Link to="author.html">{post.user_name}</Link>
-                            </li> */}
-                            <li>
-                              <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
-                              {new Date(post.created_at).toLocaleDateString()}
-                            </li>
-                          </ul>
+                <div className="category-content">
+                  <div className="row">
+                    {posts.map((post) => (
+                      <div key={post.id} className="col-md-4 mb-4">
+                        <div className="col">
+                          <Link to={`/blog-details/${post.title}`}>
+                            <img
+                              src={IMAGE_BASE_URL + post.img}
+                              alt={post.title}
+                            />
+                          </Link>
+                        </div>
+                        <div className="horizontal-post-content-four col">
+                          <Link
+                            to={`/blog-details/${post.id}`}
+                            className="post-tag-four text-lines-4"
+                          >
+                            {post.title}
+                          </Link>
+                          <div className="blog-post-meta">
+                            <ul className="list-wrap">
+                              <li>
+                                <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
+                                {new Date(post.created_at).toLocaleDateString()}
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  {/* Pagination controls */}
+                  {isHomepage === 0 ? (
+                    <>
+                      <CustomPagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                      />
+                      <form className="form-inline ml-3">
+                        <label htmlFor="per_page" className="mr-2">
+                          Show:
+                        </label>
+                        <select
+                          name="per_page"
+                          id="per_page"
+                          className="form-control"
+                          value={postsPerPage}
+                          onChange={handlePerPageChange}
+                        >
+                          <option value="10">10/page</option>
+                          <option value="20">20/page</option>
+                          <option value="all">All</option>
+                        </select>
+                      </form>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section> : ''
-    }
-      
+        </section>
+      ) : (
+        ""
+      )}
     </>
   );
 };

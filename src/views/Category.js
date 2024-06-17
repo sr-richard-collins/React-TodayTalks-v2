@@ -29,7 +29,7 @@ const Category = () => {
         <meta name="keywords" content={seo.seo_keyword} />
         <meta name="description" content={seo.seo_description} />
       </Helmet>
-      <Blog title={selectCategory.name} />
+      <Blog title={selectCategory.name} isHomepage={0}/>
       <Newsletter />
     </>
   );

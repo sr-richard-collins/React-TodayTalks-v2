@@ -22,7 +22,7 @@ const Home = (props) => {
   useEffect(() => {
     const fetchTrendingPosts = async () => {
       const response = await axios.get(`/api/user/popularPosts`);
-      const resCategory = await axios.get("/api/user/categories");
+      const resCategory = await axios.get("/api/user/homePagecategories");
       const resSpotlight = await axios.get(`/api/user/spotlight`);
       const resSeo = await axios.get(`/api/user/seoSetting`);
       setSeo(resSeo.data);
@@ -100,71 +100,91 @@ const Home = (props) => {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-57">
-                        <div className="spotlight-post big-post">
-                          <div className="spotlight-post-thumb">
-                            <Link
-                              to={`/blog-details/${spotlight[spotIndex].title}`}
-                            >
-                              <img
-                                src={IMAGE_BASE_URL + spotlight[spotIndex].img}
-                                alt=""
-                              />
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-43">
-                        <div className="weekly-post-content">
-                          <a href="blog.html" className="post-tag">
-                            {spotlight[spotIndex].category_name}
-                          </a>
-                          <h2 className="post-title">
-                            <a href="blog-details.html">
-                              {spotlight[spotIndex].title}
-                            </a>
-                          </h2>
-                          <div className="blog-post-meta">
-                            <ul className="list-wrap">
-                              <li>
-                                <i className="flaticon-calendar"></i>
-                                {new Date(
-                                  spotlight[spotIndex].created_at
-                                ).toLocaleDateString()}
-                              </li>
-                            </ul>
-                          </div>
-                          <p>{spotlight[spotIndex].subTitle}</p>
-                          <div className="view-all-btn">
-                            <Link
-                              to={`/blog-details/${spotlight[spotIndex].title}`}
-                              className="link-btn"
-                            >
-                              Read More
-                              <span className="svg-icon">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 10 10"
-                                  fill="none"
+                      {[...Array(((spotIndex+1)*5 < spotlight.length ? 5 : spotlight.length-spotIndex*5))].map((_, index) => (
+                        <div className="row">
+                          <div className="col-57">
+                            <div className="spotlight-post big-post">
+                              <div className="spotlight-post-thumb">
+                                <Link
+                                  to={`/blog-details/${
+                                    spotlight[spotIndex * 5 + index].title
+                                  }`}
                                 >
-                                  <path
-                                    d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                                    fill="currentColor"
+                                  <img
+                                    src={
+                                      IMAGE_BASE_URL + spotlight[spotIndex * 5 + index].img
+                                    }
+                                    alt=""
                                   />
-                                  <path
-                                    d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </span>
-                            </Link>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-43">
+                            <div className="weekly-post-content">
+                              <a href="blog.html" className="post-tag">
+                                {
+                                  spotlight[spotIndex * 5 + index]
+                                    .category_name
+                                }
+                              </a>
+                              <h2 className="post-title">
+                                <a href="blog-details.html">
+                                  {spotlight[spotIndex * 5 + index].title}
+                                </a>
+                              </h2>
+                              <div className="blog-post-meta">
+                                <ul className="list-wrap">
+                                  <li>
+                                    <i className="flaticon-calendar"></i>
+                                    {new Date(
+                                      spotlight[
+                                        spotIndex * 5 + index
+                                      ].created_at
+                                    ).toLocaleDateString()}
+                                  </li>
+                                </ul>
+                              </div>
+                              <p>
+                                {
+                                  spotlight[spotIndex * 5 + index]
+                                    .subTitle
+                                }
+                              </p>
+                              <div className="view-all-btn">
+                                <Link
+                                  to={`/blog-details/${
+                                    spotlight[spotIndex * 5 + index].title
+                                  }`}
+                                  className="link-btn"
+                                >
+                                  Read More
+                                  <span className="svg-icon">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 10 10"
+                                      fill="none"
+                                    >
+                                      <path
+                                        d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                                        fill="currentColor"
+                                      />
+                                      <path
+                                        d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
+                                        fill="currentColor"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      ))}
                       <div className="pagination-wrap mt-40">
                         <nav aria-label="Page navigation example">
                           <ul className="pagination list-wrap">
-                            {[...Array(spotlight.length)].map((_, index) => (
+                            {[...Array(Math.ceil(spotlight.length/5))].map((_, index) => (
                               <li
                                 key={index}
                                 className={`page-item ${
@@ -190,7 +210,11 @@ const Home = (props) => {
                 )}
                 <div className="spotlight-post-item-wrap">
                   {categories.map((category) => (
-                    <Blog title={category.name} key={category.id} />
+                    <Blog
+                      title={category.name}
+                      key={category.id}
+                      isHomepage={1}
+                    />
                   ))}
                 </div>
               </div>
