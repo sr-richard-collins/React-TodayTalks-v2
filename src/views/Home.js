@@ -12,6 +12,7 @@ import { IMAGE_BASE_URL } from "../config/config";
 import { Helmet } from "react-helmet";
 import Loader from "../components/Loader";
 import { fetchSelectCategory } from "../actions/categoryAction";
+import { fetchHomePosts } from "../actions/postAction";
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const Home = (props) => {
   const [spotlight, setSpotlight] = useState([]);
   const [seo, setSeo] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    dispatch(fetchHomePosts());
+  })
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Blog = ({ title, isHomepage }) => {
   const dispatch = useDispatch();
+  const { homePosts } = useSelector((state) => state.posts)
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -21,8 +22,9 @@ const Blog = ({ title, isHomepage }) => {
       setLoading(true);
       let response;
       if (isHomepage === 1) {
-        response = await axios.get(`/api/user/homepagePosts?category=${title}`);
-        setPosts(response.data);
+        response = homePosts.find(post => post.category === title)
+        if (response)
+          setPosts(response.posts);
       } else {
         const response = await axios.get(`/api/user/pagenationPosts`, {
           params: {
