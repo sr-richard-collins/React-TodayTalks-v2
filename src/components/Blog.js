@@ -127,7 +127,7 @@ const Blog = ({ title, isHomepage }) => {
                           </div>
                           <div className="horizontal-post-content-four col">
                             <Link
-                              to={`/=${post.id}`}
+                              to={`/${post.seo_slug}`}
                               className="post-tag-four text-lines-4"
                             >
                               {post.title}

@@ -29,11 +29,11 @@ const RelatedPostsComponent = ({ posts }) => {
                       </Link>
                     </div>
                     <div className="banner-post-content-five">
-                      <a href="blog.html" className="post-tag-four">
+                      <Link to={`/news/${post.category_data_query}`} className="post-tag-four">
                         {post.category_name}
-                      </a>
+                      </Link>
                       <h2 className="post-title">
-                        <a href="blog-details.html">{post.title}</a>
+                        <Link to={`/${post.seo_slug}`}>{post.title}</Link>
                       </h2>
                       <div className="blog-post-meta">
                         <ul className="list-wrap">
