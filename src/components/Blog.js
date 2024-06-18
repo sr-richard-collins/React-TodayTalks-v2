@@ -5,8 +5,11 @@ import axios from "../axiosConfig";
 import { IMAGE_BASE_URL } from "../config/config";
 import CustomPagination from "./CustomPagination";
 import Loader from "./Loader";
+import { fetchSelectCategory } from "../actions/categoryAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const Blog = ({ title, isHomepage }) => {
+  const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -50,6 +53,10 @@ const Blog = ({ title, isHomepage }) => {
     setCurrentPage(1); // Reset to the first page
   };
 
+  const handleViewClick = (name) => {
+    dispatch(fetchSelectCategory(name));
+  }
+
   if (loading && isHomepage === 0) {
     return <Loader />;
   }
@@ -78,6 +85,7 @@ const Blog = ({ title, isHomepage }) => {
                           <Link
                             to={`/news/${posts[0].category_data_query}`}
                             className="link-btn"
+                            onClick={()=>handleViewClick(posts[0].category_name)}
                           >
                             View All
                             <span className="svg-icon">

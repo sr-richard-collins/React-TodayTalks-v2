@@ -17,6 +17,8 @@ const BlogsDetails = () => {
       setRelatedPosts(relatedRes.data);
     };
     fetch();
+
+    window.scrollTo(0,0);
   }, [title]);
 
   return (

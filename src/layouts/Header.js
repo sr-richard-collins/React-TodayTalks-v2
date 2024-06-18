@@ -9,16 +9,18 @@ import logo from "../assets/img/logo/Today_Talks_Logo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IMAGE_BASE_URL } from "../config/config";
 import axios from "../axiosConfig";
+import Spotlight from "../views/Spotlight";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state.categories);
+  const { categories, selectCategory } = useSelector((state) => state.categories);
   const [activeLink, setActiveLink] = useState("home");
   const [setting, setSetting] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const moreCategories = categories.filter(
     (category) => category.position === "more"
   );
+
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -33,8 +35,9 @@ const Header = () => {
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+    dispatch(fetchSelectCategory(link));
   };
-
+  
   const handleDropdownHover = () => {
     setShowDropdown(true);
   };
@@ -169,7 +172,7 @@ const Header = () => {
                 <nav className="menu-nav">
                   <div className="navbar-wrap main-menu d-none d-lg-flex">
                     <ul className="navigation">
-                      <li className={activeLink === "home" ? "active" : ""}>
+                      <li className={(selectCategory ? selectCategory : activeLink)  === "home" ? "active" : ""}>
                         <Link to="/" onClick={() => handleLinkClick("home")}>
                           Home
                         </Link>
@@ -179,7 +182,7 @@ const Header = () => {
                           <li
                             key={category.id}
                             className={
-                              activeLink === category.name ? "active" : ""
+                              (selectCategory ? selectCategory : activeLink) === category.name ? "active" : ""
                             }
                           >
                             <Link

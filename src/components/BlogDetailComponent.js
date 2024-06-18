@@ -9,14 +9,11 @@ import Loader from "./Loader";
 const BlogDetailComponent = ({ post }) => {
   const [setting, setSetting] = useState([]);
   const [seo, setSeo] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
-      setLoading(true);
       const response = await axios.get(`/api/user/seoPost?id=${post.id}`);
       setSeo(response.data);
-      setLoading(false);
     };
     fetch();
   }, [post]);
@@ -52,10 +49,6 @@ const BlogDetailComponent = ({ post }) => {
     const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
     window.open(shareUrl, '_blank');
   };
-
-  if (loading) {
-    return <Loader />;
-  }
   
   return (
     <>
@@ -65,13 +58,6 @@ const BlogDetailComponent = ({ post }) => {
         <meta name="keywords" content={seo.seo_keyword} />
         <meta name="description" content={seo.seo_description} />
       </Helmet>
-      <Suspense
-        fallback={
-          <>
-            <Loader />
-          </>
-        }
-      >
       <section className="blog-details-area pt-60 pb-60">
         <div className="container">
           <div className="author-inner-wrap">
@@ -141,7 +127,6 @@ const BlogDetailComponent = ({ post }) => {
           </div>
         </div>
       </section>
-      </Suspense>
     </>
   );
 };

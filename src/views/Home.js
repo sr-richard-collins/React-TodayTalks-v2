@@ -11,8 +11,10 @@ import axios from "../axiosConfig";
 import { IMAGE_BASE_URL } from "../config/config";
 import { Helmet } from "react-helmet";
 import Loader from "../components/Loader";
+import { fetchSelectCategory } from "../actions/categoryAction";
 
 const Home = (props) => {
+  const dispatch = useDispatch();
   const [popularPosts, setPopularPosts] = useState([]);
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
@@ -39,9 +41,14 @@ const Home = (props) => {
   }, []);
 
   const handlePageClick = (index) => {
+    window.scrollTo(0,0);
     setActivePage(index);
     setSpotIndex(index); // Assuming setSpotIndex is defined elsewhere
   };
+
+  const handleViewClick = (name) => {
+    dispatch(fetchSelectCategory(name));
+  }
 
   if (loading) {
     return <Loader />;
@@ -94,6 +101,7 @@ const Home = (props) => {
                             <Link
                               to={`/spotlight/${"spotlight"}`}
                               className="link-btn"
+                              onClick={()=>handleViewClick('spotlight')}
                             >
                               View All
                               <span className="svg-icon">
@@ -152,6 +160,7 @@ const Home = (props) => {
                                         .category_data_query
                                     }`}
                                     className="post-tag"
+                                    onClick={()=>handleViewClick(spotlight[spotIndex * 5 + index].category_name)}
                                   >
                                     {
                                       spotlight[spotIndex * 5 + index]
@@ -292,6 +301,7 @@ const Home = (props) => {
                         <Link
                           to={`/spotlight/${"trending"}`}
                           className="link-btn"
+                          onClick={()=>handleViewClick('trending')}
                         >
                           View All
                           <span className="svg-icon">
@@ -343,6 +353,7 @@ const Home = (props) => {
                         <Link
                           to={`/news/${popularPosts[0].category_data_query}`}
                           className="post-tag post-tag-three"
+                          onClick={()=>handleViewClick(popularPosts[0].category_name)}
                         >
                           {popularPosts[0].category_name}
                         </Link>
@@ -390,6 +401,7 @@ const Home = (props) => {
                           <Link
                             to={`/news/${post.category_data_query}`}
                             className="post-tag post-tag-three"
+                            onClick={()=>handleViewClick(post.category_name)}
                           >
                             {post.category_name}
                           </Link>
