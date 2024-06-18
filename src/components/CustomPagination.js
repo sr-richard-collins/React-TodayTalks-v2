@@ -19,7 +19,6 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
             </span>
           ) : (
             <a
-              href="#!"
               className="page-link"
               onClick={() => onPageChange(i)}
             >

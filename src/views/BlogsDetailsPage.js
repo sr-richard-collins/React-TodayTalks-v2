@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import BlogDetailComponent from "../components/BlogDetailComponent";
 import RelatedPostsComponent from "../components/RelatedPostsComponent";
 import { useParams } from "react-router-dom";
-import axios from '../axiosConfig';
+import axios from "../axiosConfig";
 
 const BlogsDetails = () => {
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const { title } = useParams();
 
@@ -21,8 +21,8 @@ const BlogsDetails = () => {
 
   return (
     <>
-      <BlogDetailComponent post={post}/>
-      <RelatedPostsComponent posts={relatedPosts}/>
+      {post && <BlogDetailComponent post={post} />}
+      {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
     </>
   );
 };

@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import axios from "../axiosConfig";
 import { IMAGE_BASE_URL } from "../config/config";
 import CustomPagination from "./CustomPagination";
+import Loader from "./Loader";
 
 const SpotlightBlog = ({ title }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [totalPosts, setTotalPosts] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
       let response;
+      setLoading(true);
       if (title === "spotlight")
         response = await axios.get(`/api/user/pagenationSpotlightPosts`, {
           params: {
@@ -35,6 +38,7 @@ const SpotlightBlog = ({ title }) => {
         setPosts(response.data.data);
         setTotalPosts(response.data.total);
       }
+      setLoading(false);
     };
     fetch();
   }, [title, currentPage, postsPerPage]);
@@ -47,6 +51,11 @@ const SpotlightBlog = ({ title }) => {
     setPostsPerPage(event.target.value);
     setCurrentPage(1); // Reset to the first page
   };
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
       {posts.length ? (

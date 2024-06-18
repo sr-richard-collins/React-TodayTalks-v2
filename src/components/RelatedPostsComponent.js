@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState, useEffect,Suspense} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL } from "../config/config";
+import Loader from "./Loader";
+import axios from "../axiosConfig";
 
 const RelatedPostsComponent = ({ posts }) => {
+  const [seo, setSeo] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetch = async () => {
+      setLoading(true);
+      const response = await axios.get(`/api/user/categories`);
+      setSeo(response.data);
+      setLoading(false);
+    };
+    fetch();
+  }, [posts]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
+    <Suspense
+        fallback={
+          <>
+            <Loader />
+          </>
+        }
+      >
       <section className="today-post-area pt-50">
         <div className="container">
           <div className="section-title-wrap">
@@ -54,6 +80,7 @@ const RelatedPostsComponent = ({ posts }) => {
           </div>
         </div>
       </section>
+      </Suspense>
     </>
   );
 };

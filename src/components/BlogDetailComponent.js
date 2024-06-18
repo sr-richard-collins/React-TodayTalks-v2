@@ -24,7 +24,6 @@ const BlogDetailComponent = ({ post }) => {
   useEffect(() => {
     const fetchSetting = async () => {
       const response = await axios.get(`/api/user/setting`);
-
       setSetting(response.data);
     };
     fetchSetting();

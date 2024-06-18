@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "../axiosConfig";
-import Loader from "../components/Loader";
 
 const Category = () => {
   const { name } = useParams();
