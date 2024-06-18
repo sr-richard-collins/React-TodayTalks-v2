@@ -16,17 +16,17 @@ import { fetchHomePosts } from "../actions/postAction";
 
 const Home = (props) => {
   const dispatch = useDispatch();
+  const {setting} = useSelector((state) => state.setting);
   const [popularPosts, setPopularPosts] = useState([]);
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
   const [categories, setCategories] = useState([]);
   const [spotlight, setSpotlight] = useState([]);
-  const [seo, setSeo] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
     dispatch(fetchHomePosts());
-  })
+  }, [dispatch])
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
@@ -34,8 +34,6 @@ const Home = (props) => {
       const response = await axios.get(`/api/user/popularPosts`);
       const resCategory = await axios.get("/api/user/homePagecategories");
       const resSpotlight = await axios.get(`/api/user/spotlight`);
-      const resSeo = await axios.get(`/api/user/seoSetting`);
-      setSeo(resSeo.data);
       setPopularPosts(response.data);
       setCategories(resCategory.data);
       setSpotlight(resSpotlight.data);
@@ -63,10 +61,10 @@ const Home = (props) => {
     <>
       <div>
         <Helmet>
-          <title>{"title"}</title>
-          <meta property="og:title" content={seo.seo_title} />
-          <meta name="keywords" content={seo.seo_keyword} />
-          <meta name="description" content={seo.seo_description} />
+          <title>{setting.site_title}</title>
+          <meta property="og:title" content={setting.seo_title} />
+          <meta name="keywords" content={setting.seo_keyword} />
+          <meta name="description" content={setting.seo_description} />
         </Helmet>
         <Suspense
           fallback={
@@ -136,7 +134,7 @@ const Home = (props) => {
                                 : spotlight.length - spotIndex * 5
                             ),
                           ].map((_, index) => (
-                            <div className="row">
+                            <div className="row" key={index}>
                               <div className="col-57">
                                 <div className="spotlight-post big-post">
                                   <div className="spotlight-post-thumb">

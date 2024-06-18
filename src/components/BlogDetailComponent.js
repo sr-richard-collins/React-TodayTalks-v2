@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IMAGE_BASE_URL } from "../config/config";
 import { Helmet } from "react-helmet";
 import axios from "../axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 
 const BlogDetailComponent = ({ post }) => {
-  const [setting, setSetting] = useState([]);
+  const {setting} = useSelector((state) => state.setting);
   const [seo, setSeo] = useState([]);
 
   useEffect(() => {
@@ -18,13 +19,7 @@ const BlogDetailComponent = ({ post }) => {
     fetch();
   }, [post]);
 
-  useEffect(() => {
-    const fetchSetting = async () => {
-      const response = await axios.get(`/api/user/setting`);
-      setSetting(response.data);
-    };
-    fetchSetting();
-  }, [post]);
+
 
   const handleFacebookShare = () => {
     const currentUrl = window.location.href;

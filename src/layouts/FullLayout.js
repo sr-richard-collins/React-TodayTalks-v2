@@ -9,8 +9,6 @@ const FullLayout = () => {
   
   return (
     <>
-      
-
       <div className="darkmode-trigger">
         <label className="modeSwitch">
           <input type="checkbox" />

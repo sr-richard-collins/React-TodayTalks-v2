@@ -22,7 +22,7 @@ const Category = () => {
   return (
     <>
       <Helmet>
-        <title>{"title"}</title>
+        <title>{seo.name}</title>
         <meta property="og:title" content={seo.seo_title} />
         <meta name="keywords" content={seo.seo_keyword} />
         <meta name="description" content={seo.seo_description} />

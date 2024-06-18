@@ -5,18 +5,10 @@ import LocationIcon from "../assets/img/icon/contact_icon01.svg";
 import MailIcon from "../assets/img/icon/contact_icon02.svg";
 import PhoneIcon from "../assets/img/icon/contact_icon03.svg";
 import ContactImage from "../assets/img/images/contact_img.jpg";
-import axios from '../axiosConfig';
+import { useSelector } from "react-redux";
 
 const Contact = () => {
-    const [setting, setSetting] = useState([]);
-
-    useEffect(() => {
-        const fetchSetting = async () => {
-          const response = await axios.get(`/api/user/setting`);
-          setSetting(response.data);
-        };
-        fetchSetting();
-      }, []);
+    const {setting} = useSelector((state) => state.setting);
 
     return (
         <>

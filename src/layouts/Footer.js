@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import logo from "../assets/img/logo/Today_Talks_Logo2.png";
+import { useDispatch, useSelector } from "react-redux";
 
 const Footer = () => {
-
+    const {setting} = useSelector((state) => state.setting);
     return (
         <footer>
             <div className="footer-area">
@@ -79,9 +79,9 @@ const Footer = () => {
                                     <div className="footer-title-line"></div>
                                     <div className="footer-link-wrap mt-20">
                                         <ul className="list-wrap d-flex" style={{gap: "20px"}}>
-                                            <li><Link to="/"><FontAwesomeIcon icon="fa-brands fa-facebook-f" fontSize={"30px"} /></Link></li>
-                                            <li><Link to="/"><FontAwesomeIcon icon="fa-brands fa-x-twitter" fontSize={"30px"} /></Link></li>
-                                            <li><Link to="/"><FontAwesomeIcon icon="fa-brands fa-youtube" fontSize={"30px"} /></Link></li>
+                                            <li><Link to={setting.social_fb}><FontAwesomeIcon icon="fa-brands fa-facebook-f" fontSize={"30px"} /></Link></li>
+                                            <li><Link to={setting.social_twitter}><FontAwesomeIcon icon="fa-brands fa-x-twitter" fontSize={"30px"} /></Link></li>
+                                            <li><Link to={setting.social_insta}><FontAwesomeIcon icon="fa-brands fa-instagram" fontSize={"30px"} /></Link></li>
                                         </ul>
                                     </div>
                                 </div>

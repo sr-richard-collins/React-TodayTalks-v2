@@ -13,9 +13,9 @@ import Spotlight from "../views/Spotlight";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const {setting} = useSelector((state) => state.setting);
   const { categories, selectCategory } = useSelector((state) => state.categories);
   const [activeLink, setActiveLink] = useState("home");
-  const [setting, setSetting] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const moreCategories = categories.filter(
     (category) => category.position === "more"
@@ -25,13 +25,7 @@ const Header = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  useEffect(() => {
-    const fetchSetting = async () => {
-      const response = await axios.get(`/api/user/setting`);
-      setSetting(response.data);
-    };
-    fetchSetting();
-  }, []);
+  
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
