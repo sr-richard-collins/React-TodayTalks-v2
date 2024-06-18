@@ -7,8 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
 import Loader from "./layouts/loader/Loader";
 import { Provider } from "react-redux";
-import store from "./store";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./store";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -19,11 +20,13 @@ const root = createRoot(rootElement);
 
 root.render(
   <Provider store={store}>
-    <Suspense fallback={<Loader />}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Suspense>
+    <PersistGate loading={null} persistor={persistor}>
+      <Suspense fallback={<Loader />}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Suspense>
+    </PersistGate>
   </Provider>
 );
 library.add(fab, fas, far);
