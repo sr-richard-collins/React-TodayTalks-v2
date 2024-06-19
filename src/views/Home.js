@@ -33,7 +33,7 @@ const Home = () => {
                   <SpotLightSection />
                 </div>
                 <div className="col-30">
-                  <CryptoCurrency />
+                  {/* <CryptoCurrency /> */}
                 </div>
                   <CategoriesWithBlogSection />
               </div>

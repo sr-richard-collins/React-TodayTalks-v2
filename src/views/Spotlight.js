@@ -131,7 +131,7 @@ const SpotLightComponent = () => {
                   </div>
                   <div className="col-30">
                     <div className="sidebar-wrap">
-                      <div className="sidebar-widget">
+                      {/* <div className="sidebar-widget">
                         <div className="sidebar-search">
                           <form action="#">
                             <input type="text" placeholder="Search . . ." />
@@ -140,7 +140,7 @@ const SpotLightComponent = () => {
                             </button>
                           </form>
                         </div>
-                      </div>
+                      </div> */}
                       {/* <div className="sidebar-widget sidebar-widget-two">
                         <div className="widget-title mb-30">
                           <h6 className="title">Hot Categories</h6>
