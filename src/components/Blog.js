@@ -87,7 +87,7 @@ const Blog = ({ title, isHomepage }) => {
                           <Link
                             to={`/news/${posts[0].category.data_query}`}
                             className="link-btn"
-                            onClick={()=>handleViewClick(posts[0].category_name)}
+                            onClick={()=>handleViewClick(posts[0].category.name)}
                           >
                             View All
                             <span className="svg-icon">

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const IMAGE_BASE_URL =
-  process.env.IMAGE_BASE_URL || "http://localhost:8000/images/";
+//const IMAGE_BASE_URL = process.env.IMAGE_BASE_URL || "http://localhost:8000/images/";
+const IMAGE_BASE_URL = "http://191.101.0.94:9000/images/";
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL || "http://localhost:8000", // Default URL
