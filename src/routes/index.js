@@ -13,6 +13,9 @@ const BlogLayout3 = lazy(() => import("../views/BlogLayout3.js"));
 const BlogsDetails = lazy(() => import("../views/BlogsDetailsPage.js"));
 const Contact = lazy(() => import("../views/Contact.js"));
 const About = lazy(() => import("../views/AboutUs.js"));
+const NotFoundError = lazy(() => import("../views/error/NotFoundError.js"));
+const ServerError = lazy(() => import("../views/error/ServerError.js"));
+const NoPost = lazy(() => import("../views/error/No_post.js"));
 // const NotFound = lazy(() => import("../views/NotFound.js")); // 404 Error page
 // const ServerError = lazy(() => import("../views/ServerError.js")); // 500 Error page
 
@@ -38,11 +41,11 @@ const ThemeRoutes = [
   },
   {
     path: "/404",
-    element: <Suspense fallback={<Loader />}>{/* <NotFound /> */}</Suspense>,
+    element: <Suspense fallback={<Loader />}>{ <NotFoundError /> }</Suspense>,
   },
   {
     path: "/500",
-    element: <Suspense fallback={<Loader />}>{/* <ServerError /> */}</Suspense>,
+    element: <Suspense fallback={<Loader />}>{ <ServerError /> }</Suspense>,
   },
 ];
 

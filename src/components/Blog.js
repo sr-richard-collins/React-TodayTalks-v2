@@ -8,6 +8,7 @@ import Loader from "./Loader";
 import { fetchSelectCategory } from "../actions/categoryAction";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
+import  NoPost from "../views/error/No_post";
 
 const Blog = ({ title, isHomepage }) => {
   const dispatch = useDispatch();
@@ -217,16 +218,7 @@ const Blog = ({ title, isHomepage }) => {
           </section>
         ) : (
           isHomepage === 0 && (
-            <p
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                fontFamily: "Arial, sans-serif",
-                fontSize: "90px",
-              }}
-            >
-              No Posts
-            </p>
+            <NoPost/>
           )
         )}
       </Suspense>
