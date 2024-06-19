@@ -1,11 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 // import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 // import "./assets/scss/style.scss";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { HashRouter } from "react-router-dom";
-import Loader from "./layouts/loader/Loader";
+import reportWebVitals from "./utils/reportWebVitals";
+// import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
@@ -21,11 +20,9 @@ const root = createRoot(rootElement);
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <Suspense fallback={<Loader />}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Suspense>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </PersistGate>
   </Provider>
 );

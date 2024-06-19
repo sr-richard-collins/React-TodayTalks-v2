@@ -7,8 +7,8 @@ import { Helmet } from "react-helmet";
 
 import logo from "../assets/img/logo/Today_Talks_Logo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IMAGE_BASE_URL } from "../config/config";
-import axios from "../axiosConfig";
+import { IMAGE_BASE_URL } from "../config";
+import axios from "../config";
 import Spotlight from "../views/Spotlight";
 
 const Header = () => {

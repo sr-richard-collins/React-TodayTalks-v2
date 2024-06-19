@@ -1,6 +1,6 @@
 // actions.js
 
-import axios from '../axiosConfig';
+import axios from '../config/';
 
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';

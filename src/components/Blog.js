@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import axios from "../axiosConfig";
-import { IMAGE_BASE_URL } from "../config/config";
+import axios from "../config";
+import { IMAGE_BASE_URL } from "../config";
 import CustomPagination from "./CustomPagination";
 import Loader from "./Loader";
 import { fetchSelectCategory } from "../actions/categoryAction";
@@ -85,7 +85,7 @@ const Blog = ({ title, isHomepage }) => {
                       <div className="view-all-btn">
                         <div className="view-all-btn">
                           <Link
-                            to={`/news/${posts[0].category_data_query}`}
+                            to={`/news/${posts[0].category.data_query}`}
                             className="link-btn"
                             onClick={()=>handleViewClick(posts[0].category_name)}
                           >

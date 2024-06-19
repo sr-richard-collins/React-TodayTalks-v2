@@ -1,8 +1,8 @@
 import React, { useState, useEffect,Suspense} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { IMAGE_BASE_URL } from "../config/config";
-import axios from "../axiosConfig";
+import { IMAGE_BASE_URL } from "../config";
+import axios from "../config/";
 
 const RelatedPostsComponent = ({ posts }) => {
   return (

@@ -4,7 +4,7 @@ import Newsletter from "../components/Newsletter";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import axios from "../axiosConfig";
+import axios from "../config/";
 
 const Category = () => {
   const { name } = useParams();

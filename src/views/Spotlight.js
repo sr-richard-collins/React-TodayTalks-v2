@@ -1,16 +1,138 @@
-import React from "react";
-import Newsletter from "../components/Newsletter";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import SpotlightBlog from "../components/SpotlightBlog";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import axios from "../config";
+import { IMAGE_BASE_URL } from "../config";
+import CustomPagination from "../components/CustomPagination";
+import Loader from "../components/Loader";
 
-const Spotlight = () => {
+const SpotLightComponent = () => {
   const { name } = useParams();
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [totalPosts, setTotalPosts] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetch = async () => {
+      let response;
+      setLoading(true);
+      if (name === "spotlight")
+        response = await axios.get(`/api/user/pagenationSpotlightPosts`, {
+          params: {
+            currentPage: currentPage,
+            postsPerPage,
+          },
+        });
+      else
+        response = await axios.get(`/api/user/pagenationTrendingPosts`, {
+          params: {
+            currentPage: currentPage,
+            postsPerPage,
+          },
+        });
+      if (postsPerPage === "all") {
+        setPosts(response.data);
+        setTotalPosts(response.data.length);
+      } else {
+        setPosts(response.data.data);
+        setTotalPosts(response.data.total);
+      }
+      setLoading(false);
+    };
+    fetch();
+  }, [name, currentPage, postsPerPage]);
+
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handlePerPageChange = (event) => {
+    setPostsPerPage(event.target.value);
+    setCurrentPage(1); // Reset to the first page
+  };
+
+  if (loading) return <Loader />;
+
   return (
     <>
-      <SpotlightBlog title={name}/>
-      <Newsletter />
+      {posts.length && (
+        <section className="blog-area pt-60 pb-60">
+          <div className="container">
+            <div className="author-inner-wrap blog-inner-wrap">
+              <div className="row justify-content-center">
+                <div className="section-title-wrap mb-30">
+                  <div className="section-title">
+                    <h2 className="title">{name}</h2>
+                  </div>
+                  <div className="view-all-btn"></div>
+                  <div className="section-title-line"></div>
+                </div>
+                <div className="category-content">
+                  <div className="row">
+                    {posts.map((post) => (
+                      <div key={post.id} className="col-md-4 mb-4">
+                        <a className="post-tag">{post.category_name}</a>
+                        <div className="col">
+                          <Link to={`/${post.seo_slug}`}>
+                            <img
+                              src={IMAGE_BASE_URL + post.img}
+                              alt={post.title}
+                            />
+                          </Link>
+                        </div>
+                        <div className="horizontal-post-content-four col">
+                          <Link
+                            to={`/${post.id}`}
+                            className="post-tag-four text-lines-4"
+                          >
+                            {post.title}
+                          </Link>
+                          <div className="blog-post-meta">
+                            <ul className="list-wrap">
+                              <li>
+                                <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
+                                {new Date(post.created_at).toLocaleDateString()}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Pagination controls */}
+
+                  <CustomPagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                  />
+                  <form className="form-inline ml-3">
+                    <label htmlFor="per_page" className="mr-2">
+                      Show:
+                    </label>
+                    <select
+                      name="per_page"
+                      id="per_page"
+                      className="form-control"
+                      value={postsPerPage}
+                      onChange={handlePerPageChange}
+                    >
+                      <option value="10">10/page</option>
+                      <option value="20">20/page</option>
+                      <option value="all">All</option>
+                    </select>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 };
 
-export default Spotlight;
+export default SpotLightComponent;

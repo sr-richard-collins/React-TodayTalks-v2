@@ -1,6 +1,6 @@
 // actions.js
 
-import axios from "../axiosConfig";
+import axios from "../config/";
 
 export const FETCH_SETTING_REQUEST = "FETCH_SETTING_REQUEST";
 export const FETCH_SETTING_SUCCESS = "FETCH_SETTING_SUCCESS";

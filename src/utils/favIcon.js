@@ -1,5 +1,5 @@
 // utils.js
-import { IMAGE_BASE_URL } from '../config/config';
+import { IMAGE_BASE_URL } from '../config/';
 
 export const updateFavicon = (faviconUrl) => {
     const link = document.querySelector("link[rel~='icon']");

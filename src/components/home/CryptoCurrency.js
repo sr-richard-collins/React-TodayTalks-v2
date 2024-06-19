@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import icon_coin1 from "../assets/img/icon/coin_icon01.svg"
-import icon_coin2 from "../assets/img/icon/coin_icon02.svg"
-import icon_coin3 from "../assets/img/icon/coin_icon03.svg"
-import icon_coin4 from "../assets/img/icon/coin_icon04.svg"
-import icon_coin5 from "../assets/img/icon/coin_icon05.svg"
-import icon_coin6 from "../assets/img/icon/coin_icon06.svg"
-import icon_coin7 from "../assets/img/icon/coin_icon07.svg"
+import icon_coin1 from "../../assets/img/icon/coin_icon01.svg"
+import icon_coin2 from "../../assets/img/icon/coin_icon02.svg"
+import icon_coin3 from "../../assets/img/icon/coin_icon03.svg"
+import icon_coin4 from "../../assets/img/icon/coin_icon04.svg"
+import icon_coin5 from "../../assets/img/icon/coin_icon05.svg"
+import icon_coin6 from "../../assets/img/icon/coin_icon06.svg"
+import icon_coin7 from "../../assets/img/icon/coin_icon07.svg"
 
 const CryptoCurrency = () => {
 

@@ -1,6 +1,6 @@
 // actions.js
 
-import axios from "../axiosConfig";
+import axios from "../config";
 
 export const FETCH_CATEGORIES_REQUEST = "FETCH_CATEGORIES_REQUEST";
 export const FETCH_CATEGORIES_SUCCESS = "FETCH_CATEGORIES_SUCCESS";

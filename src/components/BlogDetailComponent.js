@@ -1,14 +1,13 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IMAGE_BASE_URL } from "../config/config";
+import { IMAGE_BASE_URL } from "../config";
 import { Helmet } from "react-helmet";
-import axios from "../axiosConfig";
+import axios from "../config/";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "./Loader";
 
 const BlogDetailComponent = ({ post }) => {
-  const {setting} = useSelector((state) => state.setting);
+  const { setting } = useSelector((state) => state.setting);
   const [seo, setSeo] = useState([]);
 
   useEffect(() => {
@@ -19,36 +18,42 @@ const BlogDetailComponent = ({ post }) => {
     fetch();
   }, [post]);
 
-
-
   const handleFacebookShare = () => {
     const currentUrl = window.location.href;
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, '_blank');
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      currentUrl
+    )}`;
+    window.open(shareUrl, "_blank");
   };
 
   const handleTwitterShare = () => {
     const currentUrl = window.location.href;
-    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, '_blank');
+    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+      currentUrl
+    )}`;
+    window.open(shareUrl, "_blank");
   };
 
   const handleTelegramShare = () => {
     const currentUrl = window.location.href;
-    const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, '_blank');
+    const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
+      currentUrl
+    )}`;
+    window.open(shareUrl, "_blank");
   };
 
   const handleLinkedInShare = () => {
     const currentUrl = window.location.href;
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, '_blank');
+    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+      currentUrl
+    )}`;
+    window.open(shareUrl, "_blank");
   };
-  
+
   return (
     <>
       <Helmet>
-        <title>{"title"}</title>
+        <title>{seo.title}</title>
         <meta property="og:title" content={seo.seo_title} />
         <meta name="keywords" content={seo.seo_keyword} />
         <meta name="description" content={seo.seo_description} />
@@ -61,9 +66,7 @@ const BlogDetailComponent = ({ post }) => {
                 <div className="blog-details-wrap">
                   <div className="blog-details-content">
                     <div className="blog-details-content-top">
-                      <a className="post-tag">
-                        {post.category_name}
-                      </a>
+                      <a className="post-tag">{post.category_name}</a>
                       <h2 className="title">{post.title}</h2>
                       <div className="bd-content-inner">
                         <div className="blog-post-meta">
@@ -95,7 +98,7 @@ const BlogDetailComponent = ({ post }) => {
                               </Link>
                             </li>
                             <li>
-                              <Link  onClick={handleTelegramShare}>
+                              <Link onClick={handleTelegramShare}>
                                 <FontAwesomeIcon icon="fa-brands fa-telegram" />
                               </Link>
                             </li>

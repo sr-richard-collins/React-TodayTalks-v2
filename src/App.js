@@ -1,26 +1,18 @@
-import React, { useEffect, useState, memo, Suspense } from "react";
-import {
-  BrowserRouter as Router,
-  useRoutes,
-} from "react-router-dom";
-import Themeroutes from "./routes/Router";
-import axios from "./axiosConfig";
-import Loader from "./components/Loader";
-import { updateFavicon } from "./utils";
+import React, { useEffect, memo } from "react";
+import { useRoutes } from "react-router-dom";
+import themeRoutes from "./routes/";
+import { updateFavicon } from "./utils/favIcon";
 import { fetchSetting } from "./actions/settingAction";
 import { useDispatch, useSelector } from "react-redux";
 
-const KRouter = memo(() => {
-  const element = useRoutes(Themeroutes);
-  return element;
-});
+const Router = memo(() => useRoutes(themeRoutes));
 
 const App = memo(() => {
-  const {setting} = useSelector((state) => state.setting);
+  const { setting } = useSelector((state) => state.setting);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSetting());
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
     const getFavicon = async () => {
@@ -30,17 +22,10 @@ const App = memo(() => {
         console.error("Failed to fetch favicon:", error);
       }
     };
-
     getFavicon();
   }, []);
 
-  return (
-    <div>
-      <Suspense fallback={<Loader />}>
-        <KRouter></KRouter>
-      </Suspense>
-    </div>
-  );
+  return <Router />;
 });
 
 export default App;
