@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "../config";
 import { IMAGE_BASE_URL } from "../config";
 import CustomPagination from "../components/CustomPagination";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../components/Loader";
 
 const SpotLightComponent = () => {
@@ -60,76 +61,98 @@ const SpotLightComponent = () => {
     <>
       {posts.length && (
         <section className="blog-area pt-60 pb-60">
-          <div className="container">
-            <div className="author-inner-wrap blog-inner-wrap">
-              <div className="row justify-content-center">
-                <div className="section-title-wrap mb-30">
-                  <div className="section-title">
-                    <h2 className="title">{name}</h2>
-                  </div>
-                  <div className="view-all-btn"></div>
-                  <div className="section-title-line"></div>
-                </div>
-                <div className="category-content">
-                  <div className="row">
-                    {posts.map((post) => (
-                      <div key={post.id} className="col-md-4 mb-4">
-                        <a className="post-tag">{post.category_name}</a>
-                        <div className="col">
-                          <Link to={`/${post.seo_slug}`}>
-                            <img
-                              src={IMAGE_BASE_URL + post.img}
-                              alt={post.title}
-                            />
-                          </Link>
-                        </div>
-                        <div className="horizontal-post-content-four col">
-                          <Link
-                            to={`/${post.id}`}
-                            className="post-tag-four text-lines-4"
-                          >
-                            {post.title}
-                          </Link>
-                          <div className="blog-post-meta">
-                            <ul className="list-wrap">
-                              <li>
-                                <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
-                                {new Date(post.created_at).toLocaleDateString()}
-                              </li>
-                            </ul>
+            <div className="container">
+              <div className="author-inner-wrap">
+                <div className="row justify-content-center">
+                  <div className="col-70">
+                    <div className="weekly-post-item-wrap-three">
+                      <div className="row">
+                        {posts.map((post) => (
+                          <div className="col-md-6">
+                            <div className="weekly-post-three">
+                              <div className="weekly-post-thumb">
+                                <Link to={`/${post.seo_slug}`}>
+                                  <img
+                                    src={IMAGE_BASE_URL + post.img}
+                                    alt={post.title}
+                                  />
+                                </Link>
+                                <Link to={`/news/${post.data_query}`} className="post-tag">{post.category_name}</Link>
+                              </div>
+                              <div className="weekly-post-content">
+                                <h2 className="post-title">
+                                  <Link to={`/${post.seo_slug}`}>
+                                    {post.title}
+                                  </Link>
+                                </h2>
+                                <div className="blog-post-meta">
+                                  <ul className="list-wrap">
+                                    <li>
+                                      <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
+                                      {new Date(
+                                        post.created_at
+                                      ).toLocaleDateString()}
+                                    </li>
+                                    {/* <li>
+                                      <i className="flaticon-history"></i>20 Mins
+                                    </li> */}
+                                  </ul>
+                                </div>
+                                <p>{post.subTitle}</p>
+                              </div>
+                            </div>
                           </div>
+                        ))}
+                      </div>
+                    </div>
+                      <>
+                        <CustomPagination
+                          currentPage={currentPage}
+                          totalPages={totalPages}
+                          onPageChange={handlePageChange}
+                        />
+                        <form className="form-inline ml-3">
+                          <label htmlFor="per_page" className="mr-2">
+                            Show:
+                          </label>
+                          <select
+                            name="per_page"
+                            id="per_page"
+                            className="form-control"
+                            value={postsPerPage}
+                            onChange={handlePerPageChange}
+                          >
+                            <option value="10">10/page</option>
+                            <option value="20">20/page</option>
+                            <option value="all">All</option>
+                          </select>
+                        </form>
+                      </>
+                  </div>
+                  <div className="col-30">
+                    <div className="sidebar-wrap">
+                      <div className="sidebar-widget">
+                        <div className="sidebar-search">
+                          <form action="#">
+                            <input type="text" placeholder="Search . . ." />
+                            <button type="submit">
+                              <FontAwesomeIcon icon={faSearch} />
+                            </button>
+                          </form>
                         </div>
                       </div>
-                    ))}
+                      {/* <div className="sidebar-widget sidebar-widget-two">
+                        <div className="widget-title mb-30">
+                          <h6 className="title">Hot Categories</h6>
+                          <div className="section-title-line"></div>
+                        </div>
+                      </div> */}
+                    </div>
                   </div>
-                  {/* Pagination controls */}
-
-                  <CustomPagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                  />
-                  <form className="form-inline ml-3">
-                    <label htmlFor="per_page" className="mr-2">
-                      Show:
-                    </label>
-                    <select
-                      name="per_page"
-                      id="per_page"
-                      className="form-control"
-                      value={postsPerPage}
-                      onChange={handlePerPageChange}
-                    >
-                      <option value="10">10/page</option>
-                      <option value="20">20/page</option>
-                      <option value="all">All</option>
-                    </select>
-                  </form>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
       )}
     </>
   );

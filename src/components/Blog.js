@@ -6,11 +6,12 @@ import { IMAGE_BASE_URL } from "../config";
 import CustomPagination from "./CustomPagination";
 import Loader from "./Loader";
 import { fetchSelectCategory } from "../actions/categoryAction";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 
 const Blog = ({ title, isHomepage }) => {
   const dispatch = useDispatch();
-  const { homePosts } = useSelector((state) => state.posts)
+  const { homePosts } = useSelector((state) => state.posts);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -22,9 +23,8 @@ const Blog = ({ title, isHomepage }) => {
       setLoading(true);
       let response;
       if (isHomepage === 1) {
-        response = homePosts.find(post => post.category === title)
-        if (response)
-          setPosts(response.posts);
+        response = homePosts.find((post) => post.category === title);
+        if (response) setPosts(response.posts);
       } else {
         const response = await axios.get(`/api/user/pagenationPosts`, {
           params: {
@@ -57,7 +57,7 @@ const Blog = ({ title, isHomepage }) => {
 
   const handleViewClick = (name) => {
     dispatch(fetchSelectCategory(name));
-  }
+  };
 
   if (loading && isHomepage === 0) {
     return <Loader />;
@@ -75,79 +75,49 @@ const Blog = ({ title, isHomepage }) => {
         {posts.length ? (
           <section className="blog-area pt-60 pb-60">
             <div className="container">
-              <div className="author-inner-wrap blog-inner-wrap">
+              <div className="author-inner-wrap">
                 <div className="row justify-content-center">
-                  <div className="section-title-wrap mb-30">
-                    <div className="section-title">
-                      <h2 className="title">{title}</h2>
-                    </div>
-                    {isHomepage === 1 && (
-                      <div className="view-all-btn">
-                        <div className="view-all-btn">
-                          <Link
-                            to={`/news/${posts[0].category.data_query}`}
-                            className="link-btn"
-                            onClick={()=>handleViewClick(posts[0].category.name)}
-                          >
-                            View All
-                            <span className="svg-icon">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 10 10"
-                                fill="none"
-                              >
-                                <path
-                                  d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </span>
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="section-title-line"></div>
-                  </div>
-                  <div className="category-content">
-                    <div className="row">
-                      {posts.map((post) => (
-                        <div key={post.id} className="col-md-4 mb-4">
-                          <div className="col">
-                            <Link to={`/${post.seo_slug}`}>
-                              <img
-                                src={IMAGE_BASE_URL + post.img}
-                                alt={post.title}
-                              />
-                            </Link>
-                          </div>
-                          <div className="horizontal-post-content-four col">
-                            <Link
-                              to={`/${post.seo_slug}`}
-                              className="post-tag-four text-lines-4"
-                            >
-                              {post.title}
-                            </Link>
-                            <div className="blog-post-meta">
-                              <ul className="list-wrap">
-                                <li>
-                                  <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
-                                  {new Date(
-                                    post.created_at
-                                  ).toLocaleDateString()}
-                                </li>
-                              </ul>
+                  <div className="col-70">
+                    <div className="weekly-post-item-wrap-three">
+                      <div className="row">
+                        {posts.map((post) => (
+                          <div className="col-md-6" key={post.id}>
+                            <div className="weekly-post-three">
+                              <div className="weekly-post-thumb">
+                                <Link to={`/${post.seo_slug}`}>
+                                  <img
+                                    src={IMAGE_BASE_URL + post.img}
+                                    alt={post.title}
+                                  />
+                                </Link>
+                              </div>
+                              <div className="weekly-post-content">
+                                <h2 className="post-title">
+                                  <Link to={`/${post.seo_slug}`}>
+                                    {post.title}
+                                  </Link>
+                                </h2>
+                                <div className="blog-post-meta">
+                                  <ul className="list-wrap">
+                                    <li>
+                                      <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
+                                      {new Date(
+                                        post.created_at
+                                      ).toLocaleDateString()}
+                                    </li>
+                                    {/* <li>
+                                      <i className="flaticon-history"></i>20 Mins
+                                    </li> */}
+                                  </ul>
+                                </div>
+                                <p>{post.subTitle}</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                    {/* Pagination controls */}
-                    {isHomepage === 0 ? (
+                    {isHomepage === 0 && (
                       <>
                         <CustomPagination
                           currentPage={currentPage}
@@ -171,9 +141,75 @@ const Blog = ({ title, isHomepage }) => {
                           </select>
                         </form>
                       </>
-                    ) : (
-                      ""
                     )}
+                  </div>
+                  <div className="col-30">
+                    <div className="sidebar-wrap">
+                      <div className="sidebar-widget">
+                        <div className="sidebar-search">
+                          <form action="#">
+                            <input type="text" placeholder="Search . . ." />
+                            <button type="submit">
+                              <FontAwesomeIcon icon={faSearch} />
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                      {/* <div className="sidebar-widget sidebar-widget-two">
+                        <div className="widget-title mb-30">
+                          <h6 className="title">Hot Categories</h6>
+                          <div className="section-title-line"></div>
+                        </div>
+                        <div className="sidebar-categories">
+                                       <ul className="list-wrap">
+                                           <li>
+                                               <a href="blog.html" style={{backgroundImage:`url(${post03})`}}>
+                                                   <span className="post-tag post-tag-three">Technology</span>
+                                                   <span className="right-arrow">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                       </svg>
+                                                   </span>
+                                               </a>
+                                           </li>
+                                           <li>
+                                               <a href="blog.html" style={{backgroundImage:`url(${post01})`}}>
+                                                   <span className="post-tag post-tag-three">Mobile</span>
+                                                   <span className="right-arrow">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                       </svg>
+                                                   </span>
+                                               </a>
+                                           </li>
+                                           <li>
+                                               <a href="blog.html" style={{backgroundImage:`url(${post02})`}}>
+                                                   <span className="post-tag post-tag-three">Gadget</span>
+                                                   <span className="right-arrow">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                       </svg>
+                                                   </span>
+                                               </a>
+                                           </li>
+                                           <li>
+                                               <a href="blog.html" style={{backgroundImage:`url(${post04})`}}>
+                                                   <span className="post-tag post-tag-three">News</span>
+                                                   <span className="right-arrow">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
+                                                       </svg>
+                                                   </span>
+                                               </a>
+                                           </li>
+                                       </ul>
+                                   </div>
+                      </div> */}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Navigate } from "react-router-dom";
-import Loader from "../components/loader/Loader.js";
+import Loader from "../components/Loader.js";
 
 /**** Layouts ****/
 const FullLayout = lazy(() => import("../layouts/"));

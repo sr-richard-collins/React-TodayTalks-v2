@@ -31,11 +31,11 @@ const Home = () => {
               <div className="row justify-content-center">
                 <div className="col-70">
                   <SpotLightSection />
-                  <CategoriesWithBlogSection />
                 </div>
                 <div className="col-30">
                   <CryptoCurrency />
                 </div>
+                  <CategoriesWithBlogSection />
               </div>
             </div>
           </div>

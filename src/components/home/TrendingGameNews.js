@@ -89,39 +89,39 @@ const TrendingGameNewsSection = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-6">
+          <div className="col-lg-8">
             {popularPosts.length !== 0 ? (
-              <div className="video-post-item big-post">
-                <div className="video-post-thumb">
+              <div className="sports-post">
+                <div className="sports-post-thumb">
                   <Link
                     to={`/${popularPosts[0].seo_slug}`}
                     className="link-btn"
                   >
                     <img src={IMAGE_BASE_URL + popularPosts[0].img} alt="" />
                   </Link>
-                  <a
+                  {/* <a
                     href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
                     className="play-btn popup-video"
                   >
                     <FontAwesomeIcon icon="fa-solid fa-play" />
-                  </a>
+                  </a> */}
                 </div>
-                <div className="video-post-content">
+                <div className="sports-post-content">
                   <Link
                     to={`/news/${popularPosts[0].category_data_query}`}
-                    className="post-tag post-tag-three"
+                    className="post-tag-four"
                     onClick={() =>
                       handleViewClick(popularPosts[0].category_name)
                     }
                   >
                     {popularPosts[0].category_name}
                   </Link>
-                  <h2 className="post-title bold-underline">
+                  <h4 className="post-title bold-underline">
                     <Link to={`/${popularPosts[0].seo_slug}`}>
                       {popularPosts[0].title}
                     </Link>
-                  </h2>
-                  <div className="blog-post-meta white-blog-meta">
+                  </h4>
+                  <div className="blog-post-meta">
                     <ul className="list-wrap">
                       {/* <li>
                           <i className="flaticon-user"></i>by
@@ -141,41 +141,33 @@ const TrendingGameNewsSection = () => {
               ""
             )}
           </div>
-          <div className="col-lg-6">
-            <div className="video-small-post-wrap">
+          <div className="col-lg-4">
+            <div className="sidebar-wrap sidebar-wrap-four">
               {popularPosts.slice(1).map((post, index) => (
-                <div className="video-post-item small-post" key={index}>
-                  <div className="video-post-thumb">
-                    <Link to={`/${post.seo_slug}`} className="link-btn">
+                <div className="horizontal-post-four horizontal-post-five" key={post.id}>
+                  <div className="horizontal-post-thumb-four">
+                    <a href="blog-details.html">
                       <img src={IMAGE_BASE_URL + post.img} alt="" />
-                    </Link>
-                    <a
-                      href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
-                      className="play-btn popup-video"
-                    >
-                      <FontAwesomeIcon icon="fa-solid fa-play" />
                     </a>
                   </div>
-                  <div className="video-post-content">
+                  <div className="horizontal-post-content-four">
                     <Link
                       to={`/news/${post.category_data_query}`}
-                      className="post-tag post-tag-three"
+                      className="post-tag-four"
                       onClick={() => handleViewClick(post.category_name)}
                     >
-                      {post.category_name}
+                      {popularPosts[0].category_name}
                     </Link>
-                    <h2 className="post-title">
+                    <h4 className="post-title">
                       <Link to={`/${post.seo_slug}`}>{post.title}</Link>
-                    </h2>
-                    <div className="blog-post-meta white-blog-meta">
+                    </h4>
+                    <div className="blog-post-meta">
                       <ul className="list-wrap">
-                        {/* <li>
-                            <i className="flaticon-user"></i>by
-                            <a href="author.html">{post.user_name}</a>
-                          </li> */}
                         <li>
                           <i className="flaticon-calendar"></i>
-                          {new Date(post.created_at).toLocaleDateString()}
+                          {new Date(
+                            popularPosts[0].created_at
+                          ).toLocaleDateString()}
                         </li>
                       </ul>
                     </div>

@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "../../config";
 import { IMAGE_BASE_URL } from "../../config";
-import Loader from "../Loader";
 import { fetchSelectCategory } from "../../actions/categoryAction";
 
 const SpotLightSection = () => {
@@ -11,13 +10,11 @@ const SpotLightSection = () => {
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
   const [spotlight, setSpotlight] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
       const resSpotlight = await axios.get(`/api/user/spotlight`);
       setSpotlight(resSpotlight.data);
-      setLoading(false);
     };
 
     fetchTrendingPosts();
@@ -32,8 +29,6 @@ const SpotLightSection = () => {
   const handleViewClick = (name) => {
     dispatch(fetchSelectCategory(name));
   };
-
-  // if (loading) return <Loader />;
 
   return (
     <>
@@ -183,13 +178,13 @@ const SpotLightSection = () => {
                           activePage === index ? "active" : ""
                         }`}
                       >
-                        <a
+                        <p
                           key={index}
                           className="page-link"
                           onClick={() => handlePageClick(index)}
                         >
                           {index + 1}
-                        </a>
+                        </p>
                       </li>
                     )
                   )}

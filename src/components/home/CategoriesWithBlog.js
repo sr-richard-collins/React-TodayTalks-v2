@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Blog from "../Blog";
+import HomeBlog from "../HomeBlog";
 import axios from "../../config";
 import Loader from "../Loader";
 
@@ -23,7 +23,7 @@ const CategoriesWithBlogSection = () => {
   return (
     <div className="spotlight-post-item-wrap">
       {categories.map((category) => (
-        <Blog title={category.name} key={category.id} isHomepage={1} />
+        <HomeBlog title={category.name} key={category.id}/>
       ))}
     </div>
   );
