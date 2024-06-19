@@ -7,18 +7,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FullLayout = () => {
   
+  const handleTopScreen = () => {
+    window.scrollTo(0,0);
+  }
   return (
     <>
-      <div className="darkmode-trigger">
+      {/* <div className="darkmode-trigger">
         <label className="modeSwitch">
           <input type="checkbox" />
           <span className="icon">
             <FontAwesomeIcon icon="fa-solid fa-regular fa-sun" />
           </span>
         </label>
-      </div>
+      </div> */}
 
-      <button className="scroll-top scroll-to-target" data-target="html">
+      <button className="scroll-top scroll-to-target" onClick={()=> handleTopScreen()}>
         <FontAwesomeIcon icon="fa-solid fa-angle-up" />
       </button>
 

@@ -144,11 +144,17 @@ const TrendingGameNewsSection = () => {
           <div className="col-lg-4">
             <div className="sidebar-wrap sidebar-wrap-four">
               {popularPosts.slice(1).map((post, index) => (
-                <div className="horizontal-post-four horizontal-post-five" key={post.id}>
+                <div
+                  className="horizontal-post-four horizontal-post-five"
+                  key={post.id}
+                >
                   <div className="horizontal-post-thumb-four">
-                    <a href="blog-details.html">
+                    <Link
+                      to={`/${post.seo_slug}`}
+                      className="link-btn"
+                    >
                       <img src={IMAGE_BASE_URL + post.img} alt="" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="horizontal-post-content-four">
                     <Link
