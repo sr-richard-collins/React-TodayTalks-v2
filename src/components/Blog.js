@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import axios from "../config";
 import { IMAGE_BASE_URL } from "../config";
 import CustomPagination from "./CustomPagination";
+import Breadcrumb from "./Breadcrumb";
 import Loader from "./Loader";
 import { fetchSelectCategory } from "../actions/categoryAction";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import  NoPost from "../views/error/No_post";
+import NoPost from "../views/error/No_post";
 
 const Blog = ({ title, isHomepage }) => {
   const dispatch = useDispatch();
@@ -66,13 +67,17 @@ const Blog = ({ title, isHomepage }) => {
 
   return (
     <>
+
+      
       <Suspense
         fallback={
           <>
             <Loader />
+
           </>
         }
       >
+      <Breadcrumb title={title}/>
         {posts.length ? (
           <section className="blog-area pt-60 pb-60">
             <div className="container">
@@ -218,7 +223,7 @@ const Blog = ({ title, isHomepage }) => {
           </section>
         ) : (
           isHomepage === 0 && (
-            <NoPost/>
+            <NoPost />
           )
         )}
       </Suspense>

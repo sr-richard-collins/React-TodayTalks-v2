@@ -30,6 +30,9 @@ const Header = () => {
   const handleLinkClick = (link) => {
     setActiveLink(link);
     dispatch(fetchSelectCategory(link));
+    setShowToggleSubMenu(false);
+    setShowToggleMenu(false);
+    
   };
 
   const handleViewMoreHover = () => {
@@ -42,14 +45,16 @@ const Header = () => {
   };
 
   const handleMenuToggleOpenClick = () => {
-    setShowToggleMenu(!showToggleMenu);
+    setShowToggleMenu(true);
   };
   const handleMenuToggleCloseClick = () => {
-    setShowToggleMenu(!showToggleMenu);
+    setShowToggleMenu(false);
   };
 
   const handleShowToggleSubMenu = () => {
+    setShowToggleMenu(true);
     setShowToggleSubMenu(!showToggleSubMenu);
+    
   };
 
   const getCurrentDate = () => {
@@ -134,7 +139,7 @@ const Header = () => {
                         <li
                           className={
                             (selectCategory ? selectCategory : activeLink) ===
-                            "home"
+                              "home"
                               ? "active"
                               : ""
                           }
@@ -244,7 +249,7 @@ const Header = () => {
                           <li
                             className={
                               (selectCategory ? selectCategory : activeLink) ===
-                              "home"
+                                "home"
                                 ? "active"
                                 : ""
                             }
@@ -274,7 +279,7 @@ const Header = () => {
                           ))}
                           <li className="active menu-item-has-children nav-bar-link">
                             <Link
-                              to={`/`}
+                              
                               onClick={handleShowToggleSubMenu}
                               className="nav-bar-link"
                             >

@@ -804,6 +804,12 @@
 .custom-container {
     max-width: 100%;
 }
+.footer-area{
+    display: none;
+}
+.sticky-menu{
+    position: absolute;
+}
 .transparent-header {
 	top: 0;
 }

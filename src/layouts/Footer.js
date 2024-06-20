@@ -11,17 +11,7 @@ const Footer = () => {
                 <div className="footer-top">
                     <div className="container">
                         <div className="row">
-                            {/* <div className="col-lg-3 col-md-7">
-                                <div className="footer-widget">
-                                    <div className="fw-logo">
-                                        <a href="index.html"><img src={logo} alt="" /></a>
-                                    </div>
-                                    <div className="footer-content">
-                                        <p>Browned butter and brown sugar caramelly goodness, crispy edges thick and soft centers and melty little puddles of chocolate.</p>
-                                    </div>
-                                </div>
-                            </div> */}
-                            <div className="col-3">
+                            <div className="col-4">
                                 <div className="footer-widget mb-30">
                                     <div className="footer-title">
                                         <h2 className="title text-lines-1">TodayTalks in Other Languages</h2>
@@ -41,22 +31,13 @@ const Footer = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            <div className="col-6">
-                                
+                            <div className="col-4">
                                 <div className="footer-widget mb-30">
                                     <div className="footer-title">
                                         <h2 className="title">Get Help</h2>
                                     </div>
                                     <div className="footer-title-line"></div>
                                     <div className="footer-link-wrap mt-20 row">
-                                        <ul className="list-wrap col">
-                                            <li><a href="about.html">Contact & Faq</a></li>
-                                            <li><a href="contact.html">Oders & Returns</a></li>
-                                            <li><a href="contact.html">Gift Cards</a></li>
-                                            <li><a href="contact.html">Register</a></li>
-                                            <li><a href="contact.html">Catalog</a></li>
-                                        </ul>
                                         <ul className="list-wrap col">
                                             <li><a href="about.html">Contact & Faq</a></li>
                                             <li><a href="contact.html">Oders & Returns</a></li>
@@ -71,7 +52,7 @@ const Footer = () => {
                                 </div>
                             </div>
 
-                            <div className="col-3">
+                            <div className="col-4">
                                 <div className="footer-widget mb-30">
                                     <div className="footer-title">
                                         <h2 className="title text-lines-1">Follow us On</h2>
@@ -95,14 +76,7 @@ const Footer = () => {
                         <div className="footer-bottom-menu">
                             <ul className="list-wrap">
                                 <li><Link to="/contact">About Us |</Link></li>
-                                <li><Link to="/contact">Terms of Service |</Link></li>
-                                <li><Link to="/contact">Privacy Policy |</Link></li>
-                                <li><Link to="/contact">Apps |</Link></li>
-                                <li><Link to="/contact">RSS |</Link></li>
-                                <li><Link to="/contact">Advertise with Us |</Link></li>
                                 <li><Link to="/contact">Contact Us |</Link></li>
-                                <li><Link to="/contact">Feedback |</Link></li>
-                                <li><Link to="/contact">Sitemap |</Link></li>
                                 <li><Link to="/contact">Cookie Policy |</Link></li>
                                 <li><Link to="/contact">Code of Business |</Link></li>
                                 <li><Link to="/contact">Conduct |</Link></li>
