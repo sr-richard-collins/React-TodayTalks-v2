@@ -1,10 +1,10 @@
-import React, { useState, useEffect, Suspense } from "react";
-import Blog from "../components/Blog";
-import Newsletter from "../components/Newsletter";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import axios from "../config/";
+import React, { useState, useEffect, Suspense } from 'react';
+import Blog from '../components/Blog';
+import Newsletter from '../components/Newsletter';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import axios from '../config/';
 
 const Category = () => {
   const { name } = useParams();
@@ -19,13 +19,14 @@ const Category = () => {
     };
     fetch();
   }, [name]);
+
   return (
     <>
       <Helmet>
         <title>{seo.name}</title>
-        <meta property="og:title" content={seo.seo_title} />
-        <meta name="keywords" content={seo.seo_keyword} />
-        <meta name="description" content={seo.seo_description} />
+        <meta property='og:title' content={seo.seo_title} />
+        <meta name='keywords' content={seo.seo_keyword} />
+        <meta name='description' content={seo.seo_description} />
       </Helmet>
 
       <Blog title={selectCategory.name} isHomepage={0} />

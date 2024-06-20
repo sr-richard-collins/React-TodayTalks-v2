@@ -1,14 +1,14 @@
-import React, { useState, useEffect, Suspense } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import axios from "../config";
-import { IMAGE_BASE_URL } from "../config";
-import CustomPagination from "./CustomPagination";
-import Loader from "./Loader";
-import { fetchSelectCategory } from "../actions/categoryAction";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import  NoPost from "../views/error/No_post";
+import React, { useState, useEffect, Suspense } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import axios from '../config';
+import { IMAGE_BASE_URL } from '../config';
+import CustomPagination from './CustomPagination';
+import Loader from './Loader';
+import { fetchSelectCategory } from '../actions/categoryAction';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import NoPost from '../views/error/No_post';
 
 const Blog = ({ title, isHomepage }) => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Blog = ({ title, isHomepage }) => {
             postsPerPage,
           },
         });
-        if (postsPerPage === "all") {
+        if (postsPerPage === 'all') {
           setPosts(response.data);
           setTotalPosts(response.data.length);
         } else {
@@ -45,6 +45,7 @@ const Blog = ({ title, isHomepage }) => {
       setLoading(false);
     };
     fetch();
+    window.scrollTo(0, 0);
   }, [title, currentPage, postsPerPage]);
 
   const totalPages = Math.ceil(totalPosts / postsPerPage);
@@ -74,37 +75,29 @@ const Blog = ({ title, isHomepage }) => {
         }
       >
         {posts.length ? (
-          <section className="blog-area pt-60 pb-60">
-            <div className="container">
-              <div className="author-inner-wrap">
-                <div className="row justify-content-center">
-                  <div className="col-70">
-                    <div className="weekly-post-item-wrap-three">
-                      <div className="row">
+          <section className='blog-area pt-60 pb-60'>
+            <div className='container'>
+              <div className='author-inner-wrap'>
+                <div className='row justify-content-center'>
+                  <div className='col-70'>
+                    <div className='weekly-post-item-wrap-three'>
+                      <div className='row'>
                         {posts.map((post) => (
-                          <div className="col-md-6" key={post.id}>
-                            <div className="weekly-post-three">
-                              <div className="weekly-post-thumb">
+                          <div className='col-md-6' key={post.id}>
+                            <div className='weekly-post-three'>
+                              <div className='weekly-post-thumb'>
                                 <Link to={`/${post.seo_slug}`}>
-                                  <img
-                                    src={IMAGE_BASE_URL + post.img}
-                                    alt={post.title}
-                                  />
+                                  <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
                                 </Link>
                               </div>
-                              <div className="weekly-post-content">
-                                <h2 className="post-title">
-                                  <Link to={`/${post.seo_slug}`}>
-                                    {post.title}
-                                  </Link>
+                              <div className='weekly-post-content'>
+                                <h2 className='post-title'>
+                                  <Link to={`/${post.seo_slug}`}>{post.title}</Link>
                                 </h2>
-                                <div className="blog-post-meta">
-                                  <ul className="list-wrap">
+                                <div className='blog-post-meta'>
+                                  <ul className='list-wrap'>
                                     <li>
-                                      <FontAwesomeIcon icon="fa-regular fa-calendar" />{" "}
-                                      {new Date(
-                                        post.created_at
-                                      ).toLocaleDateString()}
+                                      <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
                                     </li>
                                     {/* <li>
                                       <i className="flaticon-history"></i>20 Mins
@@ -120,32 +113,22 @@ const Blog = ({ title, isHomepage }) => {
                     </div>
                     {isHomepage === 0 && (
                       <>
-                        <CustomPagination
-                          currentPage={currentPage}
-                          totalPages={totalPages}
-                          onPageChange={handlePageChange}
-                        />
-                        <form className="form-inline ml-3">
-                          <label htmlFor="per_page" className="mr-2">
+                        <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                        <form className='form-inline ml-3'>
+                          <label htmlFor='per_page' className='mr-2'>
                             Show:
                           </label>
-                          <select
-                            name="per_page"
-                            id="per_page"
-                            className="form-control"
-                            value={postsPerPage}
-                            onChange={handlePerPageChange}
-                          >
-                            <option value="10">10/page</option>
-                            <option value="20">20/page</option>
-                            <option value="all">All</option>
+                          <select name='per_page' id='per_page' className='form-control' value={postsPerPage} onChange={handlePerPageChange}>
+                            <option value='10'>10/page</option>
+                            <option value='20'>20/page</option>
+                            <option value='all'>All</option>
                           </select>
                         </form>
                       </>
                     )}
                   </div>
-                  <div className="col-30">
-                    <div className="sidebar-wrap">
+                  <div className='col-30'>
+                    <div className='sidebar-wrap'>
                       {/* <div className="sidebar-widget">
                         <div className="sidebar-search">
                           <form action="#">
@@ -217,9 +200,7 @@ const Blog = ({ title, isHomepage }) => {
             </div>
           </section>
         ) : (
-          isHomepage === 0 && (
-            <NoPost/>
-          )
+          isHomepage === 0 && <NoPost />
         )}
       </Suspense>
     </>
