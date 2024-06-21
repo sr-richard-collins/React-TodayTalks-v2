@@ -38,6 +38,7 @@ const Header = () => {
 
   const handleViewMoreHover = () => {
     setShowSubMenu(true);
+    setShowDropdown(true);
     // debugger;
   };
 
@@ -159,11 +160,9 @@ const Header = () => {
                             {showDropdown &&
                               categories.slice(7).map((category) => (
                                 <li className={activeLink === category.name ? 'active' : ''} key={category.id}>
-                                  <div>
-                                    <Link key={category.id} to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)}>
-                                      {category.name}
-                                    </Link>
-                                  </div>
+                                  <Link key={category.id} to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)}>
+                                    {category.name}
+                                  </Link>
                                 </li>
                               ))}
                           </ul>
