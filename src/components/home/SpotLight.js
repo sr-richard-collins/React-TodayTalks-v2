@@ -49,7 +49,7 @@ const SpotLightSection = () => {
               </h6>
               <div className='section-title-line-three'></div>
             </div>
-            <div className='view-all-btn'>
+            <div className='view-all-btn mb-4'>
               <Link to={`/spotlight/${'spotlight'}`} className='link-btn' onClick={() => handleViewClick('spotlight')}>
                 View All
                 <span className='svg-icon'>
@@ -94,7 +94,7 @@ const SpotLightSection = () => {
                       </ul>
                     </div>
                     <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
-                    <div className='view-all-btn'>
+                    <div className='view-all-btn mb-4'>
                       <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`} className='link-btn'>
                         Read More
                         <span className='svg-icon'>

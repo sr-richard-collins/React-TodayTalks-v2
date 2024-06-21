@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import Blog from '../components/Blog';
 import Newsletter from '../components/Newsletter';
+import Breadcrumb from '../components/Breadcrumb';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -28,7 +29,6 @@ const Category = () => {
         <meta name='keywords' content={seo.seo_keyword} />
         <meta name='description' content={seo.seo_description} />
       </Helmet>
-
       <Blog title={selectCategory.name} isHomepage={0} />
       <Newsletter />
     </>

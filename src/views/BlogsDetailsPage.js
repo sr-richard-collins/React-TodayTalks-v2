@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BlogDetailComponent from "../components/BlogDetailComponent";
 import RelatedPostsComponent from "../components/RelatedPostsComponent";
+import Breadcrumb from "../components/Breadcrumb";
 import { useParams } from "react-router-dom";
 import axios from "../config/";
 import Loader from "../components/Loader";
@@ -27,6 +28,7 @@ const BlogsDetails = () => {
   if (loading) return <Loader />;
   return (
     <>
+      <Breadcrumb title={title}/>
       {post && <BlogDetailComponent post={post} />}
       {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
     </>

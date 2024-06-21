@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from '../config';
 import { IMAGE_BASE_URL } from '../config';
 import CustomPagination from './CustomPagination';
+import Breadcrumb from './Breadcrumb';
 import Loader from './Loader';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -74,6 +75,7 @@ const Blog = ({ title, isHomepage }) => {
           </>
         }
       >
+        <Breadcrumb title={title} />
         {posts.length ? (
           <section className='blog-area pt-60 pb-60'>
             <div className='container'>

@@ -26,6 +26,8 @@ const Header = () => {
   const handleLinkClick = (link) => {
     setActiveLink(link);
     dispatch(fetchSelectCategory(link));
+    setShowToggleSubMenu(false);
+    setShowToggleMenu(false);
   };
 
   const handleMobileLinkClick = (link) => {
@@ -44,13 +46,14 @@ const Header = () => {
   };
 
   const handleMenuToggleOpenClick = () => {
-    setShowToggleMenu(!showToggleMenu);
+    setShowToggleMenu(true);
   };
   const handleMenuToggleCloseClick = () => {
-    setShowToggleMenu(!showToggleMenu);
+    setShowToggleMenu(false);
   };
 
   const handleShowToggleSubMenu = () => {
+    setShowToggleMenu(true);
     setShowToggleSubMenu(!showToggleSubMenu);
   };
 
