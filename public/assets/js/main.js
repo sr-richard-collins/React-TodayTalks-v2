@@ -59,6 +59,16 @@
 			$("#header-fixed-height").removeClass("active-height");
 
 		} else {
+			$("#sticky-left-menu").addClass("sticky-left-menu");
+			$('.scroll-to-target').addClass('open');
+			$("#header-fixed-height").addClass("active-height");
+		}
+		if (scroll < 245) {
+			$("#sticky-left-menu").removeClass("sticky-left-menu");
+			$('.scroll-to-target').removeClass('open');
+			$("#header-fixed-height").removeClass("active-height");
+
+		} else {
 			$("#sticky-header").addClass("sticky-menu");
 			$('.scroll-to-target').addClass('open');
 			$("#header-fixed-height").addClass("active-height");

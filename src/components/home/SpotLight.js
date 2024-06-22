@@ -80,7 +80,7 @@ const SpotLightSection = () => {
               </Link>
             </div>
           </div>
-          <div className="row">
+          {/* <div className="row"> */}
             {[
               ...Array(
                 (spotIndex + 1) * 5 < spotlight.length
@@ -89,7 +89,8 @@ const SpotLightSection = () => {
               ),
             ].map((_, index) => (
               <div className="row" key={index}>
-                <div className="col-57">
+                {/* <div className="col-57"> */}
+                {/* <div className="row"> */}
                   <div className="spotlight-post big-post">
                     <div className="spotlight-post-thumb">
                       <Link
@@ -105,8 +106,9 @@ const SpotLightSection = () => {
                       </Link>
                     </div>
                   </div>
-                </div>
-                <div className="col-43">
+                {/* </div> */}
+                {/* <div className="col-43"> */}
+                {/* <div className="row"> */}
                   <div className="weekly-post-content">
                     <Link
                       to={`/news/${
@@ -164,7 +166,7 @@ const SpotLightSection = () => {
                       </Link>
                     </div>
                   </div>
-                </div>
+                {/* </div> */}
               </div>
             ))}
             <div className="pagination-wrap mt-40">
@@ -191,7 +193,7 @@ const SpotLightSection = () => {
                 </ul>
               </nav>
             </div>
-          </div>
+          {/* </div> */}
         </div>
       )}
     </>
