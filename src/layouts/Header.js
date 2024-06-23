@@ -85,33 +85,39 @@ const Header = () => {
             </div>
             <div className='col-lg-3 col-md-6'>
               <div className='header-top-social header-top-social-two'>
-                <h5 className='title'>Follow Us:</h5>
                 <ul className='list-wrap'>
                   <li>
-                    <span>
+                    <span className='social-facebook'>
                       <Link to={setting.social_fb} target='blank'>
                         <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                       </Link>
                     </span>
                   </li>
                   <li>
-                    <span>
+                    <span className='social-twitter'>
                       <Link to={setting.social_twitter} target='blank'>
-                        <FontAwesomeIcon icon='fa-brands fa-x-twitter' />
+                        <FontAwesomeIcon icon="fa-brands fa-twitter" />
                       </Link>
                     </span>
                   </li>
                   <li>
-                    <span>
+                    <span className='social-instagram'>
                       <Link to={setting.social_insta} target='blank'>
                         <FontAwesomeIcon icon='fa-brands fa-instagram' />
                       </Link>
                     </span>
                   </li>
                   <li>
-                    <span>
+                    <span className='social-linkedin'>
                       <Link to={setting.social_linkedin} target='blank'>
                         <FontAwesomeIcon icon='fa-brands fa-linkedin' />
+                      </Link>
+                    </span>
+                  </li>
+                  <li>
+                    <span className='social-youtube'>
+                      <Link to={setting.social_youtube} target='blank'>
+                        <FontAwesomeIcon icon="fa-brands fa-youtube" />
                       </Link>
                     </span>
                   </li>
