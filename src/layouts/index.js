@@ -12,14 +12,6 @@ const FullLayout = () => {
   }
   return (
     <>
-      {/* <div className="darkmode-trigger">
-        <label className="modeSwitch">
-          <input type="checkbox" />
-          <span className="icon">
-            <FontAwesomeIcon icon="fa-solid fa-regular fa-sun" />
-          </span>
-        </label>
-      </div> */}
 
       <button className="scroll-top scroll-to-target" onClick={()=> handleTopScreen()}>
         <FontAwesomeIcon icon="fa-solid fa-angle-up" />
