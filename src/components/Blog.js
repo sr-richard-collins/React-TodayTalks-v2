@@ -10,6 +10,7 @@ import { fetchSelectCategory } from '../actions/categoryAction';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import NoPost from '../views/error/No_post';
+import Menu from '../layouts/Menu';
 
 const Blog = ({ title, isHomepage }) => {
   const dispatch = useDispatch();
@@ -81,11 +82,14 @@ const Blog = ({ title, isHomepage }) => {
             <div className='container'>
               <div className='author-inner-wrap'>
                 <div className='row justify-content-center'>
-                  <div className='col-70'>
+                  <div className='col-20'>
+                    <Menu />
+                  </div>
+                  <div className='col-55'>
                     <div className='weekly-post-item-wrap-three'>
                       <div className='row'>
                         {posts.map((post) => (
-                          <div className='col-md-6' key={post.id}>
+                          <div className='col-md-12' key={post.id}>
                             <div className='weekly-post-three'>
                               <div className='weekly-post-thumb'>
                                 <Link to={`/${post.seo_slug}`}>
@@ -96,17 +100,42 @@ const Blog = ({ title, isHomepage }) => {
                                 <h2 className='post-title'>
                                   <Link to={`/${post.seo_slug}`}>{post.title}</Link>
                                 </h2>
+                                
+                                <p>{post.subTitle}</p>
                                 <div className='blog-post-meta'>
-                                  <ul className='list-wrap'>
+                                  <ul className='list-wrap mt-3'>
                                     <li>
                                       <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
+                                    </li>
+                                    <li>
+                                      <span className="homeblog-link-icon-phone">
+                                        <Link to='/'><FontAwesomeIcon icon="fa-solid fa-phone" /></Link>
+                                      </span>
+                                      <span className="homeblog-link-icon-facebook">
+                                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-facebook-f" /></Link>
+                                      </span>
+                                      <span className="homeblog-link-icon-twitter">
+                                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-twitter" /></Link>
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <div className='view-all-btn'>
+                                        <Link to={`/`} className='homeblog-link-btn'>
+                                          Read More
+                                          <span className='svg-icon'>
+                                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                                              <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                              <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                            </svg>
+                                          </span>
+                                        </Link>
+                                      </div>
                                     </li>
                                     {/* <li>
                                       <i className="flaticon-history"></i>20 Mins
                                     </li> */}
                                   </ul>
                                 </div>
-                                <p>{post.subTitle}</p>
                               </div>
                             </div>
                           </div>
@@ -129,9 +158,13 @@ const Blog = ({ title, isHomepage }) => {
                       </>
                     )}
                   </div>
-                  <div className='col-30'>
-                    <div className='sidebar-wrap'>
-                      {/* <div className="sidebar-widget">
+                  <div className='col-25'></div>
+                  {/* <div className='col-70'>
+                   
+                  </div> */}
+                  {/* <div className='col-30'> */}
+                  {/* <div className='sidebar-wrap'> */}
+                  {/* <div className="sidebar-widget">
                         <div className="sidebar-search">
                           <form action="#">
                             <input type="text" placeholder="Search . . ." />
@@ -141,7 +174,7 @@ const Blog = ({ title, isHomepage }) => {
                           </form>
                         </div>
                       </div> */}
-                      {/* <div className="sidebar-widget sidebar-widget-two">
+                  {/* <div className="sidebar-widget sidebar-widget-two">
                         <div className="widget-title mb-30">
                           <h6 className="title">Hot Categories</h6>
                           <div className="section-title-line"></div>
@@ -195,8 +228,8 @@ const Blog = ({ title, isHomepage }) => {
                                        </ul>
                                    </div>
                       </div> */}
-                    </div>
-                  </div>
+                  {/* </div> */}
+                  {/* </div> */}
                 </div>
               </div>
             </div>

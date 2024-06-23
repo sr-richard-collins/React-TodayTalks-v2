@@ -7,7 +7,7 @@ import googleplayimg from "../assets/img/icon/googleplay.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Header = () => {
+const Menu = () => {
   const dispatch = useDispatch();
   const { setting } = useSelector((state) => state.setting);
   const { categories, selectCategory } = useSelector(
@@ -147,4 +147,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Menu;

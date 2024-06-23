@@ -2648,7 +2648,7 @@ label {
 ===============================*/
 .breadcrumb-area {
   background: var(--tg-gray-three);
-  padding: 37px 0;
+  padding: 15px 0;
 }
 
 .breadcrumb-content .breadcrumb {
@@ -4070,28 +4070,28 @@ label {
 /*=============================
 	16. Spotlight Post
 ===============================*/
-.spotlight-post-inner-wrap .row .col-70 {
+.col-20{
+  width: 20%;
+  flex: 0 0 auto;
+}
+ .col-70 {
   width: 69.7%;
   flex: 0 0 auto;
 }
-.spotlight-post-inner-wrap .row .col-80 {
+ .col-80 {
   width: 80%;
   flex: 0 0 auto;
 }
 
-.spotlight-post-inner-wrap .row .col-30 {
+ .col-30 {
   width: 30%;
   flex: 0 0 auto;
 }
-.spotlight-post-inner-wrap .row .col-20 {
-  width: 20%;
-  flex: 0 0 auto;
-}
-.spotlight-post-inner-wrap .row .col-55 {
+ .col-55 {
   width: 55%;
   flex: 0 0 auto;
 }
-.spotlight-post-inner-wrap .row .col-25 {
+ .col-25 {
   width: 25%;
   flex: 0 0 auto;
 }
@@ -8086,6 +8086,9 @@ label {
 .left-sub-menu .dropdown-content {
   list-style-type: none;
   border-bottom: 1px solid #e4e4e4;
+}
+.active{
+  color: var(--tg-primary-color);
 }
 .left-sub-menu li a {
   font-weight: 700;
