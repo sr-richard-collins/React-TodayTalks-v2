@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from '../../config';
 import { IMAGE_BASE_URL } from '../../config';
 import { fetchSelectCategory } from '../../actions/categoryAction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SpotLightSection = () => {
   const dispatch = useDispatch();
@@ -87,25 +88,39 @@ const SpotLightSection = () => {
                 <h2 className='post-title'>
                   <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>{spotlight[spotIndex * 5 + index].title}</Link>
                 </h2>
+                
+                <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
                 <div className='blog-post-meta'>
-                  <ul className='list-wrap'>
+                  <ul className='list-wrap mb-3'>
                     <li>
                       <i className='flaticon-calendar'></i>
                       {new Date(spotlight[spotIndex * 5 + index].created_at).toLocaleDateString()}
                     </li>
+                    <li>
+                      <span className="homeblog-link-icon-phone">
+                        <Link to='/'><FontAwesomeIcon icon="fa-solid fa-phone" /></Link>
+                      </span>
+                      <span className="homeblog-link-icon-facebook">
+                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-facebook-f" /></Link>
+                      </span>
+                      <span className="homeblog-link-icon-twitter">
+                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-twitter" /></Link>
+                      </span>
+                    </li>
+                    <li>
+                      <div className='view-all-btn'>
+                        <Link to={`/`} className='homeblog-link-btn'>
+                          Read More
+                          <span className='svg-icon'>
+                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                              <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                              <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                            </svg>
+                          </span>
+                        </Link>
+                      </div>
+                    </li>
                   </ul>
-                </div>
-                <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
-                <div className='view-all-btn mb-4'>
-                  <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`} className='link-btn'>
-                    Read More
-                    <span className='svg-icon'>
-                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
-                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                      </svg>
-                    </span>
-                  </Link>
                 </div>
               </div>
               {/* </div> */}

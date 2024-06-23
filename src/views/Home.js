@@ -35,15 +35,16 @@ const Home = () => {
                 </div>
                 <div className="col-55">
                   <SpotLightSection />
+                  <CategoriesWithBlogSection />
                 </div>
                 <div className="col-25"></div>
-                <CategoriesWithBlogSection />
+              
               </div>
             </div>
           </div>
         </section>
-        <TrendingGameNewsSection />
-        <Newsletter />
+        {/* <TrendingGameNewsSection /> */}
+        {/* <Newsletter /> */}
       </div>
     </>
   );

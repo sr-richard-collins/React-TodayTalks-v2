@@ -64,18 +64,18 @@ const HomeBlog = ({ title }) => {
                 </div>
               </div>
             </div>
-            {[...Array(Math.ceil(posts.length / 3))].map((_, index) => (
+            {[...Array(Math.ceil(posts.length / 1))].map((_, index) => (
               <div className="editor-post-wrap" key={index}>
                 <div className="row editor-post-active">
                   {posts
                     .slice(
-                      index * 3,
-                      index * 3 + 3 < posts.length
-                        ? index * 3 + 3
+                      index * 1,
+                      index * 1 + 1 < posts.length
+                        ? index * 1 + 1
                         : posts.length
                     )
                     .map((post) => (
-                      <div className="col-lg-4 mb-3" key={post.id}>
+                      <div className="col-lg-12 mb-4" key={post.id}>
                         <div className="editor-post-item">
                           <div className="editor-post-thumb">
                             <Link to={`/${post.seo_slug}`}>
@@ -96,6 +96,30 @@ const HomeBlog = ({ title }) => {
                                   {new Date(
                                     post.created_at
                                   ).toLocaleDateString()}
+                                </li>
+                                <li>
+                                  <span className="homeblog-link-icon-phone">
+                                    <Link to='/'><FontAwesomeIcon icon="fa-solid fa-phone" /></Link>
+                                  </span>
+                                  <span className="homeblog-link-icon-facebook">
+                                  <Link to='/'><FontAwesomeIcon icon="fa-brands fa-facebook-f" /></Link>
+                                  </span>
+                                  <span className="homeblog-link-icon-twitter">
+                                  <Link to='/'><FontAwesomeIcon icon="fa-brands fa-twitter" /></Link>
+                                  </span>
+                                </li>
+                                <li>
+                                  <div className='view-all-btn'>
+                                    <Link to={`/`} className='homeblog-link-btn'>
+                                      Read More
+                                      <span className='svg-icon'>
+                                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                                          <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                          <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                        </svg>
+                                      </span>
+                                    </Link>
+                                  </div>
                                 </li>
                               </ul>
                             </div>

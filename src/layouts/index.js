@@ -23,7 +23,7 @@ const FullLayout = () => {
         <Outlet />
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
