@@ -61,68 +61,70 @@ const SpotLightSection = () => {
               </Link>
             </div>
           </div>
-          <div className='row'>
-            {[...Array((spotIndex + 1) * 5 < spotlight.length ? 5 : spotlight.length - spotIndex * 5)].map((_, index) => (
-              <div className='row' key={index}>
-                <div className='col-57'>
-                  <div className='spotlight-post big-post'>
-                    <div className='spotlight-post-thumb'>
-                      <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>
-                        <img src={IMAGE_BASE_URL + spotlight[spotIndex * 5 + index].img} alt='' />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-43'>
-                  <div className='weekly-post-content'>
-                    <Link
-                      to={`/news/${spotlight[spotIndex * 5 + index].category_data_query}`}
-                      className='post-tag'
-                      onClick={() => handleViewClick(spotlight[spotIndex * 5 + index].category_name)}
-                    >
-                      {spotlight[spotIndex * 5 + index].category_name}
-                    </Link>
-                    <h2 className='post-title'>
-                      <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>{spotlight[spotIndex * 5 + index].title}</Link>
-                    </h2>
-                    <div className='blog-post-meta'>
-                      <ul className='list-wrap'>
-                        <li>
-                          <i className='flaticon-calendar'></i>
-                          {new Date(spotlight[spotIndex * 5 + index].created_at).toLocaleDateString()}
-                        </li>
-                      </ul>
-                    </div>
-                    <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
-                    <div className='view-all-btn mb-4'>
-                      <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`} className='link-btn'>
-                        Read More
-                        <span className='svg-icon'>
-                          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
-                            <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                            <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                          </svg>
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
+          {/* <div className="row"> */}
+          {[...Array((spotIndex + 1) * 5 < spotlight.length ? 5 : spotlight.length - spotIndex * 5)].map((_, index) => (
+            <div className='row' key={index}>
+              {/* <div className="col-57"> */}
+              {/* <div className="row"> */}
+              <div className='spotlight-post big-post'>
+                <div className='spotlight-post-thumb'>
+                  <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>
+                    <img src={IMAGE_BASE_URL + spotlight[spotIndex * 5 + index].img} alt='' />
+                  </Link>
                 </div>
               </div>
-            ))}
-            <div className='pagination-wrap mt-40'>
-              <nav aria-label='Page navigation example'>
-                <ul className='pagination list-wrap'>
-                  {[...Array(Math.ceil(spotlight.length / 5))].map((_, index) => (
-                    <li key={index} className={`page-item ${activePage === index ? 'active' : ''}`}>
-                      <p key={index} className='page-link' onClick={() => handlePageClick(index)}>
-                        {index + 1}
-                      </p>
+              {/* </div> */}
+              {/* <div className="col-43"> */}
+              {/* <div className="row"> */}
+              <div className='weekly-post-content'>
+                <Link
+                  to={`/news/${spotlight[spotIndex * 5 + index].category_data_query}`}
+                  className='post-tag'
+                  onClick={() => handleViewClick(spotlight[spotIndex * 5 + index].category_name)}
+                >
+                  {spotlight[spotIndex * 5 + index].category_name}
+                </Link>
+                <h2 className='post-title'>
+                  <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>{spotlight[spotIndex * 5 + index].title}</Link>
+                </h2>
+                <div className='blog-post-meta'>
+                  <ul className='list-wrap'>
+                    <li>
+                      <i className='flaticon-calendar'></i>
+                      {new Date(spotlight[spotIndex * 5 + index].created_at).toLocaleDateString()}
                     </li>
-                  ))}
-                </ul>
-              </nav>
+                  </ul>
+                </div>
+                <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
+                <div className='view-all-btn mb-4'>
+                  <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`} className='link-btn'>
+                    Read More
+                    <span className='svg-icon'>
+                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                      </svg>
+                    </span>
+                  </Link>
+                </div>
+              </div>
+              {/* </div> */}
             </div>
+          ))}
+          <div className='pagination-wrap mt-40'>
+            <nav aria-label='Page navigation example'>
+              <ul className='pagination list-wrap'>
+                {[...Array(Math.ceil(spotlight.length / 5))].map((_, index) => (
+                  <li key={index} className={`page-item ${activePage === index ? 'active' : ''}`}>
+                    <p key={index} className='page-link' onClick={() => handlePageClick(index)}>
+                      {index + 1}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
+          {/* </div> */}
         </div>
       ) : (
         ''
