@@ -62,7 +62,7 @@ const BlogDetailComponent = ({ post }) => {
         <div className="container">
           <div className="author-inner-wrap">
             <div className="row justify-content-center">
-              <div className="col-70">
+              <div >
                 <div className="blog-details-wrap">
                   <div className="blog-details-content">
                     <div className="blog-details-content-top">
@@ -71,18 +71,10 @@ const BlogDetailComponent = ({ post }) => {
                       <div className="bd-content-inner">
                         <div className="blog-post-meta">
                           <ul className="list-wrap">
-                            {/* <li>
-                              <FontAwesomeIcon icon="fa-regular fa-user" />
-                              by<Link to="author.html">{post.user_name}</Link>
-                            </li> */}
-                            <li>
+                            <li style={{fontSize:'15px'}}>
                               <FontAwesomeIcon icon="fa-regular fa-calendar" />
                               {new Date(post.created_at).toLocaleDateString()}
                             </li>
-                            {/* <li>
-                              <FontAwesomeIcon icon="fa-regular fa-comment" />
-                              <Link to="blog-details.html">05 Comments</Link>
-                            </li> */}
                           </ul>
                         </div>
                         <div className="blog-details-social">
@@ -120,7 +112,6 @@ const BlogDetailComponent = ({ post }) => {
                   </div>
                 </div>
               </div>
-              <div className="col-30"></div>
             </div>
           </div>
         </div>

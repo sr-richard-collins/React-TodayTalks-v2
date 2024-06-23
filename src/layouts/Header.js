@@ -68,16 +68,16 @@ const Header = () => {
                 <div className='swiper-container ta-trending-slider'>
                   <div className='swiper-wrapper'>
                     <div className='swiper-slide'>
-                      <div className='col-lg-6 col-md-6'>
+                      <div >
                         <Link to='/'>
                           <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' className='logo-style' />
                         </Link>
                       </div>
-                      <div className='col-lg-6 col-md-6 col-sm-10'>
+                      {/* <div className='col-lg-6 col-md-6 col-sm-10'>
                         <span className='trending-content-date'>
                           <FontAwesomeIcon icon='fa-regular fa-calendar' /> February 12, 2024
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
