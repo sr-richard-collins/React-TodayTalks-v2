@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from '../../config';
 import { IMAGE_BASE_URL } from '../../config';
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SpotLightSection = () => {
   const dispatch = useDispatch();
+  const { setting } = useSelector((state) => state.setting);
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
   const [spotlight, setSpotlight] = useState([]);
@@ -88,7 +89,7 @@ const SpotLightSection = () => {
                 <h2 className='post-title'>
                   <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>{spotlight[spotIndex * 5 + index].title}</Link>
                 </h2>
-                
+
                 <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
                 <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
@@ -97,19 +98,25 @@ const SpotLightSection = () => {
                       {new Date(spotlight[spotIndex * 5 + index].created_at).toLocaleDateString()}
                     </li>
                     <li>
-                      <span className="homeblog-link-icon-phone">
-                        <Link to='/'><FontAwesomeIcon icon="fa-solid fa-phone" /></Link>
+                      <span className='homeblog-link-icon-phone'>
+                        <Link to={setting.social_whatsapp}>
+                          <FontAwesomeIcon icon='fa-solid fa-phone' />
+                        </Link>
                       </span>
-                      <span className="homeblog-link-icon-facebook">
-                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-facebook-f" /></Link>
+                      <span className='homeblog-link-icon-facebook'>
+                        <Link to={setting.social_fb}>
+                          <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
+                        </Link>
                       </span>
-                      <span className="homeblog-link-icon-twitter">
-                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-twitter" /></Link>
+                      <span className='homeblog-link-icon-twitter'>
+                        <Link to={setting.social_twitter}>
+                          <FontAwesomeIcon icon='fa-brands fa-twitter' />
+                        </Link>
                       </span>
                     </li>
                     <li>
                       <div className='view-all-btn'>
-                        <Link to={`/`} className='homeblog-link-btn'>
+                        <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`} className='homeblog-link-btn'>
                           Read More
                           <span className='svg-icon'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>

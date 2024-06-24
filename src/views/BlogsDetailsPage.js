@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import BlogDetailComponent from "../components/BlogDetailComponent";
-import RelatedPostsComponent from "../components/RelatedPostsComponent";
-import Breadcrumb from "../components/Breadcrumb";
-import { useParams } from "react-router-dom";
-import axios from "../config/";
-import Loader from "../components/Loader";
-import Menu from "../layouts/Menu";
-import CommentComponent from "../components/CommentComponent";
+import React, { useState, useEffect } from 'react';
+import BlogDetailComponent from '../components/BlogDetailComponent';
+import RelatedPostsComponent from '../components/RelatedPostsComponent';
+import Breadcrumb from '../components/Breadcrumb';
+import { useParams } from 'react-router-dom';
+import axios from '../config/';
+import Loader from '../components/Loader';
+import Menu from '../layouts/Menu';
+import CommentComponent from '../components/CommentComponent';
 
 const BlogsDetails = () => {
   const [post, setPost] = useState(null);
@@ -30,19 +30,21 @@ const BlogsDetails = () => {
   if (loading) return <Loader />;
   return (
     <>
-      <section className="spotlight-post-area pt-10 pb-60">
-        <div className="spotlight-post-inner-wrap">
-          <div className="container">
-            <div className="row">
-              <div className="col-3"><Menu /></div>
-              <div className="col-9 row">
+      <section className='spotlight-post-area pt-10 pb-60'>
+        <div className='spotlight-post-inner-wrap'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-3'>
+                <Menu />
+              </div>
+              <div className='col-9 row'>
                 <Breadcrumb title={title} />
-                <div className="col-70">
+                <div className='col-70'>
                   {post && <BlogDetailComponent post={post} />}
                   {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
                   <CommentComponent />
                 </div>
-                <div className="col-30"></div>
+                <div className='col-30'></div>
               </div>
             </div>
           </div>
