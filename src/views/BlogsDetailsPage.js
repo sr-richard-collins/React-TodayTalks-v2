@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "../config/";
 import Loader from "../components/Loader";
 import Menu from "../layouts/Menu";
+import CommentComponent from "../components/CommentComponent";
 
 const BlogsDetails = () => {
   const [post, setPost] = useState(null);
@@ -33,12 +34,13 @@ const BlogsDetails = () => {
         <div className="spotlight-post-inner-wrap">
           <div className="container">
             <div className="row">
-              <div className="col-20"><Menu /></div>
-              <div className="col-80 row">
+              <div className="col-3"><Menu /></div>
+              <div className="col-9 row">
                 <Breadcrumb title={title} />
                 <div className="col-70">
                   {post && <BlogDetailComponent post={post} />}
                   {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
+                  <CommentComponent />
                 </div>
                 <div className="col-30"></div>
               </div>

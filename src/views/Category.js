@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import Blog from '../components/Blog';
-import Newsletter from '../components/Newsletter';
-import Breadcrumb from '../components/Breadcrumb';
+// import Newsletter from '../components/Newsletter';
+// import Breadcrumb from '../components/Breadcrumb';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';

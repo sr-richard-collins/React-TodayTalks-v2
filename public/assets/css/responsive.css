@@ -77,6 +77,9 @@
 .custom-container {
     max-width: 960px;
 }
+.row{
+    margin-right: 0;
+}
 .header-action > ul li.header-btn {
 	display: none;
 }
@@ -420,7 +423,7 @@
 @media (max-width: 991.98px) {
 .container,
 .custom-container {
-    max-width: 720px;
+    /* max-width: 720px; */
 }
 .menu-area {
 	padding: 20px 0;
@@ -785,9 +788,7 @@
 [tg-theme=dark] .menu-area.menu-style-four .logo.white-logo {
     display: block !important;
 }
-.header-top-social-two {
-    display: none;
-}
+
 .menu-style-six .logo.d-none.white-logo {
     display: none !important;
 }
@@ -803,6 +804,22 @@
 @media (max-width: 767.98px) {
 .custom-container {
     max-width: 100%;
+}
+.col-12 {
+    flex: 0 0 auto !important;
+    width: 100% !important
+}
+.mobile-nav-toggler{
+    display: block;
+}
+.left-sub-menu{
+    display: none;
+}
+.logo-style {
+    width: 100%;
+}
+.header-top-social-two {
+    display: none;
 }
 .footer-area{
     display: none;
@@ -1036,7 +1053,7 @@
     width: 100%;
 }
 .header-top-wrap-four {
-    display: none;
+    /* display: none; */
 }
 .news-banner-small-post {
     display: block;
@@ -1153,7 +1170,12 @@
 
 
 }
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+    .row{
+        /* margin-right: 0; */
+    }
 
+}
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767px) {

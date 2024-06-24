@@ -76,16 +76,18 @@ const Blog = ({ title, isHomepage }) => {
           </>
         }
       >
-        <Breadcrumb title={title} />
+        
         {posts.length ? (
-          <section className='blog-area pt-60 pb-60'>
+          <section className='blog-area pt-20 pb-60'>
             <div className='container'>
               <div className='author-inner-wrap'>
                 <div className='row justify-content-center'>
-                  <div className='col-20'>
+                  <div className='col-3'>
                     <Menu />
                   </div>
-                  <div className='col-55'>
+                  <div className='col-9 row'>
+                    <Breadcrumb title={title} />
+                    <div className='col-70 pt-20'>
                     <div className='weekly-post-item-wrap-three'>
                       <div className='row'>
                         {posts.map((post) => (
@@ -157,79 +159,10 @@ const Blog = ({ title, isHomepage }) => {
                         </form>
                       </>
                     )}
+                    </div>
+                    <div className='col-30'></div>
                   </div>
-                  <div className='col-25'></div>
-                  {/* <div className='col-70'>
-                   
-                  </div> */}
-                  {/* <div className='col-30'> */}
-                  {/* <div className='sidebar-wrap'> */}
-                  {/* <div className="sidebar-widget">
-                        <div className="sidebar-search">
-                          <form action="#">
-                            <input type="text" placeholder="Search . . ." />
-                            <button type="submit">
-                              <FontAwesomeIcon icon={faSearch} />
-                            </button>
-                          </form>
-                        </div>
-                      </div> */}
-                  {/* <div className="sidebar-widget sidebar-widget-two">
-                        <div className="widget-title mb-30">
-                          <h6 className="title">Hot Categories</h6>
-                          <div className="section-title-line"></div>
-                        </div>
-                        <div className="sidebar-categories">
-                                       <ul className="list-wrap">
-                                           <li>
-                                               <a href="blog.html" style={{backgroundImage:`url(${post03})`}}>
-                                                   <span className="post-tag post-tag-three">Technology</span>
-                                                   <span className="right-arrow">
-                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                       </svg>
-                                                   </span>
-                                               </a>
-                                           </li>
-                                           <li>
-                                               <a href="blog.html" style={{backgroundImage:`url(${post01})`}}>
-                                                   <span className="post-tag post-tag-three">Mobile</span>
-                                                   <span className="right-arrow">
-                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                       </svg>
-                                                   </span>
-                                               </a>
-                                           </li>
-                                           <li>
-                                               <a href="blog.html" style={{backgroundImage:`url(${post02})`}}>
-                                                   <span className="post-tag post-tag-three">Gadget</span>
-                                                   <span className="right-arrow">
-                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                       </svg>
-                                                   </span>
-                                               </a>
-                                           </li>
-                                           <li>
-                                               <a href="blog.html" style={{backgroundImage:`url(${post04})`}}>
-                                                   <span className="post-tag post-tag-three">News</span>
-                                                   <span className="right-arrow">
-                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                           <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                       </svg>
-                                                   </span>
-                                               </a>
-                                           </li>
-                                       </ul>
-                                   </div>
-                      </div> */}
-                  {/* </div> */}
-                  {/* </div> */}
+                  
                 </div>
               </div>
             </div>
