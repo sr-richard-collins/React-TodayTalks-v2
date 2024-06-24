@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { fetchCategories } from '../actions/categoryAction';
-
+import Menu from './Menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
+import googleplayimg from "../assets/img/icon/googleplay.png";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,6 @@ const Header = () => {
   const handleViewMoreHover = () => {
     setShowSubMenu(true);
     setShowDropdown(true);
-    // debugger;
   };
 
   const handleViewMoreLeave = () => {
@@ -41,7 +41,7 @@ const Header = () => {
   };
 
   const handleMenuToggleOpenClick = () => {
-    setShowToggleMenu(true);
+    setShowToggleMenu(!showToggleMenu);
   };
   const handleMenuToggleCloseClick = () => {
     setShowToggleMenu(false);
@@ -63,7 +63,7 @@ const Header = () => {
       <div className='header-top-wrap-four'>
         <div className='container'>
           <div className='row align-items-center'>
-            <div className='col-lg-9 col-md-6 col-sm-6'>
+            <div className='col-lg-9 col-md-8 col-sm-6 col-10'>
               <div className='header-top-left-four'>
                 <div className='swiper-container ta-trending-slider'>
                   <div className='swiper-wrapper'>
@@ -73,49 +73,44 @@ const Header = () => {
                           <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' className='logo-style' />
                         </Link>
                       </div>
-                      {/* <div className='col-lg-6 col-md-6 col-sm-10'>
-                        <span className='trending-content-date'>
-                          <FontAwesomeIcon icon='fa-regular fa-calendar' /> February 12, 2024
-                        </span>
-                      </div> */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='col-lg-3 col-md-6'>
+            <div className='col-lg-3 col-md-4 col-sm-6 col-2'>
               <div className='header-top-social header-top-social-two'>
                 <ul className='list-wrap'>
-                  <li>
-                    <span className='social-facebook'>
+                  <li className='social-icons'>
+                    <span>
                       <Link to={setting.social_fb} target='blank'>
                         <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                       </Link>
                     </span>
                   </li>
-                  <li>
-                    <span className='social-twitter'>
+                  <li className='social-icons'>
+                    <span>
                       <Link to={setting.social_twitter} target='blank'>
                         <FontAwesomeIcon icon="fa-brands fa-twitter" />
                       </Link>
                     </span>
                   </li>
-                  <li>
-                    <span className='social-instagram'>
+                  <li className='social-icons'>
+                    <span>
                       <Link to={setting.social_insta} target='blank'>
                         <FontAwesomeIcon icon='fa-brands fa-instagram' />
                       </Link>
                     </span>
                   </li>
-                  <li>
-                    <span className='social-linkedin'>
+                  <li className='social-icons'>
+                    <span>
                       <Link to={setting.social_linkedin} target='blank'>
                         <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                       </Link>
                     </span>
                   </li>
-                  <li>
-                    <span className='social-youtube'>
+                  <li className='social-icons'>
+                    <span>
                       <Link to={setting.social_youtube} target='blank'>
                         <FontAwesomeIcon icon="fa-brands fa-youtube" />
                       </Link>
@@ -123,6 +118,134 @@ const Header = () => {
                   </li>
                 </ul>
               </div>
+              <div className="mobile-nav-toggler">
+                <Link
+                  to="#"
+                  onClick={handleMenuToggleOpenClick}
+                  className="nav-bar-link"
+                >
+                  <FontAwesomeIcon icon="fas fa-bars" />
+                </Link>
+              </div>
+              {showToggleMenu && (
+                <div
+                  className="mobile-menu"
+                onMouseLeave={handleMenuToggleCloseClick}
+                >
+                  <nav className="menu-box">
+                    <div className="menu-outer row">
+                      <ul className="navigation">
+                        <li
+                          className={
+                            (selectCategory ? selectCategory : activeLink) ===
+                              "home"
+                              ? "active"
+                              : ""
+                          }
+                        >
+                          <Link
+                            to="/"
+                            onClick={() => handleLinkClick("home")}
+                            className="nav-bar-link"
+                          >
+                            Home
+                          </Link>
+                        </li>
+                        {categories.slice(0, 7).map((category, index) => (
+                          <li
+                            className="active menu-item-has-children "
+                            key={index}
+                          >
+                            <Link
+                              to={`/news/${category.data_query}`}
+                              onClick={() => handleLinkClick(category.name)}
+                              className="nav-bar-link"
+                              key={category.id}
+                            >
+                              {category.name}
+                            </Link>
+                          </li>
+                        ))}
+                        <li className="active menu-item-has-children nav-bar-link">
+                          <Link
+
+                            onClick={handleShowToggleSubMenu}
+                            className="nav-bar-link"
+                          >
+                            View More{" "}
+                            <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
+                          </Link>
+                          <ul
+                            className="sub-menu"
+                            style={{ display: "block" }}
+                          >
+                            {showToggleSubMenu &&
+                              categories.slice(7).map((category) => (
+                                <li key={category.id}>
+                                  <Link
+                                    key={category.id}
+                                    to={`/news/${category.data_query}`}
+                                    onClick={() =>
+                                      handleLinkClick(category.name)
+                                    }
+                                    className="nav-bar-link"
+                                  >
+                                    {category.name}
+                                  </Link>
+                                </li>
+                              ))}
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="row left-menu-store">
+                      <Link to="https://play.google.com/store/" className="my-2"> <img src={googleplayimg} /> </Link>
+                      <div className='toggle-menu-social toggle-menu-social-two social-container mb-10'>
+                        <ul className='list-wrap'>
+                          <li >
+                            <span className='social-facebook' style={{marginLeft:'5px'}}>
+                              <Link to={setting.social_fb} target='blank'>
+                                <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
+                              </Link>
+                            </span>
+                          </li>
+                          <li className=''>
+                            <span className='social-twitter'>
+                              <Link to={setting.social_twitter} target='blank'>
+                                <FontAwesomeIcon icon="fa-brands fa-twitter" />
+                              </Link>
+                            </span>
+                          </li>
+                          <li className=''>
+                            <span className='social-instagram'>
+                              <Link to={setting.social_insta} target='blank'>
+                                <FontAwesomeIcon icon='fa-brands fa-instagram' />
+                              </Link>
+                            </span>
+                          </li>
+                          <li className=''>
+                            <span className='social-linkedin'>
+                              <Link to={setting.social_linkedin} target='blank'>
+                                <FontAwesomeIcon icon='fa-brands fa-linkedin' />
+                              </Link>
+                            </span>
+                          </li>
+                          <li className=''>
+                            <span className='social-youtube'>
+                              <Link to={setting.social_youtube} target='blank'>
+                                <FontAwesomeIcon icon="fa-brands fa-youtube" />
+                              </Link>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <span className="mt-2 left-menu-footer mb-10"> <Link to={'/about'}>About Us &middot; </Link><Link to={'/about'}>Privacy Policy</Link></span>
+                    </div>
+                  </nav>
+                </div>
+              )}
             </div>
           </div>
         </div>

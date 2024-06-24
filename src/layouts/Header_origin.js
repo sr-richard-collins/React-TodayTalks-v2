@@ -213,9 +213,7 @@ const Header = () => {
                     >
                       <FontAwesomeIcon icon="fas fa-bars" />
                     </Link>
-                  </div>
-                </div>
-                {showToggleMenu && (
+                    {showToggleMenu && (
                   <div
                     className="mobile-menu"
                     onMouseLeave={handleMenuToggleCloseClick}
@@ -331,6 +329,9 @@ const Header = () => {
                     </nav>
                   </div>
                 )}
+                  </div>
+                </div>
+               
               </div>
             </div>
           </div>
