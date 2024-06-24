@@ -1,19 +1,18 @@
 import React from "react";
-// import ReactDOM from "react-dom";
-import { createRoot } from "react-dom/client";
-// import "./assets/scss/style.scss";
-import App from "./App";
-import reportWebVitals from "./utils/reportWebVitals";
-// import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { createRoot } from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./store";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+
+import App from "./App";
+import reportWebVitals from "./utils/reportWebVitals";
+import { store, persistor } from "./store";
+
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 

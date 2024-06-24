@@ -19,9 +19,9 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showToggleSubMenu, setShowToggleSubMenu] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
-  const moreCategories = categories.filter(
-    (category) => category.position === "more"
-  );
+  // const moreCategories = categories.filter(
+  //   (category) => category.position === "more"
+  // );
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -37,7 +37,6 @@ const Header = () => {
 
   const handleViewMoreHover = () => {
     setShowSubMenu(true);
-    // debugger;
   };
 
   const handleViewMoreLeave = () => {
@@ -57,10 +56,10 @@ const Header = () => {
     
   };
 
-  const getCurrentDate = () => {
-    const options = { month: "long", day: "numeric", year: "numeric" };
-    return new Date().toLocaleDateString("en-US", options);
-  };
+  // const getCurrentDate = () => {
+  //   const options = { month: "long", day: "numeric", year: "numeric" };
+  //   return new Date().toLocaleDateString("en-US", options);
+  // };
 
   return (
     <header className="header-style-six">

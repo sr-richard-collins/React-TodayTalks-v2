@@ -15,7 +15,7 @@ const Contact = lazy(() => import("../views/Contact.js"));
 const About = lazy(() => import("../views/AboutUs.js"));
 const NotFoundError = lazy(() => import("../views/error/NotFoundError.js"));
 const ServerError = lazy(() => import("../views/error/ServerError.js"));
-const NoPost = lazy(() => import("../views/error/No_post.js"));
+// const NoPost = lazy(() => import("../views/error/No_post.js"));
 // const NotFound = lazy(() => import("../views/NotFound.js")); // 404 Error page
 // const ServerError = lazy(() => import("../views/ServerError.js")); // 500 Error page
 
@@ -36,7 +36,7 @@ const ThemeRoutes = [
       { path: "/:title", exact: true, element: <BlogsDetails /> },
       { path: "/contact", exact: true, element: <Contact /> },
       { path: "/about", exact: true, element: <About /> },
-      { path: "*", element: <Navigate to="/404" /> }, // Navigate to 404 page for unmatched routes
+      { path: "*", element: <Navigate to="/404" /> },
     ],
   },
   {
