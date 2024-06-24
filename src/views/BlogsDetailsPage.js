@@ -42,7 +42,7 @@ const BlogsDetails = () => {
                 <div className='col-70'>
                   {post && <BlogDetailComponent post={post} />}
                   {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
-                  <CommentComponent />
+                  <CommentComponent post={post} />
                 </div>
                 <div className='col-30'></div>
               </div>
