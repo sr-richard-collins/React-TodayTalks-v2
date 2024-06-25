@@ -26,12 +26,12 @@ const Home = () => {
           <meta name='description' content={setting.seo_description} />
         </Helmet>
 
-        <section className="spotlight-post-area pt-20 pb-60">
-          <div className="spotlight-post-inner-wrap">
-            <div className="container">
-              <div className="row justify-content-center">
-                  <SpotLightSection />
-                  <CategoriesWithBlogSection />
+        <section className='spotlight-post-area pt-20 pb-60'>
+          <div className='spotlight-post-inner-wrap'>
+            <div className='container'>
+              <div className='row justify-content-center'>
+                <SpotLightSection />
+                <CategoriesWithBlogSection />
               </div>
             </div>
           </div>

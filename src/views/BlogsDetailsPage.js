@@ -30,20 +30,20 @@ const BlogsDetails = () => {
   if (loading) return <Loader />;
   return (
     <>
-      <section className="spotlight-post-area pt-10 pb-60">
-        <div className="spotlight-post-inner-wrap">
-          <div className="container">
-            <div className="row">
+      <section className='spotlight-post-area pt-10 pb-60'>
+        <div className='spotlight-post-inner-wrap'>
+          <div className='container'>
+            <div className='row'>
               <Breadcrumb title={title} />
-              <div className="col-70">
+              <div className='col-70'>
                 {post && <BlogDetailComponent post={post} />}
                 {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
-                <CommentComponent />
+                <CommentComponent post={post} />
               </div>
             </div>
           </div>
         </div>
-    </section >
+      </section>
     </>
   );
 };
