@@ -5,6 +5,7 @@ import { IMAGE_BASE_URL } from '../config';
 import { Helmet } from 'react-helmet';
 import axios from '../config';
 import { useDispatch, useSelector } from 'react-redux';
+import CustomPagination from './CustomPagination';
 import { format } from 'date-fns';
 
 const CommentComponent = ({ post }) => {
@@ -13,20 +14,35 @@ const CommentComponent = ({ post }) => {
   const [comments, setComments] = useState([]);
   const textareaRef = useRef(null); // Ref to store reference to the textarea element
   const [isReplyClicked, setIsReplyClicked] = useState(false); // State to track if Reply is clicked
+  const [currentPage, setCurrentPage] = useState(1);
+  const [commentsPerPage, setCommentsPerPage] = useState(10);
+  const [totalComments, setTotalComments] = useState(0);
 
   useEffect(() => {
     // Fetch data from Laravel backend
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/user/getComments?id=${post.id}`);
-        setComments(response.data);
+        const response = await axios.get(`/api/user/getComments`, {
+          params: {
+            id: post.id,
+            currentPage: currentPage,
+            commentsPerPage,
+          },
+        });
+        if (commentsPerPage === 'all') {
+          setComments(response.data);
+          setTotalComments(response.data.length);
+        } else {
+          setComments(response.data.data);
+          setTotalComments(response.data.total);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [currentPage, commentsPerPage]);
 
   useEffect(() => {
     if (isReplyClicked && textareaRef.current) {
@@ -37,6 +53,16 @@ const CommentComponent = ({ post }) => {
 
   const handleReplyClick = () => {
     setIsReplyClicked(true); // Set isReplyClicked to true when Reply is clicked
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  };
+
+  const totalPages = Math.ceil(totalComments / commentsPerPage);
+
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handlePerPageChange = (event) => {
+    setCommentsPerPage(event.target.value);
+    setCurrentPage(1); // Reset to the first page
   };
 
   const renderComments = (comments) => {
@@ -83,8 +109,19 @@ const CommentComponent = ({ post }) => {
               <div>
                 <div className='blog-details-wrap'>
                   <div className='comments-wrap'>
-                    <h3 className='comments-wrap-title'>Comments</h3>
+                    {comments.length ? <h3 className='comments-wrap-title'>Comments</h3> : ''}
                     {renderComments(comments)}
+                    <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                    <form className='form-inline ml-3'>
+                      <label htmlFor='per_page' className='mr-2'>
+                        Show:
+                      </label>
+                      <select name='per_page' id='per_page' className='form-control' value={commentsPerPage} onChange={handlePerPageChange}>
+                        <option value='10'>10/page</option>
+                        <option value='20'>20/page</option>
+                        <option value='all'>All</option>
+                      </select>
+                    </form>
                   </div>
                   <div className='comment-respond'>
                     <h3 className='comment-reply-title'>Post a comment</h3>
