@@ -75,18 +75,14 @@ const Blog = ({ title, isHomepage }) => {
           </>
         }
       >
-        
+
         {posts.length ? (
           <section className='blog-area pt-20 pb-60'>
             <div className='container'>
               <div className='author-inner-wrap'>
                 <div className='row justify-content-center'>
-                  <div className='col-3'>
-                    <Menu />
-                  </div>
-                  <div className='col-9 row'>
-                    <Breadcrumb title={title} />
-                    <div className='col-70 pt-20'>
+                  <Breadcrumb title={title} />
+                  <div className='col-70 pt-20'>
                     <div className='weekly-post-item-wrap-three'>
                       <div className='row'>
                         {posts.map((post) => (
@@ -101,7 +97,7 @@ const Blog = ({ title, isHomepage }) => {
                                 <h2 className='post-title'>
                                   <Link to={`/${post.seo_slug}`}>{post.title}</Link>
                                 </h2>
-                                
+
                                 <p>{post.subTitle}</p>
                                 <div className='blog-post-meta'>
                                   <ul className='list-wrap mt-3'>
@@ -158,10 +154,8 @@ const Blog = ({ title, isHomepage }) => {
                         </form>
                       </>
                     )}
-                    </div>
-                    <div className='col-30'></div>
                   </div>
-                  
+                  <div className='col-30'></div>
                 </div>
               </div>
             </div>
