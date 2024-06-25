@@ -30,15 +30,8 @@ const Home = () => {
           <div className="spotlight-post-inner-wrap">
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-lg-3 col-md-3 ">
-                  <Menu />
-                </div>
-                <div className="col-lg-7 col-md-9 col-12">
                   <SpotLightSection />
                   <CategoriesWithBlogSection />
-                </div>
-                <div className="col-lg-2"></div>
-              
               </div>
             </div>
           </div>

@@ -34,20 +34,16 @@ const BlogsDetails = () => {
         <div className="spotlight-post-inner-wrap">
           <div className="container">
             <div className="row">
-              <div className="col-3"><Menu /></div>
-              <div className="col-9 row">
-                <Breadcrumb title={title} />
-                <div className="col-70">
-                  {post && <BlogDetailComponent post={post} />}
-                  {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
-                  <CommentComponent />
-                </div>
-                <div className="col-30"></div>
+              <Breadcrumb title={title} />
+              <div className="col-70">
+                {post && <BlogDetailComponent post={post} />}
+                {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
+                <CommentComponent />
               </div>
             </div>
           </div>
         </div>
-      </section>
+    </section >
     </>
   );
 };
