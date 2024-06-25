@@ -42,7 +42,7 @@ const CommentComponent = ({ post }) => {
     };
 
     fetchData();
-  }, [currentPage, commentsPerPage]);
+  }, [post, currentPage, commentsPerPage]);
 
   useEffect(() => {
     if (isReplyClicked && textareaRef.current) {
@@ -111,17 +111,23 @@ const CommentComponent = ({ post }) => {
                   <div className='comments-wrap'>
                     {comments.length ? <h3 className='comments-wrap-title'>Comments</h3> : ''}
                     {renderComments(comments)}
-                    <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-                    <form className='form-inline ml-3'>
-                      <label htmlFor='per_page' className='mr-2'>
-                        Show:
-                      </label>
-                      <select name='per_page' id='per_page' className='form-control' value={commentsPerPage} onChange={handlePerPageChange}>
-                        <option value='10'>10/page</option>
-                        <option value='20'>20/page</option>
-                        <option value='all'>All</option>
-                      </select>
-                    </form>
+                    {comments.length ? (
+                      <>
+                        <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                        <form className='form-inline ml-3'>
+                          <label htmlFor='per_page' className='mr-2'>
+                            Show:
+                          </label>
+                          <select name='per_page' id='per_page' className='form-control' value={commentsPerPage} onChange={handlePerPageChange}>
+                            <option value='10'>10/page</option>
+                            <option value='20'>20/page</option>
+                            <option value='all'>All</option>
+                          </select>
+                        </form>
+                      </>
+                    ) : (
+                      ''
+                    )}
                   </div>
                   <div className='comment-respond'>
                     <h3 className='comment-reply-title'>Post a comment</h3>
