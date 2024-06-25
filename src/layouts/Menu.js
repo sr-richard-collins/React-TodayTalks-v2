@@ -58,62 +58,38 @@ const Menu = () => {
   };
 
   return (
-    <div className='left-sub-menu'>
-      <div className="container">
-        <div className="row left-menu-content">
-          <ul className="dropdown-content mb-10" >
-            <li
-              className={
-                (selectCategory ? selectCategory : activeLink) === "home"
-                  ? "active"
-                  : ""
-              }
-            >
-              <Link
-                to="/"
-                onClick={() => handleLinkClick("home")}
-                className="nav-bar-link"
+    <>
+      <div className='left-sub-menu'>
+        <div className="container">
+          <div className="row left-menu-content">
+            <ul className="dropdown-content mb-10" >
+              <li
+                className={
+                  (selectCategory ? selectCategory : activeLink) === "home"
+                    ? "active"
+                    : ""
+                }
               >
-                Home
-              </Link>
-            </li>
-            {categories.length > 8 &&
-              categories.slice(0, 7).map((category) => (
-                <li
-                  key={category.id}
-                  className={
-                    (selectCategory ? selectCategory : activeLink) ===
-                      category.name
-                      ? "active"
-                      : ""
-                  }
+                <Link
+                  to="/"
+                  onClick={() => handleLinkClick("home")}
+                  className="nav-bar-link"
                 >
-                  <Link
-                    to={`/news/${category.data_query}`}
-                    onClick={() => handleLinkClick(category.name)}
-                    className="nav-bar-link"
-                  >
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
-            <li>
-              <Link
-                to="#"
-                onClick={() => setShowDropleft(!showDropleft)}
-                className="nav-bar-link"
-              >
-                View More
-                <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
-              </Link>
-              <ul className={`left-menu-dropleft dropdown-content ${showDropleft ? 'show-dropleft' : ''}`} onMouseLeave={handleViewMoreLeave}>
-                {categories.slice(7).map((category) => (
+                  Home
+                </Link>
+              </li>
+              {categories.length > 8 &&
+                categories.slice(0, 7).map((category) => (
                   <li
-                    className={activeLink === category.name ? "active" : ""}
                     key={category.id}
+                    className={
+                      (selectCategory ? selectCategory : activeLink) ===
+                        category.name
+                        ? "active"
+                        : ""
+                    }
                   >
                     <Link
-                      key={category.id}
                       to={`/news/${category.data_query}`}
                       onClick={() => handleLinkClick(category.name)}
                       className="nav-bar-link"
@@ -122,19 +98,44 @@ const Menu = () => {
                     </Link>
                   </li>
                 ))}
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div className="row left-menu-store">
-          <Link to="https://play.google.com/store/" className="mb-10"> <img src={googleplayimg} /> </Link>
-          
-        </div>
-        <div className="row">
-          <span className="mt-2 left-menu-footer mb-10"> <Link to={'/about'}>About Us &middot; </Link><Link to={'/about'}>Privacy Policy</Link></span>
+              <li>
+                <Link
+                  to="#"
+                  onClick={() => setShowDropleft(!showDropleft)}
+                  className="nav-bar-link"
+                >
+                  View More
+                  <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
+                </Link>
+                <ul className={`left-menu-dropleft dropdown-content ${showDropleft ? 'show-dropleft' : ''}`} onMouseLeave={handleViewMoreLeave}>
+                  {categories.slice(7).map((category) => (
+                    <li
+                      className={activeLink === category.name ? "active" : ""}
+                      key={category.id}
+                    >
+                      <Link
+                        key={category.id}
+                        to={`/news/${category.data_query}`}
+                        onClick={() => handleLinkClick(category.name)}
+                        className="nav-bar-link"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div className="row left-menu-store">
+            <Link to="https://play.google.com/store/" className="mb-10"> <img src={googleplayimg} /> </Link>
+          </div>
+          <div className="row">
+            <span className="mt-2 left-menu-footer mb-10"> <Link to={'/about'}>About Us &middot; </Link><Link to={'/about'}>Privacy Policy</Link></span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -6,7 +6,30 @@ import Menu from "./Menu";
 // import { Container } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+
+    const handler = () => setMatches(mediaQuery.matches);
+
+    // Initial check
+    handler();
+
+    // Listen for changes in the media query
+    mediaQuery.addListener(handler);
+
+    return () => {
+      mediaQuery.removeListener(handler);
+    };
+  }, [query]);
+
+  return matches;
+};
+
 const FullLayout = () => {
+  const isMobile = useMediaQuery('(max-width: 767.98px)');
 
   const handleTopScreen = () => {
     window.scrollTo(0, 0);
@@ -20,20 +43,16 @@ const FullLayout = () => {
 
       <Header />
       <section className="pt-70 pb-60">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-2 col-md-3 ">
-              <Menu />
-            </div>
-            <div className="col-lg-7 col-md-9 col-12">
-              <main className="fix">
-                <Outlet />
-              </main>
-            </div>
-            <div className="col-lg-3"></div>
-
-          </div>
-        </div>
+        <Menu/>
+        {isMobile ? (
+          <main className="fix">
+            <Outlet />
+          </main>
+        ) : (
+          <main className="fix" style={{ marginLeft: '245px' }}>
+            <Outlet />
+          </main>
+        )}
       </section>
       {/* <Footer /> */}
     </>

@@ -58,58 +58,56 @@ const BlogDetailComponent = ({ post }) => {
         <meta name="keywords" content={seo.seo_keyword} />
         <meta name="description" content={seo.seo_description} />
       </Helmet>
-      <section className="blog-details-area pt-60 pb-60">
+      <section className="blog-details-area pt-20 pb-60">
         <div className="container">
           <div className="author-inner-wrap">
             <div className="row justify-content-center">
-              <div >
-                <div className="blog-details-wrap">
-                  <div className="blog-details-content">
-                    <div className="blog-details-content-top">
-                      <a className="post-tag">{post.category_name}</a>
-                      <h2 className="title">{post.title}</h2>
-                      <div className="bd-content-inner">
-                        <div className="blog-post-meta">
-                          <ul className="list-wrap">
-                            <li style={{fontSize:'15px'}}>
-                              <FontAwesomeIcon icon="fa-regular fa-calendar" />
-                              {new Date(post.created_at).toLocaleDateString()}
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="blog-details-social">
-                          <ul className="list-wrap">
-                            <li>
-                              <Link onClick={handleFacebookShare}>
-                                <FontAwesomeIcon icon="fa-brands fa-facebook-f" />
-                              </Link>
-                            </li>
-                            <li>
-                              <Link onClick={handleTwitterShare}>
-                                <FontAwesomeIcon icon="fa-brands fa-x-twitter" />
-                              </Link>
-                            </li>
-                            <li>
-                              <Link onClick={handleTelegramShare}>
-                                <FontAwesomeIcon icon="fa-brands fa-telegram" />
-                              </Link>
-                            </li>
-                            <li>
-                              <Link onClick={handleLinkedInShare}>
-                                <FontAwesomeIcon icon="fa-brands fa-linkedin" />
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
+              <div className="blog-details-wrap">
+                <div className="blog-details-content">
+                  <div className="blog-details-content-top">
+                    <a className="post-tag">{post.category_name}</a>
+                    <h2 className="title">{post.title}</h2>
+                    <div className="bd-content-inner">
+                      <div className="blog-post-meta">
+                        <ul className="list-wrap">
+                          <li style={{fontSize:'15px'}}>
+                            <FontAwesomeIcon icon="fa-regular fa-calendar" />
+                            {new Date(post.created_at).toLocaleDateString()}
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="blog-details-social">
+                        <ul className="list-wrap">
+                          <li>
+                            <Link onClick={handleFacebookShare}>
+                              <FontAwesomeIcon icon="fa-brands fa-facebook-f" />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link onClick={handleTwitterShare}>
+                              <FontAwesomeIcon icon="fa-brands fa-x-twitter" />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link onClick={handleTelegramShare}>
+                              <FontAwesomeIcon icon="fa-brands fa-telegram" />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link onClick={handleLinkedInShare}>
+                              <FontAwesomeIcon icon="fa-brands fa-linkedin" />
+                            </Link>
+                          </li>
+                        </ul>
                       </div>
                     </div>
-                    <div className="blog-details-thumb">
-                      <img src={IMAGE_BASE_URL + post.img} alt="" />
-                    </div>
-                    <div
-                      dangerouslySetInnerHTML={{ __html: post.description }}
-                    />
                   </div>
+                  <div className="blog-details-thumb">
+                    <img src={IMAGE_BASE_URL + post.img} alt="" />
+                  </div>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: post.description }}
+                  />
                 </div>
               </div>
             </div>

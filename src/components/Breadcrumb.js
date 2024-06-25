@@ -6,7 +6,7 @@ const Breadcrumb = ({ title }) => {
   return (
     <>
       <div className='breadcrumb-area'>
-        <div className='container'>
+        <div className='container content-container'>
           <div className='row'>
             <div className='col-lg-12'>
               <div className='breadcrumb-content'>

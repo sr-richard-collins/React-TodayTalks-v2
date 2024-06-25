@@ -26,7 +26,6 @@ if ($('.menu-area li.menu-item-has-children ul').length) {
 
 //Mobile Nav Hide Show
 if ($('.mobile-menu').length) {
-
 	var mobileMenuContent = $('.menu-area .main-menu').html();
 	$('.mobile-menu .menu-box .menu-outer').append(mobileMenuContent);
 

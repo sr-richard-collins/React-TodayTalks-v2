@@ -815,9 +815,6 @@
 .left-sub-menu{
     display: none;
 }
-.logo-style {
-    width: 100%;
-}
 .header-top-social-two {
     display: none;
 }
@@ -1170,10 +1167,18 @@
 
 
 }
+@media only screen and (min-width:993px) and (max-width:1199.98px){
+    /* .content-breacrumb {
+        width: 70% !important;
+      } */
+    
+}
+
 @media only screen and (min-width: 767px) and (max-width: 992px) {
     .row{
         /* margin-right: 0; */
     }
+   
 
 }
 
