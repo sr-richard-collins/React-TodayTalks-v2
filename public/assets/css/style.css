@@ -2883,8 +2883,8 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-wrap: nowrap;
+  gap: 10px;
 }
 
 .blog-post-meta .list-wrap li {
@@ -4215,6 +4215,7 @@ label {
 
 .spotlight-post-item-wrap {
   margin-bottom: 30px;
+  margin-left: 20px;
 }
 
 .spotlight-post-item-wrap .row .col-57 {
@@ -6479,6 +6480,9 @@ label {
   padding: 42px 42px;
   background: var(--tg-gray-three);
 }
+.blog-area{
+  margin-left: 12px;
+}
 
 .blog-avatar-img {
   width: 115px;
@@ -8180,6 +8184,7 @@ label {
   position: fixed;
   margin: auto;
   top: 0;
+  left: 0;
   z-index: 99;
   background: var(--tg-white);
   -webkit-animation: 1000ms ease-in-out 0s normal none 1 running fadeInDown;
@@ -8187,13 +8192,13 @@ label {
   -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
   box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
   border-radius: 0;
-  width: 20%;
+  width: 18.9%;
   font-size: 20px;
   display: block;
 }
 
 .left-sub-menu {
-  font-size: 20px;
+  font-size: 15px;
   display: block;
   max-width: 300px;
   border-bottom: 1px solid #e4e4e4;
@@ -8288,7 +8293,7 @@ label {
 .left-menu-social .list-wrap {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   font-size: 1rem;
 }
 
@@ -8539,6 +8544,7 @@ label {
 .header-style-six .container .row > span {
   padding-right: 0 !important;
   padding-left: 0 !important;
+  font-size: 14px !important;
 }
 
 .header-style-six .container .row span a {
