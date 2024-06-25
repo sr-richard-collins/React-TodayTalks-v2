@@ -51,33 +51,33 @@
 	/*=============================================
 		=     Menu sticky & Scroll to top      =
 	=============================================*/
-	$(window).on('scroll', function () {
-		var scroll = $(window).scrollTop();
-		if (scroll < 245) {
-			$("#sticky-header").removeClass("sticky-menu");
-			$('.scroll-to-target').removeClass('open');
-			$("#header-fixed-height").removeClass("active-height");
-			$(".sticky-logo-container").removeClass("show-logo");
-			$(".social-container").removeClass("show-social-icons");
-		} else {
-			$("#sticky-left-menu").addClass("sticky-left-menu");
-			$('.scroll-to-target').addClass('open');
-			$("#header-fixed-height").addClass("active-height");
-			$(".sticky-logo-container").addClass("show-logo");
-			$(".social-container").addClass("show-social-icons");
-			// $(".left-menu-dropleft").attr("left", "100%");
-		}
-		if (scroll < 245) {
-			$("#sticky-left-menu").removeClass("sticky-left-menu");
-			$('.scroll-to-target').removeClass('open');
-			$("#header-fixed-height").removeClass("active-height");
+	// $(window).on('scroll', function () {
+	// 	var scroll = $(window).scrollTop();
+	// 	if (scroll < 245) {
+	// 		// $("#sticky-header").removeClass("sticky-menu");
+	// 		// $('.scroll-to-target').removeClass('open');
+	// 		// $("#header-fixed-height").removeClass("active-height");
+	// 		// $(".sticky-logo-container").removeClass("show-logo");
+	// 		// $(".social-container").removeClass("show-social-icons");
+	// 	} else {
+	// 		// $("#sticky-left-menu").addClass("sticky-left-menu");
+	// 		// $('.scroll-to-target').addClass('open');
+	// 		// $("#header-fixed-height").addClass("active-height");
+	// 		// $(".sticky-logo-container").addClass("show-logo");
+	// 		// $(".social-container").addClass("show-social-icons");
+	// 		// $(".left-menu-dropleft").attr("left", "100%");
+	// 	}
+	// 	if (scroll < 245) {
+	// 		// $("#sticky-left-menu").removeClass("sticky-left-menu");
+	// 		// $('.scroll-to-target').removeClass('open');
+	// 		// $("#header-fixed-height").removeClass("active-height");
 
-		} else {
-			$("#sticky-header").addClass("sticky-menu");
-			$('.scroll-to-target').addClass('open');
-			$("#header-fixed-height").addClass("active-height");
-		}
-	});
+	// 	} else {
+	// 		// $("#sticky-header").addClass("sticky-menu");
+	// 		// $('.scroll-to-target').addClass('open');
+	// 		// $("#header-fixed-height").addClass("active-height");
+	// 	}
+	// });
 
 
 	/*=============================================

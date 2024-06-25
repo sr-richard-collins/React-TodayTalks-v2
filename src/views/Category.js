@@ -30,7 +30,6 @@ const Category = () => {
         <meta name='description' content={seo.seo_description} />
       </Helmet>
       <Blog title={selectCategory.name} isHomepage={0} />
-      {/* <Newsletter /> */}
     </>
   );
 };

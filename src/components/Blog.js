@@ -77,12 +77,11 @@ const Blog = ({ title, isHomepage }) => {
       >
 
         {posts.length ? (
-          <section className='blog-area pt-20 pb-60'>
+          <section className='blog-area pb-60'>
             <div className='container'>
               <div className='author-inner-wrap'>
                 <div className='row justify-content-center'>
                   <Breadcrumb title={title} />
-                  <div className='col-70 pt-20'>
                     <div className='weekly-post-item-wrap-three'>
                       <div className='row'>
                         {posts.map((post) => (
@@ -155,10 +154,8 @@ const Blog = ({ title, isHomepage }) => {
                       </>
                     )}
                   </div>
-                  <div className='col-30'></div>
                 </div>
               </div>
-            </div>
           </section >
         ) : (
           isHomepage === 0 && <NoPost />

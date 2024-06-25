@@ -429,6 +429,13 @@ label {
 /*=============================
 	02. Header
 ===============================*/
+.header-style-six {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .custom-container {
   max-width: 1860px;
 }
@@ -1381,23 +1388,15 @@ label {
 
 .mobile-menu {
   position: absolute;
-  right: 220px;
+  right: 0px;
   top: 0;
-  width: 220px;
-  padding-right: 30px;
+  width: 255px;
   max-width: 100%;
-  height: 600px;
+  height: 525px;
   z-index: 999;
   transition: right 0.3s ease;
   border-radius: 0px;
-  transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  -moz-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  -webkit-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  -ms-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) e;
-  -o-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  -webkit-transform: translateX(101%);
-  -ms-transform: translateX(101%);
-  transform: translateX(101%);
+  -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInRight;
 }
 
 .mobile-menu .navbar-collapse {
@@ -1454,13 +1453,13 @@ label {
   position: absolute;
   left: 0px;
   top: 0px;
-  /* width: 100%; */
+  width: 100%;
   height: 100%;
   max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   background: var(--tg-white);
-  padding: 0px 0px;
+  padding: 0px 20px 0px 20px;
   z-index: 5;
   box-shadow: -9px 0 14px 0px rgb(0 0 0 / 6%);
 }
@@ -1476,8 +1475,8 @@ label {
 
 .mobile-menu .close-btn {
   position: absolute;
-  right: 15px;
-  top: 28px;
+  right: 10px;
+  top: 5px;
   line-height: 30px;
   width: 35px;
   text-align: center;
@@ -1485,9 +1484,15 @@ label {
   color: #292b37;
   cursor: pointer;
   z-index: 10;
-  -webkit-transition: all 0.9s ease;
+  /* -webkit-transition: all 0.9s ease;
   -o-transition: all 0.9s ease;
-  transition: all 0.9s ease;
+  transition: all 0.9s ease; */
+  -webkit-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+.mobile-menu .close-btn:hover{
+  color: var(--tg-primary-color);
 }
 
 /* .mobile-menu-visible .mobile-menu .close-btn {
@@ -8036,7 +8041,7 @@ label {
 }
 
 .logo-style {
-  width: 35%;
+  width: 60% !important;
 }
 
 .order-3 {
@@ -8203,27 +8208,9 @@ label {
   max-width: 300px;
   border-bottom: 1px solid #e4e4e4;
   background: var(--tg-white);
-}
-
-.sticky-logo-container {
-  display: none;
-}
-
-.sticky-logo-container.show-logo {
-  display: block;
-  height: 50px;
-  position: relative;
-  overflow: hidden;
-}
-
-.sticky-logo-container.show-logo img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 100%;
-  width: auto;
-  height: auto;
+  position: fixed;
+  z-index: 2;
+  padding-top: 20px;
 }
 
 .left-sub-menu .dropdown-content {
@@ -8292,6 +8279,7 @@ label {
 
 .left-menu-social .list-wrap {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 10px;
   font-size: 1rem;
@@ -8539,6 +8527,12 @@ label {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+.left-menu-footer a{
+  color: #183354 !important;
+}
+.left-menu-footer a:hover{
+  color: var(--tg-primary-color) !important;
 }
 
 .header-style-six .container .row > span {

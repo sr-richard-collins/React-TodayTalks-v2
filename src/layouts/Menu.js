@@ -58,42 +58,62 @@ const Menu = () => {
   };
 
   return (
-    <header className='header-style-six'>
-      <div id='header-fixed-height'></div>
-      <div id='sticky-left-menu' className='left-sub-menu'>
-        <div className='sticky-logo-container'>
-          <img id='sticky-logo' src={IMAGE_BASE_URL + setting.site_logo} alt='logo' />
-        </div>
-        <div className="container">
-          <div className="row left-menu-content">
-            <ul className="dropdown-content mb-10" >
-              <li
-                className={
-                  (selectCategory ? selectCategory : activeLink) === "home"
-                    ? "active"
-                    : ""
-                }
+    <div className='left-sub-menu'>
+      <div className="container">
+        <div className="row left-menu-content">
+          <ul className="dropdown-content mb-10" >
+            <li
+              className={
+                (selectCategory ? selectCategory : activeLink) === "home"
+                  ? "active"
+                  : ""
+              }
+            >
+              <Link
+                to="/"
+                onClick={() => handleLinkClick("home")}
+                className="nav-bar-link"
               >
-                <Link
-                  to="/"
-                  onClick={() => handleLinkClick("home")}
-                  className="nav-bar-link"
+                Home
+              </Link>
+            </li>
+            {categories.length > 8 &&
+              categories.slice(0, 7).map((category) => (
+                <li
+                  key={category.id}
+                  className={
+                    (selectCategory ? selectCategory : activeLink) ===
+                      category.name
+                      ? "active"
+                      : ""
+                  }
                 >
-                  Home
-                </Link>
-              </li>
-              {categories.length > 8 &&
-                categories.slice(0, 7).map((category) => (
+                  <Link
+                    to={`/news/${category.data_query}`}
+                    onClick={() => handleLinkClick(category.name)}
+                    className="nav-bar-link"
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            <li>
+              <Link
+                to="#"
+                onClick={() => setShowDropleft(!showDropleft)}
+                className="nav-bar-link"
+              >
+                View More
+                <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
+              </Link>
+              <ul className={`left-menu-dropleft dropdown-content ${showDropleft ? 'show-dropleft' : ''}`} onMouseLeave={handleViewMoreLeave}>
+                {categories.slice(7).map((category) => (
                   <li
+                    className={activeLink === category.name ? "active" : ""}
                     key={category.id}
-                    className={
-                      (selectCategory ? selectCategory : activeLink) ===
-                        category.name
-                        ? "active"
-                        : ""
-                    }
                   >
                     <Link
+                      key={category.id}
                       to={`/news/${category.data_query}`}
                       onClick={() => handleLinkClick(category.name)}
                       className="nav-bar-link"
@@ -102,83 +122,19 @@ const Menu = () => {
                     </Link>
                   </li>
                 ))}
-              <li>
-                <Link
-                  to="#"
-                  onClick={() => setShowDropleft(!showDropleft)}
-                  className="nav-bar-link"
-                >
-                  View More
-                  <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
-                </Link>
-                <ul className={`left-menu-dropleft dropdown-content ${showDropleft ? 'show-dropleft' : ''}`}  onMouseLeave={handleViewMoreLeave}>
-                    {categories.slice(7).map((category) => (
-                      <li
-                        className={activeLink === category.name ? "active" : ""}
-                        key={category.id}
-                      >
-                        <Link
-                          key={category.id}
-                          to={`/news/${category.data_query}`}
-                          onClick={() => handleLinkClick(category.name)}
-                          className="nav-bar-link"
-                        >
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))}
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div className="row left-menu-store">
-            <Link to="https://play.google.com/store/" className="mb-10"> <img src={googleplayimg} /> </Link>
-            <div className='left-menu-social social-container mb-10'>
-              <ul className='list-wrap row justify-content-center'>
-                <li className='social-icons col'>
-                  <span>
-                    <Link to={setting.social_fb} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
-                    </Link>
-                  </span>
-                </li>
-                <li className='social-icons col'>
-                  <span>
-                    <Link to={setting.social_twitter} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-twitter' />
-                    </Link>
-                  </span>
-                </li>
-                <li className='social-icons col'>
-                  <span>
-                    <Link to={setting.social_insta} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-instagram' />
-                    </Link>
-                  </span>
-                </li>
-                <li className='social-icons col'>
-                  <span>
-                    <Link to={setting.social_linkedin} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-linkedin' />
-                    </Link>
-                  </span>
-                </li>
-                <li className='social-icons col'>
-                  <span>
-                    <Link to={setting.social_youtube} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-youtube' />
-                    </Link>
-                  </span>
-                </li>
               </ul>
-            </div>
-          </div>
-          <div className="row">
-            <span className="mt-2 left-menu-footer mb-10"> <Link to={'/about'}>About Us &middot; </Link><Link to={'/about'}>Privacy Policy</Link></span>
-          </div>
+            </li>
+          </ul>
+        </div>
+        <div className="row left-menu-store">
+          <Link to="https://play.google.com/store/" className="mb-10"> <img src={googleplayimg} /> </Link>
+          
+        </div>
+        <div className="row">
+          <span className="mt-2 left-menu-footer mb-10"> <Link to={'/about'}>About Us &middot; </Link><Link to={'/about'}>Privacy Policy</Link></span>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 

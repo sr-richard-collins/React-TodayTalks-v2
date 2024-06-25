@@ -19,20 +19,22 @@ const FullLayout = () => {
       </button>
 
       <Header />
-      <div className="row justify-content-center">
-        <div className="col-lg-2 col-md-3 ">
-          <Menu />
+      <section className="pt-70 pb-60">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-2 col-md-3 ">
+              <Menu />
+            </div>
+            <div className="col-lg-7 col-md-9 col-12">
+              <main className="fix">
+                <Outlet />
+              </main>
+            </div>
+            <div className="col-lg-3"></div>
+
+          </div>
         </div>
-        <div className="col-lg-7 col-md-9 col-12">
-          <main className="fix">
-            <Outlet />
-          </main>
-        </div>
-        <div className="col-lg-3"></div>
-
-      </div>
-
-
+      </section>
       {/* <Footer /> */}
     </>
   );

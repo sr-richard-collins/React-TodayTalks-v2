@@ -55,7 +55,6 @@ const Header = () => {
 
   return (
     <header className='header-style-six'>
-      <div id='header-fixed-height'></div>
       <div className='header-top-wrap-four'>
         <div className='container'>
           <div className='row align-items-center'>
@@ -122,10 +121,14 @@ const Header = () => {
               {showToggleMenu && (
                 <div
                   className="mobile-menu"
-                onMouseLeave={handleMenuToggleCloseClick}
+                  onMouseLeave={handleMenuToggleCloseClick}
                 >
                   <nav className="menu-box">
-                    <div className="menu-outer row">
+                    <div class="close-btn mb-2" onClick={handleMenuToggleCloseClick}><FontAwesomeIcon icon="fas fa-times"/></div>
+                    <Link to='/'>
+                          <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' className='logo-style mb-2' />
+                        </Link>
+                    <div className="menu-outer">
                       <ul className="navigation">
                         <li
                           className={
@@ -192,38 +195,38 @@ const Header = () => {
                     </div>
                     <div className="row left-menu-store">
                       <Link to="https://play.google.com/store/" className="my-2"> <img src={googleplayimg} /> </Link>
-                      <div className='toggle-menu-social toggle-menu-social-two social-container mb-10'>
-                        <ul className='list-wrap'>
-                          <li>
-                            <span className='social-facebook' style={{ marginLeft: '5px' }}>
+                      <div className='left-menu-social mb-10'>
+                        <ul className='list-wrap row justify-content-center'>
+                          <li className='social-icons col'>
+                            <span>
                               <Link to={setting.social_fb} target='blank'>
                                 <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                               </Link>
                             </span>
                           </li>
-                          <li>
-                            <span className='social-twitter'>
+                          <li className='social-icons col'>
+                            <span>
                               <Link to={setting.social_twitter} target='blank'>
                                 <FontAwesomeIcon icon='fa-brands fa-twitter' />
                               </Link>
                             </span>
                           </li>
-                          <li>
-                            <span className='social-instagram'>
+                          <li className='social-icons col'>
+                            <span>
                               <Link to={setting.social_insta} target='blank'>
                                 <FontAwesomeIcon icon='fa-brands fa-instagram' />
                               </Link>
                             </span>
                           </li>
-                          <li>
-                            <span className='social-linkedin'>
+                          <li className='social-icons col'>
+                            <span>
                               <Link to={setting.social_linkedin} target='blank'>
                                 <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                               </Link>
                             </span>
                           </li>
-                          <li>
-                            <span className='social-youtube'>
+                          <li className='social-icons col'>
+                            <span>
                               <Link to={setting.social_youtube} target='blank'>
                                 <FontAwesomeIcon icon='fa-brands fa-youtube' />
                               </Link>
