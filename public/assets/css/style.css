@@ -304,6 +304,7 @@ label {
   padding-left: 15px;
   padding-right: 15px;
 }
+
 .content-container {
   margin: unset;
   max-width: unset !important;
@@ -2686,8 +2687,41 @@ label {
   font-weight: 500;
   font-family: var(--tg-heading-font-family);
   color: var(--tg-icon-color);
+
 }
 
+.breadcrumb-content .sub-cagetory-breadcrumb-item {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: var(--tg-heading-font-family);
+  /* color: #183354; */
+  /* gap: 10px; */
+  /* margin-right: 30px; */
+}
+.breadcrumb-content .sub-cagetory-breadcrumb-tag {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: var(--tg-heading-font-family);
+  color: #183354;
+  /* gap: 10px; */
+  
+}
+
+.breadcrumb-content .sub-cagetory-breadcrumb-item span {
+  border: 1px solid #fef3f1;
+  padding: 10px 25px;
+  background-color: #fef3f1;
+  margin-left: 30px;
+}
+.breadcrumb-content .sub-cagetory-breadcrumb-item span:hover{
+  background-color: #183354;
+}
+.breadcrumb-content .sub-cagetory-breadcrumb-item a {
+  color: var(--tg-primary-color);
+}
+.breadcrumb-content .sub-cagetory-breadcrumb-item a:hover{
+  color: var(--tg-white);
+}
 .breadcrumb-content .breadcrumb-item a {
   color: var(--tg-icon-color);
 }
@@ -5369,15 +5403,15 @@ label {
 	23. Editor Post
 ===============================*/
 .editor-post-item {
-  display: flex;
-  gap: 30px;
+  /* display: flex; */
+  /* gap: 30px; */
 }
 
 .editor-post-thumb {
   border-radius: 6px;
   overflow: hidden;
-  width: 50%;
-  height: 150px;
+  width: 100%;
+  height: 300px;
   flex: 0 0 auto;
 }
 
@@ -8600,8 +8634,6 @@ label {
 
 .left-menu-dropleft {
   position: absolute;
-  top: 0;
-  left: 100%;
   margin-left: 0;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -8610,6 +8642,21 @@ label {
   min-width: 280px;
   margin-right: 10px;
   display: none;
+}
+
+.view-more {
+  top: 0;
+  left: 100%;
+}
+
+.sub-category {
+  top: 50px;
+  left: 100%;
+}
+
+.sports-sub-category {
+  top: 370px;
+  left: 100%;
 }
 
 .left-menu-content>ul>li>.dropdown-content>li.active>a,
@@ -8621,4 +8668,3 @@ label {
   display: block;
   z-index: 2;
 }
-

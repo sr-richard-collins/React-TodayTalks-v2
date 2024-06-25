@@ -63,10 +63,10 @@ const HomeBlog = ({ title }) => {
                           </Link>
                         </div>
                         <div className='editor-post-content'>
-                          <h2 className='post-title'>
+                          <h2 className='post-title mt-3'>
                             <Link to={`/${post.seo_slug}`}>{post.title}</Link>
                           </h2>
-                          <div className='blog-post-meta'>
+                          <div className='blog-post-meta my-3'>
                             <ul className='list-wrap'>
                               <li>
                                 <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}

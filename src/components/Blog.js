@@ -5,6 +5,7 @@ import axios from '../config';
 import { IMAGE_BASE_URL } from '../config';
 import CustomPagination from './CustomPagination';
 import Breadcrumb from './Breadcrumb';
+import SubCategoryBreadcrumb from './SubCategoryBreadCrumb';
 import Loader from './Loader';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { useDispatch, useSelector } from 'react-redux';
@@ -78,6 +79,7 @@ const Blog = ({ title, isHomepage }) => {
 
         {posts.length ? (
           <section className='pb-60'>
+            <SubCategoryBreadcrumb/>
             <Breadcrumb title={title} />
             <div className='container content-container'>
               <div className='author-inner-wrap'>

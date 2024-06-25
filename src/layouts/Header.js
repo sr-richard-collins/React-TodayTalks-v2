@@ -13,6 +13,7 @@ const Header = () => {
   const { categories, selectCategory } = useSelector((state) => state.categories);
   const [activeLink, setActiveLink] = useState('home');
   const [showToggleSubMenu, setShowToggleSubMenu] = useState(false);
+  const [showToggleSubCategory, setShowToggleSubCategory] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
   const mobileMenuRef = useRef(null);
   // const moreCategories = categories.filter((category) => category.position === 'more');
@@ -60,8 +61,12 @@ const Header = () => {
   };
 
   const handleShowToggleSubMenu = () => {
-    setShowToggleMenu(true);
+    // setShowToggleMenu(true);
     setShowToggleSubMenu(!showToggleSubMenu);
+  };
+  const handleShowToggleSubCategory = () => {
+    // setShowToggleMenu(true);
+    setShowToggleSubCategory(!showToggleSubCategory);
   };
 
   // const getCurrentDate = () => {
@@ -136,7 +141,7 @@ const Header = () => {
               <div
                 className="mobile-menu"
                 onMouseLeave={handleMenuToggleCloseClick}
-                ref={mobileMenuRef}
+                // ref={mobileMenuRef}
               >
                 <nav className="menu-box">
                   <div className="menu-outer">
@@ -162,6 +167,36 @@ const Header = () => {
                         >
                           Home
                         </Link>
+                      </li>
+                      <li className="active menu-item-has-children nav-bar-link">
+                        <Link
+
+                          onClick={handleShowToggleSubCategory}
+                          className="nav-bar-link"
+                        >
+                          Categories{" "}
+                          <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
+                        </Link>
+                        <ul
+                          className="sub-menu"
+                          style={{ display: "block" }}
+                        >
+                          {showToggleSubCategory &&
+                            categories.slice(0,3).map((category) => (
+                              <li key={category.id}>
+                                <Link
+                                  key={category.id}
+                                  to={`/news/${category.data_query}`}
+                                  onClick={() =>
+                                    handleLinkClick(category.name)
+                                  }
+                                  className="nav-bar-link"
+                                >
+                                  {category.name}
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
                       </li>
                       {categories.slice(0, 7).map((category, index) => (
                         <li

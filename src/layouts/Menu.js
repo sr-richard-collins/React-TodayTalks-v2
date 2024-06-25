@@ -16,8 +16,9 @@ const Menu = () => {
   );
   const [activeLink, setActiveLink] = useState("home");
   const [showSubMenu, setShowSubMenu] = useState(false);
-
+  const [showSubCategory, setShowSubCategory] = useState(false);
   const [showDropleft, setShowDropleft] = useState(false);
+  const [showSportsSubCategory, setShowSportsSubCategory] = useState(false);
   const [showToggleSubMenu, setShowToggleSubMenu] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
   const moreCategories = categories.filter(
@@ -35,6 +36,12 @@ const Menu = () => {
 
   const handleViewMoreLeave = () => {
     setShowDropleft(false);
+  };
+  const handleShowSubCategory = () => {
+    setShowSubCategory(false);
+  };
+  const handleSportsSubCategory = () => {
+    setShowSportsSubCategory(false);
   };
   const handleViewMoreEnter = () => {
     setShowDropleft(true);
@@ -78,6 +85,33 @@ const Menu = () => {
                   Home
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="#"
+                  onClick={() => setShowSubCategory(!showSubCategory)}
+                  className="nav-bar-link"
+                >
+                  Categories
+                  <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
+                </Link>
+                <ul className={`left-menu-dropleft sub-category dropdown-content ${showSubCategory ? 'show-dropleft' : ''}`} onMouseLeave={handleShowSubCategory}>
+                  {categories.slice(0, 3).map((category) => (
+                    <li
+                      className={activeLink === category.name ? "active" : ""}
+                      key={category.id}
+                    >
+                      <Link
+                        key={category.id}
+                        to={`/news/${category.data_query}`}
+                        onClick={() => handleLinkClick(category.name)}
+                        className="nav-bar-link"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
               {categories.length > 8 &&
                 categories.slice(0, 7).map((category) => (
                   <li
@@ -107,7 +141,7 @@ const Menu = () => {
                   View More
                   <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
                 </Link>
-                <ul className={`left-menu-dropleft dropdown-content ${showDropleft ? 'show-dropleft' : ''}`} onMouseLeave={handleViewMoreLeave}>
+                <ul className={`left-menu-dropleft view-more dropdown-content ${showDropleft ? 'show-dropleft' : ''}`} onMouseLeave={handleViewMoreLeave}>
                   {categories.slice(7).map((category) => (
                     <li
                       className={activeLink === category.name ? "active" : ""}
@@ -123,6 +157,33 @@ const Menu = () => {
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    <Link
+                      to="#"
+                      onClick={() => setShowSportsSubCategory(!showSportsSubCategory)}
+                      className="nav-bar-link"
+                    >
+                      Sports
+                      <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
+                    </Link>
+                    <ul className={`left-menu-dropleft sports-sub-category dropdown-content ${showSportsSubCategory ? 'show-dropleft' : ''}`} onMouseLeave={handleSportsSubCategory}>
+                      {categories.slice(0,2).map((category) => (
+                        <li
+                          className={activeLink === category.name ? "active" : ""}
+                          key={category.id}
+                        >
+                          <Link
+                            key={category.id}
+                            to={`/news/${category.data_query}`}
+                            onClick={() => handleLinkClick(category.name)}
+                            className="nav-bar-link"
+                          >
+                            {category.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
                 </ul>
               </li>
             </ul>
