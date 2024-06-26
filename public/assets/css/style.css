@@ -6117,7 +6117,7 @@ label {
 /*=============================
 	27. Author
 ===============================*/
-.author-inner-wrap .row .col-70 {
+/* .author-inner-wrap .row .col-70 {
   width: 69.7%;
   flex: 0 0 auto;
 }
@@ -6125,7 +6125,7 @@ label {
 .author-inner-wrap .row .col-30 {
   width: 30.3%;
   flex: 0 0 auto;
-}
+} */
 
 .author-wrap {
   display: flex;
