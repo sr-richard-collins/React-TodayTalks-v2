@@ -91,8 +91,8 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className='col-6'></div>
-          <div className='col-3'>
+          <div className='col-5'></div>
+          <div className='col-4'>
             <div className='header-top-social header-top-social-two'>
               <ul className='list-wrap'>
                 <li className='social-icons'>
