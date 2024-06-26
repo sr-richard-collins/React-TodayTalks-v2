@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import NoPost from '../../views/error/No_post';
 import axios from '../../config';
 import { IMAGE_BASE_URL } from '../../config';
 import { fetchSelectCategory } from '../../actions/categoryAction';
@@ -149,7 +150,7 @@ const SpotLightSection = () => {
           {/* </div> */}
         </div>
       ) : (
-        ''
+        <NoPost />
       )}
     </>
   );

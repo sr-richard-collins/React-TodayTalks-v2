@@ -17,9 +17,7 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showToggleSubMenu, setShowToggleSubMenu] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
-  const moreCategories = categories.filter(
-    (category) => category.position === "more"
-  );
+  const moreCategories = categories.filter((category) => category.position === 'more');
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -53,8 +51,8 @@ const Header = () => {
   };
 
   const getCurrentDate = () => {
-    const options = { month: "long", day: "numeric", year: "numeric" };
-    return new Date().toLocaleDateString("en-US", options);
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    return new Date().toLocaleDateString('en-US', options);
   };
 
   return (
@@ -111,7 +109,11 @@ const Header = () => {
           <div className='row'>
             <div className='col-lg-2 col-md-3 col-3'>
               <Link to='/'>
-                <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' className='logo-style' />
+                <img
+                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                  alt='logo'
+                  className='logo-style'
+                />
               </Link>
             </div>
             <div className='col-lg-10 col-md-9 col-9'>

@@ -16,6 +16,8 @@ const Header = () => {
   const [showToggleSubCategory, setShowToggleSubCategory] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  const moreCategories = categories.filter((category) => category.position === 'more');
+  const mainCategories = categories.filter((category) => category.position === 'main');
 
   const mobileMenuRef = useRef(null);
 
@@ -72,7 +74,11 @@ const Header = () => {
                 <div className='swiper-wrapper'>
                   <div className='swiper-slide'>
                     <Link to='/'>
-                      <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' className='logo-style' />
+                      <img
+                        src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                        alt='logo'
+                        className='logo-style'
+                      />
                     </Link>
                   </div>
                 </div>
@@ -139,7 +145,7 @@ const Header = () => {
                           <FontAwesomeIcon icon='fas fa-times' />
                         </div>
                         <Link to='/'>
-                          <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' />
+                          <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'} alt='logo' />
                         </Link>
                       </li>
                       <li className={(selectCategory ? selectCategory : activeLink) === 'home' ? 'active' : ''}>
@@ -148,7 +154,7 @@ const Header = () => {
                         </Link>
                       </li>
 
-                      {categories.slice(0, 7).map((category, index) => (
+                      {mainCategories.map((category, index) => (
                         <li className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''} key={index}>
                           {!category.child ? (
                             <Link to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)} className='nav-bar-link' key={category.id}>
@@ -186,7 +192,7 @@ const Header = () => {
                         </Link>
                         <ul className='sub-menu' style={{ display: 'block' }}>
                           {showToggleSubMenu &&
-                            categories.slice(7).map((category) => (
+                            moreCategories.map((category) => (
                               <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
                                 {!category.child ? (
                                   <Link

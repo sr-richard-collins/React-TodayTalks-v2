@@ -26,7 +26,9 @@ const CategoriesWithBlogSection = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className='spotlight-post-item-wrap'>{categories.length && categories.map((category) => <HomeBlog title={category.name} key={category.id} />)}</div>
+    <div className='spotlight-post-item-wrap'>
+      {categories.length ? categories.map((category) => <HomeBlog title={category.name} key={category.id} />) : ''}
+    </div>
   );
 };
 
