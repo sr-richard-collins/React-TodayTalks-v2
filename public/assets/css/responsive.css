@@ -585,7 +585,7 @@
     gap: 20px;
 }
 .editor-post-thumb {
-    width: 150px;
+    /* width: 150px; */
 }
 .recent-post-wrap .row .col-54 {
     width: 100%;

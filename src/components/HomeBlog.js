@@ -31,7 +31,7 @@ const HomeBlog = ({ title }) => {
     <>
       {posts.length ? (
         <section className='editor-post-area pt-50 pb-30'>
-          <div className='container'>
+          <div className='container content-container'>
             <div className='row'>
               <div className='col-lg-12'>
                 <div className='section-title-wrap mb-30'>
