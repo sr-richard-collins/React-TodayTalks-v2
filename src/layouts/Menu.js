@@ -99,7 +99,12 @@ const Menu = () => {
                               <ul className='left-menu-dropleft sub-category dropdown-content show-dropleft' onMouseLeave={() => handleCategoryClick('')}>
                                 {category.child &&
                                   category.child.map((subCategory) => (
-                                    <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
+                                    <li
+                                      key={subCategory.id}
+                                      className={activeLink === subCategory.name ? 'active' : ''}
+                                      onMouseOver={(e) => e.currentTarget.classList.add('hovered')}
+                                      onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
+                                    >
                                       <Link to={`/news/${subCategory.data_query}`} onClick={() => handleLinkClick(subCategory.name)}>
                                         {subCategory.name}
                                       </Link>
@@ -141,7 +146,12 @@ const Menu = () => {
                                 onMouseLeave={() => handleCategoryClick('')}
                               >
                                 {category.child.map((moreSubCategory) => (
-                                  <li className={activeLink === moreSubCategory.name ? 'active' : ''} key={moreSubCategory.id}>
+                                  <li
+                                    className={activeLink === moreSubCategory.name ? 'active' : ''}
+                                    key={moreSubCategory.id}
+                                    onMouseOver={(e) => e.currentTarget.classList.add('hovered')}
+                                    onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
+                                  >
                                     <Link to={`/news/${moreSubCategory.data_query}`} onClick={() => handleLinkClick(moreSubCategory.name)}>
                                       {moreSubCategory.name}
                                     </Link>
