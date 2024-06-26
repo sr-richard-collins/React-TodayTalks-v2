@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const SubCategoryBreadcrumb = ({ subCategories }) => {
+const SubCategoryBreadcrumb = ({ subCategories, title }) => {
   return (
     <>
       <div className='breadcrumb-area'>
@@ -17,7 +17,7 @@ const SubCategoryBreadcrumb = ({ subCategories }) => {
                     </li>
                     {subCategories.map((subCategory) => (
                       <li key={subCategory.id} className='sub-cagetory-breadcrumb-item'>
-                        <Link to={`/news/${subCategory.data_query}`}>
+                        <Link to={`/news/${subCategory.data_query}`} className={subCategory.name === title ? 'active' : ''}>
                           <span>{subCategory.name}</span>
                         </Link>
                       </li>

@@ -2714,6 +2714,12 @@ label {
 .breadcrumb-content .sub-cagetory-breadcrumb-item span:hover {
   background-color: #183354;
 }
+.breadcrumb-content .sub-cagetory-breadcrumb-item .active span {
+  background-color: #183354;
+}
+.breadcrumb-content .sub-cagetory-breadcrumb-item a.active span {
+  color: var(--tg-white); /* Background color for active link */
+}
 .breadcrumb-content .sub-cagetory-breadcrumb-item a {
   color: var(--tg-primary-color);
 }

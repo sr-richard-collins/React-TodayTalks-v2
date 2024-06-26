@@ -87,7 +87,7 @@ const Blog = ({ title, isHomepage }) => {
       >
         {posts.length ? (
           <section className='pb-60'>
-            <SubCategoryBreadcrumb subCategories={subCategory} />
+            {subCategory.length ? <SubCategoryBreadcrumb subCategories={subCategory} title={title} /> : ''}
             <Breadcrumb title={title} />
             <div className='container content-container row'>
               <div className='col-lg-9 col-md-12 col-12 mt-20'>
@@ -134,14 +134,8 @@ const Blog = ({ title, isHomepage }) => {
                                     Read More
                                     <span className='svg-icon'>
                                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
-                                        <path
-                                          d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
-                                          fill='currentColor'
-                                        />
-                                        <path
-                                          d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
-                                          fill='currentColor'
-                                        />
+                                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
                                       </svg>
                                     </span>
                                   </Link>
