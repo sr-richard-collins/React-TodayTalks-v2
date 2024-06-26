@@ -6,6 +6,7 @@ import Loader from '../components/Loader.js';
 const FullLayout = lazy(() => import('../layouts/'));
 
 /**** Pages ****/
+const AdminDashboard = lazy(() => import("../views/AdminDashboard.js"));
 const Home = lazy(() => import("../views/Home.js"));
 const Category = lazy(() => import("../views/Category.js"));
 const Spotlight = lazy(() => import("../views/Spotlight.js"));
@@ -13,6 +14,9 @@ const BlogLayout3 = lazy(() => import("../views/BlogLayout3.js"));
 const BlogsDetails = lazy(() => import("../views/BlogsDetailsPage.js"));
 const Contact = lazy(() => import("../views/Contact.js"));
 const About = lazy(() => import("../views/AboutUs.js"));
+const Login = lazy(() => import("../views/Login.js"));
+const Register = lazy(() => import("../views/Register.js"));
+const Profile = lazy(() => import("../views/Profile.js"));
 const NotFoundError = lazy(() => import("../views/error/NotFoundError.js"));
 const ServerError = lazy(() => import("../views/error/ServerError.js"));
 const NoPost = lazy(() => import("../views/error/No_post.js"));
@@ -38,6 +42,22 @@ const ThemeRoutes = [
       { path: "/about", exact: true, element: <About /> },
       { path: "*", element: <Navigate to="/404" /> }, // Navigate to 404 page for unmatched routes
     ],
+  },
+  {
+    path: '/dashboard',
+    element: <Suspense fallback={<Loader />}>{<AdminDashboard />}</Suspense>
+  },
+  {
+    path: '/login',
+    element: <Suspense fallback={<Loader />}>{<Login />}</Suspense>
+  },
+  {
+    path: '/register',
+    element: <Suspense fallback={<Loader />}>{<Register />}</Suspense>
+  },
+  {
+    path: '/profile',
+    element: <Suspense fallback={<Loader />}>{<Profile />}</Suspense>
   },
   {
     path: '/404',

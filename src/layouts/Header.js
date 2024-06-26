@@ -118,6 +118,8 @@ const Header = () => {
                     </Link>
                   </span>
                 </li>
+                <Link to={'/login'} className='btn'>Log In</Link>
+                <Link to={'/register'} className='btn'>Register</Link>
               </ul>
             </div>
             <div className='mobile-nav-toggler'>
