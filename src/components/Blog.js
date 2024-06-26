@@ -89,97 +89,91 @@ const Blog = ({ title, isHomepage }) => {
           <section className='pb-60'>
             <SubCategoryBreadcrumb subCategories={subCategory} />
             <Breadcrumb title={title} />
-            <div className='container content-container'>
-              <div className='author-inner-wrap'>
-                <div className='row justify-content-center'>
-                  <div className='col-lg-9 col-md-12 col-12 mt-20'>
-                    <div className='weekly-post-item-wrap-three'>
-                      <div className='row'>
-                        {posts.map((post) => (
-                          <div className='col-md-12' key={post.id}>
-                            <div className='weekly-post-three'>
-                              <div className='weekly-post-thumb'>
-                                <Link to={`/${post.seo_slug}`}>
-                                  <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
-                                </Link>
-                              </div>
-                              <div className='weekly-post-content'>
-                                <h2 className='post-title'>
-                                  <Link to={`/${post.seo_slug}`}>{post.title}</Link>
-                                </h2>
+            <div className='container content-container row'>
+              <div className='col-lg-9 col-md-12 col-12 mt-20'>
+                <div>
+                  {posts.map((post) => (
+                    <div className='col-md-12' key={post.id}>
+                      <div className='weekly-post-three'>
+                        <div className='weekly-post-thumb'>
+                          <Link to={`/${post.seo_slug}`}>
+                            <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
+                          </Link>
+                        </div>
+                        <div className='weekly-post-content'>
+                          <h2 className='post-title'>
+                            <Link to={`/${post.seo_slug}`}>{post.title}</Link>
+                          </h2>
 
-                                <p>{post.subTitle}</p>
-                                <div className='blog-post-meta'>
-                                  <ul className='list-wrap mt-3'>
-                                    <li>
-                                      <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
-                                    </li>
-                                    <li>
-                                      <span className='homeblog-link-icon-phone'>
-                                        <Link to='/'>
-                                          <FontAwesomeIcon icon='fa-solid fa-phone' />
-                                        </Link>
-                                      </span>
-                                      <span className='homeblog-link-icon-facebook'>
-                                        <Link to='/'>
-                                          <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
-                                        </Link>
-                                      </span>
-                                      <span className='homeblog-link-icon-twitter'>
-                                        <Link to='/'>
-                                          <FontAwesomeIcon icon='fa-brands fa-twitter' />
-                                        </Link>
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <div className='view-all-btn'>
-                                        <Link to={`/`} className='homeblog-link-btn'>
-                                          Read More
-                                          <span className='svg-icon'>
-                                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
-                                              <path
-                                                d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
-                                                fill='currentColor'
-                                              />
-                                              <path
-                                                d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
-                                                fill='currentColor'
-                                              />
-                                            </svg>
-                                          </span>
-                                        </Link>
-                                      </div>
-                                    </li>
-                                    {/* <li>
-                                      <i className="flaticon-history"></i>20 Mins
-                                    </li> */}
-                                  </ul>
+                          <p>{post.subTitle}</p>
+                          <div className='blog-post-meta'>
+                            <ul className='list-wrap mt-3'>
+                              <li>
+                                <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
+                              </li>
+                              <li>
+                                <span className='homeblog-link-icon-phone'>
+                                  <Link to='/'>
+                                    <FontAwesomeIcon icon='fa-solid fa-phone' />
+                                  </Link>
+                                </span>
+                                <span className='homeblog-link-icon-facebook'>
+                                  <Link to='/'>
+                                    <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
+                                  </Link>
+                                </span>
+                                <span className='homeblog-link-icon-twitter'>
+                                  <Link to='/'>
+                                    <FontAwesomeIcon icon='fa-brands fa-twitter' />
+                                  </Link>
+                                </span>
+                              </li>
+                              <li>
+                                <div className='view-all-btn'>
+                                  <Link to={`/`} className='homeblog-link-btn'>
+                                    Read More
+                                    <span className='svg-icon'>
+                                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                                        <path
+                                          d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
+                                          fill='currentColor'
+                                        />
+                                        <path
+                                          d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
+                                          fill='currentColor'
+                                        />
+                                      </svg>
+                                    </span>
+                                  </Link>
                                 </div>
-                              </div>
-                            </div>
+                              </li>
+                              {/* <li>
+                                <i className="flaticon-history"></i>20 Mins
+                              </li> */}
+                            </ul>
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
-                    {isHomepage === 0 && (
-                      <>
-                        <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-                        <form className='form-inline ml-3'>
-                          <label htmlFor='per_page' className='mr-2'>
-                            Show:
-                          </label>
-                          <select name='per_page' id='per_page' className='form-control' value={postsPerPage} onChange={handlePerPageChange}>
-                            <option value='10'>10/page</option>
-                            <option value='20'>20/page</option>
-                            <option value='all'>All</option>
-                          </select>
-                        </form>
-                      </>
-                    )}
-                  </div>
-                  <div className='col-lg-3'></div>
+                  ))}
                 </div>
+                {isHomepage === 0 && (
+                  <>
+                    <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                    <form className='form-inline ml-3'>
+                      <label htmlFor='per_page' className='mr-2'>
+                        Show:
+                      </label>
+                      <select name='per_page' id='per_page' className='form-control' value={postsPerPage} onChange={handlePerPageChange}>
+                        <option value='10'>10/page</option>
+                        <option value='20'>20/page</option>
+                        <option value='all'>All</option>
+                      </select>
+                    </form>
+                  </>
+                )}
               </div>
+              <div className='col-lg-3'></div>
             </div>
           </section>
         ) : (
