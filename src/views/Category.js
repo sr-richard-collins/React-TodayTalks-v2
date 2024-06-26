@@ -10,38 +10,45 @@ import axios from '../config/';
 const Category = () => {
   const { name } = useParams();
   const { categories } = useSelector((state) => state.categories);
-  const selectCategory = categories.find((category) => {
-    // Check if the current category matches the name
-    if (category.data_query === name) {
-      return true;
-    }
-
-    // Check if any child category matches the name
-    if (category.child) {
-      return category.child.some((subCategory) => subCategory.data_query === name);
-    }
-
-    return false;
-  });
   const [seo, setSeo] = useState([]);
+  const [selectCategory, setSelectCategory] = useState(null);
 
   useEffect(() => {
-    const fetch = async () => {
+    const findCategory = () => {
+      for (const category of categories) {
+        if (category.data_query === name) {
+          return category;
+        }
+        if (category.child) {
+          const subCategory = category.child.find((subCategory) => subCategory.data_query === name);
+          if (subCategory) {
+            return subCategory;
+          }
+        }
+      }
+      return null;
+    };
+
+    setSelectCategory(findCategory());
+
+    const fetchSeoData = async () => {
       const response = await axios.get(`/api/user/seoCategory?id=${name}`);
       setSeo(response.data);
     };
-    fetch();
-  }, [name]);
+
+    fetchSeoData();
+  }, [name, categories]);
 
   return (
     <>
+      {/* {alert(selectCategory.name)} */}
       <Helmet>
         <title>{seo.name}</title>
         <meta property='og:title' content={seo.seo_title} />
         <meta name='keywords' content={seo.seo_keyword} />
         <meta name='description' content={seo.seo_description} />
       </Helmet>
-      <Blog title={selectCategory.name} isHomepage={0} />
+      {selectCategory ? <Blog title={selectCategory.name} isHomepage={0} /> : <p>Category not found</p>}
     </>
   );
 };
