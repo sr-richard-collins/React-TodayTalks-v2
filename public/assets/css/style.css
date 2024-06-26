@@ -8663,6 +8663,14 @@ label {
   left: 100%;
 }
 
+.category-link-with-dropdown .sub-category li.hovered > a {
+  color: var(--tg-primary-color);
+}
+
+.category-link-with-moredropdown .sports-sub-category li.hovered > a {
+  color: var(--tg-primary-color);
+}
+
 .left-menu-content > ul > li > .dropdown-content > li.active > a,
 .left-menu-content > ul > li > .dropdown-content > li.hover > a {
   color: var(--tg-primary-color);

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { IMAGE_BASE_URL } from '../config';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../components/Loader';
 
 const HomeBlog = ({ title }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const HomeBlog = ({ title }) => {
       setLoading(true);
       const response = homePosts.find((post) => post.category === title);
       if (response) setPosts(response.posts);
+      setLoading(false);
     };
     fetch();
   }, [title]);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SpotLightSection from '../components/home/SpotLight';
 import CategoriesWithBlogSection from '../components/home/CategoriesWithBlog';
 // import TrendingGameNewsSection from "../components/home/TrendingGameNews";
@@ -7,14 +7,18 @@ import Menu from '../layouts/Menu';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { fetchHomePosts } from '../actions/postAction';
+import Loader from '../components/Loader';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { setting } = useSelector((state) => state.setting);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchHomePosts());
+    dispatch(fetchHomePosts()).then(() => setLoading(false));
   }, [dispatch]);
+
+  if (loading) return <Loader />;
 
   return (
     <>
