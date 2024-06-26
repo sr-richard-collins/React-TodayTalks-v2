@@ -15,18 +15,17 @@ const Header = () => {
   const [showToggleSubMenu, setShowToggleSubMenu] = useState(false);
   const [showToggleSubCategory, setShowToggleSubCategory] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null);
+
   const mobileMenuRef = useRef(null);
-  // const moreCategories = categories.filter((category) => category.position === 'more');
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
   useEffect(() => {
-
     const handleClickOutside = (event) => {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
-        // setShowToggleMenu(!showToggleMenu);
       }
     };
 
@@ -44,15 +43,6 @@ const Header = () => {
     setShowToggleMenu(false);
   };
 
-  // const handleViewMoreHover = () => {
-  //   setShowSubMenu(true);
-  //   setShowDropdown(true);
-  // };
-
-  // const handleViewMoreLeave = () => {
-  //   setShowSubMenu(false);
-  // };
-
   const handleMenuToggleOpenClick = () => {
     setShowToggleMenu(!showToggleMenu);
   };
@@ -65,14 +55,12 @@ const Header = () => {
     setShowToggleSubMenu(!showToggleSubMenu);
   };
   const handleShowToggleSubCategory = () => {
-    // setShowToggleMenu(true);
     setShowToggleSubCategory(!showToggleSubCategory);
   };
 
-  // const getCurrentDate = () => {
-  //   const options = { month: 'long', day: 'numeric', year: 'numeric' };
-  //   return new Date().toLocaleDateString('en-US', options);
-  // };
+  const handleCategoryMouseEnter = (categoryName) => {
+    setActiveCategory(categoryName);
+  };
 
   return (
     <header className='header-style-six'>
@@ -139,114 +127,115 @@ const Header = () => {
             </div>
             {showToggleMenu && (
               <div
-                className="mobile-menu"
+                className='mobile-menu'
                 onMouseLeave={handleMenuToggleCloseClick}
                 // ref={mobileMenuRef}
               >
-                <nav className="menu-box">
-                  <div className="menu-outer">
-                    <ul className="navigation">
+                <nav className='menu-box'>
+                  <div className='menu-outer'>
+                    <ul className='navigation'>
                       <li>
-                        <div className="close-btn" onClick={handleMenuToggleCloseClick}><FontAwesomeIcon icon="fas fa-times" /></div>
+                        <div className='close-btn' onClick={handleMenuToggleCloseClick}>
+                          <FontAwesomeIcon icon='fas fa-times' />
+                        </div>
                         <Link to='/'>
-                          <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo'/>
+                          <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' />
                         </Link>
                       </li>
-                      <li
-                        className={
-                          (selectCategory ? selectCategory : activeLink) ===
-                            "home"
-                            ? "active"
-                            : ""
-                        }
-                      >
-                        <Link
-                          to="/"
-                          onClick={() => handleLinkClick("home")}
-                          className="nav-bar-link"
-                        >
+                      <li className={(selectCategory ? selectCategory : activeLink) === 'home' ? 'active' : ''}>
+                        <Link to='/' onClick={() => handleLinkClick('home')} className='nav-bar-link'>
                           Home
                         </Link>
                       </li>
-                      <li className="active menu-item-has-children nav-bar-link">
-                        <Link
 
-                          onClick={handleShowToggleSubCategory}
-                          className="nav-bar-link"
-                        >
-                          Categories{" "}
-                          <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
-                        </Link>
-                        <ul
-                          className="sub-menu"
-                          style={{ display: "block" }}
-                        >
-                          {showToggleSubCategory &&
-                            categories.slice(0,3).map((category) => (
-                              <li key={category.id}>
-                                <Link
-                                  key={category.id}
-                                  to={`/news/${category.data_query}`}
-                                  onClick={() =>
-                                    handleLinkClick(category.name)
-                                  }
-                                  className="nav-bar-link"
-                                >
-                                  {category.name}
-                                </Link>
-                              </li>
-                            ))}
-                        </ul>
-                      </li>
                       {categories.slice(0, 7).map((category, index) => (
-                        <li
-                          className="active menu-item-has-children "
-                          key={index}
-                        >
-                          <Link
-                            to={`/news/${category.data_query}`}
-                            onClick={() => handleLinkClick(category.name)}
-                            className="nav-bar-link"
-                            key={category.id}
-                          >
-                            {category.name}
-                          </Link>
+                        <li className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''} key={index}>
+                          {!category.child ? (
+                            <Link to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)} className='nav-bar-link' key={category.id}>
+                              {category.name}
+                            </Link>
+                          ) : (
+                            <>
+                              <Link onClick={handleShowToggleSubCategory} className='nav-bar-link' onMouseEnter={() => handleCategoryMouseEnter(category.name)}>
+                                {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                              </Link>
+                              {activeCategory === category.name && (
+                                <ul className='sub-menu' style={{ display: 'block' }}>
+                                  {showToggleSubCategory &&
+                                    category.child.map((subCategory) => (
+                                      <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
+                                        <Link
+                                          key={subCategory.id}
+                                          to={`/news/${subCategory.data_query}`}
+                                          onClick={() => handleLinkClick(subCategory.name)}
+                                          className='nav-bar-link'
+                                        >
+                                          {subCategory.name}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                </ul>
+                              )}
+                            </>
+                          )}
                         </li>
                       ))}
-                      <li className="active menu-item-has-children nav-bar-link">
-                        <Link
-
-                          onClick={handleShowToggleSubMenu}
-                          className="nav-bar-link"
-                        >
-                          View More{" "}
-                          <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
+                      <li>
+                        <Link onClick={handleShowToggleSubMenu} className='nav-bar-link'>
+                          View More <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                         </Link>
-                        <ul
-                          className="sub-menu"
-                          style={{ display: "block" }}
-                        >
+                        <ul className='sub-menu' style={{ display: 'block' }}>
                           {showToggleSubMenu &&
                             categories.slice(7).map((category) => (
-                              <li key={category.id}>
-                                <Link
-                                  key={category.id}
-                                  to={`/news/${category.data_query}`}
-                                  onClick={() =>
-                                    handleLinkClick(category.name)
-                                  }
-                                  className="nav-bar-link"
-                                >
-                                  {category.name}
-                                </Link>
+                              <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
+                                {!category.child ? (
+                                  <Link
+                                    key={category.id}
+                                    to={`/news/${category.data_query}`}
+                                    onClick={() => handleLinkClick(category.name)}
+                                    className='nav-bar-link'
+                                  >
+                                    {category.name}
+                                  </Link>
+                                ) : (
+                                  <>
+                                    <Link
+                                      onClick={handleShowToggleSubCategory}
+                                      className='nav-bar-link'
+                                      onMouseEnter={() => handleCategoryMouseEnter(category.name)}
+                                    >
+                                      {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                    </Link>
+                                    {activeCategory === category.name && (
+                                      <ul className='sub-more-menu' style={{ display: 'block' }}>
+                                        {showToggleSubCategory &&
+                                          category.child.map((subCategory) => (
+                                            <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
+                                              <Link
+                                                key={subCategory.id}
+                                                to={`/news/${subCategory.data_query}`}
+                                                onClick={() => handleLinkClick(subCategory.name)}
+                                                className='nav-bar-link'
+                                              >
+                                                {subCategory.name}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                      </ul>
+                                    )}
+                                  </>
+                                )}
                               </li>
                             ))}
                         </ul>
                       </li>
                     </ul>
                   </div>
-                  <div className="row left-menu-store">
-                    <Link to="https://play.google.com/store/" className="my-2"> <img src={googleplayimg} /> </Link>
+                  <div className='row left-menu-store'>
+                    <Link to='https://play.google.com/store/' className='my-2'>
+                      {' '}
+                      <img src={googleplayimg} />{' '}
+                    </Link>
                     <div className='left-menu-social mb-10'>
                       <ul className='list-wrap row justify-content-center'>
                         <li className='social-icons col'>
@@ -287,8 +276,12 @@ const Header = () => {
                       </ul>
                     </div>
                   </div>
-                  <div className="row">
-                    <span className="mt-2 left-menu-footer mb-10"> <Link to={'/about'}>About Us &middot; </Link><Link to={'/about'}>Privacy Policy</Link></span>
+                  <div className='row'>
+                    <span className='mt-2 left-menu-footer mb-10'>
+                      {' '}
+                      <Link to={'/about'}>About Us &middot; </Link>
+                      <Link to={'/about'}>Privacy Policy</Link>
+                    </span>
                   </div>
                 </nav>
               </div>

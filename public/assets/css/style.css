@@ -1621,7 +1621,11 @@ label {
 
 .mobile-menu .navigation > li.active > a,
 .mobile-menu .navigation > li:hover > a {
-  /* color: var(--tg-primary-color); */
+  color: var(--tg-primary-color);
+}
+
+.sub-more-menu > li.active > a {
+  color: var(--tg-primary-color);
 }
 
 .mobile-menu .navigation > li.active > a:hover,
