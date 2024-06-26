@@ -10,7 +10,19 @@ import axios from '../config/';
 const Category = () => {
   const { name } = useParams();
   const { categories } = useSelector((state) => state.categories);
-  const selectCategory = categories.find((category) => category.data_query === name);
+  const selectCategory = categories.find((category) => {
+    // Check if the current category matches the name
+    if (category.data_query === name) {
+      return true;
+    }
+
+    // Check if any child category matches the name
+    if (category.child) {
+      return category.child.some((subCategory) => subCategory.data_query === name);
+    }
+
+    return false;
+  });
   const [seo, setSeo] = useState([]);
 
   useEffect(() => {

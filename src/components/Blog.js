@@ -20,6 +20,7 @@ const Blog = ({ title, isHomepage }) => {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [totalPosts, setTotalPosts] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [subCategory, setSubCategory] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -50,6 +51,14 @@ const Blog = ({ title, isHomepage }) => {
     window.scrollTo(0, 0);
   }, [title, currentPage, postsPerPage]);
 
+  useEffect(() => {
+    const fetchSubCategory = async () => {
+      const response = await axios.get(`/api/user/subcategory?id=${title}`);
+      setSubCategory(response.data);
+    };
+    fetchSubCategory();
+  }, [title]);
+
   const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
@@ -76,10 +85,9 @@ const Blog = ({ title, isHomepage }) => {
           </>
         }
       >
-
         {posts.length ? (
           <section className='pb-60'>
-            <SubCategoryBreadcrumb/>
+            <SubCategoryBreadcrumb subCategories={subCategory} />
             <Breadcrumb title={title} />
             <div className='container content-container'>
               <div className='author-inner-wrap'>
@@ -107,14 +115,20 @@ const Blog = ({ title, isHomepage }) => {
                                       <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
                                     </li>
                                     <li>
-                                      <span className="homeblog-link-icon-phone">
-                                        <Link to='/'><FontAwesomeIcon icon="fa-solid fa-phone" /></Link>
+                                      <span className='homeblog-link-icon-phone'>
+                                        <Link to='/'>
+                                          <FontAwesomeIcon icon='fa-solid fa-phone' />
+                                        </Link>
                                       </span>
-                                      <span className="homeblog-link-icon-facebook">
-                                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-facebook-f" /></Link>
+                                      <span className='homeblog-link-icon-facebook'>
+                                        <Link to='/'>
+                                          <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
+                                        </Link>
                                       </span>
-                                      <span className="homeblog-link-icon-twitter">
-                                        <Link to='/'><FontAwesomeIcon icon="fa-brands fa-twitter" /></Link>
+                                      <span className='homeblog-link-icon-twitter'>
+                                        <Link to='/'>
+                                          <FontAwesomeIcon icon='fa-brands fa-twitter' />
+                                        </Link>
                                       </span>
                                     </li>
                                     <li>
@@ -123,8 +137,14 @@ const Blog = ({ title, isHomepage }) => {
                                           Read More
                                           <span className='svg-icon'>
                                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
-                                              <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                                              <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                              <path
+                                                d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
+                                                fill='currentColor'
+                                              />
+                                              <path
+                                                d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
+                                                fill='currentColor'
+                                              />
                                             </svg>
                                           </span>
                                         </Link>
@@ -161,11 +181,11 @@ const Blog = ({ title, isHomepage }) => {
                 </div>
               </div>
             </div>
-          </section >
+          </section>
         ) : (
           isHomepage === 0 && <NoPost />
         )}
-      </Suspense >
+      </Suspense>
     </>
   );
 };
