@@ -487,8 +487,8 @@ label {
 
 .header-top-social {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  justify-content: end;
 }
 
 .header-top-social .title {
@@ -5868,6 +5868,7 @@ label {
   font-size: 14px;
   color: #7488a1;
   user-select: none;
+  /* margin-left: 25px; */
 }
 
 /* weekly-post-four */

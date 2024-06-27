@@ -1,13 +1,41 @@
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useEffect } from "react";
+import $ from "jquery"; // Import jQuery
+import "bootstrap"; // Import Bootstrap JavaScript
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from "../config";
-// import Blog from '../components/Blog';
 import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
 
    const { setting } = useSelector((state) => state.setting);
+
+   useEffect(() => {
+      const handleClick = () => {
+         $('body').toggleClass('sidebar-toggled');
+         $('.sidebar').toggleClass('toggled');
+
+         // Listen for the collapse transition to complete
+         $('.sidebar .collapse').on('transitionend', function () {
+            if ($('.sidebar').hasClass('toggled')) {
+               $('.sidebar .collapse').collapse('hide');
+            }
+         });
+      };
+
+      // Check if jQuery is loaded before adding the event listener
+      if ($) {
+         $('#sidebarToggleTop').on('click', handleClick);
+      } else {
+         console.log('jQuery is not loaded');
+      }
+
+      // Clean up the event listener
+      return () => {
+         $('#sidebarToggleTop').off('click', handleClick);
+      };
+   }, []); // Empty dependency array ensures the effect runs only once
 
    return (
       <>
@@ -15,12 +43,15 @@ const AdminDashboard = () => {
 
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-               <Link to='/' className="sidebar-brand d-flex align-items-center justify-content-center">
-                  <img src={IMAGE_BASE_URL + setting.site_logo} alt='logo' className='logo-style' />
-                  <div class="sidebar-brand-text mx-3">Dashboard</div>
+               <Link to='/' className="sidebar-brand d-flex flex-column align-items-center justify-content-center">
+                  <img
+                     src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                     alt='logo'
+                     className='logo-style'
+                  />
                </Link>
 
-               <hr class="sidebar-divider my-0" />
+               <hr class="sidebar-divider" />
 
                <li class="nav-item active">
                   <Link to='/' className="nav-link"> <FontAwesomeIcon icon="fa-solid fa-user" />
@@ -31,23 +62,12 @@ const AdminDashboard = () => {
 
                <hr class="sidebar-divider" />
 
-               <div class="sidebar-heading">
-                  Authentication
-               </div>
-
                <li class="nav-item">
                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                      aria-expanded="true" aria-controls="collapseTwo">
                      <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
                      <span>Login</span>
                   </a>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                     </div>
-                  </div>
                </li>
 
                <li class="nav-item">
@@ -56,23 +76,9 @@ const AdminDashboard = () => {
                      <FontAwesomeIcon icon="fa-solid fa-registered" />
                      <span>Register</span>
                   </a>
-                  <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                     </div>
-                  </div>
                </li>
-
                <hr class="sidebar-divider" />
-
-
             </ul>
-
             <div id="content-wrapper" class="d-flex flex-column">
 
                <div id="content">

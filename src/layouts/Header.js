@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSelectCategory } from '../actions/categoryAction';
@@ -6,12 +6,8 @@ import { fetchCategories } from '../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
 import googleplayimg from '../assets/img/icon/googleplay.png';
-import { AuthContext } from '../provider/AuthContext';
 
 const Header = () => {
-  const context = useContext(AuthContext);
-  const { user, logout } = context;
-
   const dispatch = useDispatch();
   const { setting } = useSelector((state) => state.setting);
   const { categories, selectCategory } = useSelector((state) => state.categories);
@@ -19,28 +15,29 @@ const Header = () => {
   const [showToggleSubMenu, setShowToggleSubMenu] = useState(false);
   const [showToggleSubCategory, setShowToggleSubCategory] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState([[null, false],]);
+  // const [showActiveCategory, setShowActiveCategory] = useState([]);
   const moreCategories = categories.filter((category) => category.position === 'more');
   const mainCategories = categories.filter((category) => category.position === 'main');
-
-  const mobileMenuRef = useRef(null);
+  // const showActiveCategory = [];
+  // const mobileMenuRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+  //     }
+  //   };
 
-    document.addEventListener('click', handleClickOutside);
+  //   document.addEventListener('click', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, []);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -60,12 +57,34 @@ const Header = () => {
     // setShowToggleMenu(true);
     setShowToggleSubMenu(!showToggleSubMenu);
   };
-  const handleShowToggleSubCategory = () => {
-    setShowToggleSubCategory(!showToggleSubCategory);
+  const handleShowToggleSubCategory = (categoryName) => {
+    // const currentshow = activeCategory[categoryName][1];
+    // setActiveCategory(categoryName(categoryName, !currentshow));
   };
+  // const toggleSubCategoryShow = (categoryName) => {
+
+  //   // setActiveCategory((prevActiveCategory) => {
+  //   //   const updatedCategories = prevActiveCategory.map((category) => {
+  //   //     if (category.category === categoryName) {
+  //   //       return {
+  //   //         ...category,
+  //   //         show: !category.show
+  //   //       };
+  //   //     }
+  //   //     return category;
+  //   //   });
+
+  //   //   debugger;
+  //   //   return updatedCategories;
+  //   // });
+  //   setActiveCategory((prevActiveCategory) => ({
+  //     category : category.name,
+  //     show: !prevActiveCategory.category || prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show
+  //   }));
+  // };
 
   const handleCategoryMouseEnter = (categoryName) => {
-    setActiveCategory(categoryName);
+    // setActiveCategory(categoryName);
   };
 
   return (
@@ -89,8 +108,8 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className='col-5'></div>
-          <div className='col-4'>
+          <div className='col-3'></div>
+          <div className='col-6' style={{ alignItems: 'end' }}>
             <div className='header-top-social header-top-social-two'>
               <ul className='list-wrap'>
                 <li className='social-icons'>
@@ -128,24 +147,8 @@ const Header = () => {
                     </Link>
                   </span>
                 </li>
-
-                {user ? (
-                  <>
-                    <span>{user.name}</span>
-                    <button onClick={logout} className='btn'>
-                      Log Out
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link to='/login' className='btn'>
-                      Log In
-                    </Link>
-                    <Link to='/register' className='btn'>
-                      Register
-                    </Link>
-                  </>
-                )}
+                <Link to={'/login'} className='btn'>Log In</Link>
+                <Link to={'/register'} className='btn'>Sign Up</Link>
               </ul>
             </div>
             <div className='mobile-nav-toggler'>
@@ -157,7 +160,7 @@ const Header = () => {
               <div
                 className='mobile-menu'
                 onMouseLeave={handleMenuToggleCloseClick}
-                // ref={mobileMenuRef}
+              // ref={mobileMenuRef}
               >
                 <nav className='menu-box'>
                   <div className='menu-outer'>
@@ -179,17 +182,27 @@ const Header = () => {
                       {mainCategories.map((category, index) => (
                         <li className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''} key={index}>
                           {!category.child ? (
-                            <Link to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)} className='nav-bar-link' key={category.id}>
+                            <Link to={`/news/${category.data_query}`}
+                              onClick={() => handleLinkClick(category.name)}
+                              className='nav-bar-link' key={category.id}>
                               {category.name}
                             </Link>
                           ) : (
                             <>
-                              <Link onClick={handleShowToggleSubCategory} className='nav-bar-link' onMouseEnter={() => handleCategoryMouseEnter(category.name)}>
+                              <Link
+                                onClick={() => {
+                                  setActiveCategory((prevActiveCategory) => ({
+                                    category: category.name,
+                                    show: !prevActiveCategory.category || prevActiveCategory.category !== category.name ? false : !prevActiveCategory.show
+                                  }));
+                                }}
+                                // onClick={() => toggleSubCategoryShow(category.name)}
+                                className='nav-bar-link' >
                                 {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                               </Link>
-                              {activeCategory === category.name && (
-                                <ul className='sub-menu' style={{ display: 'block' }}>
-                                  {showToggleSubCategory &&
+                              {activeCategory.category === category.name && (
+                                <ul className='sub-menu' style={{ display: activeCategory.show ? 'block' : 'none' }}>
+                                  {
                                     category.child.map((subCategory) => (
                                       <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
                                         <Link
@@ -203,7 +216,8 @@ const Header = () => {
                                       </li>
                                     ))}
                                 </ul>
-                              )}
+                              )
+                              }
                             </>
                           )}
                         </li>
