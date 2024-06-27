@@ -10,7 +10,6 @@ import { AuthContext } from '../provider/AuthContext';
 
 const Header = () => {
   const context = useContext(AuthContext);
-  console.log(context); // Debugging line to check context value
   const { user, logout } = context;
 
   const dispatch = useDispatch();
