@@ -21,6 +21,7 @@ const CommentComponent = ({ post }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage, setCommentsPerPage] = useState(10);
   const [totalComments, setTotalComments] = useState(0);
+  const [clickedReplyId, setClickedReplyId] = useState(null);
   const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
@@ -59,6 +60,7 @@ const CommentComponent = ({ post }) => {
   const handleReplyClick = (id, parent_id) => {
     setIsReplyClicked(true); // Set isReplyClicked to true when Reply is clicked
     setParentComment(parent_id + '_' + id);
+    setClickedReplyId(id);
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
@@ -106,7 +108,10 @@ const CommentComponent = ({ post }) => {
                     <span className='date'>{format(new Date(comment.updated_at), 'dd MMMM, yyyy')}</span>
                   </div>
                   <p>{comment.content}</p>
-                  <p className='reply-btn' onClick={() => handleReplyClick(comment.id, comment.parent_id)}>
+                  <p
+                    className={clickedReplyId === comment.id ? 'reply-btn-active' : 'reply-btn'}
+                    onClick={() => handleReplyClick(comment.id, comment.parent_id)}
+                  >
                     Reply
                   </p>
                 </div>
