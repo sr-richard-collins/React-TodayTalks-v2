@@ -487,8 +487,8 @@ label {
 
 .header-top-social {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  justify-content: end;
 }
 
 .header-top-social .title {
