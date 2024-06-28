@@ -4148,6 +4148,14 @@ label {
   width: 20%;
   flex: 0 0 auto;
 }
+.col-95 {
+  width: 95%;
+  flex: 0 0 auto;
+}
+.col-05 {
+  width: 5%;
+  flex: 0 0 auto;
+}
 
 .col-70 {
   width: 69.7%;
@@ -8269,7 +8277,7 @@ label {
   position: fixed;
   z-index: 2;
   padding: 10px;
-  width: 245px;
+  width: 280px;
 }
 
 .left-sub-menu .dropdown-content {
@@ -8286,7 +8294,7 @@ label {
   font-weight: 700;
   text-transform: capitalize;
   color: var(--tg-heading-font-color);
-  padding: 13px 10px;
+  padding: 8px 10px;
   display: flex;
   align-items: center;
   line-height: 1;
@@ -8749,4 +8757,20 @@ label {
 .login-social-icon svg {
   color: white;
   font-size: 20px;
+}
+.img-icon-left-menu {
+  width: 2rem;
+  height: 2rem;
+}
+.blog-article-icon-heart{
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.blog-article-icon-heart-clicked{
+  color: #e50278 !important;
+}
+.profile-edit-input{
+  border: none;
+  background-color: white;
+  width: 80%;
 }

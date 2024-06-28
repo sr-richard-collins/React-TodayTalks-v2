@@ -31,7 +31,7 @@ const Header = () => {
   const handleLinkClick = (link) => {
     setActiveLink(link);
     dispatch(fetchSelectCategory(link));
-    setShowToggleSubMenu(false);
+    // setShowToggleSubMenu(false);
     setShowToggleMenu(false);
   };
 
@@ -43,6 +43,7 @@ const Header = () => {
   };
 
   const handleShowToggleSubMenu = () => {
+    // debugger;
     setShowToggleSubMenu(!showToggleSubMenu);
   };
 
@@ -164,12 +165,6 @@ const Header = () => {
                           ) : (
                             <>
                               <Link
-                                // onClick={() => {
-                                //   setActiveCategory((prevActiveCategory) => ({
-                                //     category: category.name,
-                                //     show: !prevActiveCategory.category || prevActiveCategory.category !== category.name ? false : !prevActiveCategory.show
-                                //   }));
-                                // }}
                                 onClick={() => {
                                   setActiveCategory((prevActiveCategory) => ({
                                     category: category.name,
@@ -209,43 +204,12 @@ const Header = () => {
                           {showToggleSubMenu &&
                             moreCategories.map((category) => (
                               <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
-                                {!category.child ? (
-                                  <Link
-                                    key={category.id}
-                                    to={`/news/${category.data_query}`}
-                                    onClick={() => handleLinkClick(category.name)}
-                                    className='nav-bar-link'
-                                  >
-                                    {category.name}
-                                  </Link>
-                                ) : (
-                                  <>
-                                    <Link
-                                      // onClick={handleShowToggleSubCategory}
-                                      className='nav-bar-link'
-                                      // onMouseEnter={() => handleCategoryMouseEnter(category.name)}
-                                    >
-                                      {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
-                                    </Link>
-                                    {activeCategory === category.name && (
-                                      <ul className='sub-more-menu' style={{ display: 'block' }}>
-                                        {showToggleSubCategory &&
-                                          category.child.map((subCategory) => (
-                                            <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
-                                              <Link
-                                                key={subCategory.id}
-                                                to={`/news/${subCategory.data_query}`}
-                                                onClick={() => handleLinkClick(subCategory.name)}
-                                                className='nav-bar-link'
-                                              >
-                                                {subCategory.name}
-                                              </Link>
-                                            </li>
-                                          ))}
-                                      </ul>
-                                    )}
-                                  </>
-                                )}
+                                <Link
+                                  onClick={() => handleLinkClick(category.name)}
+                                  className='nav-bar-link'
+                                >
+                                  {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                </Link>
                               </li>
                             ))}
                         </ul>
@@ -309,8 +273,8 @@ const Header = () => {
             )}
           </div>
         </div>
-      </div>
-    </header>
+      </div >
+    </header >
   );
 };
 

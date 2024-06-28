@@ -6,6 +6,7 @@ import "bootstrap"; // Import Bootstrap JavaScript
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from "../config";
 import { Link } from "react-router-dom";
+import profile_img from "../assets/img/icon/undraw_profile.svg"
 
 const AdminDashboard = () => {
 
@@ -65,8 +66,8 @@ const AdminDashboard = () => {
                <li class="nav-item">
                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                      aria-expanded="true" aria-controls="collapseTwo">
-                     <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
-                     <span>Login</span>
+                     <FontAwesomeIcon icon="fa-duotone fa-folder-gear" />
+                     <span>Referral</span>
                   </a>
                </li>
 
@@ -188,7 +189,7 @@ const AdminDashboard = () => {
                               </h6>
                               <a class="dropdown-item d-flex align-items-center" href="#">
                                  <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                    <img class="rounded-circle" src={profile_img}
                                        alt="..." />
                                     <div class="status-indicator bg-success"></div>
                                  </div>
@@ -245,7 +246,7 @@ const AdminDashboard = () => {
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                               <img class="img-profile rounded-circle"
-                                 src="img/undraw_profile.svg" />
+                                 src={profile_img} />
                            </a>
                            {/* <!-- Dropdown - User Information --> */}
                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -368,12 +369,12 @@ const AdminDashboard = () => {
                      <div class="row">
 
                         {/* <!-- Area Chart --> */}
-                        <div class="col-xl-8 col-lg-7">
+                        <div className="col-12">
                            <div class="card shadow mb-4">
                               {/* <!-- Card Header - Dropdown --> */}
                               <div
                                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                 <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                 <h6 class="m-0 font-weight-bold text-primary">Referrals</h6>
                                  <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -391,54 +392,66 @@ const AdminDashboard = () => {
                               </div>
                               {/* <!-- Card Body --> */}
                               <div class="card-body">
-                                 <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
+                                 <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                       <thead>
+                                          <tr>
+                                             <th>Name</th>
+                                             <th>Position</th>
+                                             <th>Office</th>
+                                             <th>Age</th>
+                                             <th>Start date</th>
+                                             <th>Salary</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr>
+                                             <td>Tiger Nixon</td>
+                                             <td>System Architect</td>
+                                             <td>Edinburgh</td>
+                                             <td>61</td>
+                                             <td>2011/04/25</td>
+                                             <td>$320,800</td>
+                                          </tr>
+                                          <tr>
+                                             <td>Garrett Winters</td>
+                                             <td>Accountant</td>
+                                             <td>Tokyo</td>
+                                             <td>63</td>
+                                             <td>2011/07/25</td>
+                                             <td>$170,750</td>
+                                          </tr>
+                                          <tr>
+                                             <td>Ashton Cox</td>
+                                             <td>Junior Technical Author</td>
+                                             <td>San Francisco</td>
+                                             <td>66</td>
+                                             <td>2009/01/12</td>
+                                             <td>$86,000</td>
+                                          </tr>
+                                          <tr>
+                                             <td>Cedric Kelly</td>
+                                             <td>Senior Javascript Developer</td>
+                                             <td>Edinburgh</td>
+                                             <td>22</td>
+                                             <td>2012/03/29</td>
+                                             <td>$433,060</td>
+                                          </tr>
+                                          <tr>
+                                             <td>Airi Satou</td>
+                                             <td>Accountant</td>
+                                             <td>Tokyo</td>
+                                             <td>33</td>
+                                             <td>2008/11/28</td>
+                                             <td>$162,700</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
                                  </div>
                               </div>
                            </div>
                         </div>
 
-                        {/* <!-- Pie Chart --> */}
-                        <div class="col-xl-4 col-lg-5">
-                           <div class="card shadow mb-4">
-                              {/* <!-- Card Header - Dropdown --> */}
-                              <div
-                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                 <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                 <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                       aria-labelledby="dropdownMenuLink">
-                                       <div class="dropdown-header">Dropdown Header:</div>
-                                       <a class="dropdown-item" href="#">Action</a>
-                                       <a class="dropdown-item" href="#">Another action</a>
-                                       <div class="dropdown-divider"></div>
-                                       <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                 </div>
-                              </div>
-                              {/* <!-- Card Body --> */}
-                              <div class="card-body">
-                                 <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                 </div>
-                                 <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                       <i class="fas fa-circle text-primary"></i> Direct
-                                    </span>
-                                    <span class="mr-2">
-                                       <i class="fas fa-circle text-success"></i> Social
-                                    </span>
-                                    <span class="mr-2">
-                                       <i class="fas fa-circle text-info"></i> Referral
-                                    </span>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
                      </div>
 
                      <div class="row">

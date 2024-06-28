@@ -1,10 +1,38 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import $ from "jquery"; // Import jQuery
+import "bootstrap"; // Import Bootstrap JavaScript
 
 const Profile = () => {
    const { setting } = useSelector((state) => state.setting);
+
+   // useEffect(() => {
+   //    const handleEditProfile = () => {
+   //       $('#eit-profile-input').('sidebar-toggled');
+   //       $('.sidebar').toggleClass('toggled');
+
+   //       // Listen for the collapse transition to complete
+   //       $('.sidebar .collapse').on('transitionend', function () {
+   //          if ($('.sidebar').hasClass('toggled')) {
+   //             $('.sidebar .collapse').collapse('hide');
+   //          }
+   //       });
+   //    };
+
+   //    // Check if jQuery is loaded before adding the event listener
+   //    if ($) {
+   //       $('#sidebarToggleTop').on('click', handleClick);
+   //    } else {
+   //       console.log('jQuery is not loaded');
+   //    }
+
+   //    // Clean up the event listener
+   //    return () => {
+   //       $('#sidebarToggleTop').off('click', handleClick);
+   //    };
+   // }, []); // Empty dependency array ensures the effect runs only once
+
    return (
       <>
          <section style={{ backgroundColor: "#eee" }}>
@@ -66,12 +94,16 @@ const Profile = () => {
                   <div className="col-lg-8">
                      <div className="card mb-4">
                         <div className="card-body">
+                           <div className='d-flex justify-content-end'>
+                              <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary">Edit Profile</button>
+                           </div>
                            <div className="row">
                               <div className="col-sm-3">
                                  <p className="mb-0">Full Name</p>
                               </div>
                               <div className="col-sm-9">
-                                 <p className="text-muted mb-0">Johnatan Smith</p>
+                                 {/* <p className="text-muted mb-0">Johnatan Smith</p> */}
+                                 <input id='edit-profile-input' className="text-muted mb-0 profile-edit-input" placeholder='Johnatan Smith' disabled></input>
                               </div>
                            </div>
                            <hr />
@@ -110,6 +142,7 @@ const Profile = () => {
                                  <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
                               </div>
                            </div>
+
                         </div>
                      </div>
                      <div className="row">

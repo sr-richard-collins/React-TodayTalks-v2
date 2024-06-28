@@ -6,6 +6,8 @@ import axios from '../../config';
 import { IMAGE_BASE_URL } from '../../config';
 import { fetchSelectCategory } from '../../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import $ from "jquery"; // Import jQuery
+import "bootstrap"; // Import Bootstrap JavaScript
 
 const SpotLightSection = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,7 @@ const SpotLightSection = () => {
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
   const [spotlight, setSpotlight] = useState([]);
+  const [clickedBlogArticleIconId, setClickedBlogArticleIconId] = useState([]);
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
@@ -27,6 +30,15 @@ const SpotLightSection = () => {
     window.scrollTo(0, 0);
     setActivePage(index);
     setSpotIndex(index); // Assuming setSpotIndex is defined elsewhere
+  };
+  const handleBlogArticleHeartClick = (linkId) => {
+    if(clickedBlogArticleIconId.includes(linkId)){
+      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter(id => id !== linkId));
+    }
+    else{
+      setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
+    }
+    
   };
 
   const handleViewClick = (name) => {
@@ -127,6 +139,12 @@ const SpotLightSection = () => {
                           </span>
                         </Link>
                       </div>
+                    </li>
+                    <li>
+                      <Link to={''} onClick={() =>handleBlogArticleHeartClick(index)}
+                      className={clickedBlogArticleIconId.includes(index) ? 'blog-article-icon-heart-clicked' : ''}>
+                        <FontAwesomeIcon icon="fa-solid fa-heart" className='blog-article-icon-heart' />
+                      </Link>
                     </li>
                   </ul>
                 </div>
