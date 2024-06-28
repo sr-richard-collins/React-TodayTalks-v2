@@ -8323,7 +8323,7 @@ label {
 }
 
 .left-menu-content .dropdown-content li.active > a {
-  color: var(--tg-primary-color);
+  /* color: var(--tg-primary-color); */
 }
 
 .toggle-menu-social {

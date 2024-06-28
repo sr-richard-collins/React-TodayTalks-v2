@@ -110,10 +110,12 @@ const Menu = () => {
                     </Link>
                   ) : (
                     <>
-                      <div className='category-link-with-dropdown'>
+                      <div className='category-link-with-dropdown' onMouseLeave={handleCategoryMouseLeave}
+                      onClick={() => handleCategoryClick(category.name)}>
                         <Link
                           to={`/news/${category.data_query}`}
                           onMouseEnter={() => handleCategoryMouseEnter(category.name)}
+                          
                           className='nav-bar-link'
                           key={category.id}
                         >
