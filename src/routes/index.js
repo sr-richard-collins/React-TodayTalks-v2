@@ -16,6 +16,7 @@ const BlogsDetails = lazy(() => import('../views/BlogsDetailsPage.js'));
 const Contact = lazy(() => import('../views/Contact.js'));
 const About = lazy(() => import('../views/AboutUs.js'));
 const Login = lazy(() => import('../views/Login.js'));
+const ForgotPassword = lazy(() => import('../views/ForgotPassword.js'));
 const Register = lazy(() => import('../views/Register.js'));
 const Profile = lazy(() => import('../views/Profile.js'));
 const NotFoundError = lazy(() => import('../views/error/NotFoundError.js'));
@@ -53,6 +54,14 @@ const ThemeRoutes = [
     element: (
       <AuthGuard redirectTo='/'>
         <Suspense fallback={<Loader />}>{<Login />}</Suspense>
+      </AuthGuard>
+    ),
+  },
+  {
+    path: '/forgot-password',
+    element: (
+      <AuthGuard redirectTo='/'>
+        <Suspense fallback={<Loader />}>{<ForgotPassword />}</Suspense>
       </AuthGuard>
     ),
   },

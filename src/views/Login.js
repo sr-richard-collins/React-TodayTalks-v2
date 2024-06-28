@@ -9,18 +9,22 @@ const Login = () => {
   const { setting } = useSelector((state) => state.setting);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(''); // State to store the message
   const { login } = useContext(AuthContext);
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate('/');
+      setMessage('Login successful!');
+      navigate('/', { state: { message: 'Login successful!' } });
     } catch (error) {
+      setMessage('Error logging in. Please check your email and password.');
       console.error('Error logging in', error);
     }
   };
+
   return (
     <>
       <section className='vh-100'>
@@ -31,7 +35,14 @@ const Login = () => {
             </div>
             <div className='col-md-8 col-lg-6 col-xl-4 offset-xl-1'>
               <form onSubmit={handleSubmit}>
+                {message && (
+                  <div className={`alert ${message.includes('successful') ? 'alert-success' : 'alert-danger'}`} role='alert'>
+                    {message}
+                  </div>
+                )}
                 <div className='form-outline mb-4'>
+                  <label className='form-label'>Email address</label>
+
                   <input
                     type='email'
                     id='form3Example3'
@@ -40,10 +51,10 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <label className='form-label'>Email address</label>
                 </div>
 
                 <div className='form-outline mb-3'>
+                  <label className='form-label'>Password</label>
                   <input
                     type='password'
                     id='form3Example4'
@@ -52,7 +63,6 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <label className='form-label'>Password</label>
                 </div>
 
                 <div className='d-flex justify-content-between align-items-center'>
@@ -60,9 +70,9 @@ const Login = () => {
                     <input className='form-check-input me-2' type='checkbox' value='' id='form2Example3' />
                     <label className='form-check-label'>Remember me</label>
                   </div>
-                  <a href='/forgot-password' className='text-body'>
+                  <Link to='/forgot-password' className='text-body'>
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
 
                 <div className='text-center mt-4 pt-2'>
@@ -70,7 +80,7 @@ const Login = () => {
                     Log In
                   </button>
                   <p className='small fw-bold mt-2 pt-1 mb-0'>
-                    Don't have an account? <a href='/register'>Register</a>
+                    Don't have an account? <Link to='/register'>Register</Link>
                   </p>
                 </div>
               </form>

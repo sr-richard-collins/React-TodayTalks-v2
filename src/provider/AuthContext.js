@@ -1,5 +1,6 @@
 // AuthContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
+
 import axios from '../config';
 
 export const AuthContext = createContext();
@@ -36,10 +37,15 @@ export const AuthProvider = ({ children }) => {
     setUser(user);
   };
 
+  const forgotPassword = async (email) => {
+    const response = await axios.post('/api/user/forgotPassword', { email });
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
     setIsAuthenticated(false);
+    window.location.href = '/login';
   };
 
   return <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>{children}</AuthContext.Provider>;

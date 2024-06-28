@@ -8,20 +8,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { fetchHomePosts } from '../actions/postAction';
 import Loader from '../components/Loader';
+import { useLocation } from 'react-router-dom';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { setting } = useSelector((state) => state.setting);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const [message, setMessage] = useState(location.state?.message || '');
 
   useEffect(() => {
     dispatch(fetchHomePosts()).then(() => setLoading(false));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage('');
+      }, 2000); // 2 seconds delay
+
+      // Cleanup timer on component unmount
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   if (loading) return <Loader />;
 
   return (
     <>
+      {message && <div className='alert success-message'>{message}</div>}
       <div>
         <Helmet>
           <title>{setting.site_title}</title>
