@@ -130,7 +130,7 @@ const Header = () => {
                         {categories.length > 8 &&
                           categories.slice(0, 7).map((category) => (
                             <li key={category.id} className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''}>
-                              <Link to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)} className='nav-bar-link'>
+                              <Link to={`/${category.type2}/${category.data_query}`} onClick={() => handleLinkClick(category.name)} className='nav-bar-link'>
                                 {category.name}
                               </Link>
                             </li>
@@ -151,7 +151,7 @@ const Header = () => {
                               categories.slice(7).map((category) => (
                                 <li className={activeLink === category.name ? 'active' : ''} key={category.id}>
                                   <div>
-                                    <Link key={category.id} to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)}>
+                                    <Link key={category.id} to={`/${category.type2}/${category.data_query}`} onClick={() => handleLinkClick(category.name)}>
                                       {category.name}
                                     </Link>
                                   </div>
@@ -189,7 +189,7 @@ const Header = () => {
                               {categories.slice(0, 7).map((category, index) => (
                                 <li className='active menu-item-has-children ' key={index}>
                                   <Link
-                                    to={`/news/${category.data_query}`}
+                                    to={`/${category.type2}/${category.data_query}`}
                                     onClick={() => handleLinkClick(category.name)}
                                     className='nav-bar-link'
                                     key={category.id}
@@ -208,7 +208,7 @@ const Header = () => {
                                       <li key={category.id}>
                                         <Link
                                           key={category.id}
-                                          to={`/news/${category.data_query}`}
+                                          to={`/${category.type2}/${category.data_query}`}
                                           onClick={() => handleLinkClick(category.name)}
                                           className='nav-bar-link'
                                         >

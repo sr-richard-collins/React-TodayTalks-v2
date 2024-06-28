@@ -71,7 +71,11 @@ const SpotLightSection = () => {
               {/* <div className="row"> */}
               <div className='spotlight-post big-post'>
                 <div className='spotlight-post-thumb'>
-                  <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>
+                  <Link
+                    to={`/${spotlight[spotIndex * 5 + index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${
+                      spotlight[spotIndex * 5 + index].seo_slug
+                    }`}
+                  >
                     <img src={IMAGE_BASE_URL + spotlight[spotIndex * 5 + index].img} alt='' />
                   </Link>
                 </div>
@@ -81,14 +85,20 @@ const SpotLightSection = () => {
               {/* <div className="row"> */}
               <div className='weekly-post-content'>
                 <Link
-                  to={`/news/${spotlight[spotIndex * 5 + index].category_data_query}`}
+                  to={`/${spotlight[spotIndex * 5 + index].category_type}/${spotlight[spotIndex * 5 + index].category_data_query}`}
                   className='post-tag'
                   onClick={() => handleViewClick(spotlight[spotIndex * 5 + index].category_name)}
                 >
                   {spotlight[spotIndex * 5 + index].category_name}
                 </Link>
                 <h2 className='post-title'>
-                  <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`}>{spotlight[spotIndex * 5 + index].title}</Link>
+                  <Link
+                    to={`/${spotlight[spotIndex * 5 + index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${
+                      spotlight[spotIndex * 5 + index].seo_slug
+                    }`}
+                  >
+                    {spotlight[spotIndex * 5 + index].title}
+                  </Link>
                 </h2>
 
                 <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
@@ -117,7 +127,12 @@ const SpotLightSection = () => {
                     </li>
                     <li>
                       <div className='view-all-btn'>
-                        <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`} className='homeblog-link-btn'>
+                        <Link
+                          to={`/${spotlight[spotIndex * 5 + index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${
+                            spotlight[spotIndex * 5 + index].seo_slug
+                          }`}
+                          className='homeblog-link-btn'
+                        >
                           Read More
                           <span className='svg-icon'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>

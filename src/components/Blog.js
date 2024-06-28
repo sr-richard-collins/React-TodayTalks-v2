@@ -96,13 +96,13 @@ const Blog = ({ title, isHomepage }) => {
                     <div className='col-md-12' key={post.id}>
                       <div className='weekly-post-three'>
                         <div className='weekly-post-thumb'>
-                          <Link to={`/${post.seo_slug}`}>
+                          <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
                             <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
                           </Link>
                         </div>
                         <div className='weekly-post-content'>
                           <h2 className='post-title'>
-                            <Link to={`/${post.seo_slug}`}>{post.title}</Link>
+                            <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                           </h2>
 
                           <p>{post.subTitle}</p>

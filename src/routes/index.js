@@ -37,9 +37,11 @@ const ThemeRoutes = [
     children: [
       { path: '/', exact: true, element: <Home /> },
       { path: '/news/:name', exact: true, element: <Category /> },
+      { path: '/article/:name', exact: true, element: <Category /> },
       { path: '/spotlight/:name', exact: true, element: <Spotlight /> },
       { path: '/bloglayout3', exact: true, element: <BlogLayout3 /> },
-      { path: '/:title', exact: true, element: <BlogsDetails /> },
+      { path: '/news_detail/:title', exact: true, element: <BlogsDetails /> },
+      { path: '/article_detail/:title', exact: true, element: <BlogsDetails /> },
       { path: '/contact', exact: true, element: <Contact /> },
       { path: '/about', exact: true, element: <About /> },
       { path: '*', element: <Navigate to='/404' /> }, // Navigate to 404 page for unmatched routes

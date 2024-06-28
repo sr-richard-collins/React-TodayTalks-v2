@@ -17,7 +17,7 @@ const SubCategoryBreadcrumb = ({ subCategories, title }) => {
                     </li>
                     {subCategories.map((subCategory) => (
                       <li key={subCategory.id} className='sub-cagetory-breadcrumb-item'>
-                        <Link to={`/news/${subCategory.data_query}`} className={subCategory.name === title ? 'active' : ''}>
+                        <Link to={`/${subCategory.type2}/${subCategory.data_query}`} className={subCategory.name === title ? 'active' : ''}>
                           <span>{subCategory.name}</span>
                         </Link>
                       </li>

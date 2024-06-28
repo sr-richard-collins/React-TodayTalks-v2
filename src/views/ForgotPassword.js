@@ -38,7 +38,6 @@ const ForgotPassword = () => {
                 )}
                 <div className='form-outline mb-4'>
                   <label className='form-label'>Email address</label>
-
                   <input
                     type='email'
                     id='form3Example3'

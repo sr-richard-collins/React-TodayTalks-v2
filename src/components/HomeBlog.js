@@ -39,7 +39,11 @@ const HomeBlog = ({ title }) => {
                     <h2 className='title'>{posts[0].category.name}</h2>
                   </div>
                   <div className='view-all-btn'>
-                    <Link to={`/news/${posts[0].category.data_query}`} className='link-btn' onClick={() => handleViewClick(posts[0].category.name)}>
+                    <Link
+                      to={`/${posts[0].category.type2}/${posts[0].category.data_query}`}
+                      className='link-btn'
+                      onClick={() => handleViewClick(posts[0].category.name)}
+                    >
                       View All
                       <span className='svg-icon'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
@@ -60,13 +64,13 @@ const HomeBlog = ({ title }) => {
                     <div className='col-lg-12 mb-4' key={post.id}>
                       <div className='editor-post-item'>
                         <div className='editor-post-thumb'>
-                          <Link to={`/${post.seo_slug}`}>
+                          <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
                             <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
                           </Link>
                         </div>
                         <div className='editor-post-content'>
                           <h2 className='post-title mt-3'>
-                            <Link to={`/${post.seo_slug}`}>{post.title}</Link>
+                            <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                           </h2>
                           <div className='blog-post-meta my-3'>
                             <ul className='list-wrap'>
@@ -92,7 +96,10 @@ const HomeBlog = ({ title }) => {
                               </li>
                               <li>
                                 <div className='view-all-btn'>
-                                  <Link to={`/${post.seo_slug}`} className='homeblog-link-btn'>
+                                  <Link
+                                    to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}
+                                    className='homeblog-link-btn'
+                                  >
                                     Read More
                                     <span className='svg-icon'>
                                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>

@@ -100,7 +100,7 @@ const Menu = () => {
                   <li key={category.id} className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''}>
                     {!category.child ? (
                       <Link
-                        to={`/news/${category.data_query}`}
+                        to={`/${category.type2}/${category.data_query}`}
                         onClick={() => handleLinkClick(category.name)}
                         className='nav-bar-link'
                         key={category.id}
@@ -112,7 +112,7 @@ const Menu = () => {
                       <>
                         <div className='category-link-with-dropdown'>
                           <Link
-                            to={`/news/${category.data_query}`}
+                            to={`/${category.type2}/${category.data_query}`}
                             onMouseEnter={() => handleCategoryMouseEnter(category.name)}
                             className='nav-bar-link'
                             key={category.id}
@@ -131,7 +131,7 @@ const Menu = () => {
                                     onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
                                   >
                                     <Link
-                                      to={`/news/${subCategory.data_query}`}
+                                      to={`/${subCategory.type2}/${subCategory.data_query}`}
                                       onClick={() => handleLinkClick(subCategory.name)}
                                       onMouseEnter={() => setActiveLink(subCategory.name)}
                                     >
@@ -162,7 +162,7 @@ const Menu = () => {
                         {!category.child ? (
                           <Link
                             key={category.id}
-                            to={`/news/${category.data_query}`}
+                            to={`/${category.type2}/${category.data_query}`}
                             onClick={() => handleLinkClick(category.name)}
                             className='nav-bar-link'
                             onMouseEnter={() => handleLinkMouseEnter(category)}
@@ -172,7 +172,11 @@ const Menu = () => {
                         ) : (
                           <>
                             <div className='category-link-with-moredropdown'>
-                              <Link to={`/news/${category.data_query}`} onMouseEnter={() => handleCategoryMouseEnter(category.name)} className='nav-bar-link'>
+                              <Link
+                                to={`/${category.type2}/${category.data_query}`}
+                                onMouseEnter={() => handleCategoryMouseEnter(category.name)}
+                                className='nav-bar-link'
+                              >
                                 {category.name}
                                 <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
                               </Link>
@@ -186,7 +190,7 @@ const Menu = () => {
                                       onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
                                     >
                                       <Link
-                                        to={`/news/${moreSubCategory.data_query}`}
+                                        to={`/${moreSubCategory.type2}/${moreSubCategory.data_query}`}
                                         onClick={() => handleLinkClick(moreSubCategory.name)}
                                         onMouseEnter={() => setActiveLink(moreSubCategory.name)}
                                       >
