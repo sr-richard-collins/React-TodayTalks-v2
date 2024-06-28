@@ -2302,7 +2302,7 @@ textarea.form-control {
 .form-check {
     position: relative;
     display: block;
-    padding-left: 1.25rem
+    /* padding-left: 1.25rem */
 }
 
 .form-check-input {
@@ -11651,11 +11651,11 @@ a:focus {
 }
 
 .sidebar .sidebar-brand {
-    height: 4.375rem;
+    /* height: 4.375rem; */
     text-decoration: none;
     font-size: 1rem;
     font-weight: 800;
-    padding: 1.5rem 1rem;
+    /* padding: 1.5rem 1rem; */
     text-align: center;
     text-transform: uppercase;
     letter-spacing: .05rem;
@@ -11671,7 +11671,7 @@ a:focus {
 }
 
 .sidebar hr.sidebar-divider {
-    margin: 0 1rem 1rem
+    /* margin: 0 1rem 1rem */
 }
 
 .sidebar .sidebar-heading {
