@@ -19,7 +19,8 @@ const Header = () => {
   const [showToggleSubMenu, setShowToggleSubMenu] = useState(false);
   const [showToggleSubCategory, setShowToggleSubCategory] = useState(false);
   const [showToggleMenu, setShowToggleMenu] = useState(false);
-  const [activeCategory, setActiveCategory] = useState([[null, false],]);
+  // const [activeCategory, setActiveCategory] = useState([[null, false],]);
+  const [activeCategory, setActiveCategory] = useState({ category: null, show: false });
   const moreCategories = categories.filter((category) => category.position === 'more');
   const mainCategories = categories.filter((category) => category.position === 'main');
 
@@ -163,13 +164,18 @@ const Header = () => {
                           ) : (
                             <>
                               <Link
+                                // onClick={() => {
+                                //   setActiveCategory((prevActiveCategory) => ({
+                                //     category: category.name,
+                                //     show: !prevActiveCategory.category || prevActiveCategory.category !== category.name ? false : !prevActiveCategory.show
+                                //   }));
+                                // }}
                                 onClick={() => {
                                   setActiveCategory((prevActiveCategory) => ({
                                     category: category.name,
-                                    show: !prevActiveCategory.category || prevActiveCategory.category !== category.name ? false : !prevActiveCategory.show
+                                    show: prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show
                                   }));
                                 }}
-                                // onClick={() => toggleSubCategoryShow(category.name)}
                                 className='nav-bar-link' >
                                 {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                               </Link>
