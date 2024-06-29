@@ -106,11 +106,11 @@ const SpotLightSection = () => {
                 <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
                 <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
-                    <li>
+                    <li className='col-2'>
                       <i className='flaticon-calendar'></i>
                       {new Date(spotlight[spotIndex * 5 + index].created_at).toLocaleDateString()}
                     </li>
-                    <li>
+                    <li className='col-3'>
                       <span className='homeblog-link-icon-phone'>
                         <Link to={setting.social_whatsapp}>
                           <FontAwesomeIcon icon='fa-solid fa-phone' />
@@ -127,7 +127,7 @@ const SpotLightSection = () => {
                         </Link>
                       </span>
                     </li>
-                    <li>
+                    <li className='col-6'>
                       <div className='view-all-btn'>
                         <Link to={`/${spotlight[spotIndex * 5 + index].seo_slug}`} className='homeblog-link-btn'>
                           Read More
@@ -140,7 +140,7 @@ const SpotLightSection = () => {
                         </Link>
                       </div>
                     </li>
-                    <li>
+                    <li className='col-1'>
                       <Link to={''} onClick={() =>handleBlogArticleHeartClick(index)}
                       className={clickedBlogArticleIconId.includes(index) ? 'blog-article-icon-heart-clicked' : ''}>
                         <FontAwesomeIcon icon="fa-solid fa-heart" className='blog-article-icon-heart' />
@@ -149,6 +149,7 @@ const SpotLightSection = () => {
                   </ul>
                 </div>
               </div>
+              <hr />
               {/* </div> */}
             </div>
           ))}

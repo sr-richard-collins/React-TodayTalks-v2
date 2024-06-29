@@ -21,6 +21,7 @@ const Blog = ({ title, isHomepage }) => {
   const [totalPosts, setTotalPosts] = useState(0);
   const [loading, setLoading] = useState(true);
   const [subCategory, setSubCategory] = useState([]);
+  const [clickedBlogArticleIconId, setClickedBlogArticleIconId] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -67,6 +68,15 @@ const Blog = ({ title, isHomepage }) => {
     setPostsPerPage(event.target.value);
     setCurrentPage(1); // Reset to the first page
   };
+  const handleBlogArticleHeartClick = (linkId) => {
+    if(clickedBlogArticleIconId.includes(linkId)){
+      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter(id => id !== linkId));
+    }
+    else{
+      setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
+    }
+    
+  };
 
   const handleViewClick = (name) => {
     dispatch(fetchSelectCategory(name));
@@ -108,10 +118,10 @@ const Blog = ({ title, isHomepage }) => {
                           <p>{post.subTitle}</p>
                           <div className='blog-post-meta'>
                             <ul className='list-wrap mt-3'>
-                              <li>
+                              <li className='col-2' style={{marginLeft:'15px'}}>
                                 <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
                               </li>
-                              <li>
+                              <li className='col-3'>
                                 <span className='homeblog-link-icon-phone'>
                                   <Link to='/'>
                                     <FontAwesomeIcon icon='fa-solid fa-phone' />
@@ -128,7 +138,7 @@ const Blog = ({ title, isHomepage }) => {
                                   </Link>
                                 </span>
                               </li>
-                              <li>
+                              <li className='col-6'>
                                 <div className='view-all-btn'>
                                   <Link to={`/`} className='homeblog-link-btn'>
                                     Read More
@@ -141,9 +151,12 @@ const Blog = ({ title, isHomepage }) => {
                                   </Link>
                                 </div>
                               </li>
-                              {/* <li>
-                                <i className="flaticon-history"></i>20 Mins
-                              </li> */}
+                              <li className='col-1'>
+                                <Link to={''} onClick={() => handleBlogArticleHeartClick(post.id)}
+                                  className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}>
+                                  <FontAwesomeIcon icon="fa-solid fa-heart" className='blog-article-icon-heart' />
+                                </Link>
+                              </li>
                             </ul>
                           </div>
                         </div>
