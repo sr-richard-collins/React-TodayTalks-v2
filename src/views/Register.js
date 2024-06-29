@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from '../config/';
+import { IMAGE_BASE_URL } from '../config';
 
 const Register = () => {
+  const { setting } = useSelector((state) => state.setting);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -87,8 +90,15 @@ const Register = () => {
         <div className='container pt-60 h-custom'>
           <div className='row d-flex justify-content-center align-items-center h-100'>
             <div className='col-md-8 col-lg-6 col-xl-4'>
-              <p className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>Sign up</p>
-              <div>
+              <div className='login-card' style={{height:'550px'}}>
+                <div className='brand_logo_container'>
+                  <img
+                    src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                    alt='logo'
+                    className='logo-style  rounded-circle'
+                    style={{ height: '6rem', width: '12rem' }}
+                  />
+                </div>
                 {!isVerificationSent ? (
                   <form className='mx-1 mx-md-4' onSubmit={handleSubmit} encType='multipart/form-data'>
                     <div className='account-profile d-flex align-items-center mb-4'>

@@ -7,9 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
 import googleplayimg from '../assets/img/icon/googleplay.png';
 import { AuthContext } from '../provider/AuthContext';
-import { NEWS_CATEGORY, ARTICLE_CATEGORY, DETAIL_CATEGORY, DETAIL_ARTICLE } from '../config/constant';
 
-const Header = () => {
+const HeaderLogin = () => {
   const context = useContext(AuthContext);
   const { user, logout } = context;
 
@@ -73,59 +72,13 @@ const Header = () => {
           <div className='col-6' style={{ alignItems: 'end' }}>
             <div className='header-top-social header-top-social-two'>
               <ul className='list-wrap'>
-                <li className='social-icons'>
+                <li >
                   <span>
-                    <Link to={setting.social_fb} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
+                    <Link to='/'>
+                    <FontAwesomeIcon icon="fa-solid fa-house" className='img-icon-left-menu rounded-circle mx-2' />
                     </Link>
                   </span>
                 </li>
-                <li className='social-icons'>
-                  <span>
-                    <Link to={setting.social_twitter} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-twitter' />
-                    </Link>
-                  </span>
-                </li>
-                <li className='social-icons'>
-                  <span>
-                    <Link to={setting.social_insta} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-instagram' />
-                    </Link>
-                  </span>
-                </li>
-                <li className='social-icons'>
-                  <span>
-                    <Link to={setting.social_linkedin} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-linkedin' />
-                    </Link>
-                  </span>
-                </li>
-                <li className='social-icons'>
-                  <span>
-                    <Link to={setting.social_youtube} target='blank'>
-                      <FontAwesomeIcon icon='fa-brands fa-youtube' />
-                    </Link>
-                  </span>
-                </li>
-
-                {user ? (
-                  <>
-                    <span>{user.name}</span>
-                    <button onClick={logout} className='btn'>
-                      Log Out
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link to='/login' className='btn'>
-                      Log In
-                    </Link>
-                    <Link to='/register' className='btn'>
-                      Register
-                    </Link>
-                  </>
-                )}
               </ul>
             </div>
             <div className='mobile-nav-toggler'>
@@ -134,7 +87,10 @@ const Header = () => {
               </Link>
             </div>
             {showToggleMenu && (
-              <div className='mobile-menu' onMouseLeave={handleMenuToggleCloseClick}>
+              <div
+                className='mobile-menu'
+                onMouseLeave={handleMenuToggleCloseClick}
+              >
                 <nav className='menu-box'>
                   <div className='menu-outer'>
                     <ul className='navigation'>
@@ -155,12 +111,9 @@ const Header = () => {
                       {mainCategories.map((category, index) => (
                         <li className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''} key={index}>
                           {!category.child ? (
-                            <Link
-                              to={`/${category.type2}/${category.data_query}`}
+                            <Link to={`/news/${category.data_query}`}
                               onClick={() => handleLinkClick(category.name)}
-                              className='nav-bar-link'
-                              key={category.id}
-                            >
+                              className='nav-bar-link' key={category.id}>
                               {category.name}
                             </Link>
                           ) : (
@@ -169,30 +122,30 @@ const Header = () => {
                                 onClick={() => {
                                   setActiveCategory((prevActiveCategory) => ({
                                     category: category.name,
-                                    show: !prevActiveCategory.category || prevActiveCategory.category !== category.name ? false : !prevActiveCategory.show,
+                                    show: prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show
                                   }));
                                 }}
-                                // onClick={() => toggleSubCategoryShow(category.name)}
-                                className='nav-bar-link'
-                              >
+                                className='nav-bar-link' >
                                 {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                               </Link>
                               {activeCategory.category === category.name && (
                                 <ul className='sub-menu' style={{ display: activeCategory.show ? 'block' : 'none' }}>
-                                  {category.child.map((subCategory) => (
-                                    <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
-                                      <Link
-                                        key={subCategory.id}
-                                        to={`/${subCategory.type2}/${subCategory.data_query}`}
-                                        onClick={() => handleLinkClick(subCategory.name)}
-                                        className='nav-bar-link'
-                                      >
-                                        {subCategory.name}
-                                      </Link>
-                                    </li>
-                                  ))}
+                                  {
+                                    category.child.map((subCategory) => (
+                                      <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
+                                        <Link
+                                          key={subCategory.id}
+                                          to={`/news/${subCategory.data_query}`}
+                                          onClick={() => handleLinkClick(subCategory.name)}
+                                          className='nav-bar-link'
+                                        >
+                                          {subCategory.name}
+                                        </Link>
+                                      </li>
+                                    ))}
                                 </ul>
-                              )}
+                              )
+                              }
                             </>
                           )}
                         </li>
@@ -205,43 +158,12 @@ const Header = () => {
                           {showToggleSubMenu &&
                             moreCategories.map((category) => (
                               <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
-                                {!category.child ? (
-                                  <Link
-                                    key={category.id}
-                                    to={`/${category.type2}/${category.data_query}`}
-                                    onClick={() => handleLinkClick(category.name)}
-                                    className='nav-bar-link'
-                                  >
-                                    {category.name}
-                                  </Link>
-                                ) : (
-                                  <>
-                                    <Link
-                                      // onClick={handleShowToggleSubCategory}
-                                      className='nav-bar-link'
-                                      // onMouseEnter={() => handleCategoryMouseEnter(category.name)}
-                                    >
-                                      {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
-                                    </Link>
-                                    {activeCategory === category.name && (
-                                      <ul className='sub-more-menu' style={{ display: 'block' }}>
-                                        {showToggleSubCategory &&
-                                          category.child.map((subCategory) => (
-                                            <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
-                                              <Link
-                                                key={subCategory.id}
-                                                to={`/${subCategory.type2}/${subCategory.data_query}`}
-                                                onClick={() => handleLinkClick(subCategory.name)}
-                                                className='nav-bar-link'
-                                              >
-                                                {subCategory.name}
-                                              </Link>
-                                            </li>
-                                          ))}
-                                      </ul>
-                                    )}
-                                  </>
-                                )}
+                                <Link
+                                  onClick={() => handleLinkClick(category.name)}
+                                  className='nav-bar-link'
+                                >
+                                  {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                </Link>
                               </li>
                             ))}
                         </ul>
@@ -305,9 +227,9 @@ const Header = () => {
             )}
           </div>
         </div>
-      </div>
-    </header>
+      </div >
+    </header >
   );
 };
 
-export default Header;
+export default HeaderLogin;

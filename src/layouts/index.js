@@ -42,7 +42,7 @@ const FullLayout = () => {
       </button>
 
       <Header />
-      <section className="pt-70 pb-60">
+      <section className="pt-70 pb-60 container">
         <Menu/>
         {isMobile ? (
           <main className="fix">

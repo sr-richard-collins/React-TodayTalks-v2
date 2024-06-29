@@ -110,6 +110,11 @@ const HomeBlog = ({ title }) => {
                                   </Link>
                                 </div>
                               </li>
+                              <li>
+                                <Link to={''} >
+                                  <FontAwesomeIcon icon="fa-regular fa-heart" className='blog-article--icon-heart' />
+                                </Link>
+                              </li>
                             </ul>
                           </div>
                         </div>

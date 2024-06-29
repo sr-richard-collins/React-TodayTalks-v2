@@ -6,6 +6,8 @@ import axios from '../../config';
 import { IMAGE_BASE_URL } from '../../config';
 import { fetchSelectCategory } from '../../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import $ from "jquery"; // Import jQuery
+import "bootstrap"; // Import Bootstrap JavaScript
 
 const SpotLightSection = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,7 @@ const SpotLightSection = () => {
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
   const [spotlight, setSpotlight] = useState([]);
+  const [clickedBlogArticleIconId, setClickedBlogArticleIconId] = useState([]);
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
@@ -27,6 +30,15 @@ const SpotLightSection = () => {
     window.scrollTo(0, 0);
     setActivePage(index);
     setSpotIndex(index); // Assuming setSpotIndex is defined elsewhere
+  };
+  const handleBlogArticleHeartClick = (linkId) => {
+    if(clickedBlogArticleIconId.includes(linkId)){
+      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter(id => id !== linkId));
+    }
+    else{
+      setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
+    }
+    
   };
 
   const handleViewClick = (name) => {
@@ -104,11 +116,11 @@ const SpotLightSection = () => {
                 <p>{spotlight[spotIndex * 5 + index].subTitle}</p>
                 <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
-                    <li>
+                    <li className='col-2'>
                       <i className='flaticon-calendar'></i>
                       {new Date(spotlight[spotIndex * 5 + index].created_at).toLocaleDateString()}
                     </li>
-                    <li>
+                    <li className='col-3'>
                       <span className='homeblog-link-icon-phone'>
                         <Link to={setting.social_whatsapp}>
                           <FontAwesomeIcon icon='fa-solid fa-phone' />
@@ -125,7 +137,7 @@ const SpotLightSection = () => {
                         </Link>
                       </span>
                     </li>
-                    <li>
+                    <li className='col-6'>
                       <div className='view-all-btn'>
                         <Link
                           to={`/${spotlight[spotIndex * 5 + index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${
@@ -143,9 +155,16 @@ const SpotLightSection = () => {
                         </Link>
                       </div>
                     </li>
+                    <li className='col-1'>
+                      <Link to={''} onClick={() =>handleBlogArticleHeartClick(index)}
+                      className={clickedBlogArticleIconId.includes(index) ? 'blog-article-icon-heart-clicked' : ''}>
+                        <FontAwesomeIcon icon="fa-solid fa-heart" className='blog-article-icon-heart' />
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
+              <hr />
               {/* </div> */}
             </div>
           ))}
