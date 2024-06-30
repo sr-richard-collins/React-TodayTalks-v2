@@ -12,6 +12,7 @@ const HomeBlog = ({ title }) => {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const { setting } = useSelector((state) => state.setting);
+  const [clickedBlogArticleIconId, setClickedBlogArticleIconId] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -25,6 +26,16 @@ const HomeBlog = ({ title }) => {
 
   const handleViewClick = (name) => {
     dispatch(fetchSelectCategory(name));
+  };
+
+  const handleBlogArticleHeartClick = (linkId) => {
+    if(clickedBlogArticleIconId.includes(linkId)){
+      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter(id => id !== linkId));
+    }
+    else{
+      setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
+    }
+    
   };
 
   return (
@@ -73,11 +84,12 @@ const HomeBlog = ({ title }) => {
                             <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                           </h2>
                           <div className='blog-post-meta my-3'>
-                            <ul className='list-wrap'>
-                              <li>
-                                <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
+                            <ul className='list-wrap mb-3'>
+                              <li className='col-2'>
+                                <FontAwesomeIcon icon='fa-regular fa-calendar' />
+                                {new Date(post.created_at).toLocaleDateString()}
                               </li>
-                              <li>
+                              <li className='col-3'>
                                 <span className='homeblog-link-icon-phone'>
                                   <Link to={setting.social_whatsapp}>
                                     <FontAwesomeIcon icon='fa-solid fa-phone' />
@@ -94,7 +106,7 @@ const HomeBlog = ({ title }) => {
                                   </Link>
                                 </span>
                               </li>
-                              <li>
+                              <li className='col-6'>
                                 <div className='view-all-btn'>
                                   <Link
                                     to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}
@@ -110,9 +122,10 @@ const HomeBlog = ({ title }) => {
                                   </Link>
                                 </div>
                               </li>
-                              <li>
-                                <Link to={''} >
-                                  <FontAwesomeIcon icon="fa-regular fa-heart" className='blog-article--icon-heart' />
+                              <li className='col-1'>
+                                <Link to={''} onClick={() => handleBlogArticleHeartClick(post.id)}
+                                  className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}>
+                                  <FontAwesomeIcon icon="fa-solid fa-heart" className='blog-article-icon-heart' />
                                 </Link>
                               </li>
                             </ul>

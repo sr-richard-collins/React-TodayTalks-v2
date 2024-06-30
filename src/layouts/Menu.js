@@ -156,7 +156,8 @@ const Menu = () => {
 
             {moreCategories.length ? (
               <li>
-                <Link to='#' onMouseEnter={() => setShowDropleft(!showDropleft)} className='nav-bar-link'>
+                <Link to='#' onMouseEnter={() => setShowDropleft(!showDropleft)} className='nav-bar-link my-2'>
+                <FontAwesomeIcon icon="fa-solid fa-money-check" className='img-icon-left-menu rounded-circle mx-2'/>
                   View More
                   <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
                 </Link>

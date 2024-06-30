@@ -270,10 +270,10 @@ label {
 }
 
 /* Bootstrap 5 */
-.container {
+/* .container {
     padding-left: 15px;
     padding-right: 15px;
-}
+} */
 .row {
     --bs-gutter-x: 30px;
 }

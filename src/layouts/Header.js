@@ -52,7 +52,7 @@ const Header = () => {
     <header className='header-style-six'>
       <div className='header-top-wrap-four'>
         <div className='row align-items-center'>
-          <div className='col-3'>
+          <div className='col-lg-3 col-md-3 col-3'>
             <div className='header-top-left-four'>
               <div className='swiper-container ta-trending-slider'>
                 <div className='swiper-wrapper'>
@@ -69,8 +69,8 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className='col-3'></div>
-          <div className='col-6' style={{ alignItems: 'end' }}>
+          <div className='col-lg-3 col-md-3 col-1'></div>
+          <div className='col-lg-6 col-md-6 col-8' style={{ alignItems: 'end' }}>
             <div className='header-top-social header-top-social-two'>
               <ul className='list-wrap'>
                 <li className='social-icons'>
@@ -129,7 +129,24 @@ const Header = () => {
               </ul>
             </div>
             <div className='mobile-nav-toggler'>
-              <Link to='#' onClick={handleMenuToggleOpenClick} className='nav-bar-link'>
+              {user ? (
+                <>
+                  <span>{user.name}</span>
+                  <button onClick={logout} className='btn'>
+                    Log Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to='/login' className='btn mx-1'>
+                    Log In
+                  </Link>
+                  <Link to='/register' className='btn mx-1'>
+                    Register
+                  </Link>
+                </>
+              )}
+              <Link to='#' onClick={handleMenuToggleOpenClick} className='nav-bar-link mx-1'>
                 <FontAwesomeIcon icon='fas fa-bars' />
               </Link>
             </div>
@@ -138,6 +155,7 @@ const Header = () => {
                 <nav className='menu-box'>
                   <div className='menu-outer'>
                     <ul className='navigation'>
+
                       <li>
                         <div className='close-btn' onClick={handleMenuToggleCloseClick}>
                           <FontAwesomeIcon icon='fas fa-times' />
@@ -219,7 +237,7 @@ const Header = () => {
                                     <Link
                                       // onClick={handleShowToggleSubCategory}
                                       className='nav-bar-link'
-                                      // onMouseEnter={() => handleCategoryMouseEnter(category.name)}
+                                    // onMouseEnter={() => handleCategoryMouseEnter(category.name)}
                                     >
                                       {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                                     </Link>

@@ -244,7 +244,8 @@ hr {
 }
 
 label {
-  color: var(--tg-body-font-color);
+  /* color: var(--tg-body-font-color); */
+  color: white;
   cursor: pointer;
   font-size: 16px;
   font-weight: 400;
@@ -300,10 +301,10 @@ label {
 }
 
 /* Bootstrap 5 */
-.container {
+/* .container {
   padding-left: 15px;
   padding-right: 15px;
-}
+} */
 
 .content-container {
   margin: unset;
@@ -5882,7 +5883,7 @@ label {
 .form-check label {
   text-align: left;
   font-size: 14px;
-  color: #7488a1;
+  color: white;
   user-select: none;
 }
 
@@ -8286,7 +8287,7 @@ label {
   background: var(--tg-white);
   position: fixed;
   z-index: 2;
-  padding: 10px;
+  padding: 10px 0 0 10px;
   width: 280px;
 }
 
@@ -8791,7 +8792,7 @@ label {
 }
 
 .login-card {
-  height: 500px;
+  height: 400px;
   width: 100%;
   margin-top: auto;
   margin-bottom: auto;
@@ -8809,10 +8810,17 @@ label {
 }
 
 .brand_logo_container {
-  position: absolute;
-  top: -42px;
+  /* position: absolute; */
+  /* top: -42px; */
   border-radius: 50%;
   background: white;
   padding: 10px;
   text-align: center;
+}
+.account-profile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 10px;
 }

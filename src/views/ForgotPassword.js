@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthContext';
+import { IMAGE_BASE_URL } from '../config';
 
 const ForgotPassword = () => {
   const { forgotPassword } = useContext(AuthContext);
-
+  const { setting } = useSelector((state) => state.setting);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
@@ -27,9 +30,22 @@ const ForgotPassword = () => {
         <div className='container pt-60 h-custom'>
           <div className='row d-flex justify-content-center align-items-center h-100'>
             <div className='col-md-9 col-lg-6 col-xl-5'>
+              <div className='brand_logo_container'>
+                <img
+                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                  alt='logo'
+                  className='my-4'
+                  style={{ height: '4rem', width: '12rem' }}
+                />
+              </div>
               <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg' className='img-fluid' alt='Sample image' />
             </div>
             <div className='col-md-8 col-lg-6 col-xl-4 offset-xl-1'>
+            <div className='justify-content-end d-flex mb-2'>
+                <Link to='/' className='nav-bar-link'>
+                  <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu rounded-circle mx-2' />
+                </Link>
+              </div>
               <form onSubmit={handleSubmit}>
                 {message && (
                   <div className='alert alert-success' role='alert'>
@@ -53,7 +69,7 @@ const ForgotPassword = () => {
                     Submit
                   </button>
                   <p className='small fw-bold mt-2 pt-1 mb-0'>
-                    Remembered your password? <Link to='/login'>Log In</Link>
+                    Remembered your password? <Link to='/login'>Log In</Link> Or <Link to='/'> Home</Link>
                   </p>
                 </div>
               </form>

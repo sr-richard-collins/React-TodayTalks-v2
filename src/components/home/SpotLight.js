@@ -117,7 +117,7 @@ const SpotLightSection = () => {
                 <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
                     <li className='col-2'>
-                      <i className='flaticon-calendar'></i>
+                    <FontAwesomeIcon icon='fa-regular fa-calendar' />
                       {new Date(spotlight[spotIndex * 5 + index].created_at).toLocaleDateString()}
                     </li>
                     <li className='col-3'>

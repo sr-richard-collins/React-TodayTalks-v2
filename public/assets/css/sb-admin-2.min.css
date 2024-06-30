@@ -581,10 +581,10 @@ pre code {
 .container-sm,
 .container-xl {
     width: 100%;
-    padding-right: .75rem;
-    padding-left: .75rem;
-    margin-right: auto;
-    margin-left: auto
+    /* padding-right: .75rem; */
+    /* padding-left: .75rem; */
+    /* margin-right: auto; */
+    /* margin-left: auto */
 }
 
 @media (min-width:576px) {
@@ -2128,7 +2128,8 @@ pre code {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #6e707e;
+    /* color: #6e707e; */
+    color: black;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #d1d3e2;

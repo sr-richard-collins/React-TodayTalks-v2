@@ -87,21 +87,18 @@ const Register = () => {
   return (
     <>
       <section className='vh-100'>
-        <div className='container pt-60 h-custom'>
+        <div className='container pt-10 h-custom'>
           <div className='row d-flex justify-content-center align-items-center h-100'>
             <div className='col-md-8 col-lg-6 col-xl-4'>
-              <div className='login-card' style={{height:'550px'}}>
-                <div className='brand_logo_container'>
-                  <img
-                    src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
-                    alt='logo'
-                    className='logo-style  rounded-circle'
-                    style={{ height: '6rem', width: '12rem' }}
-                  />
-                </div>
+              <div className='justify-content-end d-flex mb-3' style={{ width: '110%' }}>
+                <Link to='/' className='nav-bar-link'>
+                  <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu' />
+                </Link>
+              </div>
+              <div className='login-card' style={{ height: '700px', width: '110%' }}>
                 {!isVerificationSent ? (
                   <form className='mx-1 mx-md-4' onSubmit={handleSubmit} encType='multipart/form-data'>
-                    <div className='account-profile d-flex align-items-center mb-4'>
+                    <div className='account-profile'>
                       <div className='ap-img pro_img_wrapper'>
                         <input id='file-upload' type='file' name='avatar' className='d-none' accept='image/*' onChange={handleChange} />
                         <label htmlFor='file-upload'>
@@ -111,18 +108,16 @@ const Register = () => {
                           </span>
                         </label>
                       </div>
-                      <div className='account-profile__title'>
-                        <h6 className='fs-15 ms-20 fw-500 text-capitalize'>Profile Photo</h6>
-                      </div>
                     </div>
-                    <div className='d-flex flex-row align-items-center mb-4'>
+                    <div className='d-flex flex-row align-items-center mb-2'>
                       <FontAwesomeIcon icon='fa-solid fa-user' className='me-3' />
                       <div className='flex-fill mb-0'>
+                        <label className='form-label'>Usr Name</label>
                         <input
                           type='text'
                           id='form3Example1c'
                           className='form-control'
-                          placeholder='Your Name'
+                          // placeholder='Your Name'
                           name='name'
                           value={formData.name}
                           onChange={handleChange}
@@ -130,14 +125,15 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className='d-flex flex-row align-items-center mb-4'>
+                    <div className='d-flex flex-row align-items-center mb-2'>
                       <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3' />
                       <div className='flex-fill mb-0'>
+                        <label className='form-label'>Email</label>
                         <input
                           type='email'
                           id='form3Example3c'
                           className='form-control'
-                          placeholder='Your Email'
+                          // placeholder='Your Email'
                           name='email'
                           value={formData.email}
                           onChange={handleChange}
@@ -145,28 +141,30 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className='d-flex flex-row align-items-center mb-4'>
+                    <div className='d-flex flex-row align-items-center mb-2'>
                       <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3' />
                       <div className='flex-fill mb-0'>
+                        <label className='form-label'>Referral Code</label>
                         <input
                           type='text'
                           id='form3Example3c'
                           className='form-control'
-                          placeholder='Referral Code'
+                          // placeholder='Referral Code'
                           name='referralCode'
                           value={formData.referralCode}
                           onChange={handleChange}
                         />
                       </div>
                     </div>
-                    <div className='d-flex flex-row align-items-center mb-4'>
+                    <div className='d-flex flex-row align-items-center mb-2'>
                       <FontAwesomeIcon icon='fa-solid fa-lock' className='me-3' />
                       <div className='flex-fill mb-0'>
+                        <label className='form-label'>Password</label>
                         <input
                           type='password'
                           id='form3Example4c'
                           className='form-control'
-                          placeholder='Password'
+                          // placeholder='Password'
                           name='password'
                           value={formData.password}
                           onChange={handleChange}
@@ -174,14 +172,15 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className='d-flex flex-row align-items-center mb-4'>
+                    <div className='d-flex flex-row align-items-center mb-2'>
                       <FontAwesomeIcon icon='fa-solid fa-key' className='me-3' />
                       <div className='flex-fill mb-0'>
+                        <label className='form-label'>Confirm Password</label>
                         <input
                           type='password'
                           id='form3Example4cd'
                           className='form-control'
-                          placeholder='Confirm Password'
+                          // placeholder='Confirm Password'
                           name='password_confirmation'
                           value={formData.password_confirmation}
                           onChange={handleChange}
@@ -189,7 +188,7 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className='form-check d-flex justify-content-center mb-5'>
+                    <div className='form-check d-flex justify-content-center'>
                       <input
                         className='form-check-input me-2'
                         type='checkbox'
@@ -203,10 +202,13 @@ const Register = () => {
                         I agree to all statements in <Link to='/terms'>Terms of service</Link>
                       </label>
                     </div>
-                    <div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
-                      <button type='submit' className='btn btn-primary'>
+                    <div className='text-center mt-2 pt-2 mb-2'>
+                      <button type='submit' className='btn btn-primary' style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}>
                         Register
                       </button>
+                      <p className='small fw-bold mt-2 pt-1 mb-0'>
+                        Return to<Link to='/'> Home</Link>
+                      </p>
                     </div>
                   </form>
                 ) : (
@@ -235,6 +237,14 @@ const Register = () => {
               </div>
             </div>
             <div className='col-md-9 col-lg-6 col-xl-5 offset-xl-1'>
+              <div className='brand_logo_container'>
+                <img
+                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                  alt='logo'
+                  className='my-4'
+                  style={{ height: '4rem', width: '12rem' }}
+                />
+              </div>
               <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp' className='img-fluid' alt='Sample image' />
             </div>
           </div>

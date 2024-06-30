@@ -32,27 +32,34 @@ const Login = () => {
         <div className='container pt-60 h-custom'>
           <div className='row d-flex justify-content-center align-items-center h-100'>
             <div className='col-md-9 col-lg-6 col-xl-5 mb-50'>
+              <div className='brand_logo_container'>
+                <img
+                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                  alt='logo'
+                  className='my-4'
+                  style={{ height: '4rem', width: '12rem' }}
+                />
+              </div>
+
               <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg' className='img-fluid' alt='Sample image' />
             </div>
             <div className='col-md-8 col-lg-6 col-xl-4 offset-xl-1'>
+              <div className='justify-content-end d-flex mb-3'>
+                <Link to='/' className='nav-bar-link'>
+                  <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu rounded-circle mx-2' />
+                </Link>
+              </div>
               <div className='login-card'>
-                <div className='brand_logo_container'>
-                  <img
-                    src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
-                    alt='logo'
-                    className='logo-style  rounded-circle'
-                    style={{ height: '6rem', width: '12rem' }}
-                  />
-                </div>
+
                 <form onSubmit={handleSubmit}>
                   {message && (
                     <div className={`alert ${message.includes('successful') ? 'alert-success' : 'alert-danger'}`} role='alert'>
                       {message}
                     </div>
                   )}
+
                   <div className='form-outline mb-4'>
                     <label className='form-label'>Email address</label>
-
                     <input
                       type='email'
                       id='form3Example3'
@@ -90,7 +97,7 @@ const Login = () => {
                       Log In
                     </button>
                     <p className='small fw-bold mt-2 pt-1 mb-0'>
-                      Don't have an account? <Link to='/register'>Register</Link>
+                      Don't have an account? <Link to='/register'>Register</Link> Or<Link to='/'> Home</Link>
                     </p>
                   </div>
                 </form>
