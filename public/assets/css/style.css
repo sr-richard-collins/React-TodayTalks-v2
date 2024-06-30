@@ -301,10 +301,10 @@ label {
 }
 
 /* Bootstrap 5 */
-/* .container {
+.container {
   padding-left: 15px;
   padding-right: 15px;
-} */
+}
 
 .content-container {
   margin: unset;
@@ -440,6 +440,7 @@ label {
   position: fixed;
   top: 0;
   width: 100%;
+  left: 0;
 }
 
 .custom-container {
@@ -2681,7 +2682,7 @@ label {
 	07. Breadcrumb
 ===============================*/
 .breadcrumb-area {
-  background: var(--tg-gray-three);
+  /* background: var(--tg-gray-three); */
   padding: 15px 0;
 }
 
@@ -2690,10 +2691,10 @@ label {
 }
 
 .breadcrumb-content .breadcrumb-item {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 500;
   font-family: var(--tg-heading-font-family);
-  color: var(--tg-icon-color);
+  /* color: var(--tg-icon-color); */
 }
 
 .breadcrumb-content .sub-cagetory-breadcrumb-item {
@@ -3632,6 +3633,10 @@ label {
   font-size: 22px;
 }
 
+.sidebar-social-wrap {
+  display: flex;
+}
+
 .sidebar-social-wrap .list-wrap {
   display: flex;
   align-items: center;
@@ -3642,14 +3647,16 @@ label {
 .sidebar-social-wrap .list-wrap li a {
   display: flex;
   align-items: center;
-  background: var(--tg-teal);
+  /* background: var(--tg-teal); */
+  background: var(--tg-secondary-color);
   font-size: 14px;
   font-weight: 500;
   text-transform: capitalize;
-  color: var(--tg-secondary-color);
+  /* color: var(--tg-secondary-color); */
+  color: var(--tg-white);
   gap: 10px;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 10px 5px;
   min-width: 162px;
   justify-content: center;
 }
@@ -4308,6 +4315,8 @@ label {
 .spotlight-post-thumb {
   border-radius: 6px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .spotlight-post.big-post .spotlight-post-thumb {
@@ -5658,7 +5667,8 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  align-items: center;
 }
 
 .weekly-post-content .post-title {
@@ -5797,6 +5807,8 @@ label {
   position: relative;
   margin-bottom: 15px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .weekly-post-three .weekly-post-thumb .post-tag {
@@ -8817,7 +8829,8 @@ label {
   padding: 10px;
   text-align: center;
 }
-.account-profile{
+
+.account-profile {
   display: flex;
   align-items: center;
   justify-content: center;

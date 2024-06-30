@@ -36,25 +36,25 @@ const FullLayout = () => {
   }
   return (
     <>
-
       <button className="scroll-top scroll-to-target" onClick={() => handleTopScreen()}>
         <FontAwesomeIcon icon="fa-solid fa-angle-up" />
       </button>
+      <div className="container">
+        <Header />
+        <section className="pt-70 pb-60 ">
+          <Menu />
+          {isMobile ? (
+            <main className="fix">
+              <Outlet />
+            </main>
+          ) : (
+            <main className="fix" style={{ marginLeft: '250px' }}>
+              <Outlet />
+            </main>
+          )}
+        </section>
+      </div>
 
-      <Header />
-      <section className="pt-70 pb-60 container">
-        <Menu/>
-        {isMobile ? (
-          <main className="fix">
-            <Outlet />
-          </main>
-        ) : (
-          <main className="fix" style={{ marginLeft: '240px' }}>
-            <Outlet />
-          </main>
-        )}
-      </section>
-      {/* <Footer /> */}
     </>
   );
 };

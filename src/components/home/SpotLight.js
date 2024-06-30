@@ -76,11 +76,8 @@ const SpotLightSection = () => {
               </Link>
             </div>
           </div>
-          {/* <div className="row"> */}
           {[...Array((spotIndex + 1) * 5 < spotlight.length ? 5 : spotlight.length - spotIndex * 5)].map((_, index) => (
             <div className='row' key={index}>
-              {/* <div className="col-57"> */}
-              {/* <div className="row"> */}
               <div className='spotlight-post big-post'>
                 <div className='spotlight-post-thumb'>
                   <Link
@@ -92,9 +89,6 @@ const SpotLightSection = () => {
                   </Link>
                 </div>
               </div>
-              {/* </div> */}
-              {/* <div className="col-43"> */}
-              {/* <div className="row"> */}
               <div className='weekly-post-content'>
                 <Link
                   to={`/${spotlight[spotIndex * 5 + index].category_type}/${spotlight[spotIndex * 5 + index].category_data_query}`}
