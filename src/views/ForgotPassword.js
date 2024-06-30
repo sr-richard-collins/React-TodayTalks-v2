@@ -41,7 +41,7 @@ const ForgotPassword = () => {
               <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg' className='img-fluid' alt='Sample image' />
             </div>
             <div className='col-md-8 col-lg-6 col-xl-4 offset-xl-1'>
-            <div className='justify-content-end d-flex mb-2'>
+              <div className='justify-content-end d-flex mb-2'>
                 <Link to='/' className='nav-bar-link'>
                   <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu rounded-circle mx-2' />
                 </Link>
@@ -61,6 +61,7 @@ const ForgotPassword = () => {
                     placeholder='Enter your email address'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
 
