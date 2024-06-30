@@ -2974,6 +2974,9 @@ label {
     margin-bottom: 0;
     font-size: 22px;
 }
+.sidebar-social-wrap{
+    display: flex;
+}
 .sidebar-social-wrap .list-wrap {
     display: flex;
     align-items: center;

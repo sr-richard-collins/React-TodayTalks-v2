@@ -79,8 +79,6 @@ const SpotLightSection = () => {
           {/* <div className="row"> */}
           {[...Array(spotlight.length)].map((_, index) => (
             <div className='row' key={index}>
-              {/* <div className="col-57"> */}
-              {/* <div className="row"> */}
               <div className='spotlight-post big-post'>
                 <div className='spotlight-post-thumb'>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
@@ -88,9 +86,6 @@ const SpotLightSection = () => {
                   </Link>
                 </div>
               </div>
-              {/* </div> */}
-              {/* <div className="col-43"> */}
-              {/* <div className="row"> */}
               <div className='weekly-post-content'>
                 <Link
                   to={`/${spotlight[index].category_type}/${spotlight[index].category_data_query}`}
