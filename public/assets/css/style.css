@@ -3846,7 +3846,7 @@ label {
 
 .section-title-three .title {
   font-size: 20px;
-  font-weight: 800;
+  font-weight: bold;
   margin-bottom: 0;
   color: var(--tg-white);
   text-transform: capitalize;
@@ -8804,7 +8804,7 @@ label {
 }
 
 .login-card {
-  height: 400px;
+  height: 470px;
   width: 100%;
   margin-top: auto;
   margin-bottom: auto;
