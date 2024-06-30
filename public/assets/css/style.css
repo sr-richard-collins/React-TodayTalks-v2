@@ -3838,8 +3838,8 @@ label {
 }
 
 .section-title-three .title {
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: bold;
   margin-bottom: 0;
   color: var(--tg-white);
   text-transform: capitalize;
@@ -5662,7 +5662,7 @@ label {
 }
 
 .weekly-post-content .post-title {
-  font-size: 22px;
+  font-size: 16px;
   margin-bottom: 15px;
   line-height: 1.4;
 }
@@ -6264,7 +6264,7 @@ label {
 ===============================*/
 .blog-details-content .title {
   margin-bottom: 15px;
-  font-size: 28px;
+  font-size: 16px;
 }
 
 .bd-content-inner {
@@ -8792,7 +8792,7 @@ label {
 }
 
 .login-card {
-  height: 400px;
+  height: 470px;
   width: 100%;
   margin-top: auto;
   margin-bottom: auto;

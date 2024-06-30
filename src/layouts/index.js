@@ -49,7 +49,7 @@ const FullLayout = () => {
             <Outlet />
           </main>
         ) : (
-          <main className="fix" style={{ marginLeft: '240px' }}>
+          <main className="fix" style={{ marginLeft: '260px' }}>
             <Outlet />
           </main>
         )}

@@ -50,7 +50,7 @@ const Login = () => {
                 </Link>
               </div>
               <div className='login-card'>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='mt-2'>
                   {message && (
                     <div className={`alert ${message.includes('successful') ? 'alert-success' : 'alert-danger'}`} role='alert'>
                       {message}
