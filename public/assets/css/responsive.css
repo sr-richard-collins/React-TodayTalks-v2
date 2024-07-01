@@ -671,7 +671,7 @@
     }
 
     .spotlight-post.big-post .spotlight-post-thumb img {
-        height: 350px;
+        /* height: 350px; */
     }
 
     .spotlight-post.small-post {
@@ -1081,6 +1081,10 @@
     .newsletter-content .title {
         font-size: 22px;
     }
+    .spotlight-post-item-wrap {
+        /* margin-bottom: 30px; */
+        margin-left: 0;
+    }
 
     .newsletter-wrap {
         padding: 50px 25px;
@@ -1204,7 +1208,7 @@
     }
 
     .spotlight-post.big-post .spotlight-post-thumb img {
-        height: 300px;
+        /* height: 300px; */
     }
 
     .spotlight-post.big-post .spotlight-post-content .post-title {
@@ -1230,7 +1234,7 @@
     }
 
     .weekly-post-thumb img {
-        height: 300px;
+        /* height: 300px; */
     }
 
     .footer-top {

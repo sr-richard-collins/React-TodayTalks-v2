@@ -91,7 +91,7 @@ const SpotLightSection = () => {
                   to={`/${spotlight[index].category_type}/${spotlight[index].category_data_query}`}
                   className='post-tag'
                   onClick={() => handleViewClick(spotlight[index].category_name)}
-                  style={{fontWeight: 'bold'}}
+                  style={{ fontWeight: 'bold' }}
                 >
                   {spotlight[index].category_name}
                 </Link>
@@ -104,7 +104,7 @@ const SpotLightSection = () => {
                 <p>{spotlight[index].subTitle}</p>
                 <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
-                    <li className='col-2'>
+                    <li className='col-3 '>
                       <FontAwesomeIcon icon='fa-regular fa-calendar' />
                       {new Date(spotlight[index].created_at).toLocaleDateString()}
                     </li>
@@ -125,8 +125,8 @@ const SpotLightSection = () => {
                         </Link>
                       </span>
                     </li>
-                    <li className='col-6'>
-                      <div className='view-all-btn'>
+                    <li className='col-6 '>
+                      <div className='view-all-btn col-80'>
                         <Link
                           to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}
                           className='homeblog-link-btn'
@@ -140,15 +140,15 @@ const SpotLightSection = () => {
                           </span>
                         </Link>
                       </div>
-                    </li>
-                    <li className='col-1'>
-                      <Link
-                        to={''}
-                        onClick={() => handleBlogArticleHeartClick(index)}
-                        className={clickedBlogArticleIconId.includes(index) ? 'blog-article-icon-heart-clicked' : ''}
-                      >
-                        <FontAwesomeIcon icon='fa-solid fa-heart' className='blog-article-icon-heart' />
-                      </Link>
+                      <div className='col-20'>
+                        <Link
+                          to={''}
+                          onClick={() => handleBlogArticleHeartClick(index)}
+                          className={clickedBlogArticleIconId.includes(index) ? 'blog-article-icon-heart-clicked' : ''}
+                        >
+                          <FontAwesomeIcon icon='fa-solid fa-heart' className='blog-article-icon-heart' />
+                        </Link>
+                      </div>
                     </li>
                   </ul>
                 </div>

@@ -47,19 +47,15 @@ const Home = () => {
 
         <section className='spotlight-post-area pt-20 pb-60'>
           <div className='spotlight-post-inner-wrap'>
-            <div className='container content-container'>
-              <div className='row justify-content-center'>
-                <div className='col-lg-9 col-md-12 col-12'>
-                  <SpotLightSection />
-                  <CategoriesWithBlogSection />
-                </div>
-                <div className='col-lg-3'></div>
+            <div className='row justify-content-center'>
+              <div className='col-lg-9 col-md-12 col-12'>
+                <SpotLightSection />
+                <CategoriesWithBlogSection />
               </div>
+              <div className='col-lg-3'></div>
             </div>
           </div>
         </section>
-        {/* <TrendingGameNewsSection /> */}
-        {/* <Newsletter /> */}
       </div>
     </>
   );

@@ -97,7 +97,7 @@ const Blog = ({ title, isHomepage }) => {
           <section className='pb-60'>
             {subCategory.length ? <SubCategoryBreadcrumb subCategories={subCategory} title={title} /> : ''}
             <Breadcrumb title={title} />
-            <div className='container content-container row'>
+            <div className='row'>
               <div className='col-lg-9 col-md-12 col-12 mt-20'>
                 <div>
                   {posts.map((post) => (
@@ -116,8 +116,9 @@ const Blog = ({ title, isHomepage }) => {
                           <p>{post.subTitle}</p>
                           <div className='blog-post-meta'>
                             <ul className='list-wrap mt-3'>
-                              <li className='col-2' style={{ marginLeft: '15px' }}>
-                                <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
+                              <li className='col-3 '>
+                                <FontAwesomeIcon icon='fa-regular fa-calendar' />
+                                {new Date(post.created_at).toLocaleDateString()}
                               </li>
                               <li className='col-3'>
                                 <span className='homeblog-link-icon-phone'>
@@ -137,26 +138,28 @@ const Blog = ({ title, isHomepage }) => {
                                 </span>
                               </li>
                               <li className='col-6'>
-                                <div className='view-all-btn'>
-                                  <Link to={`/`} className='homeblog-link-btn'>
-                                    Read More
-                                    <span className='svg-icon'>
-                                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
-                                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                                        <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                                      </svg>
-                                    </span>
+                                <div className='col-80'>
+                                  <div className='view-all-btn'>
+                                    <Link to={`/`} className='homeblog-link-btn'>
+                                      Read More
+                                      <span className='svg-icon'>
+                                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                                          <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                          <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                        </svg>
+                                      </span>
+                                    </Link>
+                                  </div>
+                                </div>
+                                <div className='col-20'>
+                                  <Link
+                                    to={''}
+                                    onClick={() => handleBlogArticleHeartClick(post.id)}
+                                    className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}
+                                  >
+                                    <FontAwesomeIcon icon='fa-solid fa-heart' className='blog-article-icon-heart' />
                                   </Link>
                                 </div>
-                              </li>
-                              <li className='col-1'>
-                                <Link
-                                  to={''}
-                                  onClick={() => handleBlogArticleHeartClick(post.id)}
-                                  className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}
-                                >
-                                  <FontAwesomeIcon icon='fa-solid fa-heart' className='blog-article-icon-heart' />
-                                </Link>
                               </li>
                             </ul>
                           </div>

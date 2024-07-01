@@ -160,7 +160,7 @@ const Header = () => {
               )}
               <Link to='#' onClick={handleMenuToggleOpenClick} className='nav-bar-link mx-1'
                 id='mobileMenuToggleBtn'
-                >
+              >
                 <FontAwesomeIcon icon='fas fa-bars' />
               </Link>
             </div>
@@ -168,7 +168,7 @@ const Header = () => {
               <div
                 ref={mobileMenuRef}
                 className='mobile-menu'
-              onMouseLeave={handleMenuToggleCloseClick}
+                onMouseLeave={handleMenuToggleCloseClick}
               >
                 <nav className='menu-box'>
                   <div className='menu-outer'>
@@ -178,11 +178,11 @@ const Header = () => {
                           <FontAwesomeIcon icon='fas fa-times' />
                         </div>
                         <Link to='/'>
-                          <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'} alt='logo' />
+                          <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'} alt='logo' style={{ width: '70%' }} />
                         </Link>
                       </li>
                       <li className={(selectCategory ? selectCategory : activeLink) === 'home' ? 'active' : ''}>
-                        <Link to='/' onClick={() => handleLinkClick('home')} className='nav-bar-link'>
+                        <Link to='/' onClick={() => handleLinkClick('home')} className='nav-bar-link mx-3'>
                           Home
                         </Link>
                       </li>
@@ -205,7 +205,14 @@ const Header = () => {
                                   }));
                                 }}
                                 className='nav-bar-link' >
-                                {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                <div className='d-flex mx-3'>
+                                  <div className='col-95'>
+                                    {category.name}
+                                  </div>
+                                  <div className='col-05'>
+                                    <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                  </div>
+                                </div>
                               </Link>
                               {activeCategory.category === category.name && (
                                 <ul className='sub-menu' style={{ display: activeCategory.show ? 'block' : 'none' }}>
@@ -216,7 +223,7 @@ const Header = () => {
                                           key={subCategory.id}
                                           to={`/news/${subCategory.data_query}`}
                                           onClick={() => handleLinkClick(subCategory.name)}
-                                          className='nav-bar-link'
+                                          className='nav-bar-link ml-5'
                                         >
                                           {subCategory.name}
                                         </Link>
@@ -231,7 +238,14 @@ const Header = () => {
                       ))}
                       <li>
                         <Link onClick={handleShowToggleSubMenu} className='nav-bar-link'>
-                          View More <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                          <div className='mx-3  d-flex'>
+                            <div className='col-95'>
+                            View More
+                            </div>
+                            <div className='col-05'>
+                              <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                            </div>
+                          </div>
                         </Link>
                         <ul className='sub-menu' style={{ display: 'block' }}>
                           {showToggleSubMenu &&
@@ -241,7 +255,14 @@ const Header = () => {
                                   onClick={() => handleLinkClick(category.name)}
                                   className='nav-bar-link'
                                 >
-                                  {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                  <div className='mx-3 d-flex'>
+                                    <div className='col-95'>
+                                      {category.name}
+                                    </div>
+                                    <div className='col-05'>
+                                      <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                    </div>
+                                  </div>
                                 </Link>
                               </li>
                             ))}
