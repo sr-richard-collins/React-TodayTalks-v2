@@ -80,21 +80,22 @@ const SpotLightSection = () => {
           {[...Array(spotlight.length)].map((_, index) => (
             <div className='row' key={index}>
               <div className='spotlight-post big-post'>
-                <div className='spotlight-post-thumb'>
+                <div className='spotlight-post-thumb' style={{ display: 'flex', flexDirection: 'column' }}>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
                     <img src={spotlight[index].img ? IMAGE_BASE_URL + spotlight[index].img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
+                  </Link>
+                  <Link
+                    to={`/${spotlight[index].category_type}/${spotlight[index].category_data_query}`}
+                    className='post-tag'
+                    onClick={() => handleViewClick(spotlight[index].category_name)}
+                    style={{ fontWeight: 'bold', marginTop: '20px' }}
+                  >
+                    {spotlight[index].category_name}
                   </Link>
                 </div>
               </div>
               <div className='weekly-post-content'>
-                <Link
-                  to={`/${spotlight[index].category_type}/${spotlight[index].category_data_query}`}
-                  className='post-tag'
-                  onClick={() => handleViewClick(spotlight[index].category_name)}
-                  style={{ fontWeight: 'bold' }}
-                >
-                  {spotlight[index].category_name}
-                </Link>
+
                 <h2 className='post-title'>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
                     {spotlight[index].title}
@@ -146,7 +147,9 @@ const SpotLightSection = () => {
                           onClick={() => handleBlogArticleHeartClick(index)}
                           className={clickedBlogArticleIconId.includes(index) ? 'blog-article-icon-heart-clicked' : ''}
                         >
-                          <FontAwesomeIcon icon='fa-solid fa-heart' className='blog-article-icon-heart' />
+                          <FontAwesomeIcon 
+                          icon={clickedBlogArticleIconId.includes(index) ? ['fas', 'heart'] : ['far', 'heart']}
+                          className='blog-article-icon-heart'/>
                         </Link>
                       </div>
                     </li>

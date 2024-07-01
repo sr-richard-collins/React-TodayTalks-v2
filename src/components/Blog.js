@@ -157,7 +157,9 @@ const Blog = ({ title, isHomepage }) => {
                                     onClick={() => handleBlogArticleHeartClick(post.id)}
                                     className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}
                                   >
-                                    <FontAwesomeIcon icon='fa-solid fa-heart' className='blog-article-icon-heart' />
+                                    <FontAwesomeIcon
+                                      icon={clickedBlogArticleIconId.includes(post.id) ? ['fas', 'heart'] : ['far', 'heart']}
+                                      className='blog-article-icon-heart' />
                                   </Link>
                                 </div>
                               </li>
