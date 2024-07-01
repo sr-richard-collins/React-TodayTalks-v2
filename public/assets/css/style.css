@@ -4166,13 +4166,13 @@ label {
 }
 
 .col-05 {
-  width: 5%;
+  width: 5% !important;
   flex: 0 0 auto;
 }
 
 .col-70 {
-  width: 69.7%;
-  flex: 0 0 auto;
+  width: 69.7% !important;
+  flex: 0 0 auto !important;
 }
 
 .col-80 {
@@ -4181,12 +4181,12 @@ label {
 }
 
 .col-30 {
-  width: 30%;
+  width: 30% !important;
   flex: 0 0 auto;
 }
 
-.col-55 {
-  width: 55% !important;
+.col-65 {
+  width: 65% !important;
   flex: 0 0 auto !important;
 }
 

@@ -52,7 +52,7 @@ const SpotLightSection = () => {
           <div className='section-title-wrap-three mb-20'>
             <div className='section-title-three'>
               <h6 className='title'>
-                Today’s Spotlight
+                தலைப்புச் செய்திகள்
                 <span className='section-title-svg'>
                   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 246 40' fill='none' preserveAspectRatio='none'>
                     <path
