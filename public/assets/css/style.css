@@ -2696,6 +2696,9 @@ label {
   font-family: var(--tg-heading-font-family);
   /* color: var(--tg-icon-color); */
 }
+.breadcrumb-content .breadcrumb-item .active {
+  background-color: var(--tg-primary-color);
+}
 
 .breadcrumb-content .sub-cagetory-breadcrumb-item {
   font-size: 20px;
@@ -2910,6 +2913,7 @@ label {
   border-radius: 3px;
   padding: 4px 10px;
   margin-bottom: 15px;
+  width: 120px;
 }
 
 .post-tag:hover {
@@ -5666,9 +5670,6 @@ label {
 .weekly-post-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* align-items: flex-start; */
-  align-items: center;
 }
 
 .weekly-post-content .post-title {
@@ -5683,6 +5684,8 @@ label {
 
 .weekly-post-content .blog-post-meta {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .weekly-post-content p {
