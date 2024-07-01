@@ -229,7 +229,8 @@ const Menu = () => {
             <img src={googleplayimg} />{' '}
           </Link>
         </div>
-        <div className='row'>
+  
+        <div className='row' style={{borderBottom: '1px solid #e4e4e4'}}>
           <span className='mt-2 left-menu-footer mb-10'>
             {' '}
             <Link to={'/about'}>About Us &middot; </Link>

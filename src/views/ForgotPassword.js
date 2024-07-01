@@ -29,7 +29,7 @@ const ForgotPassword = () => {
       <section className='vh-100'>
         <div className='container pt-60 h-custom'>
           <div className='row d-flex justify-content-center align-items-center h-100'>
-            <div className='col-md-9 col-lg-6 col-xl-5'>
+            <div className='col-md-9 col-lg-6 col-xl-5 mb-5'>
               <div className='brand_logo_container'>
                 <img
                   src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
@@ -40,10 +40,10 @@ const ForgotPassword = () => {
               </div>
               <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg' className='img-fluid' alt='Sample image' />
             </div>
-            <div className='col-md-8 col-lg-6 col-xl-4 offset-xl-1'>
-              <div className='justify-content-end d-flex mb-2'>
+            <div className='col-md-8 col-lg-6 col-xl-4 offset-xl-1 my-5'>
+              <div className='justify-content-end d-flex'>
                 <Link to='/' className='nav-bar-link'>
-                  <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu rounded-circle mx-2' />
+                  <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu' />
                 </Link>
               </div>
               <form onSubmit={handleSubmit}>

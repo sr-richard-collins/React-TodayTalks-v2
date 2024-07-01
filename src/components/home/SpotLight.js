@@ -48,7 +48,7 @@ const SpotLightSection = () => {
   return (
     <>
       {spotlight.length ? (
-        <div className='spotlight-post-item-wrap'>
+        <div className='spotlight-post-item-wrap' >
           <div className='section-title-wrap-three mb-20'>
             <div className='section-title-three'>
               <h6 className='title'>
@@ -79,7 +79,7 @@ const SpotLightSection = () => {
           {/* <div className="row"> */}
           {[...Array(spotlight.length)].map((_, index) => (
             <div className='row' key={index}>
-              <div className='spotlight-post big-post'>
+              <div className='spotlight-post big-post' >
                 <div className='spotlight-post-thumb' style={{ display: 'flex', flexDirection: 'column' }}>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
                     <img src={spotlight[index].img ? IMAGE_BASE_URL + spotlight[index].img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
@@ -94,7 +94,7 @@ const SpotLightSection = () => {
                   </Link>
                 </div>
               </div>
-              <div className='weekly-post-content'>
+              <div className='weekly-post-content' >
 
                 <h2 className='post-title'>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
@@ -103,7 +103,7 @@ const SpotLightSection = () => {
                 </h2>
 
                 <p>{spotlight[index].subTitle}</p>
-                <div className='blog-post-meta'>
+                <div className='blog-post-meta' style={{borderBottom: '1px solid #e4e4e4'}}>
                   <ul className='list-wrap mb-3'>
                     <li className='col-3 '>
                       <FontAwesomeIcon icon='fa-regular fa-calendar' />
@@ -156,11 +156,8 @@ const SpotLightSection = () => {
                   </ul>
                 </div>
               </div>
-              <hr />
-              {/* </div> */}
             </div>
           ))}
-          {/* </div> */}
         </div>
       ) : noPost === 0 ? (
         ''

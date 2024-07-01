@@ -270,7 +270,7 @@ const Header = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className='row left-menu-store'>
+                  <div className='row left-menu-store my-2'>
                     <Link to='https://play.google.com/store/' className='my-2'>
                       {' '}
                       <img src={googleplayimg} />{' '}
@@ -318,8 +318,8 @@ const Header = () => {
                   <div className='row'>
                     <span className='mt-2 left-menu-footer mb-10'>
                       {' '}
-                      <Link to={'/about'}>About Us &middot; </Link>
-                      <Link to={'/about'}>Privacy Policy</Link>
+                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>About Us &middot; </Link>
+                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>Privacy Policy</Link>
                     </span>
                   </div>
                 </nav>
