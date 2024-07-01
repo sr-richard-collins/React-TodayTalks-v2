@@ -91,6 +91,7 @@ const SpotLightSection = () => {
                   to={`/${spotlight[index].category_type}/${spotlight[index].category_data_query}`}
                   className='post-tag'
                   onClick={() => handleViewClick(spotlight[index].category_name)}
+                  style={{fontWeight: 'bold'}}
                 >
                   {spotlight[index].category_name}
                 </Link>
