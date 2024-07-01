@@ -168,7 +168,7 @@ const Header = () => {
               <div
                 ref={mobileMenuRef}
                 className='mobile-menu'
-              // onMouseLeave={handleMenuToggleCloseClick}
+              onMouseLeave={handleMenuToggleCloseClick}
               >
                 <nav className='menu-box'>
                   <div className='menu-outer'>
