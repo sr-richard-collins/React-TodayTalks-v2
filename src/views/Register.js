@@ -102,12 +102,12 @@ const Register = () => {
         <div className='container pt-10 h-custom'>
           <div className='row d-flex justify-content-center align-items-center h-100'>
             <div className='col-md-8 col-lg-6 col-xl-4'>
-              <div className='justify-content-end d-flex mb-3' style={{ width: '110%' }}>
+              <div className='justify-content-end d-flex mb-3' >
                 <Link to='/' className='nav-bar-link'>
                   <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu' />
                 </Link>
               </div>
-              <div className='login-card' style={{ height: '700px', width: '110%' }}>
+              <div className='login-card' style={{ height: '700px'}}>
                 {!isVerificationSent ? (
                   <form className='mx-1 mx-md-4' onSubmit={handleSubmit} encType='multipart/form-data'>
                     <div className='account-profile'>
@@ -122,9 +122,9 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-user' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-user' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
-                        <label className='form-label'>Usr Name</label>
+                        <label className='form-label'>User Name</label>
                         <input
                           type='text'
                           id='form3Example1c'
@@ -138,7 +138,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Email</label>
                         <input
@@ -154,7 +154,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Referral Code</label>
                         <input
@@ -169,7 +169,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-lock' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-lock' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Password</label>
                         <input
@@ -185,7 +185,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-key' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-key' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Confirm Password</label>
                         <input

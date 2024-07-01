@@ -33,14 +33,12 @@ const BlogsDetails = () => {
       <div className='spotlight-post-area pb-60'>
         <Breadcrumb title={title} />
         <div className='spotlight-post-inner-wrap'>
-          <div className='container content-container row'>
-            <div className='col-lg-9 col-md-12 mt-20'>
-              {post && <BlogDetailComponent post={post} />}
-              {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
-              <CommentComponent post={post} />
-            </div>
-            <div className='col-lg-3'></div>
+          <div className='col-lg-9 col-md-12 mt-20'>
+            {post && <BlogDetailComponent post={post} />}
+            {relatedPosts.length > 0 && <RelatedPostsComponent posts={relatedPosts} />}
+            <CommentComponent post={post} />
           </div>
+          <div className='col-lg-3'></div>
         </div>
       </div>
     </>

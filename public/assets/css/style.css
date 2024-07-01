@@ -2438,6 +2438,8 @@ label {
   overflow: hidden;
   margin-bottom: 12px;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .banner-post-thumb-five img {
@@ -2445,7 +2447,7 @@ label {
   /* height: 180px; */
   object-fit: cover;
   width: 480px;
-  height: 270px;
+  /* height: 270px; */
 }
 
 .banner-post-five:hover .banner-post-thumb-five img {
@@ -2464,9 +2466,11 @@ label {
 }
 
 .banner-post-content-five .post-title {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 10px;
   line-height: 1.4;
+  font-weight: bold;
+  text-align: center;
 }
 
 .banner-post-five:hover .banner-post-content-five .post-title a {
@@ -2519,8 +2523,9 @@ label {
 }
 
 .banner-post-seven .banner-post-thumb-five img {
-  height: 50%;
-  width: 100%;
+  /* height: 50%; */
+  /* width: 100%; */
+  border-radius: 6px;
   object-fit: cover;
 }
 
@@ -2900,7 +2905,7 @@ label {
 .post-tag {
   color: var(--tg-white);
   font-family: var(--tg-heading-font-family);
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.78px;
@@ -2910,7 +2915,8 @@ label {
   border-radius: 3px;
   padding: 4px 10px;
   /* margin-bottom: 15px; */
-  width: 120px;
+  /* width: 120px; */
+  width: fit-content;
 }
 
 .post-tag:hover {
@@ -6291,7 +6297,8 @@ label {
 ===============================*/
 .blog-details-content .title {
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .bd-content-inner {
@@ -6342,6 +6349,8 @@ label {
 
 .blog-details-thumb {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .blog-details-thumb img {
@@ -6350,7 +6359,7 @@ label {
   /* height: 450px; */
   border-radius: 6px;
   width: 480px;
-  height: 270px;
+  /* height: 270px; */
 }
 
 .blog-details-content p {
@@ -8310,7 +8319,6 @@ label {
 .left-sub-menu {
   font-size: 15px;
   display: block;
-  border-bottom: 1px solid #e4e4e4;
   background: var(--tg-white);
   position: fixed;
   z-index: 2;
@@ -8862,4 +8870,8 @@ label {
   margin-bottom: 15px;
   display: flex;
   justify-content: center;
+}
+.register-label-icon{
+  margin-top: auto;
+  font-size: 25px;
 }
