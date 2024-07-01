@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from '../config';
@@ -10,11 +10,14 @@ import Loader from './Loader';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { useDispatch, useSelector } from 'react-redux';
 import NoPost from '../views/error/No_post';
+import { AuthContext } from '../provider/AuthContext';
 import Menu from '../layouts/Menu';
 
 const Blog = ({ title, isHomepage }) => {
   const dispatch = useDispatch();
   const { homePosts } = useSelector((state) => state.posts);
+  const context = useContext(AuthContext);
+  const { user } = context;
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -71,6 +74,14 @@ const Blog = ({ title, isHomepage }) => {
   const handleBlogArticleHeartClick = (linkId) => {
     if (clickedBlogArticleIconId.includes(linkId)) {
       setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
+      const fetchLikes = async () => {
+        const response = await axios.post('/api/user/updateLikes', {
+          params: {
+            userId: user.id,
+            postId: linkId,
+          },
+        });
+      };
     } else {
       setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
     }
@@ -144,8 +155,14 @@ const Blog = ({ title, isHomepage }) => {
                                       Read More
                                       <span className='svg-icon'>
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
-                                          <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
-                                          <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                                          <path
+                                            d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
+                                            fill='currentColor'
+                                          />
+                                          <path
+                                            d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z'
+                                            fill='currentColor'
+                                          />
                                         </svg>
                                       </span>
                                     </Link>
@@ -159,7 +176,8 @@ const Blog = ({ title, isHomepage }) => {
                                   >
                                     <FontAwesomeIcon
                                       icon={clickedBlogArticleIconId.includes(post.id) ? ['fas', 'heart'] : ['far', 'heart']}
-                                      className='blog-article-icon-heart' />
+                                      className='blog-article-icon-heart'
+                                    />
                                   </Link>
                                 </div>
                               </li>

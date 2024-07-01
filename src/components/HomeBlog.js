@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { IMAGE_BASE_URL } from '../config';
+import { DEFAULT_POST, IMAGE_BASE_URL } from '../config';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
@@ -30,12 +30,10 @@ const HomeBlog = ({ title }) => {
 
   const handleBlogArticleHeartClick = (linkId) => {
     if (clickedBlogArticleIconId.includes(linkId)) {
-      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter(id => id !== linkId));
-    }
-    else {
+      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
+    } else {
       setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
     }
-
   };
 
   return (
@@ -75,7 +73,7 @@ const HomeBlog = ({ title }) => {
                     <div className='editor-post-item'>
                       <div className='editor-post-thumb'>
                         <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
-                          <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
+                          <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title} />
                         </Link>
                       </div>
                       <div className='editor-post-content'>
@@ -123,27 +121,31 @@ const HomeBlog = ({ title }) => {
                                 </div>
                               </div>
                               <div className='col-20'>
-                                <Link to={''} onClick={() => handleBlogArticleHeartClick(post.id)}
-                                  className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}>
+                                <Link
+                                  to={''}
+                                  onClick={() => handleBlogArticleHeartClick(post.id)}
+                                  className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}
+                                >
                                   <FontAwesomeIcon
                                     icon={clickedBlogArticleIconId.includes(post.id) ? ['fas', 'heart'] : ['far', 'heart']}
-                                    className='blog-article-icon-heart' />
-                              </Link>
-                            </div>
-                          </li>
-                        </ul>
+                                    className='blog-article-icon-heart'
+                                  />
+                                </Link>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  </div>
                 ))}
+              </div>
             </div>
-            </div>
-      ))}
-    </section >
+          ))}
+        </section>
       ) : (
-  ''
-)}
+        ''
+      )}
     </>
   );
 };
