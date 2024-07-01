@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from '../config';
-import { IMAGE_BASE_URL } from '../config';
+import { IMAGE_BASE_URL, DEFAULT_POST } from '../config';
 import CustomPagination from './CustomPagination';
 import Breadcrumb from './Breadcrumb';
 import SubCategoryBreadcrumb from './SubCategoryBreadCrumb';
@@ -69,13 +69,11 @@ const Blog = ({ title, isHomepage }) => {
     setCurrentPage(1); // Reset to the first page
   };
   const handleBlogArticleHeartClick = (linkId) => {
-    if(clickedBlogArticleIconId.includes(linkId)){
-      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter(id => id !== linkId));
-    }
-    else{
+    if (clickedBlogArticleIconId.includes(linkId)) {
+      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
+    } else {
       setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
     }
-    
   };
 
   const handleViewClick = (name) => {
@@ -107,7 +105,7 @@ const Blog = ({ title, isHomepage }) => {
                       <div className='weekly-post-three'>
                         <div className='weekly-post-thumb'>
                           <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
-                            <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
+                            <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title} />
                           </Link>
                         </div>
                         <div className='weekly-post-content'>
@@ -118,7 +116,7 @@ const Blog = ({ title, isHomepage }) => {
                           <p>{post.subTitle}</p>
                           <div className='blog-post-meta'>
                             <ul className='list-wrap mt-3'>
-                              <li className='col-2' style={{marginLeft:'15px'}}>
+                              <li className='col-2' style={{ marginLeft: '15px' }}>
                                 <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
                               </li>
                               <li className='col-3'>
@@ -152,9 +150,12 @@ const Blog = ({ title, isHomepage }) => {
                                 </div>
                               </li>
                               <li className='col-1'>
-                                <Link to={''} onClick={() => handleBlogArticleHeartClick(post.id)}
-                                  className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}>
-                                  <FontAwesomeIcon icon="fa-solid fa-heart" className='blog-article-icon-heart' />
+                                <Link
+                                  to={''}
+                                  onClick={() => handleBlogArticleHeartClick(post.id)}
+                                  className={clickedBlogArticleIconId.includes(post.id) ? 'blog-article-icon-heart-clicked' : ''}
+                                >
+                                  <FontAwesomeIcon icon='fa-solid fa-heart' className='blog-article-icon-heart' />
                                 </Link>
                               </li>
                             </ul>

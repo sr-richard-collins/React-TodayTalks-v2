@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { IMAGE_BASE_URL } from '../config';
+import { IMAGE_BASE_URL, DEFAULT_POST } from '../config';
 import axios from '../config/';
 
 const RelatedPostsComponent = ({ posts }) => {
@@ -22,7 +22,7 @@ const RelatedPostsComponent = ({ posts }) => {
                   <div className='banner-post-five banner-post-seven'>
                     <div className='banner-post-thumb-five'>
                       <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
-                        <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
+                        <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title} />
                       </Link>
                     </div>
                     <div className='banner-post-content-five'>

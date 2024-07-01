@@ -6,7 +6,7 @@ import { fetchCategories } from '../actions/categoryAction';
 import googleplayimg from '../assets/img/icon/googleplay.png';
 import leftMenuImg from '../assets/img/blog/g_categories_img01.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IMAGE_BASE_URL } from '../config';
+import { DEFAULT_CATEGORY, IMAGE_BASE_URL } from '../config';
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -118,7 +118,10 @@ const Menu = () => {
                           key={category.id}
                         >
                           <div className='col-95'>
-                            <img className='img-icon-left-menu rounded-circle mx-2' src={leftMenuImg} />
+                            <img
+                              className='img-icon-left-menu rounded-circle mx-2'
+                              src={category.image ? IMAGE_BASE_URL + category.image : IMAGE_BASE_URL + DEFAULT_CATEGORY}
+                            />
                             {category.name}
                           </div>
                           <div className='col-05'>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NoPost from '../../views/error/No_post';
 import axios from '../../config';
-import { IMAGE_BASE_URL } from '../../config';
+import { IMAGE_BASE_URL, DEFAULT_POST } from '../../config';
 import { fetchSelectCategory } from '../../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import $ from 'jquery'; // Import jQuery
@@ -82,7 +82,7 @@ const SpotLightSection = () => {
               <div className='spotlight-post big-post'>
                 <div className='spotlight-post-thumb'>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
-                    <img src={IMAGE_BASE_URL + spotlight[index].img} alt='' />
+                    <img src={spotlight[index].img ? IMAGE_BASE_URL + spotlight[index].img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
                   </Link>
                 </div>
               </div>
