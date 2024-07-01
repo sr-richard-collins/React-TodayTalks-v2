@@ -21,7 +21,7 @@ const Login = () => {
       setMessage('Login successful!');
       navigate('/', { state: { message: 'Login successful!' } });
     } catch (error) {
-      setMessage('Error logging in. Please check your email and password.');
+      setMessage(error.response.data.error);
       console.error('Error logging in', error);
     }
   };
@@ -50,7 +50,6 @@ const Login = () => {
                 </Link>
               </div>
               <div className='login-card'>
-
                 <form onSubmit={handleSubmit} className='mt-2'>
                   {message && (
                     <div className={`alert ${message.includes('successful') ? 'alert-success' : 'alert-danger'}`} role='alert'>
@@ -67,6 +66,7 @@ const Login = () => {
                       placeholder='Enter a valid email address'
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
 
@@ -79,6 +79,7 @@ const Login = () => {
                       placeholder='Enter password'
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      required
                     />
                   </div>
 

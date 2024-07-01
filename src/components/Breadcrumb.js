@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from '../config';
 
 const Breadcrumb = ({ title }) => {
+  const [categoryName, setCategoryName] = useState('');
+  const [subCategoryName, setSubCategoryName] = useState('');
+  useEffect(() => {
+    const checkTitle = async () => {
+      const response = await axios.post('/api/user/checkBreadcrumb', { title });
+      setCategoryName(response.data.category);
+      setSubCategoryName(response.data.subCategory);
+    };
+    checkTitle();
+  }, [title]);
   return (
     <>
       <div className='breadcrumb-area'>
@@ -22,8 +33,13 @@ const Breadcrumb = ({ title }) => {
                       </Link>
                     </li>
                     <li className='breadcrumb-item active' aria-current='page'>
-                      {title}
+                      {categoryName}
                     </li>
+                    {subCategoryName && (
+                      <li className='breadcrumb-item active' aria-current='page'>
+                        {subCategoryName}
+                      </li>
+                    )}
                   </ol>
                 </nav>
               </div>

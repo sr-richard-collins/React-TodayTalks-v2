@@ -66,8 +66,20 @@ const Register = () => {
       alert(response.data.message);
       // Optionally handle success feedback or redirection
     } catch (error) {
-      console.error('Error submitting form:', error);
-      // Optionally handle error feedback
+      if (error.response && error.response.status === 422) {
+        // Handle validation errors from the server
+        const validationErrors = error.response.data.errors;
+        console.error('Validation errors:', validationErrors);
+        // Display error messages to the user
+        let errorMessage = 'There were errors with your submission:\n';
+        for (let key in validationErrors) {
+          errorMessage += `${validationErrors[key].join(', ')}\n`;
+        }
+        alert(errorMessage);
+      } else {
+        console.error('Error submitting form:', error.response.message);
+        alert(error.response.data.message);
+      }
     }
   };
 

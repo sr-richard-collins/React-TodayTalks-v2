@@ -100,7 +100,7 @@ const Menu = () => {
                 <li key={category.id} className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''}>
                   {!category.child ? (
                     <Link
-                      to={`/news/${category.data_query}`}
+                      to={`/${category.type2}/${category.data_query}`}
                       onClick={() => handleLinkClick(category.name)}
                       className='nav-bar-link'
                       key={category.id}
@@ -112,7 +112,7 @@ const Menu = () => {
                     <>
                       <div className='category-link-with-dropdown' onMouseLeave={handleCategoryMouseLeave} onClick={() => handleCategoryClick(category.name)}>
                         <Link
-                          to={`/news/${category.data_query}`}
+                          to={`/${category.type2}/${category.data_query}`}
                           onMouseEnter={() => handleCategoryMouseEnter(category.name)}
                           className='nav-bar-link'
                           key={category.id}
@@ -137,7 +137,7 @@ const Menu = () => {
                                   onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
                                 >
                                   <Link
-                                    to={`/news/${subCategory.data_query}`}
+                                    to={`/${subCategory.type2}/${subCategory.data_query}`}
                                     onClick={() => handleLinkClick(subCategory.name)}
                                     onMouseEnter={() => setActiveLink(subCategory.name)}
                                   >
@@ -157,7 +157,7 @@ const Menu = () => {
             {moreCategories.length ? (
               <li>
                 <Link to='#' onMouseEnter={() => setShowDropleft(!showDropleft)} className='nav-bar-link my-2'>
-                <FontAwesomeIcon icon="fa-solid fa-money-check" className='img-icon-left-menu rounded-circle mx-2'/>
+                  <FontAwesomeIcon icon='fa-solid fa-money-check' className='img-icon-left-menu rounded-circle mx-2' />
                   View More
                   <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
                 </Link>

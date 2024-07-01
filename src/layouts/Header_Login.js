@@ -72,10 +72,10 @@ const HeaderLogin = () => {
           <div className='col-6' style={{ alignItems: 'end' }}>
             <div className='header-top-social header-top-social-two'>
               <ul className='list-wrap'>
-                <li >
+                <li>
                   <span>
                     <Link to='/'>
-                    <FontAwesomeIcon icon="fa-solid fa-house" className='img-icon-left-menu rounded-circle mx-2' />
+                      <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu rounded-circle mx-2' />
                     </Link>
                   </span>
                 </li>
@@ -87,10 +87,7 @@ const HeaderLogin = () => {
               </Link>
             </div>
             {showToggleMenu && (
-              <div
-                className='mobile-menu'
-                onMouseLeave={handleMenuToggleCloseClick}
-              >
+              <div className='mobile-menu' onMouseLeave={handleMenuToggleCloseClick}>
                 <nav className='menu-box'>
                   <div className='menu-outer'>
                     <ul className='navigation'>
@@ -111,9 +108,12 @@ const HeaderLogin = () => {
                       {mainCategories.map((category, index) => (
                         <li className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''} key={index}>
                           {!category.child ? (
-                            <Link to={`/news/${category.data_query}`}
+                            <Link
+                              to={`/${category.type2}/${category.data_query}`}
                               onClick={() => handleLinkClick(category.name)}
-                              className='nav-bar-link' key={category.id}>
+                              className='nav-bar-link'
+                              key={category.id}
+                            >
                               {category.name}
                             </Link>
                           ) : (
@@ -122,30 +122,29 @@ const HeaderLogin = () => {
                                 onClick={() => {
                                   setActiveCategory((prevActiveCategory) => ({
                                     category: category.name,
-                                    show: prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show
+                                    show: prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show,
                                   }));
                                 }}
-                                className='nav-bar-link' >
+                                className='nav-bar-link'
+                              >
                                 {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                               </Link>
                               {activeCategory.category === category.name && (
                                 <ul className='sub-menu' style={{ display: activeCategory.show ? 'block' : 'none' }}>
-                                  {
-                                    category.child.map((subCategory) => (
-                                      <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
-                                        <Link
-                                          key={subCategory.id}
-                                          to={`/news/${subCategory.data_query}`}
-                                          onClick={() => handleLinkClick(subCategory.name)}
-                                          className='nav-bar-link'
-                                        >
-                                          {subCategory.name}
-                                        </Link>
-                                      </li>
-                                    ))}
+                                  {category.child.map((subCategory) => (
+                                    <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
+                                      <Link
+                                        key={subCategory.id}
+                                        to={`/${subCategory.type2}/${subCategory.data_query}`}
+                                        onClick={() => handleLinkClick(subCategory.name)}
+                                        className='nav-bar-link'
+                                      >
+                                        {subCategory.name}
+                                      </Link>
+                                    </li>
+                                  ))}
                                 </ul>
-                              )
-                              }
+                              )}
                             </>
                           )}
                         </li>
@@ -158,10 +157,7 @@ const HeaderLogin = () => {
                           {showToggleSubMenu &&
                             moreCategories.map((category) => (
                               <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
-                                <Link
-                                  onClick={() => handleLinkClick(category.name)}
-                                  className='nav-bar-link'
-                                >
+                                <Link onClick={() => handleLinkClick(category.name)} className='nav-bar-link'>
                                   {category.name} <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                                 </Link>
                               </li>
@@ -227,8 +223,8 @@ const HeaderLogin = () => {
             )}
           </div>
         </div>
-      </div >
-    </header >
+      </div>
+    </header>
   );
 };
 

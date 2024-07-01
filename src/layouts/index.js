@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
-import Menu from "./Menu";
+import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import Menu from './Menu';
 // import { Container } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(false);
@@ -33,28 +33,27 @@ const FullLayout = () => {
 
   const handleTopScreen = () => {
     window.scrollTo(0, 0);
-  }
+  };
   return (
     <>
-      <button className="scroll-top scroll-to-target" onClick={() => handleTopScreen()}>
-        <FontAwesomeIcon icon="fa-solid fa-angle-up" />
+      <button className='scroll-top scroll-to-target' onClick={() => handleTopScreen()}>
+        <FontAwesomeIcon icon='fa-solid fa-angle-up' />
       </button>
-      <div className="container">
+      <div className='container'>
         <Header />
-        <section className="pt-70 pb-60 ">
+        <section className='pt-70 pb-60 '>
           <Menu />
           {isMobile ? (
-            <main className="fix">
+            <main className='fix'>
               <Outlet />
             </main>
           ) : (
-            <main className="fix" style={{ marginLeft: '260px' }}>
+            <main className='fix' style={{ marginLeft: '260px' }}>
               <Outlet />
             </main>
           )}
         </section>
       </div>
-
     </>
   );
 };
