@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Suspense, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { DEFAULT_POST, IMAGE_BASE_URL } from '../config';
+import { IMAGE_BASE_URL, DEFAULT_POST } from '../config/index';
+import { SOCIAL_FB, SOCIAL_WHATSAPP, SOCIAL_TWITTER } from '../config/constant';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from '../provider/AuthContext';
@@ -18,17 +19,30 @@ const HomeBlog = ({ title }) => {
   const [clickedBlogArticleIconId, setClickedBlogArticleIconId] = useState([]);
 
   useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      const response = homePosts.find((post) => post.category === title);
-      if (user) {
-        const likesResponse = await axios.get(`/api/user/getLikesByUser?id=${user.id}`);
-        setClickedBlogArticleIconId(likesResponse.data.likes);
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+
+        // Find the relevant post category from homePosts
+        const response = homePosts.find((post) => post.category === title);
+        if (response) {
+          setPosts(response.posts);
+        }
+
+        // Fetch user likes if user is logged in
+        if (user) {
+          const likesResponse = await axios.get(`/api/user/getLikesByUser?id=${user.id}`);
+          setClickedBlogArticleIconId(likesResponse.data.likes);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle errors as needed (e.g., set error state)
+      } finally {
+        setLoading(false);
       }
-      if (response) setPosts(response.posts);
-      setLoading(false);
     };
-    fetch();
+
+    fetchPosts();
   }, [title]);
 
   const handleViewClick = (name) => {
@@ -105,17 +119,17 @@ const HomeBlog = ({ title }) => {
                             </li>
                             <li className='col-3'>
                               <span className='homeblog-link-icon-phone'>
-                                <Link to={setting.social_whatsapp}>
+                                <Link to={setting.social_whatsapp ? setting.social_whatsapp : SOCIAL_WHATSAPP}>
                                   <FontAwesomeIcon icon='fa-solid fa-phone' />
                                 </Link>
                               </span>
                               <span className='homeblog-link-icon-facebook'>
-                                <Link to={setting.social_fb}>
+                                <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB}>
                                   <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                                 </Link>
                               </span>
                               <span className='homeblog-link-icon-twitter'>
-                                <Link to={setting.social_twitter}>
+                                <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER}>
                                   <FontAwesomeIcon icon='fa-brands fa-twitter' />
                                 </Link>
                               </span>

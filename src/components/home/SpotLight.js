@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import NoPost from '../../views/error/No_post';
 import axios from '../../config';
 import { IMAGE_BASE_URL, DEFAULT_POST } from '../../config';
+import { SOCIAL_FB, SOCIAL_WHATSAPP, SOCIAL_TWITTER } from '../../config/constant';
 import { fetchSelectCategory } from '../../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthContext } from '../../provider/AuthContext';
@@ -23,18 +24,25 @@ const SpotLightSection = () => {
 
   useEffect(() => {
     const fetchTrendingPosts = async () => {
-      const resSpotlight = await axios.get(`/api/user/spotlight`);
-      if (user) {
-        const likesResponse = await axios.get(`/api/user/getLikesByUser?id=${user.id}`);
-        setClickedBlogArticleIconId(likesResponse.data.likes);
+      try {
+        const resSpotlight = await axios.get(`/api/user/spotlight`);
+        setSpotlight(resSpotlight.data);
+
+        if (user) {
+          const likesResponse = await axios.get(`/api/user/getLikesByUser`, {
+            params: { id: user.id },
+          });
+          setClickedBlogArticleIconId(likesResponse.data.likes);
+        }
+
+        setNoPost(1);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      setSpotlight(resSpotlight.data);
-      setNoPost(1);
     };
 
     fetchTrendingPosts();
   }, []);
-
   const handlePageClick = (index) => {
     window.scrollTo(0, 0);
     setActivePage(index);
@@ -127,17 +135,18 @@ const SpotLightSection = () => {
                     </li>
                     <li className='col-3'>
                       <span className='homeblog-link-icon-phone'>
-                        <Link to={setting.social_whatsapp}>
+                        {console.log('AAAA' + setting)}
+                        <Link to={setting.social_whatsapp ? setting.social_whatsapp : SOCIAL_WHATSAPP}>
                           <FontAwesomeIcon icon='fa-solid fa-phone' />
                         </Link>
                       </span>
                       <span className='homeblog-link-icon-facebook'>
-                        <Link to={setting.social_fb}>
+                        <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB}>
                           <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                         </Link>
                       </span>
                       <span className='homeblog-link-icon-twitter'>
-                        <Link to={setting.social_twitter}>
+                        <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER}>
                           <FontAwesomeIcon icon='fa-brands fa-twitter' />
                         </Link>
                       </span>

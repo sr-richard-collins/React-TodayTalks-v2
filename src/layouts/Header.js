@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
 import googleplayimg from '../assets/img/icon/googleplay.png';
 import { AuthContext } from '../provider/AuthContext';
-import { NEWS_CATEGORY, ARTICLE_CATEGORY, DETAIL_CATEGORY, DETAIL_ARTICLE } from '../config/constant';
+import { SOCIAL_FB, SOCIAL_TWITTER, SOCIAL_INSTA, SOCIAL_LINKEDIN, SOCIAL_YOUTUBE } from '../config/constant';
 
 const Header = () => {
   const context = useContext(AuthContext);
@@ -87,35 +87,35 @@ const Header = () => {
               <ul className='list-wrap'>
                 <li className='social-icons'>
                   <span>
-                    <Link to={setting.social_fb} target='blank'>
+                    <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                     </Link>
                   </span>
                 </li>
                 <li className='social-icons'>
                   <span>
-                    <Link to={setting.social_twitter} target='blank'>
+                    <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-twitter' />
                     </Link>
                   </span>
                 </li>
                 <li className='social-icons'>
                   <span>
-                    <Link to={setting.social_insta} target='blank'>
+                    <Link to={setting.social_insta ? setting.social_insta : SOCIAL_INSTA} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-instagram' />
                     </Link>
                   </span>
                 </li>
                 <li className='social-icons'>
                   <span>
-                    <Link to={setting.social_linkedin} target='blank'>
+                    <Link to={setting.social_linkedin ? setting.social_linkedin : SOCIAL_LINKEDIN} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                     </Link>
                   </span>
                 </li>
                 <li className='social-icons'>
                   <span>
-                    <Link to={setting.social_youtube} target='blank'>
+                    <Link to={setting.social_youtube ? setting.social_youtube : SOCIAL_YOUTUBE} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-youtube' />
                     </Link>
                   </span>
@@ -265,35 +265,35 @@ const Header = () => {
                       <ul className='list-wrap row justify-content-center'>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_fb} target='blank'>
+                            <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_twitter} target='blank'>
+                            <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-twitter' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_insta} target='blank'>
+                            <Link to={setting.social_insta ? setting.social_insta : SOCIAL_INSTA} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-instagram' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_linkedin} target='blank'>
+                            <Link to={setting.social_linkedin ? setting.social_linkedin : SOCIAL_LINKEDIN} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_youtube} target='blank'>
+                            <Link to={setting.social_youtube ? setting.social_youtube : SOCIAL_YOUTUBE} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-youtube' />
                             </Link>
                           </span>

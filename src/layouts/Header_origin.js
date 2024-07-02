@@ -6,6 +6,7 @@ import { fetchCategories } from '../actions/categoryAction';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
+import { SOCIAL_FB, SOCIAL_TWITTER, SOCIAL_INSTA, SOCIAL_LINKEDIN } from '../config/constant';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -79,22 +80,22 @@ const Header = () => {
                 <h5 className='title'>Follow Us:</h5>
                 <ul className='list-wrap'>
                   <li>
-                    <Link to={setting.social_fb} target='blank'>
+                    <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                     </Link>
                   </li>
                   <li>
-                    <Link to={setting.social_twitter} target='blank'>
+                    <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-x-twitter' />
                     </Link>
                   </li>
                   <li>
-                    <Link to={setting.social_insta} target='blank'>
+                    <Link to={setting.social_insta ? setting.social_insta : SOCIAL_INSTA} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-instagram' />
                     </Link>
                   </li>
                   <li>
-                    <Link to={setting.social_linkedin} target='blank'>
+                    <Link to={setting.social_linkedin ? setting.social_linkedin : SOCIAL_LINKEDIN} target='blank'>
                       <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                     </Link>
                   </li>
@@ -224,22 +225,22 @@ const Header = () => {
                           <div className='social-links'>
                             <ul className='clearfix list-wrap'>
                               <li>
-                                <Link to={setting.social_fb} target='blank'>
+                                <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB} target='blank'>
                                   <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                                 </Link>
                               </li>
                               <li>
-                                <Link to={setting.social_twitter} target='blank'>
+                                <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER} target='blank'>
                                   <FontAwesomeIcon icon='fa-brands fa-x-twitter' />
                                 </Link>
                               </li>
                               <li>
-                                <Link to={setting.social_insta} target='blank'>
+                                <Link to={setting.social_insta ? setting.social_insta : SOCIAL_INSTA} target='blank'>
                                   <FontAwesomeIcon icon='fa-brands fa-instagram' />
                                 </Link>
                               </li>
                               <li>
-                                <Link to={setting.social_linkedin} target='blank'>
+                                <Link to={setting.social_linkedin ? setting.social_linkedin : SOCIAL_LINKEDIN} target='blank'>
                                   <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                                 </Link>
                               </li>

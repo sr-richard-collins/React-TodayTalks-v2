@@ -6,11 +6,13 @@ import axios from '../config';
 const Breadcrumb = ({ title }) => {
   const [categoryName, setCategoryName] = useState('');
   const [subCategoryName, setSubCategoryName] = useState('');
+  const [postTitle, setPostTitle] = useState('');
   useEffect(() => {
     const checkTitle = async () => {
       const response = await axios.post('/api/user/checkBreadcrumb', { title });
       setCategoryName(response.data.category);
       setSubCategoryName(response.data.subCategory);
+      setPostTitle(response.data.post);
     };
     checkTitle();
   }, [title]);
@@ -36,7 +38,14 @@ const Breadcrumb = ({ title }) => {
                   </li>
                   {subCategoryName && (
                     <li className='breadcrumb-item active' aria-current='page'>
+                      <FontAwesomeIcon icon='fa-solid fa-angles-right' />
                       {subCategoryName}
+                    </li>
+                  )}
+                  {postTitle && (
+                    <li className='breadcrumb-item active' aria-current='page'>
+                      <FontAwesomeIcon icon='fa-solid fa-angles-right' />
+                      {postTitle}
                     </li>
                   )}
                 </ol>
