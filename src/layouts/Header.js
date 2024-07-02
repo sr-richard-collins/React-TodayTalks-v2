@@ -158,18 +158,12 @@ const Header = () => {
                   </Link>
                 </>
               )}
-              <Link to='#' onClick={handleMenuToggleOpenClick} className='nav-bar-link mx-1'
-                id='mobileMenuToggleBtn'
-              >
+              <Link to='#' onClick={handleMenuToggleOpenClick} className='nav-bar-link mx-1' id='mobileMenuToggleBtn'>
                 <FontAwesomeIcon icon='fas fa-bars' />
               </Link>
             </div>
             {showToggleMenu && (
-              <div
-                ref={mobileMenuRef}
-                className='mobile-menu'
-                onMouseLeave={handleMenuToggleCloseClick}
-              >
+              <div ref={mobileMenuRef} className='mobile-menu' onMouseLeave={handleMenuToggleCloseClick}>
                 <nav className='menu-box'>
                   <div className='menu-outer'>
                     <ul className='navigation'>
@@ -178,7 +172,11 @@ const Header = () => {
                           <FontAwesomeIcon icon='fas fa-times' />
                         </div>
                         <Link to='/'>
-                          <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'} alt='logo' style={{ width: '70%' }} />
+                          <img
+                            src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                            alt='logo'
+                            style={{ width: '70%' }}
+                          />
                         </Link>
                       </li>
                       <li className={(selectCategory ? selectCategory : activeLink) === 'home' ? 'active' : ''}>
@@ -190,9 +188,7 @@ const Header = () => {
                       {mainCategories.map((category, index) => (
                         <li className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''} key={index}>
                           {!category.child ? (
-                            <Link to={`/news/${category.data_query}`}
-                              onClick={() => handleLinkClick(category.name)}
-                              className='nav-bar-link' key={category.id}>
+                            <Link to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)} className='nav-bar-link' key={category.id}>
                               {category.name}
                             </Link>
                           ) : (
@@ -201,14 +197,13 @@ const Header = () => {
                                 onClick={() => {
                                   setActiveCategory((prevActiveCategory) => ({
                                     category: category.name,
-                                    show: prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show
+                                    show: prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show,
                                   }));
                                 }}
-                                className='nav-bar-link' >
+                                className='nav-bar-link'
+                              >
                                 <div className='d-flex mx-3'>
-                                  <div className='col-95'>
-                                    {category.name}
-                                  </div>
+                                  <div className='col-95'>{category.name}</div>
                                   <div className='col-05'>
                                     <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                                   </div>
@@ -216,22 +211,20 @@ const Header = () => {
                               </Link>
                               {activeCategory.category === category.name && (
                                 <ul className='sub-menu' style={{ display: activeCategory.show ? 'block' : 'none' }}>
-                                  {
-                                    category.child.map((subCategory) => (
-                                      <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
-                                        <Link
-                                          key={subCategory.id}
-                                          to={`/news/${subCategory.data_query}`}
-                                          onClick={() => handleLinkClick(subCategory.name)}
-                                          className='nav-bar-link ml-5'
-                                        >
-                                          {subCategory.name}
-                                        </Link>
-                                      </li>
-                                    ))}
+                                  {category.child.map((subCategory) => (
+                                    <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
+                                      <Link
+                                        key={subCategory.id}
+                                        to={`/news/${subCategory.data_query}`}
+                                        onClick={() => handleLinkClick(subCategory.name)}
+                                        className='nav-bar-link ml-5'
+                                      >
+                                        {subCategory.name}
+                                      </Link>
+                                    </li>
+                                  ))}
                                 </ul>
-                              )
-                              }
+                              )}
                             </>
                           )}
                         </li>
@@ -239,9 +232,7 @@ const Header = () => {
                       <li>
                         <Link onClick={handleShowToggleSubMenu} className='nav-bar-link'>
                           <div className='mx-3  d-flex'>
-                            <div className='col-95'>
-                            View More
-                            </div>
+                            <div className='col-95'>View More</div>
                             <div className='col-05'>
                               <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                             </div>
@@ -251,14 +242,9 @@ const Header = () => {
                           {showToggleSubMenu &&
                             moreCategories.map((category) => (
                               <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
-                                <Link
-                                  onClick={() => handleLinkClick(category.name)}
-                                  className='nav-bar-link'
-                                >
+                                <Link onClick={() => handleLinkClick(category.name)} className='nav-bar-link'>
                                   <div className='mx-3 d-flex'>
-                                    <div className='col-95'>
-                                      {category.name}
-                                    </div>
+                                    <div className='col-95'>{category.name}</div>
                                     <div className='col-05'>
                                       <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                                     </div>
@@ -318,8 +304,12 @@ const Header = () => {
                   <div className='row'>
                     <span className='mt-2 left-menu-footer mb-10'>
                       {' '}
-                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>About Us &middot; </Link>
-                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>Privacy Policy</Link>
+                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>
+                        About Us &middot;{' '}
+                      </Link>
+                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>
+                        Privacy Policy
+                      </Link>
                     </span>
                   </div>
                 </nav>

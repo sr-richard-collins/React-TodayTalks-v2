@@ -57,8 +57,17 @@ const Blog = ({ title, isHomepage }) => {
 
   useEffect(() => {
     const fetchSubCategory = async () => {
-      const response = await axios.get(`/api/user/subcategory?id=${title}`);
-      setSubCategory(response.data);
+      try {
+        const response = await axios.get(`/api/user/subcategory?id=${title}`);
+        setSubCategory(response.data);
+
+        if (user) {
+          const likesResponse = await axios.get(`/api/user/getLikesByUser?id=${user.id}`);
+          setClickedBlogArticleIconId(likesResponse.data.likes);
+        }
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
     };
     fetchSubCategory();
   }, [title]);
@@ -72,16 +81,18 @@ const Blog = ({ title, isHomepage }) => {
     setCurrentPage(1); // Reset to the first page
   };
   const handleBlogArticleHeartClick = (linkId) => {
-    if (clickedBlogArticleIconId.includes(linkId)) {
-      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
+    if (!user) window.location.href = '/login';
+    else {
       const fetchLikes = async () => {
         const response = await axios.post('/api/user/updateLikes', {
-          params: {
-            userId: user.id,
-            postId: linkId,
-          },
+          userId: user.id,
+          postId: linkId,
         });
       };
+      fetchLikes();
+    }
+    if (clickedBlogArticleIconId.includes(linkId)) {
+      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
     } else {
       setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NoPost from '../../views/error/No_post';
@@ -6,12 +6,15 @@ import axios from '../../config';
 import { IMAGE_BASE_URL, DEFAULT_POST } from '../../config';
 import { fetchSelectCategory } from '../../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AuthContext } from '../../provider/AuthContext';
 import $ from 'jquery'; // Import jQuery
 import 'bootstrap'; // Import Bootstrap JavaScript
 
 const SpotLightSection = () => {
   const dispatch = useDispatch();
   const { setting } = useSelector((state) => state.setting);
+  const context = useContext(AuthContext);
+  const { user } = context;
   const [spotIndex, setSpotIndex] = useState(0);
   const [activePage, setActivePage] = useState(0);
   const [spotlight, setSpotlight] = useState([]);
@@ -21,6 +24,10 @@ const SpotLightSection = () => {
   useEffect(() => {
     const fetchTrendingPosts = async () => {
       const resSpotlight = await axios.get(`/api/user/spotlight`);
+      if (user) {
+        const likesResponse = await axios.get(`/api/user/getLikesByUser?id=${user.id}`);
+        setClickedBlogArticleIconId(likesResponse.data.likes);
+      }
       setSpotlight(resSpotlight.data);
       setNoPost(1);
     };
@@ -34,6 +41,16 @@ const SpotLightSection = () => {
     setSpotIndex(index); // Assuming setSpotIndex is defined elsewhere
   };
   const handleBlogArticleHeartClick = (linkId) => {
+    if (!user) window.location.href = '/login';
+    else {
+      const fetchLikes = async () => {
+        const response = await axios.post('/api/user/updateLikes', {
+          userId: user.id,
+          postId: linkId,
+        });
+      };
+      fetchLikes();
+    }
     if (clickedBlogArticleIconId.includes(linkId)) {
       setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
     } else {
@@ -48,7 +65,7 @@ const SpotLightSection = () => {
   return (
     <>
       {spotlight.length ? (
-        <div className='spotlight-post-item-wrap' >
+        <div className='spotlight-post-item-wrap'>
           <div className='section-title-wrap-three mb-20'>
             <div className='section-title-three'>
               <h6 className='title'>
@@ -79,7 +96,7 @@ const SpotLightSection = () => {
           {/* <div className="row"> */}
           {[...Array(spotlight.length)].map((_, index) => (
             <div className='row' key={index}>
-              <div className='spotlight-post big-post' >
+              <div className='spotlight-post big-post'>
                 <div className='spotlight-post-thumb' style={{ display: 'flex', flexDirection: 'column' }}>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
                     <img src={spotlight[index].img ? IMAGE_BASE_URL + spotlight[index].img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
@@ -94,8 +111,7 @@ const SpotLightSection = () => {
                   </Link>
                 </div>
               </div>
-              <div className='weekly-post-content' >
-
+              <div className='weekly-post-content'>
                 <h2 className='post-title'>
                   <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
                     {spotlight[index].title}
@@ -103,7 +119,7 @@ const SpotLightSection = () => {
                 </h2>
 
                 <p>{spotlight[index].subTitle}</p>
-                <div className='blog-post-meta' style={{borderBottom: '1px solid #e4e4e4'}}>
+                <div className='blog-post-meta' style={{ borderBottom: '1px solid #e4e4e4' }}>
                   <ul className='list-wrap mb-3'>
                     <li className='col-3 '>
                       <FontAwesomeIcon icon='fa-regular fa-calendar' />
@@ -144,12 +160,13 @@ const SpotLightSection = () => {
                       <div className='col-20'>
                         <Link
                           to={''}
-                          onClick={() => handleBlogArticleHeartClick(index)}
-                          className={clickedBlogArticleIconId.includes(index) ? 'blog-article-icon-heart-clicked' : ''}
+                          onClick={() => handleBlogArticleHeartClick(spotlight[index].id)}
+                          className={clickedBlogArticleIconId.includes(spotlight[index].id) ? 'blog-article-icon-heart-clicked' : ''}
                         >
-                          <FontAwesomeIcon 
-                          icon={clickedBlogArticleIconId.includes(index) ? ['fas', 'heart'] : ['far', 'heart']}
-                          className='blog-article-icon-heart'/>
+                          <FontAwesomeIcon
+                            icon={clickedBlogArticleIconId.includes(spotlight[index].id) ? ['fas', 'heart'] : ['far', 'heart']}
+                            className='blog-article-icon-heart'
+                          />
                         </Link>
                       </div>
                     </li>

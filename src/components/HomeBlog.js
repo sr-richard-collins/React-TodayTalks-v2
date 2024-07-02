@@ -1,13 +1,16 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { DEFAULT_POST, IMAGE_BASE_URL } from '../config';
 import { fetchSelectCategory } from '../actions/categoryAction';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../components/Loader';
+import { AuthContext } from '../provider/AuthContext';
+import axios from '../config';
 
 const HomeBlog = ({ title }) => {
   const dispatch = useDispatch();
+  const context = useContext(AuthContext);
+  const { user } = context;
   const { homePosts } = useSelector((state) => state.posts);
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
@@ -18,6 +21,10 @@ const HomeBlog = ({ title }) => {
     const fetch = async () => {
       setLoading(true);
       const response = homePosts.find((post) => post.category === title);
+      if (user) {
+        const likesResponse = await axios.get(`/api/user/getLikesByUser?id=${user.id}`);
+        setClickedBlogArticleIconId(likesResponse.data.likes);
+      }
       if (response) setPosts(response.posts);
       setLoading(false);
     };
@@ -29,6 +36,16 @@ const HomeBlog = ({ title }) => {
   };
 
   const handleBlogArticleHeartClick = (linkId) => {
+    if (!user) window.location.href = '/login';
+    else {
+      const fetchLikes = async () => {
+        const response = await axios.post('/api/user/updateLikes', {
+          userId: user.id,
+          postId: linkId,
+        });
+      };
+      fetchLikes();
+    }
     if (clickedBlogArticleIconId.includes(linkId)) {
       setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
     } else {

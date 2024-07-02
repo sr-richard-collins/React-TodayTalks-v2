@@ -11,9 +11,9 @@ const SubCategoryBreadcrumb = ({ subCategories, title }) => {
             <div className='breadcrumb-content'>
               <nav aria-label='breadcrumb'>
                 <div className='sidebar-social-wrap'>
-                  <ul class="list-wrap breadcrumb-item breadcrumb">
+                  <ul className='list-wrap breadcrumb-item breadcrumb'>
                     {subCategories.map((subCategory) => (
-                      <li key={subCategory.id} >
+                      <li key={subCategory.id}>
                         <Link to={`/${subCategory.type2}/${subCategory.data_query}`} className={subCategory.name === title ? 'active' : ''}>
                           <span>{subCategory.name}</span>
                         </Link>
