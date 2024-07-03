@@ -101,7 +101,7 @@ body {
 
 img,
 .img {
-  max-width: 100%;
+  max-width: 90%;
   -webkit-transition: -webkit-transform 1s ease;
   transition: -webkit-transform 1s ease;
   transition: transform 1s ease;
@@ -1256,7 +1256,7 @@ label {
 .ta-trending-slider .swiper-slide {
   display: flex;
   align-items: center;
-  width: 235px;
+  /* width: 235px; */
 }
 
 /* .trending-content a {

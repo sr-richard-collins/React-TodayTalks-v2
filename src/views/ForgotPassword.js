@@ -36,7 +36,7 @@ const ForgotPassword = () => {
                   src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO}
                   alt='logo'
                   className='my-4'
-                  style={{ height: '4rem', width: '12rem' }}
+                  style={{ height: '3rem', width: '12rem' }}
                 />
               </div>
               <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg' className='img-fluid' alt='Sample image' />
