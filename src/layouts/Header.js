@@ -67,10 +67,10 @@ const Header = () => {
           <div className='col-lg-3 col-md-3 col-3'>
             <div className='header-top-left-four'>
               <div className='swiper-container ta-trending-slider'>
-                <div className='swiper-wrapper'>
+                <div className='myswiper-wrapper'>
                   <div className='swiper-slide'>
                     <Link to='/'>
-                      <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' className='logo-style' />
+                      <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' className='mylogo-style' />
                     </Link>
                   </div>
                 </div>
