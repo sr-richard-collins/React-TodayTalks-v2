@@ -119,10 +119,14 @@ const Menu = () => {
             ))}
             {moreCategories.length > 0 && (
               <li>
-                <Link to='#' onMouseEnter={() => setShowDropleft(true)} className='nav-bar-link my-2'>
-                  <FontAwesomeIcon icon='fa-solid fa-money-check' className='img-icon-left-menu rounded-circle mx-2' />
-                  View More
-                  <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='mx-2' />
+                <Link to='#' onMouseEnter={() => setShowDropleft(true)} className='nav-bar-link mb-2'>
+                  <div className='col-95 d-flex justify-content-between align-items-center'>
+                    <FontAwesomeIcon icon='fa-solid fa-money-check' className='img-icon-left-menu  mx-2' />
+                    <span>View More</span>
+                  </div>
+                  <div className='col-05'>
+                    <FontAwesomeIcon icon='fa-solid fa-chevron-right' className='' />
+                  </div>
                 </Link>
                 <ul
                   className={`left-menu-dropleft view-more dropdown-content ${showDropleft ? 'show-dropleft' : ''}`}
