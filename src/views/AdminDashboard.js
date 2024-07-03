@@ -5,6 +5,7 @@ import $ from 'jquery'; // Import jQuery
 import 'bootstrap'; // Import Bootstrap JavaScript
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
+import { DEFAULT_LOGO } from '../config/constant';
 import { Link } from 'react-router-dom';
 import profile_img from '../assets/img/icon/undraw_profile.svg';
 
@@ -42,11 +43,7 @@ const AdminDashboard = () => {
       <div id='wrapper'>
         <ul className='navbar-nav bg-gradient-primary sidebar sidebar-dark accordion' id='accordionSidebar'>
           <Link to='/' className='sidebar-brand d-flex flex-column align-items-center justify-content-center'>
-            <img
-              src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
-              alt='logo'
-              className='logo-style'
-            />
+            <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' className='logo-style' />
           </Link>
 
           <hr className='sidebar-divider' />

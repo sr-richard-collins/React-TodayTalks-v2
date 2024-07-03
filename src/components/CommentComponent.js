@@ -28,12 +28,10 @@ const CommentComponent = ({ post }) => {
     // Fetch data from Laravel backend
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/user/getComments`, {
-          params: {
-            id: post.id,
-            currentPage: currentPage,
-            commentsPerPage,
-          },
+        const response = await axios.post(`/api/user/getComments`, {
+          id: post.id,
+          currentPage: currentPage,
+          commentsPerPage,
         });
         if (commentsPerPage === 'all') {
           setComments(response.data);
@@ -104,7 +102,7 @@ const CommentComponent = ({ post }) => {
                 </div>
                 <div className='comments-text'>
                   <div className='avatar-name'>
-                    <h6 className='name'>{comment.user.name}</h6>
+                    <h6 className='name'>{comment.user.name}</h6>&nbsp;&nbsp;
                     <span className='date'>{format(new Date(comment.updated_at), 'dd MMMM, yyyy')}</span>
                   </div>
                   <p>{comment.content}</p>

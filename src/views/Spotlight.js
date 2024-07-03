@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from '../config';
-import { IMAGE_BASE_URL } from '../config';
+import { IMAGE_BASE_URL, DEFAULT_POST } from '../config';
 import CustomPagination from '../components/CustomPagination';
 import Loader from '../components/Loader';
 
@@ -71,7 +71,7 @@ const SpotLightComponent = () => {
                           <div className='weekly-post-three'>
                             <div className='weekly-post-thumb'>
                               <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
-                                <img src={IMAGE_BASE_URL + post.img} alt={post.title} />
+                                <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title} />
                               </Link>
                               <Link to={`/${post.category_type}/${post.category_data_query}`} className='post-tag'>
                                 {post.category_name}

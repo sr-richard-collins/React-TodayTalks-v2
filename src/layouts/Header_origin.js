@@ -6,7 +6,7 @@ import { fetchCategories } from '../actions/categoryAction';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
-import { SOCIAL_FB, SOCIAL_TWITTER, SOCIAL_INSTA, SOCIAL_LINKEDIN } from '../config/constant';
+import { SOCIAL_FB, SOCIAL_TWITTER, SOCIAL_INSTA, SOCIAL_LINKEDIN, DEFAULT_LOGO } from '../config/constant';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -110,11 +110,7 @@ const Header = () => {
           <div className='row'>
             <div className='col-lg-2 col-md-3 col-3'>
               <Link to='/'>
-                <img
-                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
-                  alt='logo'
-                  className='logo-style'
-                />
+                <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' className='logo-style' />
               </Link>
             </div>
             <div className='col-lg-10 col-md-9 col-9'>

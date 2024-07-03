@@ -1256,6 +1256,7 @@ label {
 .ta-trending-slider .swiper-slide {
   display: flex;
   align-items: center;
+  width: 235px;
 }
 
 /* .trending-content a {

@@ -43,6 +43,7 @@ const SpotLightSection = () => {
 
     fetchTrendingPosts();
   }, []);
+
   const handlePageClick = (index) => {
     window.scrollTo(0, 0);
     setActivePage(index);
@@ -68,6 +69,24 @@ const SpotLightSection = () => {
 
   const handleViewClick = (name) => {
     dispatch(fetchSelectCategory(name));
+  };
+
+  const handleFacebookShare = () => {
+    const currentUrl = window.location.href;
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleTwitterShare = () => {
+    const currentUrl = window.location.href;
+    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleWhatsAppShare = () => {
+    const currentUrl = window.location.href;
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(currentUrl)}`;
+    window.open(shareUrl, '_blank');
   };
 
   return (
@@ -135,18 +154,17 @@ const SpotLightSection = () => {
                     </li>
                     <li className='col-3'>
                       <span className='homeblog-link-icon-phone'>
-                        {console.log('AAAA' + setting)}
-                        <Link to={setting.social_whatsapp ? setting.social_whatsapp : SOCIAL_WHATSAPP}>
+                        <Link onClick={handleWhatsAppShare}>
                           <FontAwesomeIcon icon='fa-solid fa-phone' />
                         </Link>
                       </span>
                       <span className='homeblog-link-icon-facebook'>
-                        <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB}>
+                        <Link onClick={handleFacebookShare}>
                           <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                         </Link>
                       </span>
                       <span className='homeblog-link-icon-twitter'>
-                        <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER}>
+                        <Link onClick={handleTwitterShare}>
                           <FontAwesomeIcon icon='fa-brands fa-twitter' />
                         </Link>
                       </span>

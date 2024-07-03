@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthContext';
 import { IMAGE_BASE_URL } from '../config';
+import { DEFAULT_LOGO } from '../config/constant';
 
 const ForgotPassword = () => {
   const { forgotPassword } = useContext(AuthContext);
@@ -32,7 +33,7 @@ const ForgotPassword = () => {
             <div className='col-md-9 col-lg-6 col-xl-5 mb-5'>
               <div className='brand_logo_container'>
                 <img
-                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO}
                   alt='logo'
                   className='my-4'
                   style={{ height: '4rem', width: '12rem' }}

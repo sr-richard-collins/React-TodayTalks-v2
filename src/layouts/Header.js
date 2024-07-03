@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
 import googleplayimg from '../assets/img/icon/googleplay.png';
 import { AuthContext } from '../provider/AuthContext';
-import { SOCIAL_FB, SOCIAL_TWITTER, SOCIAL_INSTA, SOCIAL_LINKEDIN, SOCIAL_YOUTUBE } from '../config/constant';
+import { SOCIAL_FB, SOCIAL_TWITTER, SOCIAL_INSTA, SOCIAL_LINKEDIN, SOCIAL_YOUTUBE, DEFAULT_LOGO } from '../config/constant';
 
 const Header = () => {
   const context = useContext(AuthContext);
@@ -70,11 +70,7 @@ const Header = () => {
                 <div className='swiper-wrapper'>
                   <div className='swiper-slide'>
                     <Link to='/'>
-                      <img
-                        src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
-                        alt='logo'
-                        className='logo-style'
-                      />
+                      <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' className='logo-style' />
                     </Link>
                   </div>
                 </div>
@@ -172,11 +168,7 @@ const Header = () => {
                           <FontAwesomeIcon icon='fas fa-times' />
                         </div>
                         <Link to='/'>
-                          <img
-                            src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
-                            alt='logo'
-                            style={{ width: '70%' }}
-                          />
+                          <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' style={{ width: '70%' }} />
                         </Link>
                       </li>
                       <li className={(selectCategory ? selectCategory : activeLink) === 'home' ? 'active' : ''}>

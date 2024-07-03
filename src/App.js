@@ -1,9 +1,9 @@
-import React, { useEffect, memo } from "react";
-import { useRoutes } from "react-router-dom";
-import themeRoutes from "./routes/";
-import { updateFavicon } from "./utils/favIcon";
-import { fetchSetting } from "./actions/settingAction";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, memo } from 'react';
+import { useRoutes } from 'react-router-dom';
+import themeRoutes from './routes/';
+import { updateFavicon } from './utils/favIcon';
+import { fetchSetting } from './actions/settingAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Router = memo(() => useRoutes(themeRoutes));
 
@@ -19,7 +19,7 @@ const App = memo(() => {
       try {
         updateFavicon(setting.site_favicon); // Assuming updateFavicon function updates the favicon
       } catch (error) {
-        console.error("Failed to fetch favicon:", error);
+        console.error('Failed to fetch favicon:', error);
       }
     };
     getFavicon();

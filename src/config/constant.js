@@ -1,6 +1,9 @@
 const NEWS_CATEGORY = 'news';
 const ARTICLE_CATEGORY = 'article';
 
+const DEFAULT_LOGO = '../assets/logo.jpeg';
+const DEFAULT_FAVICON = '../assets/favicon.jpg';
+
 const DETAIL_CATEGORY = 'news-detail';
 const DETAIL_ARTICLE = 'article-detail';
 
@@ -14,6 +17,8 @@ const SOCIAL_WHATSAPP = 'https://www.whatsapp.com/';
 const SOCIAL_YOUTUBE = 'https://www.youtube.com';
 
 export {
+  DEFAULT_LOGO,
+  DEFAULT_FAVICON,
   NEWS_CATEGORY,
   ARTICLE_CATEGORY,
   DETAIL_CATEGORY,
