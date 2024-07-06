@@ -138,7 +138,7 @@ const Menu = () => {
             {moreCategories.length > 0 && (
               <li>
                 <Link to='#' onMouseEnter={() => setShowDropleft(true)} className='nav-bar-link mb-2'>
-                  <div className='col-95 d-flex justify-content-between align-items-center'>
+                  <div className='col-95 d-flex align-items-center'>
                     <FontAwesomeIcon icon='fa-solid fa-money-check' className='img-icon-left-menu  mx-2' />
                     <span>View More</span>
                   </div>

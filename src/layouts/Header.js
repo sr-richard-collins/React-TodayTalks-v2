@@ -46,6 +46,7 @@ const Header = () => {
     setActiveLink(link);
     dispatch(fetchSelectCategory(link));
     setShowToggleMenu(false);
+    setShowToggleSubMenu(false);
   };
 
   const handleMenuToggleOpenClick = () => {
@@ -53,6 +54,7 @@ const Header = () => {
   };
   const handleMenuToggleCloseClick = () => {
     setShowToggleMenu(false);
+    setShowToggleSubMenu(false);
   };
 
   const handleShowToggleSubMenu = () => {
@@ -63,6 +65,7 @@ const Header = () => {
     const handleOutsideClick = (event) => {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target) && !event.target.closest('#mobileMenuToggleBtn')) {
         setShowToggleMenu(false);
+        setShowToggleSubMenu(false);
       }
     };
 
@@ -77,7 +80,7 @@ const Header = () => {
     <header className='header-style-six'>
       <div className='header-top-wrap-four'>
         <div className='row align-items-center'>
-          <div className='col-lg-3 col-md-3 col-3'>
+          <div className='col-lg-3 col-md-3 col-4'>
             <div className='header-top-left-four'>
               <div className='swiper-container ta-trending-slider'>
                 <div className='myswiper-wrapper'>
@@ -91,7 +94,7 @@ const Header = () => {
             </div>
           </div>
           <div className='col-lg-3 col-md-3 col-1'></div>
-          <div className='col-lg-6 col-md-6 col-8' style={{ alignItems: 'end' }}>
+          <div className='col-lg-6 col-md-6 col-7' style={{ alignItems: 'end' }}>
             <div className='header-top-social header-top-social-two'>
               <ul className='list-wrap'>
                 <li className='social-icons'>
@@ -247,12 +250,11 @@ const Header = () => {
                           {showToggleSubMenu &&
                             moreCategories.map((category) => (
                               <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
-                                <Link onClick={() => handleLinkClick(category.name)} className='nav-bar-link'>
+                                <Link
+                                  onClick={() => handleLinkClick(category.name)} 
+                                  className='nav-bar-link'>
                                   <div className='mx-3 d-flex'>
-                                    <div className='col-95'>{category.name}</div>
-                                    <div className='col-05'>
-                                      <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
-                                    </div>
+                                    {category.name}
                                   </div>
                                 </Link>
                               </li>
