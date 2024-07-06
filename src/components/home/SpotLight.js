@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import NoPost from '../../views/error/No_post';
 import axios from '../../config';
 import { IMAGE_BASE_URL, DEFAULT_POST } from '../../config';
-import { SOCIAL_FB, SOCIAL_WHATSAPP, SOCIAL_TWITTER } from '../../config/constant';
 import { fetchSelectCategory } from '../../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthContext } from '../../provider/AuthContext';
-import $ from 'jquery'; // Import jQuery
 import 'bootstrap'; // Import Bootstrap JavaScript
 
 const SpotLightSection = () => {
@@ -16,8 +14,6 @@ const SpotLightSection = () => {
   const { setting } = useSelector((state) => state.setting);
   const context = useContext(AuthContext);
   const { user } = context;
-  const [spotIndex, setSpotIndex] = useState(0);
-  const [activePage, setActivePage] = useState(0);
   const [spotlight, setSpotlight] = useState([]);
   const [clickedBlogArticleIconId, setClickedBlogArticleIconId] = useState([]);
   const [noPost, setNoPost] = useState(0);
@@ -44,11 +40,25 @@ const SpotLightSection = () => {
     fetchTrendingPosts();
   }, []);
 
-  const handlePageClick = (index) => {
-    window.scrollTo(0, 0);
-    setActivePage(index);
-    setSpotIndex(index); // Assuming setSpotIndex is defined elsewhere
+  const handleViewClick = (name) => {
+    dispatch(fetchSelectCategory(name));
   };
+
+  const handleFacebookShare = (slug) => {
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin + '/' + slug)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleTwitterShare = (slug) => {
+    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.origin + '/' + slug)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleWhatsAppShare = (slug) => {
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(window.location.origin + '/' + slug)}`;
+    window.open(shareUrl, '_blank');
+  };
+
   const handleBlogArticleHeartClick = (linkId) => {
     if (!user) window.location.href = '/login';
     else {
@@ -65,28 +75,6 @@ const SpotLightSection = () => {
         setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
       }
     }
-  };
-
-  const handleViewClick = (name) => {
-    dispatch(fetchSelectCategory(name));
-  };
-
-  const handleFacebookShare = () => {
-    const currentUrl = window.location.href;
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, '_blank');
-  };
-
-  const handleTwitterShare = () => {
-    const currentUrl = window.location.href;
-    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, '_blank');
-  };
-
-  const handleWhatsAppShare = () => {
-    const currentUrl = window.location.href;
-    const shareUrl = `https://wa.me/?text=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, '_blank');
   };
 
   return (
@@ -120,61 +108,54 @@ const SpotLightSection = () => {
               </Link>
             </div>
           </div>
-          {/* <div className="row"> */}
-          {[...Array(spotlight.length)].map((_, index) => (
+          {spotlight.map((item, index) => (
             <div className='row' key={index}>
               <div className='spotlight-post big-post'>
-                <div className='spotlight-post-thumb' style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
-                    <img src={spotlight[index].img ? IMAGE_BASE_URL + spotlight[index].img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
+                <div className='spotlight-post-thumb'>
+                  <Link to={`/${item.category_type === 'news' ? 'news_detail' : 'article_detail'}/${item.seo_slug}`}>
+                    <img src={item.img ? IMAGE_BASE_URL + item.img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
                   </Link>
                   <Link
-                    to={`/${spotlight[index].category_type}/${spotlight[index].category_data_query}`}
+                    to={`/${item.category_type}/${item.category_data_query}`}
                     className='post-tag'
-                    onClick={() => handleViewClick(spotlight[index].category_name)}
+                    onClick={() => handleViewClick(item.category_name)}
                     style={{ fontWeight: 'bold', marginTop: '20px' }}
                   >
-                    {spotlight[index].category_name}
+                    {item.category_name}
                   </Link>
                 </div>
               </div>
               <div className='weekly-post-content'>
                 <h2 className='post-title'>
-                  <Link to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}>
-                    {spotlight[index].title}
-                  </Link>
+                  <Link to={`/${item.category_type === 'news' ? 'news_detail' : 'article_detail'}/${item.seo_slug}`}>{item.title}</Link>
                 </h2>
-
-                <p>{spotlight[index].subTitle}</p>
+                <p>{item.sub_title.length > 250 ? `${item.sub_title.slice(0, 250)}...` : item.sub_title}</p>
                 <div className='blog-post-meta' style={{ borderBottom: '1px solid #e4e4e4' }}>
                   <ul className='list-wrap mb-3'>
-                    <li className='col-3 '>
-                      <FontAwesomeIcon icon='fa-regular fa-calendar' />
-                      {new Date(spotlight[index].created_at).toLocaleDateString()}
+                    <li className='col-3'>
+                      <FontAwesomeIcon icon={['far', 'calendar']} />
+                      {new Date(item.created_at).toLocaleDateString()}
                     </li>
                     <li className='col-3'>
                       <span className='homeblog-link-icon-phone'>
-                        <Link onClick={handleWhatsAppShare}>
-                          <FontAwesomeIcon icon='fa-solid fa-phone' />
+                        <Link onClick={() => handleWhatsAppShare(item.seo_slug)}>
+                          <FontAwesomeIcon icon={['fas', 'phone']} />
                         </Link>
                       </span>
                       <span className='homeblog-link-icon-facebook'>
-                        <Link onClick={handleFacebookShare}>
-                          <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
+                        <Link onClick={() => handleFacebookShare(item.seo_slug)}>
+                          <FontAwesomeIcon icon={['fab', 'facebook-f']} />
                         </Link>
                       </span>
                       <span className='homeblog-link-icon-twitter'>
-                        <Link onClick={handleTwitterShare}>
-                          <FontAwesomeIcon icon='fa-brands fa-twitter' />
+                        <Link onClick={() => handleTwitterShare(item.seo_slug)}>
+                          <FontAwesomeIcon icon={['fab', 'twitter']} />
                         </Link>
                       </span>
                     </li>
-                    <li className='col-6 '>
+                    <li className='col-6'>
                       <div className='view-all-btn col-80'>
-                        <Link
-                          to={`/${spotlight[index].category_type === 'news' ? 'news_detail' : 'article_detail'}/${spotlight[index].seo_slug}`}
-                          className='homeblog-link-btn'
-                        >
+                        <Link to={`/${item.category_type === 'news' ? 'news_detail' : 'article_detail'}/${item.seo_slug}`} className='homeblog-link-btn'>
                           Read More
                           <span className='svg-icon'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
@@ -187,11 +168,11 @@ const SpotLightSection = () => {
                       <div className='col-20'>
                         <Link
                           to={''}
-                          onClick={() => handleBlogArticleHeartClick(spotlight[index].id)}
-                          className={clickedBlogArticleIconId.includes(spotlight[index].id) ? 'blog-article-icon-heart-clicked' : ''}
+                          onClick={() => handleBlogArticleHeartClick(item.id)}
+                          className={clickedBlogArticleIconId.includes(item.id) ? 'blog-article-icon-heart-clicked' : ''}
                         >
                           <FontAwesomeIcon
-                            icon={clickedBlogArticleIconId.includes(spotlight[index].id) ? ['fas', 'heart'] : ['far', 'heart']}
+                            icon={clickedBlogArticleIconId.includes(item.id) ? ['fas', 'heart'] : ['far', 'heart']}
                             className='blog-article-icon-heart'
                           />
                         </Link>

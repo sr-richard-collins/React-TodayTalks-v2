@@ -98,6 +98,21 @@ const Blog = ({ title, isHomepage }) => {
     }
   };
 
+  const handleFacebookShare = (slug) => {
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin + '/' + slug)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleTwitterShare = (slug) => {
+    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.origin + '/' + slug)}`;
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleWhatsAppShare = (slug) => {
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(window.location.origin + '/' + slug)}`;
+    window.open(shareUrl, '_blank');
+  };
+
   const handleViewClick = (name) => {
     dispatch(fetchSelectCategory(name));
   };
@@ -134,8 +149,7 @@ const Blog = ({ title, isHomepage }) => {
                           <h2 className='post-title'>
                             <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                           </h2>
-
-                          <p>{post.subTitle}</p>
+                          <p>{post.sub_title.length > 250 ? `${post.sub_title.slice(0, 250)}...` : post.sub_title}</p>
                           <div className='blog-post-meta'>
                             <ul className='list-wrap mt-3'>
                               <li className='col-3 '>
@@ -144,18 +158,18 @@ const Blog = ({ title, isHomepage }) => {
                               </li>
                               <li className='col-3'>
                                 <span className='homeblog-link-icon-phone'>
-                                  <Link to='/'>
-                                    <FontAwesomeIcon icon='fa-solid fa-phone' />
+                                  <Link onClick={() => handleWhatsAppShare(post.seo_slug)}>
+                                    <FontAwesomeIcon icon={['fas', 'phone']} />
                                   </Link>
                                 </span>
                                 <span className='homeblog-link-icon-facebook'>
-                                  <Link to='/'>
-                                    <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
+                                  <Link onClick={() => handleFacebookShare(post.seo_slug)}>
+                                    <FontAwesomeIcon icon={['fab', 'facebook-f']} />
                                   </Link>
                                 </span>
                                 <span className='homeblog-link-icon-twitter'>
-                                  <Link to='/'>
-                                    <FontAwesomeIcon icon='fa-brands fa-twitter' />
+                                  <Link onClick={() => handleTwitterShare(post.seo_slug)}>
+                                    <FontAwesomeIcon icon={['fab', 'twitter']} />
                                   </Link>
                                 </span>
                               </li>

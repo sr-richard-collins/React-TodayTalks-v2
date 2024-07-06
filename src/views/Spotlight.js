@@ -91,7 +91,7 @@ const SpotLightComponent = () => {
                                     </li> */}
                                 </ul>
                               </div>
-                              <p>{post.subTitle}</p>
+                              <p>{post.sub_title.length > 250 ? `${post.sub_title.slice(0, 250)}...` : post.sub_title}</p>
                             </div>
                           </div>
                         </div>

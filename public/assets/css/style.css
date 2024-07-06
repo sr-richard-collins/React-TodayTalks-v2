@@ -85,6 +85,7 @@
   --facebook: #104e87;
   --twitter: #2eb4ff;
   --linkedin: #0c7ed0;
+  --whatsapp: #145915;
   --instagram: #ff2f7a;
   --youtube: #c4302b;
   --skype: #00aff0;
@@ -6345,7 +6346,7 @@ label {
 }
 
 .blog-details-social .list-wrap li:nth-child(4) a {
-  background: var(--linkedin);
+  background: var(--whatsapp);
 }
 
 .blog-details-thumb {

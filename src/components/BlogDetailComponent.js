@@ -36,9 +36,9 @@ const BlogDetailComponent = ({ post }) => {
     window.open(shareUrl, '_blank');
   };
 
-  const handleLinkedInShare = () => {
+  const handleWhatsappShare = () => {
     const currentUrl = window.location.href;
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(currentUrl)}`;
     window.open(shareUrl, '_blank');
   };
 
@@ -84,8 +84,8 @@ const BlogDetailComponent = ({ post }) => {
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={handleLinkedInShare}>
-                            <FontAwesomeIcon icon='fa-brands fa-linkedin' />
+                          <Link onClick={handleWhatsappShare}>
+                            <FontAwesomeIcon icon={['fas', 'phone']} />
                           </Link>
                         </li>
                       </ul>
@@ -94,10 +94,12 @@ const BlogDetailComponent = ({ post }) => {
                 </div>
                 <div className='blog-details-thumb'>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Link >
+                    <Link>
                       <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
                     </Link>
-                    <Link className='post-tag mb-3' style={{ fontWeight: 'bold', marginTop: '20px' }}>{post.category_name}</Link>
+                    <Link className='post-tag mb-3' style={{ fontWeight: 'bold', marginTop: '20px' }}>
+                      {post.category_name}
+                    </Link>
                   </div>
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: post.description }} style={{ textAlign: 'justify' }} />
