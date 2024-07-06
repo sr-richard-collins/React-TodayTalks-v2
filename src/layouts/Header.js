@@ -22,8 +22,21 @@ const Header = () => {
   const [showToggleMenu, setShowToggleMenu] = useState(false);
   const mobileMenuRef = useRef(null);
   const [activeCategory, setActiveCategory] = useState({ category: null, show: false });
-  const moreCategories = categories.filter((category) => category.position === 'more');
-  const mainCategories = categories.filter((category) => category.position === 'main');
+  const [mainCategories, setMainCategories] = useState([]);
+  const [moreCategories, setMoreCategories] = useState([]);
+
+  useEffect(() => {
+    const main = categories.filter((category) => category.position === 'main');
+    const more = categories.filter((category) => category.position === 'more');
+
+    if (main.length > 7) {
+      setMoreCategories([...more, ...main.slice(7)]);
+      setMainCategories(main.slice(0, 7));
+    } else {
+      setMainCategories(main);
+      setMoreCategories(more);
+    }
+  }, [categories]);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -249,10 +262,10 @@ const Header = () => {
                     </ul>
                   </div>
                   <div className='row left-menu-store my-2'>
-                    <Link to='https://play.google.com/store/' className='my-2'>
+                    {/* <Link to='https://play.google.com/store/' className='my-2'>
                       {' '}
                       <img src={googleplayimg} />{' '}
-                    </Link>
+                    </Link> */}
                     <div className='left-menu-social mb-10'>
                       <ul className='list-wrap row justify-content-center'>
                         <li className='social-icons col'>
@@ -293,7 +306,7 @@ const Header = () => {
                       </ul>
                     </div>
                   </div>
-                  <div className='row'>
+                  {/* <div className='row'>
                     <span className='mt-2 left-menu-footer mb-10'>
                       {' '}
                       <Link to={'/about'} onClick={handleMenuToggleCloseClick}>
@@ -303,7 +316,7 @@ const Header = () => {
                         Privacy Policy
                       </Link>
                     </span>
-                  </div>
+                  </div> */}
                 </nav>
               </div>
             )}

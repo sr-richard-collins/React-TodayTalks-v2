@@ -2,7 +2,7 @@ const NEWS_CATEGORY = 'news';
 const ARTICLE_CATEGORY = 'article';
 
 const DEFAULT_LOGO = '../assets/logo.jpeg';
-const DEFAULT_FAVICON = '../assets/favicon.jpg';
+const DEFAULT_FAVICON = '../assets/favicon.ico';
 
 const DETAIL_CATEGORY = 'news-detail';
 const DETAIL_ARTICLE = 'article-detail';

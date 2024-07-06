@@ -219,7 +219,11 @@ const Blog = ({ title, isHomepage }) => {
             </div>
           </section>
         ) : (
-          isHomepage === 0 && <NoPost />
+          <section className='pb-60'>
+            {subCategory.length ? <SubCategoryBreadcrumb subCategories={subCategory} title={title} /> : ''}
+            <Breadcrumb title={title} />
+            {isHomepage === 0 && <NoPost />}
+          </section>
         )}
       </Suspense>
     </>

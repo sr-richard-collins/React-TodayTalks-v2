@@ -59,11 +59,11 @@ const SpotLightSection = () => {
         });
       };
       fetchLikes();
-    }
-    if (clickedBlogArticleIconId.includes(linkId)) {
-      setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
-    } else {
-      setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
+      if (clickedBlogArticleIconId.includes(linkId)) {
+        setClickedBlogArticleIconId(clickedBlogArticleIconId.filter((id) => id !== linkId));
+      } else {
+        setClickedBlogArticleIconId([...clickedBlogArticleIconId, linkId]);
+      }
     }
   };
 

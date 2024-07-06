@@ -14,13 +14,25 @@ const Menu = () => {
   const [activeLink, setActiveLink] = useState('home');
   const [showDropleft, setShowDropleft] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
-
-  const moreCategories = categories.filter((category) => category.position === 'more');
-  const mainCategories = categories.filter((category) => category.position === 'main');
+  const [mainCategories, setMainCategories] = useState([]);
+  const [moreCategories, setMoreCategories] = useState([]);
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    const main = categories.filter((category) => category.position === 'main');
+    const more = categories.filter((category) => category.position === 'more');
+
+    if (main.length > 7) {
+      setMoreCategories([...more, ...main.slice(7)]);
+      setMainCategories(main.slice(0, 7));
+    } else {
+      setMainCategories(main);
+      setMoreCategories(more);
+    }
+  }, [categories]);
 
   const handleLinkClick = useCallback(
     (link) => {
@@ -53,6 +65,8 @@ const Menu = () => {
     return new Date().toLocaleDateString('en-US', options);
   };
 
+  if (mainCategories.length > 7) moreCategories += mainCategories.slice(7);
+
   return (
     <>
       <div className='left-sub-menu'>
@@ -73,6 +87,10 @@ const Menu = () => {
                     className='nav-bar-link'
                     onMouseEnter={() => handleLinkMouseEnter(category)}
                   >
+                    <img
+                      className='img-icon-left-menu rounded-circle mx-2'
+                      src={category.image ? `${IMAGE_BASE_URL}${category.image}` : `${IMAGE_BASE_URL}${DEFAULT_CATEGORY}`}
+                    />
                     {category.name}
                   </Link>
                 ) : (
@@ -182,7 +200,7 @@ const Menu = () => {
             )}
           </ul>
         </div>
-        <div className='row left-menu-store'>
+        {/* <div className='row left-menu-store'>
           <Link to='https://play.google.com/store/' className='mb-10'>
             <img src={googleplayimg} alt='Google Play Store' />
           </Link>
@@ -192,7 +210,7 @@ const Menu = () => {
             <Link to='/about'>About Us &middot; </Link>
             <Link to='/about'>Privacy Policy</Link>
           </span>
-        </div>
+        </div> */}
       </div>
     </>
   );
