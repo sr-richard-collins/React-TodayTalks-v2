@@ -133,7 +133,7 @@ const HomeBlog = ({ title }) => {
                           <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                         </h2>
                         <p>{post.sub_title.length > 250 ? `${post.sub_title.slice(0, 250)}...` : post.sub_title}</p>
-                        <div className='blog-post-meta'>
+                        <div className='blog-post-meta ' style={{ borderBottom: '1px solid #e4e4e4' }}>
                           <ul className='list-wrap mb-3'>
                             <li className='col-3'>
                               <FontAwesomeIcon icon={['far', 'calendar']} />
