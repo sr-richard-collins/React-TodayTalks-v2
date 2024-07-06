@@ -2906,7 +2906,7 @@ label {
 .post-tag {
   color: var(--tg-white);
   font-family: var(--tg-heading-font-family);
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.78px;
@@ -3313,7 +3313,7 @@ label {
 
 .section-title .title {
   margin-bottom: 0;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .section-title-line {
@@ -3859,7 +3859,7 @@ label {
 }
 
 .section-title-three .title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 0;
   color: var(--tg-white);
@@ -5486,7 +5486,7 @@ label {
 }
 
 .editor-post-content .post-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 12px;
@@ -5691,7 +5691,7 @@ label {
 }
 
 .weekly-post-content .post-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 15px;
   line-height: 1.4;

@@ -91,16 +91,23 @@ const HomeBlog = ({ title }) => {
         <section className='editor-post-area pt-50 pb-30'>
           <div className='row'>
             <div className='col-lg-12'>
-              <div className='section-title-wrap mb-30'>
-                <div className='section-title'>
-                  <h2 className='title'>{posts[0].category.name}</h2>
+              <div className='section-title-wrap-three mb-20'>
+                <div className='section-title-three'>
+                  <h6 className='title'>
+                    {posts[0].category.name}
+                    <span className='section-title-svg'>
+                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 246 40' fill='none' preserveAspectRatio='none'>
+                        <path
+                          d='M10.1448 2.85061C10.6524 1.15867 12.2097 0 13.9761 0H241.624C244.303 0 246.225 2.58294 245.455 5.14939L235.855 37.1494C235.348 38.8413 233.79 40 232.024 40H4.37612C1.69667 40 -0.225117 37.4171 0.544817 34.8506L10.1448 2.85061Z'
+                          fill='currentcolor'
+                        />
+                      </svg>
+                    </span>
+                  </h6>
+                  <div className='section-title-line-three'></div>
                 </div>
-                <div className='view-all-btn'>
-                  <Link
-                    to={`/${posts[0].category.type2}/${posts[0].category.data_query}`}
-                    className='link-btn'
-                    onClick={() => handleViewClick(posts[0].category.name)}
-                  >
+                <div className='view-all-btn mb-4'>
+                  <Link to={`/spotlight/${'spotlight'}`} className='link-btn' onClick={() => handleViewClick('spotlight')}>
                     View All
                     <span className='svg-icon'>
                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
@@ -110,7 +117,6 @@ const HomeBlog = ({ title }) => {
                     </span>
                   </Link>
                 </div>
-                <div className='section-title-line'></div>
               </div>
             </div>
           </div>
