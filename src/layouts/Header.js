@@ -248,15 +248,49 @@ const Header = () => {
                         </Link>
                         <ul className='sub-menu' style={{ display: 'block' }}>
                           {showToggleSubMenu &&
-                            moreCategories.map((category) => (
-                              <li key={category.id} className={activeLink === category.name ? 'active' : ''}>
-                                <Link
-                                  onClick={() => handleLinkClick(category.name)} 
-                                  className='nav-bar-link'>
-                                  <div className='mx-3 d-flex'>
+                            moreCategories.map((category, index) => (
+                              <li className={`${(selectCategory ? selectCategory : activeLink) === category.name ? 'active ' : ''
+                                } mx-3`} key={index}>
+                                {!category.child ? (
+                                  <Link to={`/news/${category.data_query}`} onClick={() => handleLinkClick(category.name)} className='nav-bar-link' key={category.id}>
                                     {category.name}
-                                  </div>
-                                </Link>
+                                  </Link>
+                                ) : (
+                                  <>
+                                    <Link
+                                      onClick={() => {
+                                        setActiveCategory((prevActiveCategory) => ({
+                                          category: category.name,
+                                          show: prevActiveCategory.category !== category.name ? true : !prevActiveCategory.show,
+                                        }));
+                                      }}
+                                      className='nav-bar-link'
+                                    >
+                                      <div className='d-flex'>
+                                        <div className='col-95'>{category.name}</div>
+                                        <div className='col-05'>
+                                          <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
+                                        </div>
+                                      </div>
+                                    </Link>
+                                    {activeCategory.category === category.name && (
+                                      <ul className='sub-menu' style={{ display: activeCategory.show ? 'block' : 'none' }}>
+                                        {category.child.map((subCategory) => (
+                                          <li key={subCategory.id} className={activeLink === subCategory.name ? 'active' : ''}>
+                                            <Link
+                                              key={subCategory.id}
+                                              to={`/news/${subCategory.data_query}`}
+                                              onClick={() => handleLinkClick(subCategory.name)}
+                                              className='nav-bar-link ml-5'
+                                            >
+                                              {subCategory.name}
+                                            </Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    )}
+                                  </>
+                                )}
                               </li>
                             ))}
                         </ul>
