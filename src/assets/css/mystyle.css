@@ -131,3 +131,44 @@
   margin-bottom: 20px;
   border-radius: 5px;
 }
+
+.ta-trending-slider .myswiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the image horizontally */
+  width: 100%; /* Make sure the container uses full width */
+}
+
+.mylogo-style {
+  max-width: 100%; /* Ensure the image doesn't exceed its container's width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any default inline-block spacing */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+@media (max-width: 576px) {
+  .ta-trending-slider .swiper-slide {
+    width: 100%;
+  }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .ta-trending-slider .swiper-slide {
+    width: 100%;
+  }
+}
+
+/* For large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+  .ta-trending-slider .swiper-slide {
+    width: 100%;
+  }
+}
+
+/* For extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .ta-trending-slider .swiper-slide {
+    width: 235px;
+  }
+}

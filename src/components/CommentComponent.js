@@ -157,7 +157,7 @@ const CommentComponent = ({ post }) => {
                     <textarea ref={textareaRef} name='comment' placeholder='Comment'></textarea>
                   </div>
                   <button type='submit' className='btn btn-two'>
-                    Post Comment
+                    {user ? 'Post Comment' : 'Login Comment'}
                   </button>
                 </form>
               </div>
