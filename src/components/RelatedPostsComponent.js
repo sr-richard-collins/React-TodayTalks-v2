@@ -66,7 +66,7 @@ const RelatedPostsComponent = ({ posts }) => {
                       </Link>
                     </div>
                   </div>
-                  <div className='banner-post-content-five'>
+                  <div className='banner-post-content-five' style={{ borderBottom: '1px solid #e4e4e4' }}>
                     <h2 className='post-title'>
                       <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                     </h2>
