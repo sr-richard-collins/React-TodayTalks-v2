@@ -1,12 +1,11 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import Blog from '../components/Blog';
-import Blog_new from '../components/Blog_new';
+import Blog_new from './Blog_new';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import axios from '../config/';
+import axios from '../config';
 
-const Category = () => {
+const Category_new_component = () => {
   const { name } = useParams();
   const { categories } = useSelector((state) => state.categories);
   const [seo, setSeo] = useState([]);
@@ -46,9 +45,9 @@ const Category = () => {
         <meta name='keywords' content={seo.seo_keyword} />
         <meta name='description' content={seo.seo_description} />
       </Helmet>
-      {selectCategory ? <Blog title={selectCategory.name} isHomepage={0} /> : <p>Category not found</p>}
+      {selectCategory ? <Blog_new title={selectCategory.name} isHomepage={0} /> : <p>Category not found</p>}
     </>
   );
 };
 
-export default Category;
+export default Category_new_component;

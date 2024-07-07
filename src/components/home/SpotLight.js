@@ -97,7 +97,7 @@ const SpotLightSection = () => {
               <div className='section-title-line-three'></div>
             </div>
             <div className='view-all-btn mb-4'>
-              <Link to={`/spotlight/${'spotlight'}`} className='link-btn' onClick={() => handleViewClick('spotlight')}>
+              <Link to={`/${spotlight[0].category_type}/${spotlight[0].category_data_query}`} className='link-btn' >
                 View All
                 <span className='svg-icon'>
                   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>

@@ -44,7 +44,6 @@ const Home = () => {
           <meta name='keywords' content={setting.seo_keyword} />
           <meta name='description' content={setting.seo_description} />
         </Helmet>
-
         <section className='spotlight-post-area pt-20 pb-60'>
           <div className='spotlight-post-inner-wrap'>
             <div className='row justify-content-center'>

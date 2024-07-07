@@ -86,9 +86,6 @@ const SpotLightComponent = () => {
                                   <li>
                                     <FontAwesomeIcon icon='fa-regular fa-calendar' /> {new Date(post.created_at).toLocaleDateString()}
                                   </li>
-                                  {/* <li>
-                                      <i className='flaticon-history'></i>20 Mins
-                                    </li> */}
                                 </ul>
                               </div>
                               <p>{post.sub_title.length > 250 ? `${post.sub_title.slice(0, 250)}...` : post.sub_title}</p>
@@ -114,22 +111,6 @@ const SpotLightComponent = () => {
                 </div>
                 <div className='col-30'>
                   <div className='sidebar-wrap'>
-                    {/* <div className='sidebar-widget'>
-                        <div className='sidebar-search'>
-                          <form action='#'>
-                            <input type='text' placeholder='Search . . .' />
-                            <button type='submit'>
-                              <FontAwesomeIcon icon={faSearch} />
-                            </button>
-                          </form>
-                        </div>
-                      </div> */}
-                    {/* <div className='sidebar-widget sidebar-widget-two'>
-                        <div className='widget-title mb-30'>
-                          <h6 className='title'>Hot Categories</h6>
-                          <div className='section-title-line'></div>
-                        </div>
-                      </div> */}
                   </div>
                 </div>
               </div>
