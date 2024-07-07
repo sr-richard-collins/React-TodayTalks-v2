@@ -104,7 +104,11 @@ const HomeBlog = ({ title }) => {
                   <div className='section-title-line-three'></div>
                 </div>
                 <div className='view-all-btn mb-4'>
-                  <Link to={`/spotlight/${'spotlight'}`} className='link-btn' onClick={() => handleViewClick('spotlight')}>
+                  <Link
+                    to={`/${posts[0].category_type === 'news' ? 'news' : 'article'}/${posts[0].category.data_query}`}
+                    className='link-btn'
+                    onClick={() => handleViewClick('spotlight')}
+                  >
                     View All
                     <span className='svg-icon'>
                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>

@@ -44,7 +44,7 @@ const RelatedPostsComponent = ({ posts }) => {
 
   return (
     <>
-      <section className='today-post-area pt-20'>
+      <section className='today-post-area pt-50'>
         <div className='section-title-wrap'>
           <div className='section-title section-title-four'>
             <h2 className='title'>Related Posts</h2>

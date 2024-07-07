@@ -97,7 +97,7 @@ const SpotLightSection = () => {
               <div className='section-title-line-three'></div>
             </div>
             <div className='view-all-btn mb-4'>
-              <Link to={`/spotlight/${'spotlight'}`} className='link-btn' onClick={() => handleViewClick('spotlight')}>
+              <Link to={`/news/news-headlines`} className='link-btn' onClick={() => handleViewClick('spotlight')}>
                 View All
                 <span className='svg-icon'>
                   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
@@ -130,7 +130,7 @@ const SpotLightSection = () => {
                   <Link to={`/${item.category_type === 'news' ? 'news_detail' : 'article_detail'}/${item.seo_slug}`}>{item.title}</Link>
                 </h2>
                 <p>{item.sub_title.length > 250 ? `${item.sub_title.slice(0, 250)}...` : item.sub_title}</p>
-                <div className='blog-post-meta' >
+                <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
                     <li className='col-3'>
                       <FontAwesomeIcon icon={['far', 'calendar']} />
