@@ -102,7 +102,7 @@ body {
 
 img,
 .img {
-  max-width: 90%;
+  max-width: 100%;
   -webkit-transition: -webkit-transform 1s ease;
   transition: -webkit-transform 1s ease;
   transition: transform 1s ease;

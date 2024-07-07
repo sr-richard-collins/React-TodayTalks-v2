@@ -47,6 +47,7 @@ const Header = () => {
     dispatch(fetchSelectCategory(link));
     setShowToggleMenu(false);
     setShowToggleSubMenu(false);
+    setActiveCategory({ category: null, show: false });
   };
 
   const handleMenuToggleOpenClick = () => {
@@ -55,6 +56,7 @@ const Header = () => {
   const handleMenuToggleCloseClick = () => {
     setShowToggleMenu(false);
     setShowToggleSubMenu(false);
+    setActiveCategory({ category: null, show: false });
   };
 
   const handleShowToggleSubMenu = () => {
@@ -66,6 +68,7 @@ const Header = () => {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target) && !event.target.closest('#mobileMenuToggleBtn')) {
         setShowToggleMenu(false);
         setShowToggleSubMenu(false);
+        setActiveCategory({ category: null, show: false });
       }
     };
 
@@ -267,7 +270,7 @@ const Header = () => {
                                       className='nav-bar-link'
                                     >
                                       <div className='d-flex'>
-                                        <div className='col-95'>{category.name}</div>
+                                        <div className='col-95' style={{fontSize:'12px'}}>{category.name}</div>
                                         <div className='col-05'>
                                           <FontAwesomeIcon icon='fa-solid fa-chevron-down' />
                                         </div>
@@ -282,6 +285,7 @@ const Header = () => {
                                               to={`/news/${subCategory.data_query}`}
                                               onClick={() => handleLinkClick(subCategory.name)}
                                               className='nav-bar-link ml-5'
+                                              
                                             >
                                               {subCategory.name}
                                             </Link>
@@ -298,10 +302,6 @@ const Header = () => {
                     </ul>
                   </div>
                   <div className='row left-menu-store my-2'>
-                    {/* <Link to='https://play.google.com/store/' className='my-2'>
-                      {' '}
-                      <img src={googleplayimg} />{' '}
-                    </Link> */}
                     <div className='left-menu-social mb-10'>
                       <ul className='list-wrap row justify-content-center'>
                         <li className='social-icons col'>
@@ -342,17 +342,6 @@ const Header = () => {
                       </ul>
                     </div>
                   </div>
-                  {/* <div className='row'>
-                    <span className='mt-2 left-menu-footer mb-10'>
-                      {' '}
-                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>
-                        About Us &middot;{' '}
-                      </Link>
-                      <Link to={'/about'} onClick={handleMenuToggleCloseClick}>
-                        Privacy Policy
-                      </Link>
-                    </span>
-                  </div> */}
                 </nav>
               </div>
             )}
