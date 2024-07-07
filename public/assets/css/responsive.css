@@ -1132,7 +1132,7 @@
     }
 
     .overlay-post-thumb img {
-        height: 400px;
+        /* height: 400px; */
     }
 
     .overlay-post-content {
@@ -1253,7 +1253,7 @@
     }
 
     .overlay-post-two .overlay-post-thumb img {
-        height: 440px;
+        /* height: 440px; */
     }
 
     .horizontal-post-two {

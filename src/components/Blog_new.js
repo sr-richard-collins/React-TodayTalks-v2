@@ -159,13 +159,11 @@ const Blog_new = ({ title, isHomepage }) => {
                     <div class="col-lg-3 col-md-4 col-6" key={post.id}>
                       <div class="categories-item-two">
                         <div class="overlay-post-two">
-                          <div class="overlay-post-thumb">
-                            <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
-                              <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title}
-                                style={{ maxWidth: '100%' }}
-                              />
-                            </Link>
-                          </div>
+                          <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
+                            <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title}
+                              style={{ maxWidth: '100%' }}
+                            />
+                          </Link>
                           <div class="category-post-content">
                             <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}
                               className='category-post-tag'
@@ -177,70 +175,6 @@ const Blog_new = ({ title, isHomepage }) => {
                       </div>
                     </div>
                   ))}
-                  {/* <div class="categories-item-wrap-two">
-                    <div class="row">
-                      <div class="col-lg-2 col-md-4 col-6">
-                        <div class="categories-item-two">
-                          <div class="categories-img-two">
-                            <a href="blog.html"><img src="assets/img/images/g_categories_img01.png" alt="" /></a>
-                          </div>
-                          <div class="categories-content-two">
-                            <a href="blog.html" class="post-tag">Action</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4 col-6">
-                        <div class="categories-item-two">
-                          <div class="categories-img-two">
-                            <a href="blog.html"><img src="assets/img/images/g_categories_img02.png" alt="" /></a>
-                          </div>
-                          <div class="categories-content-two">
-                            <a href="blog.html" class="post-tag">Gaming</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4 col-6">
-                        <div class="categories-item-two">
-                          <div class="categories-img-two">
-                            <a href="blog.html"><img src="assets/img/images/g_categories_img03.png" alt="" /></a>
-                          </div>
-                          <div class="categories-content-two">
-                            <a href="blog.html" class="post-tag">RAcing</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4 col-6">
-                        <div class="categories-item-two">
-                          <div class="categories-img-two">
-                            <a href="blog.html"><img src="assets/img/images/g_categories_img04.png" alt="" /></a>
-                          </div>
-                          <div class="categories-content-two">
-                            <a href="blog.html" class="post-tag">Animation</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4 col-6">
-                        <div class="categories-item-two">
-                          <div class="categories-img-two">
-                            <a href="blog.html"><img src="assets/img/images/g_categories_img05.png" alt="" /></a>
-                          </div>
-                          <div class="categories-content-two">
-                            <a href="blog.html" class="post-tag">Fighter</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4 col-6">
-                        <div class="categories-item-two">
-                          <div class="categories-img-two">
-                            <a href="blog.html"><img src="assets/img/images/g_categories_img06.png" alt="" /></a>
-                          </div>
-                          <div class="categories-content-two">
-                            <a href="blog.html" class="post-tag">Story</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
