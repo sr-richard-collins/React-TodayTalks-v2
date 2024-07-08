@@ -125,12 +125,12 @@ const SpotLightSection = () => {
                   </Link>
                 </div>
               </div>
-              <div className='weekly-post-content'>
+              <div className='weekly-post-content mb-4' style={{ borderBottom: '1px solid #e4e4e4' }}>
                 <h2 className='post-title'>
                   <Link to={`/${item.category_type === 'news' ? 'news_detail' : 'article_detail'}/${item.seo_slug}`}>{item.title}</Link>
                 </h2>
                 <p>{item.sub_title.length > 250 ? `${item.sub_title.slice(0, 250)}...` : item.sub_title}</p>
-                <div className='blog-post-meta' style={{ borderBottom: '1px solid #e4e4e4' }}>
+                <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
                     <li className='col-3'>
                       <FontAwesomeIcon icon={['far', 'calendar']} />
@@ -183,6 +183,17 @@ const SpotLightSection = () => {
               </div>
             </div>
           ))}
+          <div className='view-all-btn my-2 d-flex justify-content-center'>
+            <Link to={`/${spotlight[0].category_type}/${spotlight[0].category_data_query}`} className='link-btn' >
+              View All
+              <span className='svg-icon'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                  <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                  <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                </svg>
+              </span>
+            </Link>
+          </div>
         </div>
       ) : noPost === 0 ? (
         ''

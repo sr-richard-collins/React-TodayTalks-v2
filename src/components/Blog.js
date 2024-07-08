@@ -145,7 +145,7 @@ const Blog = ({ title, isHomepage }) => {
                             <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title} />
                           </Link>
                         </div>
-                        <div className='weekly-post-content'>
+                        <div className='weekly-post-content' style={{ borderBottom: '1px solid #e4e4e4' }}>
                           <h2 className='post-title'>
                             <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                           </h2>

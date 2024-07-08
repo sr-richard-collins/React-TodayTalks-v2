@@ -44,7 +44,7 @@ const RelatedPostsComponent = ({ posts }) => {
 
   return (
     <>
-      <section className='today-post-area pt-20'>
+      <section className='today-post-area pt-50'>
         <div className='section-title-wrap'>
           <div className='section-title section-title-four'>
             <h2 className='title'>Related Posts</h2>
@@ -66,7 +66,7 @@ const RelatedPostsComponent = ({ posts }) => {
                       </Link>
                     </div>
                   </div>
-                  <div className='banner-post-content-five'>
+                  <div className='banner-post-content-five' style={{ borderBottom: '1px solid #e4e4e4' }}>
                     <h2 className='post-title'>
                       <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                     </h2>

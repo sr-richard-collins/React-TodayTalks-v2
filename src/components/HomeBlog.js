@@ -104,7 +104,11 @@ const HomeBlog = ({ title }) => {
                   <div className='section-title-line-three'></div>
                 </div>
                 <div className='view-all-btn mb-4'>
-                  <Link to={`/spotlight/${'spotlight'}`} className='link-btn' onClick={() => handleViewClick('spotlight')}>
+                  <Link
+                    to={`/${posts[0].category_type === 'news' ? 'news' : 'article'}/${posts[0].category.data_query}`}
+                    className='link-btn'
+                    onClick={() => handleViewClick('spotlight')}
+                  >
                     View All
                     <span className='svg-icon'>
                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
@@ -128,12 +132,12 @@ const HomeBlog = ({ title }) => {
                           <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title} />
                         </Link>
                       </div>
-                      <div className='editor-post-content'>
+                      <div className='editor-post-content' style={{ borderBottom: '1px solid #e4e4e4' }}>
                         <h2 className='post-title mt-3'>
                           <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                         </h2>
                         <p>{post.sub_title.length > 250 ? `${post.sub_title.slice(0, 250)}...` : post.sub_title}</p>
-                        <div className='blog-post-meta'>
+                        <div className='blog-post-meta ' >
                           <ul className='list-wrap mb-3'>
                             <li className='col-3'>
                               <FontAwesomeIcon icon={['far', 'calendar']} />
@@ -189,12 +193,24 @@ const HomeBlog = ({ title }) => {
                           </ul>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
+          <div className='view-all-btn my-2 d-flex justify-content-center'>
+            <Link to={`/${posts[0].category_type === 'news' ? 'news' : 'article'}/${posts[0].category.data_query}`} className='link-btn' >
+              View All
+              <span className='svg-icon'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'>
+                  <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                  <path d='M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z' fill='currentColor' />
+                </svg>
+              </span>
+            </Link>
+          </div>
         </section>
       ) : (
         ''
