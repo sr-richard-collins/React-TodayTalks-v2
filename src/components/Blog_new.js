@@ -160,7 +160,7 @@ const Blog_new = ({ title, isHomepage }) => {
                       <div class="categories-item-two">
                         <div class="overlay-post-two">
                           <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
-                            <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title}
+                            <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.seo_slug}
                               style={{ maxWidth: '100%' }}
                             />
                           </Link>

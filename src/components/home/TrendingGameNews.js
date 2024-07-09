@@ -77,7 +77,7 @@ const TrendingGameNewsSection = () => {
               <div className='sports-post'>
                 <div className='sports-post-thumb'>
                   <Link to={`/${popularPosts[0].category_type === 'news' ? 'news_detail' : 'article_detail'}/${popularPosts[0].seo_slug}`} className='link-btn'>
-                    <img src={popularPosts[0].img ? IMAGE_BASE_URL + popularPosts[0].img : IMAGE_BASE_URL + DEFAULT_POST} alt={popularPosts[0].title} />
+                    <img src={popularPosts[0].img ? IMAGE_BASE_URL + popularPosts[0].img : IMAGE_BASE_URL + DEFAULT_POST} alt={popularPosts[0].seo_slug} />
                   </Link>
                   {/* <a
                     href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
