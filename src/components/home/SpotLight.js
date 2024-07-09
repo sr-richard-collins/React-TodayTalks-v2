@@ -113,7 +113,7 @@ const SpotLightSection = () => {
               <div className='spotlight-post big-post'>
                 <div className='spotlight-post-thumb'>
                   <Link to={`/${item.category_type === 'news' ? 'news_detail' : 'article_detail'}/${item.seo_slug}`}>
-                    <img src={item.img ? IMAGE_BASE_URL + item.img : IMAGE_BASE_URL + DEFAULT_POST} alt='' />
+                    <img src={item.img ? IMAGE_BASE_URL + item.img : IMAGE_BASE_URL + DEFAULT_POST} alt={item.title} />
                   </Link>
                   <Link
                     to={`/${item.category_type}/${item.category_data_query}`}
