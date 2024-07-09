@@ -90,7 +90,7 @@ const HomeBlog = ({ title }) => {
             <div className='col-lg-12'>
               <div className='section-title-wrap-three mb-20'>
                 <div className='section-title-three'>
-                  <h6 className='title'>
+                  <h1 className='title'>
                     {posts[0].category.name}
                     <span className='section-title-svg'>
                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 246 40' fill='none' preserveAspectRatio='none'>
@@ -100,7 +100,7 @@ const HomeBlog = ({ title }) => {
                         />
                       </svg>
                     </span>
-                  </h6>
+                  </h1>
                   <div className='section-title-line-three'></div>
                 </div>
                 <div className='view-all-btn mb-4'>

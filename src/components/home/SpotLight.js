@@ -83,7 +83,7 @@ const SpotLightSection = () => {
         <div className='spotlight-post-item-wrap'>
           <div className='section-title-wrap-three mb-20'>
             <div className='section-title-three'>
-              <h6 className='title'>
+              <h1 className='title'>
                 தலைப்புச் செய்திகள்
                 <span className='section-title-svg'>
                   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 246 40' fill='none' preserveAspectRatio='none'>
@@ -93,7 +93,7 @@ const SpotLightSection = () => {
                     />
                   </svg>
                 </span>
-              </h6>
+              </h1>
               <div className='section-title-line-three'></div>
             </div>
             <div className='view-all-btn mb-4'>
@@ -129,7 +129,7 @@ const SpotLightSection = () => {
                 <h2 className='post-title'>
                   <Link to={`/${item.category_type === 'news' ? 'news_detail' : 'article_detail'}/${item.seo_slug}`}>{item.title}</Link>
                 </h2>
-                <p>{item.sub_title.length > 250 ? `${item.sub_title.slice(0, 250)}...` : item.sub_title}</p>
+                <h3 style={{fontSize:'var(--tg-body-font-size)', color:'var(--tg-icon-color)', fontWeight:'var(--tg-body-font-weight)'}}>{item.sub_title.length > 250 ? `${item.sub_title.slice(0, 250)}...` : item.sub_title}</h3>
                 <div className='blog-post-meta'>
                   <ul className='list-wrap mb-3'>
                     <li className='col-3'>
