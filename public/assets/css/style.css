@@ -8776,7 +8776,7 @@ label {
 
 .view-more {
   position: relative;
-  top: 0;
+  top: -60px;
   left: 100%;
 }
 
@@ -8785,7 +8785,7 @@ label {
 }
 
 .sports-sub-category {
-  top: 0;
+  top: -11px;
   left: 100%;
 }
 
