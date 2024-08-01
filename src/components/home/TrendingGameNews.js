@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from '../../config/';
-import { IMAGE_BASE_URL } from '../../config';
+import { IMAGE_BASE_URL, DEFAULT_POST } from '../../config';
 import Loader from '../Loader';
 import { fetchSelectCategory } from '../../actions/categoryAction';
 
@@ -76,8 +76,8 @@ const TrendingGameNewsSection = () => {
             {popularPosts.length !== 0 ? (
               <div className='sports-post'>
                 <div className='sports-post-thumb'>
-                  <Link to={`/${popularPosts[0].seo_slug}`} className='link-btn'>
-                    <img src={IMAGE_BASE_URL + popularPosts[0].img} alt='' />
+                  <Link to={`/${popularPosts[0].category_type === 'news' ? 'news_detail' : 'article_detail'}/${popularPosts[0].seo_slug}`} className='link-btn'>
+                    <img src={popularPosts[0].img ? IMAGE_BASE_URL + popularPosts[0].img : IMAGE_BASE_URL + DEFAULT_POST} alt={popularPosts[0].seo_slug} />
                   </Link>
                   {/* <a
                     href="https://www.youtube.com/watch?v=1iIZeIy7TqM"
@@ -88,14 +88,16 @@ const TrendingGameNewsSection = () => {
                 </div>
                 <div className='sports-post-content'>
                   <Link
-                    to={`/news/${popularPosts[0].category_data_query}`}
+                    to={`/${popularPosts[0].category_type}/${popularPosts[0].category_data_query}`}
                     className='post-tag-four'
                     onClick={() => handleViewClick(popularPosts[0].category_name)}
                   >
                     {popularPosts[0].category_name}
                   </Link>
                   <h4 className='post-title bold-underline'>
-                    <Link to={`/${popularPosts[0].seo_slug}`}>{popularPosts[0].title}</Link>
+                    <Link to={`/${popularPosts[0].category_type === 'news' ? 'news_detail' : 'article_detail'}/${popularPosts[0].seo_slug}`}>
+                      {popularPosts[0].title}
+                    </Link>
                   </h4>
                   <div className='blog-post-meta'>
                     <ul className='list-wrap'>
@@ -120,16 +122,20 @@ const TrendingGameNewsSection = () => {
               {popularPosts.slice(1).map((post, index) => (
                 <div className='horizontal-post-four horizontal-post-five' key={post.id}>
                   <div className='horizontal-post-thumb-four'>
-                    <Link to={`/${post.seo_slug}`} className='link-btn'>
-                      <img src={IMAGE_BASE_URL + post.img} alt='' />
+                    <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`} className='link-btn'>
+                      <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title} />
                     </Link>
                   </div>
                   <div className='horizontal-post-content-four'>
-                    <Link to={`/news/${post.category_data_query}`} className='post-tag-four' onClick={() => handleViewClick(post.category_name)}>
+                    <Link
+                      to={`/${post.category_type}/${post.category_data_query}`}
+                      className='post-tag-four'
+                      onClick={() => handleViewClick(post.category_name)}
+                    >
                       {popularPosts[0].category_name}
                     </Link>
                     <h4 className='post-title'>
-                      <Link to={`/${post.seo_slug}`}>{post.title}</Link>
+                      <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>{post.title}</Link>
                     </h4>
                     <div className='blog-post-meta'>
                       <ul className='list-wrap'>

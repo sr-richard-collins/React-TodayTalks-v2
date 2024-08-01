@@ -6,25 +6,22 @@ const SubCategoryBreadcrumb = ({ subCategories, title }) => {
   return (
     <>
       <div className='breadcrumb-area'>
-        <div className='container content-container'>
-          <div className='row'>
-            <div className='col-lg-12'>
-              <div className='breadcrumb-content'>
-                <nav aria-label='breadcrumb'>
-                  <ol className='breadcrumb'>
-                    <li className='sub-cagetory-breadcrumb-tag'>
-                      <span>Tags:</span>
-                    </li>
+        <div className='row'>
+          <div className='col-lg-12'>
+            <div className='breadcrumb-content'>
+              <nav aria-label='breadcrumb'>
+                <div className='sidebar-social-wrap'>
+                  <ul className='list-wrap breadcrumb-item breadcrumb'>
                     {subCategories.map((subCategory) => (
-                      <li key={subCategory.id} className='sub-cagetory-breadcrumb-item'>
-                        <Link to={`/news/${subCategory.data_query}`} className={subCategory.name === title ? 'active' : ''}>
+                      <li key={subCategory.id}>
+                        <Link to={`/${subCategory.type2}/${subCategory.data_query}`} className={subCategory.name === title ? 'active' : ''}>
                           <span>{subCategory.name}</span>
                         </Link>
                       </li>
                     ))}
-                  </ol>
-                </nav>
-              </div>
+                  </ul>
+                </div>
+              </nav>
             </div>
           </div>
         </div>

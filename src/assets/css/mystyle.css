@@ -57,7 +57,8 @@
   justify-content: center;
   align-items: center;
   height: 100vh; /* Adjust height as needed */
-  background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+
   position: fixed;
   top: 0;
   left: 0;
@@ -65,11 +66,11 @@
   z-index: 1000; /* Ensure it's on top of other content */
 }
 
-.account-profile {
+/* .account-profile {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-}
+} */
 
 .ap-img.pro_img_wrapper {
   position: relative;
@@ -120,4 +121,54 @@
 
 .text-capitalize {
   text-transform: capitalize;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.ta-trending-slider .myswiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the image horizontally */
+  width: 100%; /* Make sure the container uses full width */
+}
+
+.mylogo-style {
+  max-width: 100%; /* Ensure the image doesn't exceed its container's width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any default inline-block spacing */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+@media (max-width: 576px) {
+  .ta-trending-slider .swiper-slide {
+    width: 100%;
+  }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .ta-trending-slider .swiper-slide {
+    width: 100%;
+  }
+}
+
+/* For large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+  .ta-trending-slider .swiper-slide {
+    width: 100%;
+  }
+}
+
+/* For extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .ta-trending-slider .swiper-slide {
+    width: 235px;
+  }
 }

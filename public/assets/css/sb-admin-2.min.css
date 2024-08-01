@@ -582,15 +582,15 @@ pre code {
 .container-sm,
 .container-xl {
     width: 100%;
-    padding-right: .75rem;
-    padding-left: .75rem;
+    padding-right: .75rem; 
+    padding-left: .75rem; 
     margin-right: auto;
     margin-left: auto
 }
 
 @media (min-width:576px) {
 
-    .container,
+    /* .container, */
     .container-sm {
         max-width: 540px
     }
@@ -598,7 +598,7 @@ pre code {
 
 @media (min-width:768px) {
 
-    .container,
+    /* .container, */
     .container-md,
     .container-sm {
         max-width: 720px
@@ -607,7 +607,7 @@ pre code {
 
 @media (min-width:992px) {
 
-    .container,
+    /* .container, */
     .container-lg,
     .container-md,
     .container-sm {
@@ -617,7 +617,7 @@ pre code {
 
 @media (min-width:1200px) {
 
-    .container,
+    /* .container, */
     .container-lg,
     .container-md,
     .container-sm,
@@ -2129,7 +2129,8 @@ pre code {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #6e707e;
+    /* color: #6e707e; */
+    color: black;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #d1d3e2;
@@ -2303,7 +2304,7 @@ textarea.form-control {
 .form-check {
     position: relative;
     display: block;
-    padding-left: 1.25rem
+    /* padding-left: 1.25rem */
 }
 
 .form-check-input {
@@ -4535,7 +4536,7 @@ input[type=submit].btn-block {
     padding: .5rem 1rem
 }
 
-.navbar .container,
+/* .navbar .container, */
 .navbar .container-fluid,
 .navbar .container-lg,
 .navbar .container-md,
@@ -5241,7 +5242,7 @@ input[type=submit].btn-block {
     padding: .75rem 1rem;
     margin-bottom: 1rem;
     list-style: none;
-    background-color: #eaecf4;
+    /* background-color: #eaecf4; */
     border-radius: .35rem
 }
 
@@ -10930,9 +10931,9 @@ a.text-dark:hover {
         min-width: 992px !important
     }
 
-    .container {
+    /* .container {
         min-width: 992px !important
-    }
+    } */
 
     .navbar {
         display: none
@@ -12225,7 +12226,7 @@ form.user .btn-user {
     font-size: 7rem;
     position: relative;
     line-height: 1;
-    width: 12.5rem
+    /* width: 12.5rem */
 }
 
 @-webkit-keyframes noise-anim {
