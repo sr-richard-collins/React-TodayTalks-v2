@@ -1124,7 +1124,11 @@
     }
 
     .sidebar-social-wrap .list-wrap li a {
-        min-width: 142px;
+        min-width: 130px;
+        min-width: 100px;
+        padding: 5px 5px;
+        font-size: 10px;
+        gap: 10px;
     }
 
     .categories-item {
@@ -1132,7 +1136,7 @@
     }
 
     .overlay-post-thumb img {
-        height: 400px;
+        /* height: 400px; */
     }
 
     .overlay-post-content {
@@ -1253,7 +1257,7 @@
     }
 
     .overlay-post-two .overlay-post-thumb img {
-        height: 440px;
+        /* height: 440px; */
     }
 
     .horizontal-post-two {
@@ -1613,6 +1617,5 @@
     .banner-post-content-four .post-title {
         font-size: 24px;
     }
-
 
 }

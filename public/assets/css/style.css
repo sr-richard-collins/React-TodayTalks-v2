@@ -102,7 +102,7 @@ body {
 
 img,
 .img {
-  max-width: 90%;
+  max-width: 100%;
   -webkit-transition: -webkit-transform 1s ease;
   transition: -webkit-transform 1s ease;
   transition: transform 1s ease;
@@ -2923,17 +2923,17 @@ label {
   width: 100%;
   color: var(--tg-white);
   font-family: var(--tg-heading-font-family);
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.78px;
   text-transform: uppercase;
   background: var(--tg-primary-color);
-  /* background-color: gray; */
+  background: #183354;
   display: inline-block;
   border-radius: 3px;
   padding: 4px 10px;
-  height: 50px;
+  height: 40px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -2942,7 +2942,7 @@ label {
   text-align: center;
 }
 .category-post-tag:hover{
-  background: #183354;
+  background: var(--tg-primary-color);
   color: var(--tg-white);
 }
 
@@ -5957,6 +5957,7 @@ label {
   font-size: 14px;
   color: white;
   user-select: none;
+  /* margin-left: 25px; */
 }
 
 /* weekly-post-four */
@@ -8776,7 +8777,7 @@ label {
 
 .view-more {
   position: relative;
-  top: 0;
+  top: -60px;
   left: 100%;
 }
 
@@ -8785,7 +8786,7 @@ label {
 }
 
 .sports-sub-category {
-  top: 0;
+  top: -11px;
   left: 100%;
 }
 

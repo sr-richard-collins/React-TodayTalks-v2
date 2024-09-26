@@ -54,6 +54,11 @@ const Menu = () => {
     setActiveCategory(null);
   }, []);
 
+  const handleSubMenuLeave = useCallback(() =>{
+    setShowDropleft(false);
+    setActiveCategory(null);
+  })
+
   const handleLinkMouseEnter = useCallback((category) => {
     if (!category.child) {
       setActiveCategory(null);
@@ -136,8 +141,9 @@ const Menu = () => {
               </li>
             ))}
             {moreCategories.length > 0 && (
-              <li>
-                <Link to='#' onMouseEnter={() => setShowDropleft(true)} className='nav-bar-link mb-2'>
+              <li className='' onMouseLeave={handleSubMenuLeave} style={{height:'48px'}}>
+                <Link to='#' onMouseEnter={() => setShowDropleft(true)} className='nav-bar-link mb-2'
+                >
                   <div className='col-95 d-flex align-items-center'>
                     <FontAwesomeIcon icon='fa-solid fa-money-check' className='img-icon-left-menu  mx-2' />
                     <span>View More</span>
@@ -148,7 +154,6 @@ const Menu = () => {
                 </Link>
                 <ul
                   className={`left-menu-dropleft view-more dropdown-content ${showDropleft ? 'show-dropleft' : ''}`}
-                  onMouseLeave={() => setShowDropleft(false)}
                 >
                   {moreCategories.map((category) => (
                     <li className={(selectCategory ? selectCategory : activeLink) === category.name ? 'active' : ''} key={category.id}>
@@ -200,17 +205,6 @@ const Menu = () => {
             )}
           </ul>
         </div>
-        {/* <div className='row left-menu-store'>
-          <Link to='https://play.google.com/store/' className='mb-10'>
-            <img src={googleplayimg} alt='Google Play Store' />
-          </Link>
-        </div>
-        <div className='row' style={{ borderBottom: '1px solid #e4e4e4' }}>
-          <span className='mt-2 left-menu-footer mb-10'>
-            <Link to='/about'>About Us &middot; </Link>
-            <Link to='/about'>Privacy Policy</Link>
-          </span>
-        </div> */}
       </div>
     </>
   );

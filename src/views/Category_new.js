@@ -39,7 +39,10 @@ const Category_new = () => {
         <Header />
         <section className='pt-70 pb-60 '>
           <main className='fix'>
-            <Category_new_component/>
+            <div className='col-lg-8 col-md-12 col-12'>
+              <Category_new_component />
+            </div>
+            <div className='col-lg-4'></div>
           </main>
         </section>
       </div>
