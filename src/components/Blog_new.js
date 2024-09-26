@@ -136,7 +136,7 @@ const Blog_new = ({ title, isHomepage }) => {
               <div className='col-1g-12'>
                 <div className='section-title-wrap-three mb-20'>
                   <div className='section-title-three'>
-                    <h6 className='title'>
+                    <h1 className='title'>
                       தலைப்புச் செய்திகள்
                       <span className='section-title-svg'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 246 40' fill='none' preserveAspectRatio='none'>
@@ -146,7 +146,7 @@ const Blog_new = ({ title, isHomepage }) => {
                           />
                         </svg>
                       </span>
-                    </h6>
+                    </h1>
                     <div className='section-title-line-three'></div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@ const Blog_new = ({ title, isHomepage }) => {
                       <div class="categories-item-two">
                         <div class="overlay-post-two">
                           <Link to={`/${post.category_type === 'news' ? 'news_detail' : 'article_detail'}/${post.seo_slug}`}>
-                            <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.title}
+                            <img src={post.img ? IMAGE_BASE_URL + post.img : IMAGE_BASE_URL + DEFAULT_POST} alt={post.seo_slug}
                               style={{ maxWidth: '100%' }}
                             />
                           </Link>
