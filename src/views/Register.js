@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Loader from '../components/Loader';
 import axios from '../config/';
 import { IMAGE_BASE_URL } from '../config';
+import { DEFAULT_LOGO } from '../config/constant';
 
 const Register = () => {
   const { setting } = useSelector((state) => state.setting);
@@ -18,6 +20,7 @@ const Register = () => {
   });
   const [verificationCode, setVerificationCode] = useState('');
   const [isVerificationSent, setIsVerificationSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
 
   const [avatarPreview, setAvatarPreview] = useState('../assets/images/profile.png');
 
@@ -46,7 +49,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
@@ -62,10 +65,12 @@ const Register = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      setIsLoading(false);
       setIsVerificationSent(true);
       alert(response.data.message);
       // Optionally handle success feedback or redirection
     } catch (error) {
+      setIsLoading(false);
       if (error.response && error.response.status === 422) {
         // Handle validation errors from the server
         const validationErrors = error.response.data.errors;
@@ -99,15 +104,16 @@ const Register = () => {
   return (
     <>
       <section className='vh-100'>
+        {isLoading && <Loader />}
         <div className='container pt-10 h-custom'>
           <div className='row d-flex justify-content-center align-items-center h-100'>
             <div className='col-md-8 col-lg-6 col-xl-4'>
-              <div className='justify-content-end d-flex mb-3' style={{ width: '110%' }}>
+              <div className='justify-content-end d-flex mb-3'>
                 <Link to='/' className='nav-bar-link'>
                   <FontAwesomeIcon icon='fa-solid fa-house' className='img-icon-left-menu' />
                 </Link>
               </div>
-              <div className='login-card' style={{ height: '700px', width: '110%' }}>
+              <div className='login-card' style={{ height: '700px' }}>
                 {!isVerificationSent ? (
                   <form className='mx-1 mx-md-4' onSubmit={handleSubmit} encType='multipart/form-data'>
                     <div className='account-profile'>
@@ -122,9 +128,9 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-user' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-user' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
-                        <label className='form-label'>Usr Name</label>
+                        <label className='form-label'>User Name</label>
                         <input
                           type='text'
                           id='form3Example1c'
@@ -138,7 +144,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Email</label>
                         <input
@@ -154,7 +160,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-envelope' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Referral Code</label>
                         <input
@@ -169,7 +175,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-lock' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-lock' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Password</label>
                         <input
@@ -185,7 +191,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className='d-flex flex-row align-items-center mb-2'>
-                      <FontAwesomeIcon icon='fa-solid fa-key' className='me-3' />
+                      <FontAwesomeIcon icon='fa-solid fa-key' className='me-3 register-label-icon' />
                       <div className='flex-fill mb-0'>
                         <label className='form-label'>Confirm Password</label>
                         <input
@@ -251,10 +257,10 @@ const Register = () => {
             <div className='col-md-9 col-lg-6 col-xl-5 offset-xl-1'>
               <div className='brand_logo_container'>
                 <img
-                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
+                  src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO}
                   alt='logo'
-                  className='my-4'
-                  style={{ height: '4rem', width: '12rem' }}
+                  className='mb-4'
+                  style={{ height: '3rem', width: '12rem', marginTop:'50px'}}
                 />
               </div>
               <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp' className='img-fluid' alt='Sample image' />

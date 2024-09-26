@@ -213,7 +213,8 @@ figure {
 
 img {
     vertical-align: middle;
-    border-style: none
+    border-style: none;
+    /* margin-top: 40px; */
 }
 
 svg {
@@ -11777,7 +11778,8 @@ a:focus {
     }
 
     .sidebar .sidebar-brand .sidebar-brand-text {
-        display: inline
+        display: inline;
+        margin-top: 10px;
     }
 
     .sidebar .sidebar-heading {
@@ -11914,6 +11916,7 @@ a:focus {
 }
 
 .sidebar-dark hr.sidebar-divider {
+    /* margin-top: 45px; */
     border-top: 1px solid rgba(255, 255, 255, .15)
 }
 
@@ -12223,7 +12226,7 @@ form.user .btn-user {
     font-size: 7rem;
     position: relative;
     line-height: 1;
-    width: 12.5rem
+    /* width: 12.5rem */
 }
 
 @-webkit-keyframes noise-anim {

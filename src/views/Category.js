@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import Blog from '../components/Blog';
-// import Newsletter from '../components/Newsletter';
-// import Breadcrumb from '../components/Breadcrumb';
+import Blog_new from '../components/Blog_new';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -41,7 +40,6 @@ const Category = () => {
 
   return (
     <>
-      {/* {alert(selectCategory.name)} */}
       <Helmet>
         <title>{seo.name}</title>
         <meta property='og:title' content={seo.seo_title} />

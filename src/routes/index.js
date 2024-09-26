@@ -10,6 +10,7 @@ const FullLayout = lazy(() => import('../layouts/'));
 const AdminDashboard = lazy(() => import('../views/AdminDashboard.js'));
 const Home = lazy(() => import('../views/Home.js'));
 const Category = lazy(() => import('../views/Category.js'));
+const Category_new = lazy(() => import('../views/Category_new.js'));
 const Spotlight = lazy(() => import('../views/Spotlight.js'));
 const BlogLayout3 = lazy(() => import('../views/BlogLayout3.js'));
 const BlogsDetails = lazy(() => import('../views/BlogsDetailsPage.js'));
@@ -47,6 +48,8 @@ const ThemeRoutes = [
       { path: '*', element: <Navigate to='/404' /> }, // Navigate to 404 page for unmatched routes
     ],
   },
+  // { path: '/news/:name', exact: true,  element: <Suspense fallback={<Loader />}>{<Category_new />}</Suspense>,},
+  // { path: '/article/:name', exact: true, element: <Suspense fallback={<Loader />}>{<Category_new />}</Suspense>,},
   {
     path: '/dashboard',
     element: <Suspense fallback={<Loader />}>{<AdminDashboard />}</Suspense>,

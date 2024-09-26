@@ -5,6 +5,7 @@ import { fetchSelectCategory } from '../actions/categoryAction';
 import { fetchCategories } from '../actions/categoryAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IMAGE_BASE_URL } from '../config';
+import { SOCIAL_FB, SOCIAL_TWITTER, SOCIAL_INSTA, SOCIAL_LINKEDIN, SOCIAL_YOUTUBE, DEFAULT_LOGO } from '../config/constant';
 import googleplayimg from '../assets/img/icon/googleplay.png';
 import { AuthContext } from '../provider/AuthContext';
 
@@ -57,11 +58,7 @@ const HeaderLogin = () => {
                 <div className='swiper-wrapper'>
                   <div className='swiper-slide'>
                     <Link to='/'>
-                      <img
-                        src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'}
-                        alt='logo'
-                        className='logo-style'
-                      />
+                      <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' className='logo-style' />
                     </Link>
                   </div>
                 </div>
@@ -96,7 +93,7 @@ const HeaderLogin = () => {
                           <FontAwesomeIcon icon='fas fa-times' />
                         </div>
                         <Link to='/'>
-                          <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : '../assets/Today_Talks_Logo.png'} alt='logo' />
+                          <img src={setting.site_logo !== undefined ? IMAGE_BASE_URL + setting.site_logo : DEFAULT_LOGO} alt='logo' />
                         </Link>
                       </li>
                       <li className={(selectCategory ? selectCategory : activeLink) === 'home' ? 'active' : ''}>
@@ -175,35 +172,35 @@ const HeaderLogin = () => {
                       <ul className='list-wrap row justify-content-center'>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_fb} target='blank'>
+                            <Link to={setting.social_fb ? setting.social_fb : SOCIAL_FB} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-facebook-f' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_twitter} target='blank'>
+                            <Link to={setting.social_twitter ? setting.social_twitter : SOCIAL_TWITTER} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-twitter' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_insta} target='blank'>
+                            <Link to={setting.social_insta ? setting.social_insta : SOCIAL_INSTA} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-instagram' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_linkedin} target='blank'>
+                            <Link to={setting.social_linkedin ? setting.social_linkedin : SOCIAL_LINKEDIN} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                             </Link>
                           </span>
                         </li>
                         <li className='social-icons col'>
                           <span>
-                            <Link to={setting.social_youtube} target='blank'>
+                            <Link to={setting.social_youtube ? setting.social_youtube : SOCIAL_YOUTUBE} target='blank'>
                               <FontAwesomeIcon icon='fa-brands fa-youtube' />
                             </Link>
                           </span>
